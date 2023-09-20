@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <title>Document</title>
+  
 </head>
 <body>
-    <button><a href="?control=info">Informacion</a> </button>
-    - 
-    <button><a href="?control=gallery"> Galeria</a></button>
-    <button><a href="?control=mas">Mas info</a></button>
-
+    <div class="botones" >
+    <a href="?control=info"><button>Informacion</button></a> 
+    <a href="?control=gallery"> <button>Galeria</button></a>
+    <a href="?control=mas"><button>Mas info</button></a>
+</div>
     <?php
     if(!empty($_GET['control'])) {
         if($_GET['control']=="info"){
@@ -42,5 +43,6 @@
     }
 
     ?>
+      
 </body>
 </html>
