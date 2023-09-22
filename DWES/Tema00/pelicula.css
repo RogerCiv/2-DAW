@@ -68,6 +68,13 @@ input[type='submit']:hover{
     }
 }
 
+.user{
+    padding: 1rem;
+    background-color: var(--primary-color);
+    width: 11rem;
+    border-radius: 1rem;
+    color: white;
+}
 main{
     padding: 2rem;
     max-width: 1800px;
