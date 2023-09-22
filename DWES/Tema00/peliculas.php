@@ -1,22 +1,5 @@
-<!DOCTYPE html>
 <?php
 require_once('db.php');
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-?>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="./pelicula.css">
-    <title>Document</title>
-</head>
-<body>
-<header> 
-
-<?php
-
 $bd = Conectar::conexion();
 
 if(!empty($_POST['title'])){
@@ -31,12 +14,23 @@ if(!empty($_POST['title'])){
 
     header("Location: peliculas.php");
     exit(); // Asegura que el script se det
-  
 }
+?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./pelicula.css">
+    <title>Document</title>
+</head>
+<body>
+<header> 
+<?php
+
 
 $q = "SELECT * FROM peliculas";
 $result = $bd->query($q);
-
 
 echo '<form class="form" method="post" action>';
 echo '<input type="text" placeholder="Nombre Pelicula" name="title">';
@@ -65,10 +59,7 @@ while ($datos = $result->fetch_assoc()) {
 }
 echo  '</div>';
 echo '</main>';
-
 ?>
-
-
 </body>
 </html>
 
