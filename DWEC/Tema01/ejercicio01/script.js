@@ -20,25 +20,6 @@ function factorial(n) {
 
 console.log(factorial(1)); 
 
-/*
-function factorialWhile(n){
-    let respuesta ;
-    if(typeof n !== "number"){
-        respuesta = "Tienes que introducir un número";
-    }else if(n < 1){
-        respuesta = "EL número tiene que ser igual o mayor que 1";
-    }else{
-        while(n>0){
-            respuesta = n * (n - 1);
-        }
-    }
-    return respuesta;
-}
-
-console.log(factorialWhile(0));
-esta mal
-*/
-
   /**
  * @author: Rogelio Sánchez Civantos
  * @description: Dada la ecuacion ax2 + bx + c = 0. Calcular las ecuaciones reales, sino hay indicarlo. Si hay una solución doble indicarlo. a b y c tienen que ser numeros.
@@ -50,11 +31,18 @@ function segundoGrado(a,b,c){
     
     if(typeof a !== "number" || typeof b !== "number" || typeof c !== "number"){
         return "a, b y c tienen que ser números";
-    }else if(raiz< 0){
+    }
+    
+    if(raiz< 0){
         return "No solución, raiz = 0";
+    }else if(raiz === 0){
+        let solucion = -b / (2(a));
+        return `Solución doble: x = ${solucion}`;
     }else{
-        let suma ;
-        let resta;
+        let solucionSuma = (-b + Math.sqrt(raiz)) / (2 * a);
+        let solucionResta = (-b - Math.sqrt(raiz)) / (2 * a);
+        
+        return `Las soluciones reales son: \n  x1 = ${solucionSuma} \n x2 = ${solucionResta}`;
     }
 
 }
@@ -62,6 +50,10 @@ function segundoGrado(a,b,c){
 console.log(segundoGrado(2,2,3));
 
 
+  /**
+ * @author: Rogelio Sánchez Civantos
+ * @description: Calcular letra de dni.
+ */
 
 function letraDNI(num){
     const letras = ["T","R","W","A","G","M","Y","F","P","D","X","B",
@@ -70,8 +62,11 @@ function letraDNI(num){
     if(typeof num !== "number"){
         return '"Introduce un número"';
 
-        if(num.length === 8)
-    }else  {
+       
+    } 
+    if(num < 0 || num > 99999999 ){
+        return "El numero no puede ser menor que 0 o no puede tener más de 8 dígitos.";
+    } else  {
         let letraDNI = num % 23 ;
         return letras[letraDNI]
     }
