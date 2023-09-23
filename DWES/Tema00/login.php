@@ -1,13 +1,25 @@
-<?php
-session_start();
-require_once('db.php');
-$bd = Conectar::conexion();
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-// Resto del código...
+    <link rel="stylesheet" href="./pelicula.css">
+    <title>Peliculas</title>
+</head>
+<body>
+<header> 
+<form method="POST" action="">
+    <?php
+    include('db.php');
+    include('controlador.php');
+    ?>
+        <input type="text" name="name" id="" placeholder="Usuario">
+        <input type="password" name="password" placeholder="password">
+        <input type="submit" name="login" value="Login">
+    </form>
+<form method="GET">
+    <input type="submit" name="logout" value="logout">
+</form>
 
-// Al final, cuando tengas el contenido HTML específico
-$content = ob_get_clean();
-
-// Incluye la plantilla
-include('template.php');
-?>
+</body>
+</html>
