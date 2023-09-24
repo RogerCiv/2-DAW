@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --text-color: #719B1B;
+    --background-color:#B8C2CE;
+    --primary-color: #303425;
+    --secondary-color: #EEE0D3;
+    --accent-color: #CDC8DE;
+    --tertiary-color: #D2BEC1;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: var(--background-color);
+}
+
+header{
+    padding-block: 1.5rem;
+    box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, .5);
+    padding-inline: 2rem;
+    display: flex;
+    
+}
+
+nav{
+    display: flex;
+    gap: 1rem;
+}
+
+.user__message p{
+
+}
+
+span {
+    font-weight: 800;
+    color: var(--text-color);
+}
+input {
+    text-align: center;
+    border: 0;
+    outline: 0;
+    padding: .25rem;
+    border-radius: 100vmax;
+    font-weight: 600;
+}
+input[type='submit']{
+    font-weight: 700;
+}
+
+input[type='submit']:hover{
+    transform: scale(1.1);
+    opacity: .7;
+}
+
+
+.grid__films{
+    display: grid;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+}

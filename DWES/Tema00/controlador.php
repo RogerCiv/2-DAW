@@ -19,7 +19,6 @@ if(!empty($_POST['login'])){
             ;
         }else{
             echo '<div class="alert-danger">Credenciales incorrectas</div>';
-
         }
     }
     
