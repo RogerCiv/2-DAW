@@ -37,9 +37,7 @@ nav{
     gap: 1rem;
 }
 
-.user__message p{
 
-}
 
 span {
     font-weight: 800;
@@ -72,4 +70,43 @@ input[type='submit']:hover{
     gap: 3rem;
     justify-content: center;
     align-items: center;
+}
+.film{
+    border-radius: 1rem;
+    background-color: var(--secondary-color);
+    box-shadow: 0 0 3rem -1rem rgba(0, 0, 0, .25);
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+.film__img{
+    display: flex;
+    place-content: center;
+}
+
+.film__img img{
+    width: 60%; /* Cambia el valor a 100% para que la imagen se ajuste al contenedor */
+    border-radius: 1rem;
+ }
+
+ 
+
+.film__info{
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    margin-top: 1rem;
+    gap: .75rem;
+}
+
+.film__title{
+    font-weight: 700;
+    color: red;
+}
+
+.film__year{
+    font-weight: 500;
+
 }
