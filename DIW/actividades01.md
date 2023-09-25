@@ -56,14 +56,17 @@ Es molesto a la vista por que crea un contraste visual por la diferencia en el c
 
 Webs con iconos propios:
 
+- [Canva](https://www.canva.com/es_es/crear/iconos/)
+- [vistacreate](https://create.vista.com/es/features/icons/)
+
+
+Webs con iconos estándar:
+
 - [RemixIcon](https://remixicon.com/)
 - [BoxIcon](https://boxicons.com/)
 - [FlatIcon](https://www.flaticon.es/)
 - [Icons8](https://icons8.com/)
 - [GoogleIcons](https://fonts.google.com/icons)
-
-Webs con iconos estándar:
-
 
 ## 6. Busca algunas webs de iconos para descargar.¿Qué licencias son las más frecuentes? ¿En qué formatos se suelen descargar?
 
