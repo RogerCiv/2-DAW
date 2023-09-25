@@ -3,6 +3,12 @@ session_start();
 require_once('db.php');
 $bd = Conectar::conexion();
 
+if(!isset($_SESSION['loged'])){
+    $_SESSION['loged'] = false;
+    $_SESSION['rol'] = 0;
+}
+
+// rol 0 = nadie, rol 1 = usuario reg, rol 2= admin
 if(!empty($_POST['login'])){   
     $sql = "SELECT * FROM users WHERE name = '".$_POST['name']."'";
     $result = $bd->query($sql);
@@ -11,6 +17,7 @@ if(!empty($_POST['login'])){
             $info = 'Usuario Y password correctas';
             $_SESSION['loged'] = true;
             $_SESSION['username'] = $datos['name'];
+            $_SESSION['rol'] = $datos['rol'];
         }else{
             $info = 'Password incorrecta';
         }  
@@ -18,6 +25,7 @@ if(!empty($_POST['login'])){
         $info = 'Usuario incorrecto';
     }
 }
+
 if(!empty($_GET['logout'])){
     $_SESSION['loged'] = false;
     header('location: peliculas.php');
@@ -27,8 +35,9 @@ if(!empty($_POST['title'])){
     $title = $_POST['title'];
     $year = $_POST['year'];
     $poster = $_POST['poster'];
+    
     //$sql = "INSERT INTO peliculas (title, year, poster) VALUES (NULL, ?, ?, ? )";
-    $sql = "INSERT into peliculas VALUES  (NULL, '$title', $year, '$poster')";
+    $sql = "INSERT into peliculas VALUES  (NULL, '$title', $year, '$poster',1)";
     //$sql = "INSERT into peliculas VALUES  (NULL, '".$title."',".$year.",'".$poster."')";
 
     $result=$bd->query($sql);
@@ -38,7 +47,8 @@ if(!empty($_POST['title'])){
 
 if(!empty($_POST['borrar'])){
     $peliID = $_POST['borrar'];
-    $sql = "DELETE  FROM peliculas WHERE id = '$peliID'";
+    //$sql = "DELETE  FROM peliculas WHERE id = '$peliID'";
+    $sql = "UPDATE peliculas SET state = 0 WHERE id = '$peliID'";
     $result = $bd->query($sql);
 }
 ?>
@@ -62,12 +72,16 @@ if(!empty($_POST['borrar'])){
 </form>
 <?php
 if (!empty($_SESSION['loged'])) {
-    echo '<p class="user">Hola usuario ' . $_SESSION['username'] . '</p>';
-}
+    echo '<p class="user">Hola usuario ' . $_SESSION['username'] .' '. $_SESSION['rol']. '</p>';
+        if ($_SESSION['rol'] == 2) {
+            echo '<a href="admin.php"><button>Admin web page</button></a>';
+        }
+    }
 
-if($_SESSION['loged']){
 
-    $q = "SELECT * FROM peliculas";
+//if($_SESSION['loged']){
+
+    $q = "SELECT * FROM peliculas WHERE state = 1";
     $result = $bd->query($q);
     
     echo '<form class="form" method="post" action>';
@@ -103,7 +117,7 @@ if($_SESSION['loged']){
     }
     echo  '</div>';
     echo '</main>';
-}
+//}
 ?>
 </body>
 </html>
