@@ -27,6 +27,9 @@ if (!isset($_SESSION['username'])) {
             </div>
             <form class="logout" method="POST" action="logout.php">
                 <input type="submit" name="logout" value="Salir">
+                <?php
+                    echo '<input type="submit" name="adminWeb" value="Admin Page">';
+                ?>
             </form>
             <form class="addFilm" method="POST" action="">
                 <input type="text" name="title" placeholder="Nombre película">

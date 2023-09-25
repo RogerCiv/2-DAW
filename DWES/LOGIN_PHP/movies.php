@@ -38,7 +38,8 @@ if (isset($_POST['borrar'])) {
     $movie_id = $_POST['borrar'];
 
     // Consulta SQL para eliminar la película
-    $sql = "DELETE FROM peliculas WHERE id = $movie_id";
+    //$sql = "DELETE FROM peliculas WHERE id = $movie_id";
+    $sql = "";
     $result = $bd->query($sql);
 
     // Redirigir de nuevo a index.php después de la eliminación
