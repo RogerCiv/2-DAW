@@ -74,3 +74,38 @@ Se suelen descargar en formato .svg o .png.
 
 Suelen tener Licencias Creative Commons o licencias de dominio público.
 
+## 7. Buscar cómo se puede aplicar la divina proporción en el diseño web.
+
+En diseño web no se utiliza de manera tan literal, pero se aplican sus principios básicos.
+
+- Distribución de espacios: Dividir el espacio de la web en secciones siguiendo la proporción aurea.
+- Diseño de rejilla: Se crea una rejilla siguiendo la proporción áurea. Esto ayuda a alinear elementos.
+- Tamaño de elementos: Se puede usar por ejemplo para l ancho de una imagen destacada podría estar relacionado con el ancho de otras áreas del diseño siguiendo esta proporción.
+- Proporción de Tipografía: se puede aplicar al tamaño de la tipografía para mantener la armonia entre el texto y los elementos.
+
+
+## 8. Buscar cómo se puede aplicar la regla de los tercios.
+
+- Distribución de contenido: Dividir la web en cuadrícula de 3x3, colocar los elementos claves en las inersecciones de las lineas.
+- Imágenes y gráficos: Colocar las imágenes en algunas de las lineas de la cuadrícula de tercios.
+- Textos y tipográfias: Colocar los titulos o encabezados en una linea horizontal de la cuadrícula.
+- Botones y Llamadas a la Acción:  Colocarlos en una intersección de la línea de la cuadrícula de tercios.
+
+Y así con todos los elementos y componentes de la web.
+
+## 9. Busca páginas que ofrezcan patrones de diseño online.
+
+- [Subtle Patterns](https://www.toptal.com/designers/subtlepatterns/)
+- [Patternify](http://www.patternify.com/)
+- [Hero Patterns](https://www.heropatterns.com/)
+- [DinPattern](http://www.dinpattern.com/)
+- [Textures.js](https://riccardoscalco.github.io/textures/)
+
+## 10.¿Qué categorías de patrones son las más frecuentes?
+
+- Geométricos.
+- Texturas Naturales.
+- Abstractos.
+
+## 11. Analiza las relaciones entre las licencias y los patrones que ofrecen.
+
