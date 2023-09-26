@@ -109,3 +109,11 @@ Y así con todos los elementos y componentes de la web.
 
 ## 11. Analiza las relaciones entre las licencias y los patrones que ofrecen.
 
+Las relaciones son, que las licencias determinan como podemos utilizar y compartir dichos patrones, dependiendo si son de dominio público, Creative Commons, Uso comercial, uso personal, etc.
+
+## 12. ¿Qué contienen los patrones? ¿Cómo se ofrecen al usuario?
+
+Pueden contener elementos visuales, colores, imágenes, etc.
+
+Se suelen ofrecer al usuario en forma de copiar el código de dicho patron.
+
