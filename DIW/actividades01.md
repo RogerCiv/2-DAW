@@ -1,4 +1,5 @@
 # Actividades Tema 01
+# Parte 1
 
 ## 1. ¿Cuáles son los modelos típicos de círculos cromáticos?
 
@@ -117,3 +118,8 @@ Pueden contener elementos visuales, colores, imágenes, etc.
 
 Se suelen ofrecer al usuario en forma de copiar el código de dicho patron.
 
+# Parte 2.
+
+## 1. Visita la Guía de CSS del W3C. ¿Qué se recoge en ella?.
+
+2

@@ -3,6 +3,7 @@ session_start();
 require_once('db.php');
 $bd = Conectar::conexion();
 
+
 if(!isset($_SESSION['loged'])){
     $_SESSION['loged'] = false;
     $_SESSION['rol'] = 0;
@@ -18,6 +19,7 @@ if(!empty($_POST['login'])){
             $_SESSION['loged'] = true;
             $_SESSION['username'] = $datos['name'];
             $_SESSION['rol'] = $datos['rol'];
+            $_SESSION['user_id'] = $datos['id'];
         }else{
             $info = 'Password incorrecta';
         }  
@@ -46,12 +48,42 @@ if(!empty($_POST['title'])){
 }
 
 if(!empty($_POST['borrar'])){
-    $peliID = $_POST['borrar'];
+    $peliID = $_POST['id'];
     //$sql = "DELETE  FROM peliculas WHERE id = '$peliID'";
     $sql = "UPDATE peliculas SET state = 0 WHERE id = '$peliID'";
     $result = $bd->query($sql);
 }
+
+if(!empty($_POST['like'])){
+    if($_SESSION['loged']){
+        $idLike = $_POST['id'];
+        $idUser = $_SESSION['user_id'];
+
+
+        $sqlLikes = "SELECT * FROM user_movie WHERE user_id = '$idUser' AND movie_id = '$idLike'";
+        $resultLikes = $bd->query($sqlLikes);
+
+        if($resultLikes){
+            if ($resultLikes->num_rows > 0) {
+                echo 'Ya existe el like de este usuario a esta película';
+                $buttonLike = 'unlike';
+            } else {
+                $sql = "INSERT INTO user_movie (user_id, movie_id) VALUES ('$idUser' , '$idLike')";
+                $result = $bd->query($sql);
+                if ($result) {
+                    echo "Pelicula marcada como favorita.";   
+                } else {
+                    echo "Error al marcar la película como favorita: " . $bd->error;
+                }
+            }
+        } else {
+            echo "Error en la consulta SQL: " . $bd->error;
+        }
+    }
+}
+
 ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -93,7 +125,9 @@ if (!empty($_SESSION['loged'])) {
     
     echo '</header>';
     echo '<main>';
-    echo '<div class="container">'; 
+    echo '<div class="container">';
+            
+
     while ($datos = $result->fetch_assoc()) {      
         echo ' <div class="pelicula">';
         $posterFileName = $datos['poster']; // Nombre de la imagen almacenado en la base de datos, por ejemplo, "matrix.webp"
@@ -109,8 +143,9 @@ if (!empty($_SESSION['loged'])) {
         echo  '   </div>';
         if($_SESSION['loged']){      
             echo  '<form method="POST">';
-            echo  '<input type="hidden" name="borrar" value="' . $datos['id'] . '">';
-            echo  '<input type="submit" value="borrar">';
+            echo  '<input type="hidden" name="id" value="' . $datos['id'] . '">';
+            echo  '<input type="submit" name="borrar" value="Borrar">';
+            echo  '<input type="submit" name="like" value="Like">';
             echo  '</form>';
         }
         echo  '  </div>';
