@@ -95,7 +95,7 @@ const contarPalabras = (cadena) => {
   return numPalabras;
 }
 const texto = "Clase de DWEC el dia 26 septiembre, clase de javascript."
-console.log("Ejercicio 5: ",contarPalabras(texto))
+console.log("Ejercicio 05: ",contarPalabras(texto))
 /*
 const texto = "Clase de DWEC el dia 26 septiembre, clase de javascript."
 const  contarPalabras = cadena => cadena.split(' ').reduce((conteo, palabra) => (conteo[palabra] = (conteo[palabra] || 0) + 1, conteo), {});
@@ -132,7 +132,7 @@ const eliminarElemento = (array,elemento) => {
   return array.filter(el => el !== elemento)
 }
 
-console.log(eliminarElemento(palabras,"teclado"));
+console.log("Ejercicio 07: ",eliminarElemento(palabras,"teclado"));
 
 
 /**
@@ -164,4 +164,4 @@ console.log("Ejercicio 08: ",encontrarMaxMin(numeros))
  */
 const buscarElemento = (arr, elemento) => arr.indexOf(elemento);
 
-console.log(buscarElemento("Ejercicio 09: ",numeros, 3));
+console.log("Ejercicio 09: ",buscarElemento(numeros, 3));
