@@ -122,4 +122,51 @@ Se suelen ofrecer al usuario en forma de copiar el código de dicho patron.
 
 ## 1. Visita la Guía de CSS del W3C. ¿Qué se recoge en ella?.
 
-2
+- [w3 CSS](https://www.w3.org/Style/CSS/Overview.en.html)
+
+Se recoge lo siguiente:
+
+ 1) Introducción
+     - ¿Qué es CSS?
+     - Antecedentes: El proceso W3C y CSS
+ 2) Clasificación de las especificaciones de CSS
+     - Hojas de estilo en cascada (CSS) - La definición oficial
+     - Módulos bastante estables con experiencia limitada de implementación
+     - Módulos con interoperabilidad aproximada
+     - Niveles de CSS
+     - Perfiles de CSS
+ 3) Requisitos para una implementación responsable de CSS
+     - Implementaciones parciales
+     - Implementaciones de características inestables y propietarias
+       - Experimentación y características inestables
+       - Características propietarias y no estandarizadas
+       - Presión del mercado y estándares de facto
+     - Implementaciones de características a nivel CR
+ 4) Excepciones seguras para liberar antes del CR
+ 5) Índices
+     - Índice de términos
+     - Índice de selectores
+     - Índice de reglas @
+     - Índice de propiedades
+     - Índice de valores
+
+## 2. Visita el validador CSS del W3C. ¿Qué nos permite hacer?
+
+Nos permite validad las Hojas de estilo de nuestra página web.
+
+
+## 3. Busca y analiza ejemplos de sketches de sitios web.
+
+
+## 4. Busca herramientas de wireframing online y para descarga.
+
+Wireframes online:
+
+- [wireframe.cc](https://wireframe.cc/)
+- [Lucidchart](https://www.lucidchart.com/pages/es)
+- [figjam](https://www.figma.com/figjam/team-collaboration/)
+
+Wireframes para descargar:
+
+- [pencil](http://pencil.evolus.vn/)
+- [Axure](https://www.axure.com/)
