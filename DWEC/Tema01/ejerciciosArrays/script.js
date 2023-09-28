@@ -2,14 +2,24 @@
  * @author: Rogelio Sánchez
  * @description: 1) Escribe una función llamada sumaArrays que tome dos arrays arr1 y arr2 del mismo tamaño. La función debe devolver un nuevo array que contenga la suma de los elementos correspondientes de arr1 y arr2 .
  */
-
 /**
  * 
  * @param {array1} array1 
  * @param {array2} array2 
  * @returns 
  */
-const arraySuma = (array1,array2) => array1.map((elemento,indice) => elemento + array2[indice])
+const arraySuma = (array1,array2) => array1.length !== array2.length ? "No tienen el mismo tamaño" : array1.map((elemento,indice) => elemento + array2[indice])
+
+
+const resultado = []
+
+if(array1.length !== array2.length){
+  throw new Error('No tienen el mismo tamaño');
+}else{
+  for (const [num,indice] of array1.entries()){
+
+  }
+}
 
 const array1 = [1,2,3,4]
 const array2 = [5,6,7,8]
@@ -47,9 +57,7 @@ console.log("Ejercicios 02:",eliminarDuplicados(palabras));
  * @returns 
  */
 //filter() para iterar por cada elemento y comprobando si es par con num % 2 === 0
-const filtrarPares = array => {
-  return array.filter(num => num % 2 === 0)
-} 
+const filtrarPares = array =>  array.filter(num => num % 2 === 0)
 const numeros = [1,2,3,4,5,6]
 console.log("Ejercicio 03:",filtrarPares(numeros))
 //Resultado esperado: [ 2, 4, 6 ]
@@ -58,7 +66,6 @@ console.log("Ejercicio 03:",filtrarPares(numeros))
  * @author: Rogelio Sánchez
  * @description: 4) Escribe una función llamada unirArrays que acepte un número variable de arrays y los combine en uno solo. Nota: Se podría utilizar el método reduce y el método concat para lograrlo.
  */
-
 /**
  * 
  * @param  {...any} args 
@@ -94,7 +101,7 @@ const contarPalabras = (cadena) => {
   }));
   return numPalabras;
 }
-const texto = "Clase de DWEC el dia 26 septiembre, clase de javascript."
+const texto = "Clase de DWEC el dia 26 septiembre clase de javascript."
 console.log("Ejercicio 05: ",contarPalabras(texto))
 /*
 const texto = "Clase de DWEC el dia 26 septiembre, clase de javascript."
@@ -110,9 +117,8 @@ const  contarPalabras = cadena => cadena.split(' ').reduce((conteo, palabra) => 
  * @param {*} arr 
  * @returns 
  */
-const ordenarNumeros = arr => {
-  return arr.sort((a,b) => a-b);
-}
+const ordenarNumeros = arr => arr.sort((a,b) => a-b);
+
 const num = [5,2,10,4,25];
 console.log("Ejercicio 06: ",ordenarNumeros(num));
 
@@ -165,3 +171,34 @@ console.log("Ejercicio 08: ",encontrarMaxMin(numeros))
 const buscarElemento = (arr, elemento) => arr.indexOf(elemento);
 
 console.log("Ejercicio 09: ",buscarElemento(numeros, 3));
+
+
+/**
+ * @author: Rogelio Sánchez
+ * @description: 10) Escribe una función llamada dividirFragmento que tome un array arr y un número entero
+tamano . La función debe dividir el array en fragmentos de tamaño tamano y devolver un nuevo
+array con los Fragmentos.
+ */
+
+
+/**
+ * 
+ * @param {*} arr 
+ * @param {*} split 
+ * @returns 
+ */
+const dividirFragmento = (arr,split) => {
+  const resultado = []
+  
+  for (let i = 1; i< arr.length; i += split){
+    resultado.push(arr.slice(i, i + split))
+  }
+  return resultado;
+}
+
+
+const array = [1,2,3,4,5,6];
+console.log("Ejercicio 10: ",dividirFragmento(array,2))
+
+
+
