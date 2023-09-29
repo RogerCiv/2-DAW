@@ -170,3 +170,23 @@ Wireframes para descargar:
 
 - [pencil](http://pencil.evolus.vn/)
 - [Axure](https://www.axure.com/)
+
+## 5. Analiza sus licencias y lo que nos deja hacer cada una.
+
+- Wireframe: No tiene licencia especifica.
+- Lucidchart: Depende del plan seleccionado, la versión gratuita tiene restricciones de funcionamiento y de almacenamiento.
+- figjam: Pertenece a Figma, se basa en licencia de subscripción.
+- Pencil: Licencia GNU.
+- Axure: Licencia de pago.
+
+## 6. Busca al menos 3 páginas web donde se identifiquen diferentes tipos de navegación de los que acabamos de estudiar.
+
+
+## 7. Encuentra alguna herramienta de wireframe que ofrezca soporte para la navegación web.
+
+## 8. ¿Por qué los mapas de navegación web HTML ayudan al SEO? ¿Y los sitemaps XML?
+
+## 9. Intenta realizar el mockup del ejemplo de la transparencia 47 con alguna herramienta mockup online como balsamiq.
+
+## 10. Diseña un boceto de mapa de navegación con Gliffy (u otra herramienta) similar al de la figura.
+

@@ -3,6 +3,11 @@ session_start();
 require_once('db.php');
 $bd = Conectar::conexion();
 
+
+if(!isset($_SESSION['loged'])){
+    $_SESSION['loged'] = false;
+    $_SESSION['rol'] = 0;
+}
 if($_SESSION['rol']<2){
     header('Location: peliculas.php');
 }
