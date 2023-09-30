@@ -32,7 +32,7 @@ if(!empty($_POST['login'])){
 if(!empty($_GET['logout'])){
     $_SESSION['loged'] = false;
     session_destroy();
-    header('location: peliculas.php');
+    header('location: index.php');
 }
 
 if(!empty($_POST['title'])){
@@ -45,7 +45,7 @@ if(!empty($_POST['title'])){
     //$sql = "INSERT into peliculas VALUES  (NULL, '".$title."',".$year.",'".$poster."')";
 
     $result=$bd->query($sql);
-    header("Location: peliculas.php");
+    header("Location: index.php");
     exit(); // Asegura que el script se det
 }
 

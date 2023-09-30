@@ -150,6 +150,7 @@ $users = users($bd);
             echo '</ul>';
             echo '</div>';
             ?>
+           <a href="index.php"> <button >Volver a Inicio</button></a>
         </section>
     </main>
 </body>

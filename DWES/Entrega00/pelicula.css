@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root {
+    --text-color: #719B1B;
+    --background-color:#B8C2CE;
+    --primary-color: #303425;
+    --secondary-color: #EEE0D3;
+    --accent-color: #CDC8DE;
+    --tertiary-color: #D2BEC1;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+body{
+    background-color: var(--background-color);
+}
+
+header{
+    padding-block: 1.5rem;
+    box-shadow: 0 0 2rem -1rem rgba(0, 0, 0, .5);
+    padding-inline: 2rem;
+}
+
+form{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+}
+input {
+    border: 0;
+    outline: 0;
+    padding: .25rem;
+    border-radius: 1rem;
+    background-color: rgb(241, 237, 237);
+    font-weight: 600;
+    max-width: 50%;
+}
+
+input[type='submit']{
+    background-color:var(--accent-color);
+    border-radius: 1rem;
+    border: 1px solid black;
+    padding: .25rem;
+    cursor: pointer;
+    color: black;
+    font-weight: 500;
+}
+
+input[type='submit']:hover{
+    transform: scale(1.1);
+    
+}
+
+@media screen and (max-width:650px) {
+    header{
+        padding-inline: 3rem;
+    }
+    input{
+        max-width: 35%;
+    }
+}
+
+.user{
+    padding: 1rem;
+    background-color: var(--primary-color);
+    width: 11rem;
+    border-radius: 1rem;
+    color: white;
+}
+main{
+    padding: 2rem;
+    max-width: 1800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+
+.container{
+    display: grid;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.pelicula{
+    border-radius: 1rem;
+    background-color: var(--secondary-color);
+    box-shadow: 0 0 3rem -1rem rgba(0, 0, 0, .25);
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+.pelicula:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 3rem 1rem rgba(0, 0, 0, .25);
+}
+.film__img{
+    display: flex;
+    place-content: center;
+}
+.film__img img{
+    width: 60%; /* Cambia el valor a 100% para que la imagen se ajuste al contenedor */
+    border-radius: 1rem;
+ }
+
+
+.film__info{
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    margin-top: 1rem;
+    gap: .75rem;
+}
+
+.film__name{
+    font-weight: 700;
+}
+
+.film__year{
+    font-weight: 500;
+
+}

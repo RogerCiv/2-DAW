@@ -128,7 +128,7 @@ Ambas buscan aumentar la capacidad. Distribuir la capacidad de trabajo. Mejorar 
 **Paso 9:**
 >Creamos un script info.php y accedemos a el desde nuestro navegador
 
-![Imagen 8](apache/Screenshot%202023-09-28%20at%2008-49-40%20PHP%208.1.2-1ubuntu2.14%20-%20phpinfo().png)
+![Imagen 8](apache/phpinfo.png)
 
 
 **Paso 10:**
