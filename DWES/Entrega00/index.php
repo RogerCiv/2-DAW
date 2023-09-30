@@ -9,6 +9,7 @@ if(!isset($_SESSION['loged'])){
     $_SESSION['rol'] = 0;
 }
 
+
 // rol 0 = nadie, rol 1 = usuario reg, rol 2= admin
 if(!empty($_POST['login'])){   
     $sql = "SELECT * FROM users WHERE name = '".$_POST['name']."'";
@@ -109,7 +110,7 @@ if (!empty($_POST['unlike'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./pelicula.css">
+    <link rel="stylesheet" href="pelicula.css">
     <title>Peliculas</title>
 </head>
 <body>
@@ -128,7 +129,11 @@ if (!empty($_SESSION['loged'])) {
         if ($_SESSION['rol'] == 2) {
             echo '<a href="admin.php"><button>Admin web page</button></a>';
         }
+        if($_SESSION['rol'] >= 1){
+            echo  '<a href="index.php"> <button >Volver a Inicio</button></a>';
+        }
     }
+
 
 
 //if($_SESSION['loged']){

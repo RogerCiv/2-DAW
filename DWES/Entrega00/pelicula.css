@@ -133,3 +133,24 @@ main{
     font-weight: 500;
 
 }
+
+button{
+    margin: 1rem;
+    padding: .5rem;
+    outline: 0;
+    border: 0;
+    border-radius: 100vmax;
+    background-color: rgb(117, 120, 122);
+    color: white;
+    font-weight: 700;
+}
+
+button:hover{
+    transform: scale(1.1);
+    opacity: .8;
+    color: black;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+}
