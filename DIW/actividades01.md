@@ -181,12 +181,48 @@ Wireframes para descargar:
 
 ## 6. Busca al menos 3 páginas web donde se identifiquen diferentes tipos de navegación de los que acabamos de estudiar.
 
+- [Universidad Valencia](https://www.uv.es/fragar/html/html1304.html)
+- [Kinsta](https://kinsta.com/es/blog/navegacion-del-sitio-web/)
+- [Ricardo Barona](https://www.ricardobarona.com/clases/index.php/arquitectura-de-la-informacion/5-navegacion)
+
 
 ## 7. Encuentra alguna herramienta de wireframe que ofrezca soporte para la navegación web.
 
+- [balsamiq](https://balsamiq.com/)
+  
 ## 8. ¿Por qué los mapas de navegación web HTML ayudan al SEO? ¿Y los sitemaps XML?
+
+Mapas de navegación
+
+- Facilitan al usuario la navegación.
+- Ayuda a los motores de búsqueda en como se relacionan unos topics con otros y cuáles son las partes más relevantes.
+- Mejora de la experiencia de usuario.
+
+Sitemaps XML
+
+- Proporcionan listado de URL del sitio web a los motores de búsqueda.
+- Permite a los bots de los motores de búsqueda a descubrir páginas del sitio web.
+- Permiten detectar páginas mal enlazadas.
+
 
 ## 9. Intenta realizar el mockup del ejemplo de la transparencia 47 con alguna herramienta mockup online como balsamiq.
 
+Mockup realizado con Balsamiq
+
+![MOCKUP](DIW.png)
+
+- Vista Desktop:
+
+![Desktop](DIW-Desktop.png)
+
+- Vista Smartphone:
+  
+![Smartphone](DIW-Smartphone.png)
+
+- Vista SmartWatch:
+
+![smartwatch](DIW-Weareable.png)
+
 ## 10. Diseña un boceto de mapa de navegación con Gliffy (u otra herramienta) similar al de la figura.
 
+![navegación](MapaNavegacionDIW.png)
