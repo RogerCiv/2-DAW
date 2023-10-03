@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main View</title>
+</head>
+<body>
+    <h1>Publicaciones</h1>
+    <form method="POST" action="index.php">
+        <input type="text" name="user" id="">
+        <input type="password" name="password" id="">
+        <input type="submit" name="login" value="Login">
+    </form>
+    <?php
+    /*
+    if($_SESSION['loged']){
+        echo '<p> Bienvenido: '.$_SESSION['username'];
+    }
+    */
+    if(!empty($user)) echo 'Iniciada la sesion';
+    foreach($pubs as $pub){
+        echo $pub->getText()."<br>";
+    }
+    foreach($users as $user){
+        echo $user->getUser()."<br>";
+    }
+    ?>
+</body>
+</html>
+
