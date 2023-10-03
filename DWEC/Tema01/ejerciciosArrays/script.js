@@ -58,8 +58,8 @@ console.log("Ejercicios 02:",eliminarDuplicados(palabras));
  */
 //filter() para iterar por cada elemento y comprobando si es par con num % 2 === 0
 const filtrarPares = array =>  array.filter(num => num % 2 === 0)
-const numeros = [1,2,3,4,5,6]
-console.log("Ejercicio 03:",filtrarPares(numeros))
+const numeros3 = [1,2,3,4,5,6]
+console.log("Ejercicio 03:",filtrarPares(numeros3))
 //Resultado esperado: [ 2, 4, 6 ]
 
 /**
@@ -100,14 +100,9 @@ const contarPalabras = (cadena) => {
   }));
   return numPalabras;
 }
-<<<<<<< HEAD
 
-const texto = "Clase de DWEC el dia 26 septiembre, clase de javascript."
-console.log("Ejercicio 5: ",contarPalabras(texto))
-=======
-const texto = "Clase de DWEC el dia 26 septiembre clase de javascript."
-console.log("Ejercicio 05: ",contarPalabras(texto))
->>>>>>> a95c818c15d5323428eb640f9b4d40bcd7930d27
+const texto2 = "Clase de DWEC el dia 26 septiembre, clase de javascript."
+console.log("Ejercicio 5: ",contarPalabras(texto2))
 /*
 const texto = "Clase de DWEC el dia 26 septiembre, clase de javascript. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto."
 const  contarPalabras = cadena => cadena.split(' ').reduce((conteo, palabra) => (conteo[palabra] = (conteo[palabra] || 0) + 1, conteo), {}); 
@@ -158,8 +153,8 @@ console.log("Ejercicio 07: ",eliminarElemento(palabras,"teclado"));
  * @returns 
  */
 const encontrarMaxMin = (arr) => ({máximo: Math.max(...arr), mínimo: Math.min(...arr)})
-//const numeros = [1,2,3,4,5]
-console.log("Ejercicio 08: ",encontrarMaxMin(numeros))
+const numeros4 = [1,2,3,4,5]
+console.log("Ejercicio 08: ",encontrarMaxMin(numeros4))
 
 
 /**
@@ -201,7 +196,7 @@ function dividirFragmento(arr,tamano){
 /*
 const dividirFragmento = (arr, tamano) => arr.reduce((resultado, elemento, indice) => (indice % tamano === 0 ? resultado.push([elemento]) : resultado[resultado.length - 1].push(elemento), resultado), []);
 */
-const array = [1, 2, 3, 4, 5, 6];
+//const array = [1, 2, 3, 4, 5, 6];
 console.log("Ejercicio 10:",dividirFragmento(array, 3));
 
 /**
@@ -221,7 +216,58 @@ const numerosPares = mapearNumeros(numeros, pares);
 
 console.log("Ejercicio 11: ",mapearNumeros(numeros, pares));
 
+/**
+ * @author: Rogelio Sánchez
+ * @description: 12)Escribe una función llamada combinarObjetos que tome dos objetos (tanto arrays como objetos) obj1 y obj2 . La función debe combinar ambos objetos en uno solo y devolverlo.
+ */
+const combinarObjetos = (obj1, obj2) => obj1.concat(obj2)
 
+const objeto1  = [
+  {nombre: "Pepe", edad: 22},
+  {nombre: "María", edad: 25}
+]
+
+const objeto2 = [
+  {nombre: "Sara", edad: 30},
+  {nombre: "Sabrina", edad: 33}
+]
+
+combinarObjetos(objeto1,objeto2)
+
+/**
+ * @author: Rogelio Sánchez
+ * @description: 13)Define una función llamada extraerPropiedades que tome un objeto obj y un array de propiedades . La función debe devolver un nuevo objeto que contenga solo las propiedades especificadas en el array. Si una propiedad no existe en el objeto original, debe ser omitida en el nuevo objeto.
+ */
+/**
+ * 
+ * @param {*} obj 
+ * @param {*} arrPropiedades 
+ * @returns 
+ */
+const extraerPropiedades = (obj,arrPropiedades) => {
+  const newObj = {}
+  for(const propiedad of arrPropiedades){
+    if(obj.hasOwnProperty(propiedad)){
+      newObj[propiedad] = obj[propiedad]
+    }
+  }
+  return newObj
+}
+
+const objeto3  =  {nombre: "Pepe", edad: 22, id:2}
+
+const objeto4  = [
+  {nombre: "Pepe", edad: 22, id:2},
+  {nombre: "María", edad: 25, id:3},
+  {nombre: "Sara", edad: 30, id:4},
+  {nombre: "Sabrina", edad: 33,id:1}
+]
+// Array de objetos se necesita otra function para hacerlo
+const objetosExtraidos = objeto1.map(obj => extraerPropiedades(obj, ["nombre","edad"]));
+
+
+
+extraerPropiedades(objeto3,["nombre","edad"])
 /**
  * @author:Rogelio Sánchez
  * @description:14) Escribe una función llamada rangoNumeros que tome dos números inicio y fin. La función debe devolver un array que contenga todos los números en el rango desde inicio hasta fin, incluyendo ambos números.
@@ -255,21 +301,21 @@ console.log("Ejercicio 14:",rangoNumeros(2,5))
 const invertirCadena = cadena => cadena.split('').reverse().join('')
 
 
-const texto = 'Hola que tal'
-invertirCadena(texto)
+const texto3 = 'Hola que tal'
+invertirCadena(texto3)
 
 
 /**
  * @author: Rogelio Sánchez
- * @description: Crea una función llamada capitalizarPalabras que tome una cadena cadena y devuelva una nueva cadena en la que la primera letra de cada palabra esté en mayúscula y las demás en minúscula.
+ * @description: 16) Crea una función llamada capitalizarPalabras que tome una cadena cadena y devuelva una nueva cadena en la que la primera letra de cada palabra esté en mayúscula y las demás en minúscula.
  */
 
 
 const capitalizarPalabras = (cadena) => cadena.split(' ').map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase()).join(' ')
 
 
-const texto = 'hola que tal'
-capitalizarPalabras(texto)
+const texto4 = 'hola que tal'
+capitalizarPalabras(texto4)
 
 
 /**
@@ -297,6 +343,35 @@ const multiplicarMatrizPorEscalar = (matriz,escalar) => matriz.map(fila => fila.
 
 console.log("Ejercicio 17: ",multiplicarMatrizPorEscalar(matrix,2));
 
+
+/**
+ * @author: Rogelio Sánchez
+ * @description: 18)Escribe una función llamada combinarArrays que pase como parámetro "creciente" o "decreciente", junto con un número indeterminado de arrays con valores numéricos. Seguidamente me devolverá un array con todos los elementos que conformen los arrays ordenado creciente u ordenado decreciente según indique en el parámetro. Si no indico nada se hará de forma creciente.
+ */
+
+/**
+ * 
+ * @param {*} orden 
+ * @param  {...any} arrs 
+ * @returns 
+ */
+
+const combinarArrays = (orden = "creciente", ...arrs) => {
+  const arrCombinado = [].concat(...arrs);
+  if (orden === "decreciente") {
+    return arrCombinado.sort((a, b) => b - a);
+  } else {
+    return arrCombinado.sort((a, b) => a - b);
+  }
+}
+
+const array3 = [1, 2, 3];
+const array4 = [4, 5, 6];
+const array5 = [9, 8, 7];
+
+const combinarArrays = (orden = "creciente", ...arrs) => orden === "decreciente" ? [].concat(...arrs).sort((a,b) => b - a) :[].concat(...arrs).sort((a,b) => a - b) ;
+console.log("Ejercicio 18: ",combinarArrays("",array3, array4, array5));
+
 /**
  * @author: Rogelio Sánchez
  * @description: 19) Escribe una función llamada esPalindromo que verifique si una palabra es un palíndromo, es decir, se lee igual de izquierda a derecha y de derecha a izquierda. La función debe devolver true si la palabra es un palíndromo y false en caso contrario.
@@ -322,8 +397,36 @@ const num2 = [3,5,6]
 console.log("Ejercicio 20: ",diferenciaArrays(num1,num2))
 
 
+//Escribe una función llamada rotarArray que rote los elementos de un array hacia la derecha o izquierda. La función debe tomar un array arr y un número entero pasos que indique cuántos pasos se deben realizar hacia la derecha (si es positivo) o hacia la izquierda (si es negativo).
 
-//Escribe una función llamada sumarMatrices que sume dos matrices (arrays bidimensionales) y devuelva el resultado. Las matrices de entrada estarán representadas como arrays de arrays con la misma cantidad de filas y columnas.
+
+const rotarArray = (arr,pasos) => {
+  if (pasos === 0){
+    return arr
+  }
+  pasos = pasos % arr.length
+  if(pasos > 0){
+    pasos += arr.length
+  }
+   return arr.slice(pasos).concat(arr.slice(0, pasos));
+  
+}
+
+
+const miArray = [1, 2, 3, 4, 5];
+
+console.log("Ejercicio 21: ",rotarArray(miArray,3))
+/**
+ * @author: Rogelio Sánchez
+ * @description: 22) Escribe una función llamada sumarMatrices que sume dos matrices (arrays bidimensionales) y devuelva el resultado. Las matrices de entrada estarán representadas como arrays de arrays con la misma cantidad de filas y columnas.
+ */
+
+/**
+ * 
+ * @param {*} arr1 
+ * @param {*} arr2 
+ * @returns 
+ */
 
 const sumaMatrices = (arr1,arr2) => {
   const resultado = []
@@ -339,16 +442,111 @@ const sumaMatrices = (arr1,arr2) => {
   return resultado
 }
 
-
+/**
+ * 
+ * @param {*} arr1 
+ * @param {*} arr2 
+ * @returns 
+ */
 const sumaMatrices = (arr1,arr2) => arr1.map((fila,i) => fila.map((elemento, j) => elemento + arr2[i][j]))
 
-const array1 = [
+const array6 = [
   [1,2,3],
   [4,5,6],
 ]
-const array2 = [
+const array7 = [
   [7,8,9],
   [10,11,12],
 ]
 
-sumaMatrices(array1,array2)
+console.log("Ejercicio 22: ",sumaMatrices(array6,array7))
+
+
+/**
+ * @author: Rogelio Sánchez
+ * @description:23) Escribe una función llamada promedioFilas que calcule el promedio de cada fila en una matriz (array bidimensional) y devuelva un array con los resultados.
+ */
+/**
+ * 
+ * @param {*} arr 
+ * @returns 
+ */
+const promedioFilas = arr =>{
+  const resultado = []
+  for(let fila of arr){
+    let sumaFila = 0
+    for(let elemento of fila){
+      sumaFila += elemento
+    }
+    let promedioFila = sumaFila / fila.length
+    resultado.push(promedioFila)
+  }
+    return resultado
+  }
+
+
+/**
+ * 
+ * @param {*} arr 
+ * @returns 
+ */
+  const promedioFilas = arr =>{
+
+    return arr.reduce((resultado,fila) => {
+      const sumaFila = fila.reduce((suma,num) => suma + num,0)
+      const promedioFila = sumaFila / fila.length
+      resultado.push(promedioFila)
+      return resultado
+    },[])
+  } 
+    
+ const promedioFilas = arr => arr.map(fila => fila.reduce((acc,num) => acc + num, 0) / fila.length)
+
+  
+  
+const array = [
+  [1, 2, 3],
+  [4, 5, 6],
+];
+
+
+console.log("Ejercicio 23: ",promedioFilas(array))
+
+
+
+/**
+ * @author: Rogelio Sánchez
+ * @description: 24) Escribe una función llamada ordenarPorPropiedad que ordene un array de objetos por una propiedad específica. La función debe tomar un array arr y una cadena propiedad que indique la propiedad por la cual se debe ordenar.
+ */
+
+/**
+ * 
+ * @param {*} arr 
+ * @param {*} propiedad 
+ * @returns 
+ */
+const ordenarPorPropiedad = (arr,propiedad) => {
+  return arr.sort((a,b) => {
+    if(a[propiedad] < b[propiedad]){
+      return -1
+    }
+    if(a[propiedad] > b[propiedad]){
+      return 1
+    }
+    return 0
+  })
+}
+
+
+const ordenarPorPropiedad = (arr,propiedad) => arr.sort((a,b) => a[propiedad] - b[propiedad])
+
+const personas = [
+  { nombre: "Ana", edad: 30, id:2 },
+  { nombre: "Carlos", edad: 25, id:1},
+  { nombre: "Elena", edad: 35, id:3 }
+];
+
+
+ordenarPorPropiedad(personas,"id")
+
+
