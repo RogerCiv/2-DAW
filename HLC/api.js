@@ -6,9 +6,14 @@ const URLbajo = 'https://api.preciodelaluz.org/v1/prices/min?zone=PCB'
 const URLahora = 'https://api.preciodelaluz.org/v1/prices/now?zone=PCB'
 const URL = 'https://api.preciodelaluz.org/v1/prices/cheapests?zone=PCB&n=2'
 */
-//const URLbalanceElectrico = 'https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=day'
-/*
-fetch(URLbalanceElectrico)
+const URLbalanceElectrico = 'https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=day'
+const URLmercados = 'https://apidatos.ree.es/es/datos/mercados/componentes-precio-energia-cierre-desglose?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=month'
+const URLdemanda = 'https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=day'
+const URLgeneracion = 'https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=day'
+const URLintercambios = 'https://apidatos.ree.es/es/datos/intercambios/francia-frontera?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=day'
+const URLtransporte = 'https://apidatos.ree.es/es/datos/transporte/indice-indisponibilidad?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=month'
+
+fetch(URLtransporte)
   .then(response => response.json())
   .then(data =>  {
     const jsonData = JSON.stringify(data);
@@ -21,7 +26,8 @@ fetch(URLbalanceElectrico)
   .catch(error => {
     console.error('Hubo un error al obtener los datos de la API: ', error);
   });
-  */
+  
+ /*
   const URLbalanceElectrico = 'https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=day';
 
   fetch(URLbalanceElectrico)
@@ -73,3 +79,4 @@ fetch(URLbalanceElectrico)
   .catch(error => {
     console.error('Error al obtener los datos:', error);
   });
+*/

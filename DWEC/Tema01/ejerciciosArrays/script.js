@@ -10,6 +10,8 @@
  */
 const arraySuma = (array1,array2) => array1.length !== array2.length ? "No tienen el mismo tamaño" : array1.map((elemento,indice) => elemento + array2[indice])
 
+const array1 = [1,2,3,4]
+const array2 = [5,6,7,8]
 
 const resultado = []
 
@@ -21,8 +23,6 @@ if(array1.length !== array2.length){
   }
 }
 
-const array1 = [1,2,3,4]
-const array2 = [5,6,7,8]
 
 console.log("Ejercicio 01:",arraySuma(array1,array2))
 
@@ -169,9 +169,11 @@ console.log("Ejercicio 08: ",encontrarMaxMin(numeros4))
  * @param {*} elemento 
  * @returns 
  */
+
+const numeros5 = [1, 2, 3, 4, 5, 6];
 const buscarElemento = (arr, elemento) => arr.indexOf(elemento);
 
-console.log(buscarElemento("Ejercicio 09: ",numeros, 3));
+console.log(buscarElemento("Ejercicio 09: ",numeros5, 3));
 
 
 /**
@@ -197,7 +199,12 @@ function dividirFragmento(arr,tamano){
 const dividirFragmento = (arr, tamano) => arr.reduce((resultado, elemento, indice) => (indice % tamano === 0 ? resultado.push([elemento]) : resultado[resultado.length - 1].push(elemento), resultado), []);
 */
 //const array = [1, 2, 3, 4, 5, 6];
-console.log("Ejercicio 10:",dividirFragmento(array, 3));
+  
+const array8 = [
+  [1, 2, 3],
+  [4, 5, 6],
+];
+console.log("Ejercicio 10:",dividirFragmento(array8, 3));
 
 /**
  * @author: Rogelio Sánchez
@@ -334,11 +341,12 @@ const multiplicarMatrizPorEscalar = (matriz,escalar) =>{
   }
   return matrix2
 }
+*/
 const matrix = [
   [1,2,3,4],
   [5,6,7,8]
 ]
-*/
+
 const multiplicarMatrizPorEscalar = (matriz,escalar) => matriz.map(fila => fila.map(el => el * escalar))
 
 console.log("Ejercicio 17: ",multiplicarMatrizPorEscalar(matrix,2));
@@ -355,7 +363,7 @@ console.log("Ejercicio 17: ",multiplicarMatrizPorEscalar(matrix,2));
  * @param  {...any} arrs 
  * @returns 
  */
-
+/*
 const combinarArrays = (orden = "creciente", ...arrs) => {
   const arrCombinado = [].concat(...arrs);
   if (orden === "decreciente") {
@@ -364,6 +372,7 @@ const combinarArrays = (orden = "creciente", ...arrs) => {
     return arrCombinado.sort((a, b) => a - b);
   }
 }
+*/
 
 const array3 = [1, 2, 3];
 const array4 = [4, 5, 6];
@@ -427,7 +436,7 @@ console.log("Ejercicio 21: ",rotarArray(miArray,3))
  * @param {*} arr2 
  * @returns 
  */
-
+/*
 const sumaMatrices = (arr1,arr2) => {
   const resultado = []
   
@@ -441,7 +450,7 @@ const sumaMatrices = (arr1,arr2) => {
   }
   return resultado
 }
-
+*/
 /**
  * 
  * @param {*} arr1 
@@ -471,6 +480,7 @@ console.log("Ejercicio 22: ",sumaMatrices(array6,array7))
  * @param {*} arr 
  * @returns 
  */
+/*
 const promedioFilas = arr =>{
   const resultado = []
   for(let fila of arr){
@@ -484,12 +494,13 @@ const promedioFilas = arr =>{
     return resultado
   }
 
-
+*/
 /**
  * 
  * @param {*} arr 
  * @returns 
  */
+/*
   const promedioFilas = arr =>{
 
     return arr.reduce((resultado,fila) => {
@@ -499,7 +510,7 @@ const promedioFilas = arr =>{
       return resultado
     },[])
   } 
-    
+    */
  const promedioFilas = arr => arr.map(fila => fila.reduce((acc,num) => acc + num, 0) / fila.length)
 
   
@@ -525,6 +536,7 @@ console.log("Ejercicio 23: ",promedioFilas(array))
  * @param {*} propiedad 
  * @returns 
  */
+/*
 const ordenarPorPropiedad = (arr,propiedad) => {
   return arr.sort((a,b) => {
     if(a[propiedad] < b[propiedad]){
@@ -536,7 +548,7 @@ const ordenarPorPropiedad = (arr,propiedad) => {
     return 0
   })
 }
-
+*/
 
 const ordenarPorPropiedad = (arr,propiedad) => arr.sort((a,b) => a[propiedad] - b[propiedad])
 
@@ -547,6 +559,6 @@ const personas = [
 ];
 
 
-ordenarPorPropiedad(personas,"id")
+console.log("Ejercicio 24: ",ordenarPorPropiedad(personas,"id"))
 
 
