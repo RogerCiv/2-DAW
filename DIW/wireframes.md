@@ -11,23 +11,23 @@
 
 ### Vista web general
 
-![Principal](img/TaconDeOro.png)
+![Principal](img/TacondeOro.png)
 
 ### Vista PC
 
-![PC](img/TACONPC.png)
+![PC](img/TaconDeOroDESKTOP.png)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ### Vista Portátil
 
-![portatil](img/TACONPORTATIL.png)
+![portatil](img/TaconDeOroPortatil.png)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 ### Vista Smartwatch
 
-![smart](img/TACONSMARTH.png)
+![smart](img/TaconDeOroSMART.png)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 

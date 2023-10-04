@@ -984,25 +984,22 @@ console.log(usernamesArr(users))
  * @description: Ejercicio 2) Obtener el firstname y lastname de todos los usuarios cuyo email no sea .com. Crear una estructura de tipo Map que guarde el firstname y lastname junto a su Email.
  */
 
-const usuariosEmail = [ ...array].map( e => e.email)
-console.log(usuariosEmail(users))
+  const resultado = new Map()
 
-/*
-const firstnames = []
-for (let key of Object.keys(users)) {
-  const user = users[key];
-  usernames.push(user.firstname);
-}
+  for(const user of users){
+    const email = user.email
 
-const lastnames = []
-for (let key of Object.keys(users)) {
-  const user = users[key];
-  lastnames.push(user.lastname);
-}
+    if(!email.endsWith(".es")){
+      resultado.set(email,{
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email
+      })
+    }
+  }
 
-console.log(firstnames);
-console.log(lastnames)
-*/
+  console.log(resultado)
+
 
 
 /** 
