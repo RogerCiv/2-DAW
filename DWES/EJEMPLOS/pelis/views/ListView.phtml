@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mi lista de peliculas</title>
+</head>
+<body>
+<h1>Mi lista de peliculas</h1>
+<a href="index.php">Inicio</a> -
+
+<?php
+if(!$_SESSION['user']->getRol())
+	echo '<a href="index.php?login">Login</a>';
+else 
+	echo 'Hola '.$_SESSION['user']->getName().' 
+	<a href="index.php?login&logout">Salir</a>';
+?>
+
+<form action="index.php" method="post">
+	<input type="text" name="busca" placeholder="Titulo para la búsqueda">
+	<input type="submit" value="Busca">
+</form>
+
+<ul>
+<?php
+
+foreach ($movies as $movie) {
+	echo '<li>'.$movie->getTitle().' (Estrenado en 
+	<a href="index.php?year='
+	.$movie->getYear().
+	'">'.$movie->getYear().'</a>
+	) '.$movie->getLikes().' 
+	<a href="index.php?like=1&id='.$movie->getId().'">LIKE</a> 
+	<a href="index.php?like=-1&id='.$movie->getId().'">DISLIKE</a></li>';
+}
+
+?>
+</ul>
+</body>
+</html>

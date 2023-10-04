@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precios Diarios</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .precio-dia {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Precios Diarios</h1>
+        <div id="preciosDiarios">
+            Cargando datos...
+        </div>
+    </div>
+
+    <script>
+        // Obtén los datos de la API para un rango de fechas
+        async function obtenerDatosDiarios() {
+            const fechaActual = new Date();
+            const fechaInicio = new Date(fechaActual);
+            fechaInicio.setDate(fechaActual.getDate() - 7); // Obtener datos de la última semana
+            const fechaFin = new Date(fechaActual);
+
+            // Formatea las fechas en el formato YYYY-MM-DD
+            const fechaInicioStr = fechaInicio.toISOString().split('T')[0];
+            const fechaFinStr = fechaFin.toISOString().split('T')[0];
+
+            // Construye la URL con los parámetros necesarios
+            const url = `https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=${fechaInicioStr}&end_date=${fechaFinStr}&time_trunc=day`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                const preciosDiarios = data.data;
+
+                // Mostrar los precios de cada día en la página
+                const preciosDiariosHTML = preciosDiarios.map(precioDia => {
+                    const fecha = new Date(precioDia.attributes["datetime"]).toLocaleDateString();
+                    const precio = precioDia.attributes["value"].toFixed(2) + ' €/MWh';
+                    return `<div class="precio-dia"><strong>${fecha}</strong>: ${precio}</div>`;
+                }).join('');
+
+                document.getElementById('preciosDiarios').innerHTML = preciosDiariosHTML;
+            } catch (error) {
+                console.error('Error al obtener los datos:', error);
+            }
+        }
+
+        // Llama a la función para obtener los datos diarios
+        obtenerDatosDiarios();
+    </script>
+</body>
+</html>

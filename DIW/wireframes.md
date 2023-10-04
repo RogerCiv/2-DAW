@@ -1,9 +1,9 @@
 # Mapa de Navegación
 
-![](img/MAPA%20NAVEGACION%20(1).png)
+![](img/MAPA%20NAVEGACION%202.0%20(1).png)
 
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 # Sketch y wireframes
 

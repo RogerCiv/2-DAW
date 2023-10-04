@@ -12,7 +12,7 @@ const URLdemanda = 'https://apidatos.ree.es/es/datos/demanda/evolucion?start_dat
 const URLgeneracion = 'https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=day'
 const URLintercambios = 'https://apidatos.ree.es/es/datos/intercambios/francia-frontera?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=day'
 const URLtransporte = 'https://apidatos.ree.es/es/datos/transporte/indice-indisponibilidad?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=month'
-
+/*
 fetch(URLtransporte)
   .then(response => response.json())
   .then(data =>  {
@@ -27,10 +27,10 @@ fetch(URLtransporte)
     console.error('Hubo un error al obtener los datos de la API: ', error);
   });
   
- /*
-  const URLbalanceElectrico = 'https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2023-08-01T00:00&end_date=2023-09-29T23:59&time_trunc=day';
+ */
 
-  fetch(URLbalanceElectrico)
+
+  fetch(URLmercados)
     .then(response => response.json())
     .then(data => {
       // Acceder a los datos incluidos
@@ -79,4 +79,3 @@ fetch(URLbalanceElectrico)
   .catch(error => {
     console.error('Error al obtener los datos:', error);
   });
-*/
