@@ -1,6 +1,5 @@
 <?php
 
-
 class PublicacionRepository
 {
 
@@ -26,5 +25,3 @@ class PublicacionRepository
         $result = $bd->query($q);
     }
 }
-
-?>

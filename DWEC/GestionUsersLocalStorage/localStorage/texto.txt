@@ -1,0 +1,30 @@
+
+
+//A traves del formulario introducire un nombre y una password, si el nombre no esta guardado en el local storage, almacenaremos el usuario y passwrod encriptada dentro del localstorage. Si ya estuviera almacenada, mostrara OK LOGUEADO.
+/*
+function regForm(event) {
+    event.preventDefault(); // Prevenir el envío del formulario
+    
+    const usersLocalStorage = JSON.parse(localStorage.getItem("USERS"));
+    
+    // Comprobamos si el usuario existe en el localStorage
+    if (usersLocalStorage.hasOwnProperty(username.value)) {
+        // El usuario existe, comprobamos la contraseña
+        const storedPassword = usersLocalStorage[username.value];
+        if (password.value === storedPassword) {
+            alert("OK LOGUEADO");
+        } else {
+            alert("Contraseña incorrecta");
+        }
+    } else {
+        // El usuario no existe, lo guardamos en el localStorage
+        usersLocalStorage[username.value] = password.value;
+        localStorage.setItem("USERS", JSON.stringify(usersLocalStorage));
+        alert("Usuario registrado");
+    }
+    
+    // Limpia los campos del formulario
+    username.value = "";
+    password.value = "";
+}
+*/

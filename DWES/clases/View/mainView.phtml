@@ -11,11 +11,9 @@
     <h1>Publicaciones</h1>
 
     <?php
-    /*
     foreach ($pubs as $pub) {
         echo $pub->getText() . "<br>";
     }
-    */
     ?>
 
     <form method="POST" action="index.php">
@@ -26,24 +24,14 @@
         <input type="password" name="password" required><br>
         <input type="submit" name="login" value="Entrar">
     </form>
-
     <?php
     if (!empty($_SESSION['user'])) {
         echo "Es correcto<br>";
-        echo "<a href='index.php?newpub=1'>Publicar</a><br>";
-
-        foreach($pubs as $pub){
-            echo $pub->getTitle()."<br>";
-            echo $pub->getText()."<br>";
-        }
-    
+        echo "<a href='index.php?newpub=1'>Publicar</a>";
     } else {
         echo "No es correcto<br>";
         echo "Inicia sesion para publicar";
     }
-
-  
-
     ?>
 
 </body>

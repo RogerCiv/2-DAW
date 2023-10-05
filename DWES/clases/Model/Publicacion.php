@@ -1,16 +1,16 @@
 <?php
 
 class Publicacion{
-    private $title="";
+    private $titulo="";
     private $texto="";
     private $fecha="";
     private $id;
 
     public function __construct($datos)
     {
-        $this->title=$datos['title'];
+        $this->titulo=$datos['title'];
         $this->texto=$datos['text'];
-        $this->fecha=$datos['pubDate'];
+        $this->fecha=$datos['pubdate'];
         $this->id=$datos['id'];
     }
     
@@ -21,9 +21,13 @@ class Publicacion{
     public function setText($t){
         $this->texto=$t;
     }
-    public function getTitle(){
-        return $this->title;
-    }
+
+
+
+
+
+
+
 }
 
 ?>

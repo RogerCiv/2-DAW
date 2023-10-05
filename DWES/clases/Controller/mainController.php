@@ -1,11 +1,12 @@
 <?php
+
 //gestiona variables de entrada
 
 require_once("Model/Publicacion.php");
 require_once("Model/PublicacionRepository.php");
 
 require_once("Model/User.php");
-require_once("Model/UsersRepository.php");
+require_once("Model/UserRepository.php");
 
 session_start();
 if (!empty($_GET['newpub'])) {
@@ -27,5 +28,3 @@ if (!empty($_POST['login'])) {
 
 //carga la vista correcta
 include("View/mainView.phtml");
-
-?>
