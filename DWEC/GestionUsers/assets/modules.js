@@ -1,9 +1,16 @@
-const users = [
+
+export const saludar = (nombre) => console.log(`Bienvenido ${nombre}`);
+
+export  const sumar = (num1,num2) => num1+num2;
+
+export const PI = 3.14159
+
+export const users = [
     {
     "id": 1,
     "firstname": "John",
     "lastname": "Doe",
-    "email": "johndoe@example.com",
+    "email": "johndoe@example.es",
     "birthDate": "1973-01-22",
     "login": {
     "uuid": "1a0eed01-9430-4d68-901f-c0d4c1c3bf22",
@@ -35,7 +42,7 @@ const users = [
     "id": 2,
     "firstname": "Jane",
     "lastname": "Smith",
-    "email": "janesmith@example.com",
+    "email": "janesmith@example.es",
     "birthDate": "1983-02-22",
     "login": {
     "uuid": "2a0eed02-9430-4d68-901f-c0d4c1c3bf22",
@@ -959,48 +966,11 @@ const users = [
     "bs": "Development"
     }
     }
-    ]
-
-/** 
- * @author: Rogelio Sánchez
- * @description: Ejercicio 1) Sacar y guardar en un array todos los usernames de los usuarios. crear una funcionejercicio1_objetos
- */
-function usernamesArray(arr) {
-  const usernames = [];
-  for (let key in arr) {
-    const user = arr[key];
-    usernames.push(user.login.username);
-  }
-  return usernames;
-}
-
-console.log(usernamesArray(users))
-
-const usernamesArr = misUsuarios => misUsuarios.map( user => user.login.username)
-
-console.log(usernamesArr(users))
-/** 
- * @author: Rogelio Sánchez
- * @description: Ejercicio 2) Obtener el firstname y lastname de todos los usuarios cuyo email no sea .com. Crear una estructura de tipo Map que guarde el firstname y lastname junto a su Email.
- */
-
-  const resultado = new Map()
-
-  for(const user of users){
-    const email = user.email
-
-    if(!email.endsWith(".es")){
-      resultado.set(email,{
-        firstname: user.firstname,
-        lastname: user.lastname,
-        email: user.email
-      })
-    }
-  }
-
-  console.log(resultado)
+    ];
 
 
-  /**
-   * @description: 
-   */
+
+// ---------------------
+
+export default sumar;
+

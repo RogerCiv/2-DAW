@@ -140,3 +140,52 @@ Ambas buscan aumentar la capacidad. Distribuir la capacidad de trabajo. Mejorar 
 > Cambiamos el puerto del 80 al 81 para probar los puertos.
 
 ![Imagen 6](apache/Paso8.png)
+
+## 7) Instalar el servidor de aplicaciones Tomcat y comprobar que funciona (tanto en Ubuntu como en Windows).Indicar los pasos y comandos implicados (documentar el proceso de instalación).
+
+**Paso 1:**
+> Instalamos Apache tomcat y comprobamos el status de dicho servicio.
+
+![paso1](TOMCATSSH/Paso1.png)
+
+
+**Paso 2:**
+> Modificamos el archivo de users para crear un usuario con los roles para admin-gui y manager-gui
+
+![paso2](TOMCATSSH/Paso2.png)
+
+
+**Paso 3:**
+> Comentamos la linea de RemoteAddrValve
+
+![paso3](TOMCATSSH/Paso3.png)
+
+
+**Paso 4:**
+> Nos conectamos a tomcat desde el navegador en nuestra máquina principal.
+
+![paso4](TOMCATSSH/TOMCATFIREFOX.png)
+
+**Paso 5:**
+> Accedemos al admin-gui.
+
+![paso5](TOMCATSSH/TOMCATMANAGEr.png)
+
+**Paso 6:**
+> Accedemos al host-manager.
+
+![paso6](TOMCATSSH/host-manager.png)
+
+
+
+## 8) Instalar y configurar de manera segura el servicio SSH. Conectar al servidor de distintas formas. Indicar los pasos y comandos implicados (documentar el proceso de instalación y configuración).
+
+**Paso 1:**
+> Actualizamos el sistema e instalamos ssh, una vez instalado le hacemos status para comprobar si esta operativo.
+
+![paso1](TOMCATSSH/SSH.png)
+
+**Paso 2:**
+> Nos conectamos desde nuestra máquina principal al servidor, cambiamos previamente el puerto por defecto por el 3326. *ssh -p 3326 rsc@192.168.78.85.*
+
+![paso2](TOMCATSSH/SSH2.png)

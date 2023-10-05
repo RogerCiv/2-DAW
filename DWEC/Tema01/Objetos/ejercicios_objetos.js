@@ -18,7 +18,7 @@ function pais(objeto) {
 
 const objeto = { continente: "Europa", pais: "España"}
 
-console.log(pais(objeto))
+console.log("Ejercicio 01: ",pais(objeto))
 
 
 
@@ -39,7 +39,7 @@ function hasKey(a,b){
 const a = { nombre: "perico", apellido: "palotes"}
 const b = 'apellido'
 
-console.log(hasKey(a,b))
+console.log("Ejercicio 02: ",hasKey(a,b))
 
 // Ejercicio 03
 
@@ -58,7 +58,7 @@ function isPropertyTrue(a,b){
 const objeto1 = { id: 12, nombre: "Calimero" }
 const cadena = "nombre"
 
-console.log(isPropertyTrue(objeto1,cadena));
+console.log("Ejercicio 03: ",isPropertyTrue(objeto1,cadena));
 
 // Ejercicio 04
 
@@ -72,7 +72,7 @@ function createObject(cadena){
 
 const cadena2 = "Priscila"
 
-console.log(createObject(cadena2));
+console.log("Ejercicio 04: ",createObject(cadena2));
 
 // Ejercicio 05
 //Escribe una función que tome dos cadenas (a y b) como argumentos. Cree un objeto que tenga una propiedad con la clave 'a' y un valor de 'b'. Devuelve el objeto.
@@ -84,7 +84,7 @@ function createObject2(a,b){
 
 const cadena3 = 'clave'
 const cadena4 = 'valor'
-console.log(createObject2(cadena3,cadena4));
+console.log("Ejercicio 05: ",createObject2(cadena3,cadena4));
 
 // Ejercicio 06
 
@@ -106,7 +106,7 @@ function createObject3(a,b){
 const array1 = [['clave1','clave2','clave3'], ['clave4','clave5','clave6']]
 const array2 = [['valor1','valor2','valor3'], ['valor4','valor5','valor6']]
 
-console.log(createObject3(array1,array2));
+console.log("Ejercicio 06: ",createObject3(array1,array2));
 
 
 // Ejercicio 07
@@ -143,7 +143,7 @@ const objeto5 = {
   };
 
 
-console.log(obtainValues(objeto5))
+console.log("Ejercicio 08: ",obtainValues(objeto5))
 
 
 // Ejercicio 09
@@ -176,7 +176,7 @@ const tempMeses = {
     diciembre: 10
 }
 
-console.log(temperatures(tempMeses))
+console.log("Ejercicio 09: ",temperatures(tempMeses))
 
 // Ejercicio 10
 
@@ -191,7 +191,7 @@ function returnProperty(object){
 
 const objeto6 = {a: 1, b: 2, c: 3, d: 4};
 
-console.log(returnProperty(objeto6))
+console.log("Ejercicio 10: ",returnProperty(objeto6))
 
 
 // Ejercicio 11
@@ -226,7 +226,7 @@ function multiValues(a,b){
 }
 
 const objeto9 = {key1: 2, key2: 3, key3: 'no es un número'}
-console.log(multiValues(objeto9, 2))
+console.log("Ejercicio 12: ",multiValues(objeto9, 2))
 
 // Ejercicio 13
 
@@ -275,8 +275,67 @@ console.log("Ejercicio 14: ",replaceChains(objeto11));
 //Extraer información de objetos. Escriba una función que tome un objeto como argumento que contenga propiedades con información personal. Extraiga el nombre, el apellido, el tamaño y el peso,si están disponibles. Si se proporciona el tamaño o el peso, transforme el valor en una cadena.Adjunte la unidad cm al tamaño. Adjunte la unidad kg al peso Devuelve un nuevo objeto con todas las propiedades disponibles que nos interesan y sus modificaciones correspondientes
 
 function extractObject(obj){
-    const copyObject = {}
-
+    const { nombre, apellido, altura, peso } = obj
+    const copyObject = { nombre, apellido, altura, peso }
+    //copyObject.altura = copyObject.altura.toString();  
+    for(const key of Object.keys(copyObject)){
+        if(typeof copyObject[key] === "number"){
+            copyObject[key] = copyObject[key].toString()
+        }
+    }
+    return copyObject
+  
 }
 
 const objeto12 = { nombre: "pepe", apellido: "perez", altura: 180, peso: 80}
+
+console.log("Ejercicio 15: ",extractObject(objeto12))
+
+
+// Ejercicio 16
+//Agregar propiedad a cada objeto en la matriz. Escribe una función que tome un Array de objetos y una cadena como argumentos. Agrega una propiedad con clave 'continente' y valor igual a la cadena a cada uno de los objetos. Devuelve el nuevo arreglo de objetos
+
+function addProperty(arr,cadena){
+    const copyArr = [ ...arr ]
+
+   copyArr.forEach(object => object.continente = cadena)
+   return copyArr
+}
+
+
+const arrayDeObjetos = [
+    {
+      nombre: "Juan",
+      apellido: "Pérez",
+      altura: 175,
+      peso: 70,
+    },
+    {
+      nombre: "María",
+      apellido: "López",
+      altura: 160,
+      peso: 55,
+    },
+    {
+      nombre: "Carlos",
+      apellido: "Gómez",
+      altura: 185,
+      peso: 80,
+    },
+    {
+      nombre: "Laura",
+      apellido: "Martínez",
+      altura: 162,
+      peso: 58,
+    },
+  ];
+  
+  console.log("Ejercicio 16: ",addProperty(arrayDeObjetos,"europa"));
+  
+
+  // Ejercicio 17
+
+  //Convertir matriz en objeto con contador. Escriba una función que tome una matriz de números como argumento. Convierta la matriz en un objeto. Debe tener una clave para cada valor único de la matriz. El valor del objeto correspondiente debe ser el número de veces que aparece la clave dentro de la matriz
+
+  
+  
