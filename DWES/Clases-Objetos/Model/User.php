@@ -13,6 +13,9 @@ class User{
         return $this->user;
     }
 
+    public function getId(){
+        return $this->id;
+    }
 
     public function getRol(){
         return $this->rol;

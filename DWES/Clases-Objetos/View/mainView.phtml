@@ -25,21 +25,44 @@
         Password
         <input type="password" name="password" required><br>
         <input type="submit" name="login" value="Entrar">
+        <input type="submit" value="Logout" name="logout">
     </form>
 
     <?php
-    if (!empty($_SESSION['user'])) {
-        echo "Es correcto<br>";
-        echo "<a href='index.php?newpub=1'>Publicar</a><br>";
+    if (!empty($_SESSION['user']) && $_SESSION['user']->getRol()>1) {
+        echo "<br>Es correcto<br>";
 
-        foreach($pubs as $pub){
+        echo "<a href='index.php?newPub=1'>Publicar</a><br>";
+
+        echo '<br>';
+        /*foreach($pubs as $pub){
+            echo '<img src="public/img/'.$pub->getImage().'"width="100px"/>';
             echo $pub->getTitle()."<br>";
             echo $pub->getText()."<br>";
         }
-    
+    */
     } else {
-        echo "No es correcto<br>";
-        echo "Inicia sesion para publicar";
+        echo "Tienes que ser admin para poder publicar <br><br>";
+    }
+
+    if(!empty($_SESSION['user'])){
+
+
+        foreach($pubs as $pub){
+            echo '<img src="public/img/'.$pub->getImage().'"width="100px"/>';
+            echo $pub->getTitle()."<br>";
+            echo $pub->getText()."<br>";
+            foreach($pub->getComment() as $comment){
+                echo $comment->getUser()->getUsername()."Ha dicho: ".$comment->getComment();
+            }
+            
+            echo '   <form method="POST" action="index.php">';
+            echo '<br>';
+            echo 'Comentario';
+            echo '<input type="text" name="comment" required><br>';
+            echo '<input type="submit" name="sendComment" value="Comentar">';
+            echo '</form>';
+        }
     }
 
   

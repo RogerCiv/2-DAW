@@ -18,12 +18,16 @@ class PublicacionRepository
         return $pubs;
     }
 
-    public static function publicar()
-    {
+
+    public static function newPub($datos,$img) {
+        $image=$img['img']['name'];
+
+        move_uploaded_file($img['img']['tmp_name'], 'public/img/'. $image);
         $bd = Conectar::conexion();
-        $q = "INSERT INTO publicacion VALUES (null,'" . $_POST['title'] . "','" . $_POST['text'] . "','" . date('Y-m-d H:i:s') . "')";
+        $q = "INSERT INTO publicacion VALUES (null,'" . $datos['title'] . "','" . $datos['text'] . "',NOW(),'". $image. "')";
         // echo $q;
-        $result = $bd->query($q);
+        $bd->query($q);
+        return $bd->insert_id;
     }
 }
 

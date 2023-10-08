@@ -5,13 +5,17 @@ class Publicacion{
     private $texto="";
     private $fecha="";
     private $id;
+    private $img;
+    private $comments;
 
     public function __construct($datos)
     {
         $this->title=$datos['title'];
         $this->texto=$datos['text'];
-        $this->fecha=$datos['pubDate'];
+        $this->fecha=$datos['pubdate'];
         $this->id=$datos['id'];
+        $this->img = $datos['img'];
+        $this->comments= CommentRepository::getCommentsByPubId($datos['id']);
     }
     
     public function getText(){
@@ -23,6 +27,13 @@ class Publicacion{
     }
     public function getTitle(){
         return $this->title;
+    }
+    public function getImage(){
+        return $this->img;
+    }
+
+    public function getId(){
+        return $this->id;
     }
 }
 

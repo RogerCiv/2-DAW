@@ -1,4 +1,5 @@
 <?php
+/*
 require_once('Model/UsersRepository.php');
 
 class userController {
@@ -18,6 +19,6 @@ class userController {
             }
         }
     }
-}
+}*/
 
 ?>
