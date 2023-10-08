@@ -79,3 +79,27 @@ fetch(URLbalanceElectrico)
   .catch(error => {
     console.error('Error al obtener los datos:', error);
   });
+
+
+  /*
+
+  const initialDate = new Date();
+const initialDateISOS = initialDate.toISOString();
+initialDate.setHours(initialDate.getHours() + 24);
+const finalDateISOS = initialDate.toISOString();
+
+const URL = `https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real?start_date=${initialDateISOS}&end_date=${finalDateISOS}&time_trunc=hour`;
+
+async function fetchApi() {
+      const res = await fetch(URL);
+      const data = await res.json();
+
+      const values = data.included.find(
+        (item) => item.type === "Precio mercado spot (€/MWh)"
+      ).attributes.values;
+      setPrices(values);
+    }
+    fetchApi();
+  }, []);
+
+*/

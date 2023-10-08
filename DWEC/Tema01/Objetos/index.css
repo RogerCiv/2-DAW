@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+pre {
+    background-color: rgb(24, 22, 22);
+    width: 450px;
+}
+code {
+    color: white;
+}
+
+body {
+    background-color: beige;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(370px,1fr));
+    gap: 5rem;
+    padding-inline: 3rem;
+    padding-block: 4rem;
+}
+
+
+.ejercicio{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.center{
+    text-align: center;
+}

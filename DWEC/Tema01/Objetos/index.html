@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="ejercicio">
+        <h1>Ejercicio 1</h1>
+        <h2>Código de la función:</h2>
+        <pre>
+                <code>
+    function pais(objeto) {
+        if (objeto.hasOwnProperty('pais')) {
+            return objeto.pais
+        } else {
+            return "No se encuentra"
+        }
+    }
+    
+    const objeto = { continente: "Europa", pais: "España"}
+    
+    console.log("Ejercicio 01: ", pais(objeto));
+                </code>
+            </pre>
+        <h2>Resultado:</h2>
+        <p id="resultado1"></p>
+
+      </div>
+      <div class="ejercicio">
+        <h1>Ejercicio 2</h1>
+        <h2>Código de la función:</h2>
+        <pre>
+                <code>
+  
+    function hasKey(a,b){
+        if(a.hasOwnProperty(b)){
+            return true
+        }else{
+            return false
+        }
+    }
+
+
+    const a = { nombre: "perico", apellido: "palotes"}
+    const b = 'apellido'
+
+    console.log("Ejercicio 02: ",hasKey(a,b))
+                </code>
+            </pre>
+        <h2>Resultado:</h2>
+        <p id="resultado2"></p>
+      </div>
+      <div class="ejercicio">
+        <h1>Ejercicio 3</h1>
+        <h2>Código de la función:</h2>
+        <pre>
+                <code>
+                    
+    function isPropertyTrue(a,b){
+        if(a.hasOwnProperty(b)){
+            if(a[b] !== null && a[b] !== undefined 
+            && a[b] !== false){
+                return true
+            }
+        }
+
+        return false
+    }
+
+    const objeto1 = { id: 12, nombre: "Calimero" }
+    const cadena = "nombre"
+
+    console.log("Ejercicio 03: ",isPropertyTrue(objeto1,cadena));
+                </code>
+            </pre>
+        <h2>Resultado:</h2>
+        <p id="resultado3"></p>
+    </div>
+    
+    <div class="ejercicio">
+        <h1 class="center">Ejercicio 4</h1>
+        <h2>Código de la función:</h2>
+        <pre>
+                <code>
+                    
+    function isPropertyTrue(a,b){
+        if(a.hasOwnProperty(b)){
+            if(a[b] !== null && a[b] !== undefined 
+            && a[b] !== false){
+                return true
+            }
+        }
+
+        return false
+    }
+
+    const objeto1 = { id: 12, nombre: "Calimero" }
+    const cadena = "nombre"
+
+    console.log("Ejercicio 03: ",isPropertyTrue(objeto1,cadena));
+                </code>
+            </pre>
+                <h2>Resultado:</h2>
+                <p id="resultado4"></p>
+    </div>
+
+   
+    </div>
+    <script src="ejercicios_objetos.js"></script>
+  </body>
+</html>
