@@ -11,34 +11,48 @@ require_once("Model/Comment.php");
 require_once("Model/CommentRepository.php");
 
 session_start();
-if (!empty($_GET['newPub'])) {
-    include("View/newPubView.phtml");
-    die;
+
+if(!empty($_GET['c'])){
+    if($_GET['c'] == "user"){
+        require_once("Controller/userController.php");
+    }
+    if($_GET['c'] == "pub"){
+        require_once("Controller/pubController.php");
+    }
+    if($_GET['c'] == "comment"){
+        require_once("Controller/commentController.php");
+    }
 }
 
-if (!empty($_POST['newPub'])) {
-   PublicacionRepository::newPub($_POST,$_FILES);
-}
-
+$users = UserRepository::getUsers();
 //usa el modelo y aplica cambios a la bd
 $pubs = PublicacionRepository::getPublicaciones();
 
+// adminController.php
+
+if (!empty($_POST['changeRole'])) {
+    $userId = $_POST['userId'];
+    $newRole = $_POST['newRole'];
+    
+    // Realizar la actualización del rol en la base de datos
+    UserRepository::updateUserRole($userId, $newRole);
+    
+    // Redirigir o mostrar un mensaje de éxito (según tu preferencia)
+    // header("Location: index.php?c=admin");
+    // exit;
+}
+
+
+/*
 if(!empty($_POST['sendComment'])) {
     $_SESSION['pub'] = $_POST['id'];
   CommentRepository::newComment($_POST);
 }
-
+*/
 //$respuesta = "";
-
-if (!empty($_POST['login'])) {
-    $_SESSION['user'] = UserRepository::validar($_POST['usuario'], $_POST['password']);
-}
-
-if(!empty($_POST['logout'])) {
-    $_SESSION['user'] = UserRepository::logout();
-}
 
 //carga la vista correcta
 include("View/mainView.phtml");
+//include("View/adminView.phtml");
 
 ?>

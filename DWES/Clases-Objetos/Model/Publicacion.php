@@ -3,7 +3,7 @@
 class Publicacion{
     private $title="";
     private $texto="";
-    private $fecha="";
+    private $date= NULL;
     private $id;
     private $img;
     private $comments;
@@ -12,7 +12,8 @@ class Publicacion{
     {
         $this->title=$datos['title'];
         $this->texto=$datos['text'];
-        $this->fecha=$datos['pubdate'];
+        $this->date=$datos['pubdate'];
+
         $this->id=$datos['id'];
         $this->img = $datos['img'];
         $this->comments= CommentRepository::getCommentsByPubId($datos['id']);
@@ -35,6 +36,11 @@ class Publicacion{
     public function getId(){
         return $this->id;
     }
+
+    public function getComments() {
+        return $this->comments;
+    }
+    
 }
 
 ?>

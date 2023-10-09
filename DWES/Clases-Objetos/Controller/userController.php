@@ -1,24 +1,13 @@
 <?php
-/*
-require_once('Model/UsersRepository.php');
 
-class userController {
-     public function login(){
-        if(!empty($_POST['login'])){
-            $user = $_POST['user'];
-            $password = $_POST['password'];
 
-            if(UsersRepository::validarCredenciales($user,$password)){
-                $_SESSION['username'] = $user;
-                $_SESSION['loged'] = true;
-                echo 'ok';
-                header('Location: index.php');
-                exit();
-            }else{
-                echo 'Credenciales incorrectas';
-            }
-        }
-    }
-}*/
+if (!empty($_POST['login'])) {
+    $_SESSION['user'] = UserRepository::validar($_POST['usuario'], $_POST['password']);
+}
+
+if(!empty($_POST['logout'])) {
+    $_SESSION['user'] = UserRepository::logout();
+}
+
 
 ?>

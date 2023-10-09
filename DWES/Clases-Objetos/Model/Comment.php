@@ -5,14 +5,15 @@ class Comment{
     private $user;
     private $text;
     private $date;
+    private $img;
 
     public function __construct($datos){
         $this->id = $datos['id'];
-        $this->text = $datos['comment_text'];
+        $this->text = $datos['comment'];
         $this->date = $datos['comment_date'];
-
-        $this->user = UserRepository::getUserById($datos['id']);
+        $this->user = UserRepository::getUserById($datos['user_id']); // Usar 'user_id' en lugar de 'id'
     }
+    
 
     public function getId(){
         return $this->id;
@@ -22,12 +23,15 @@ class Comment{
         return $this->text;   
     }
 
-
-
     public function getComment(){
         return $this->text;
 
     }
+
+    public function getUser(){
+        return $this->user;
+    }
+
    
 }
 

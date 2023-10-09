@@ -20,5 +20,10 @@ class User{
     public function getRol(){
         return $this->rol;
     }
+
+    public function __toString()
+    {
+        return $this->user;
+    }
 }
 ?>
