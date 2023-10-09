@@ -298,6 +298,12 @@ function extractObject(obj){
         if(typeof copyObject[key] === "number"){
             copyObject[key] = copyObject[key].toString()
         }
+        if( key === "altura"){
+            copyObject[key] = copyObject[key].toString() + " cm"
+        }
+        if( key === "peso"){
+            copyObject[key] = copyObject[key].toString() + " kg"
+        }
     }
     return copyObject
   

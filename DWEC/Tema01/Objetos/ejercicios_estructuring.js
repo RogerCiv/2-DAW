@@ -96,6 +96,7 @@ const distancia = Math.sqrt(x ** 2 + y ** 2)
 
 console.log(distancia)
 
+
 // Ejercicio 7
 //Dado el siguiente objeto que representa una persona con un nombre y una lista de amigos, utiliza la desestructuración para extraer el nombre de la persona y el primer amigo de la lista.
 
@@ -106,6 +107,10 @@ const persona4 = {
 
 const { nombre , amigos: [primerAmigo]} = persona4
 
+//const primerAmigo = amigos[0];
+
 console.log(nombre,primerAmigo);
+
+
 
 

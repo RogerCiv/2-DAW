@@ -23,8 +23,8 @@ import { users } from './assets/modules.js'
  * Para encriptar la contraseña utilizaremos btoa("cadena a encriptar") y atbo("cadena a desencriptar")
  */
 
-const username = document.getElementById("username");
-const password = document.getElementById("password");
+//const username = document.getElementById("username");
+//const password = document.getElementById("password");
 const form = document.getElementById("form");
 const textaarea = document.getElementById("infouserpassword");
 const btnCargar = document.getElementById("cargar");
@@ -46,9 +46,19 @@ function saveUsersLocalStorage(arr) {
 
 saveUsersLocalStorage(users);
 
+/*
 function checkInLocalStorage(){
     localStorage.getItem(username.value) ? alert(" EXISTE") : localStorage.setItem(username.value, btoa(password.value))
+}*/
+
+function checkInLocalStorage() {
+    if(localStorage.getItem(username.value)){
+        alert('EXISTE')
+    }else{
+        localStorage.setItem(username.value, btoa(password.value))
+    }
 }
+
 function loadTextAreaUsers() {
    /* let userData = "";
     for (const key in localStorage) {
@@ -59,16 +69,18 @@ function loadTextAreaUsers() {
     }
 
     textaarea.value = userData;
+    */
    let userData = "";
     for (const key of Object.keys(localStorage)) {
         const decryptedPassword = atob(localStorage.getItem(key));
         userData += `Usuario: ${key} Contraseña: ${decryptedPassword}\n`;
     }
-
+    
     textaarea.value = userData;
- */
+    /*
     textaarea.value = Object.keys(localStorage).map((el,i) => "Usuario: "+ el + " -- Password: "+atob(Object.values(localStorage)[i] + "\n"));
     textaarea.value = textaarea.value.replaceAll(","," ");
+    */
 }
 
 form.addEventListener("submit", handleSubmit);

@@ -397,7 +397,7 @@ console.log("Ejercicio 18: ",esPalindromo(texto))
  * @description: 20) Escribe una función llamada diferenciaArrays que encuentre la diferencia entre dos arrays, es decir, los elementos que están en uno pero no en el otro. La función debe devolver un nuevo array con los elementos diferentes.
  */
 
-const diferenciaArrays = (arr1,arr2) => arr1.filter(el => !arr2.includes(el))
+const diferenciaArrays = (arr1,arr2) => arr1.filter(el => !arr2.includes(el)).concat( arr2.filter(el => !arr1.includes(el)))
 
 
 const num1 = [1,2,3]
@@ -550,15 +550,34 @@ const ordenarPorPropiedad = (arr,propiedad) => {
 }
 */
 
-const ordenarPorPropiedad = (arr,propiedad) => arr.sort((a,b) => a[propiedad] - b[propiedad])
+
+const ordenarPorPropiedad = (arr,propiedad) => arr.sort((a,b) => a[propiedad] < b[propiedad] ? -1 : a[propiedad] > b[propiedad] ? 1 : 0);
 
 const personas = [
-  { nombre: "Ana", edad: 30, id:2 },
-  { nombre: "Carlos", edad: 25, id:1},
-  { nombre: "Elena", edad: 35, id:3 }
+   { nombre: "Carlos", edad: 25, id:1},
+   { nombre: "Elena", edad: 35, id:3 },
+   { nombre: "Ana", edad: 30, id:2 },
 ];
 
 
-console.log("Ejercicio 24: ",ordenarPorPropiedad(personas,"id"))
+console.log("Ejercicio 24: ",ordenarPorPropiedad(personas,"nombre"))
 
 
+// Ejercicio 25:
+
+
+function numerosFaltantes(arr,n1,n2){
+  const array = [];
+  arr.sort((a,b) => a[n1] - b[n]);
+  for(let i = n1; i < n2; i++){
+      if(!arr.includes(i)){
+          array.push(i);
+      }
+  }
+
+  return array;
+}
+
+const arra = [1,3,6,9];
+
+console.log("Ejercicio 25: ",numerosFaltantes(arra,1,10));
