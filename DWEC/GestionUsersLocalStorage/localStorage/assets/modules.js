@@ -972,5 +972,5 @@ export const users = [
 
 // ---------------------
 
-export default sumar;
+export default users;
 

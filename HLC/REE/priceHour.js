@@ -1,13 +1,13 @@
-var initialDate = new Date();
-var initialDateISOS = initialDate.toISOString();
+let initialDate = new Date();
+let initialDateISOS = initialDate.toISOString();
 initialDate.setHours(initialDate.getHours() + 24);
-var finalDateISOS = initialDate.toISOString();
+let finalDateISOS = initialDate.toISOString();
 
-var URL = `https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real?start_date=${initialDateISOS}&end_date=${finalDateISOS}&time_trunc=hour`;
+let URL = `https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real?start_date=${initialDateISOS}&end_date=${finalDateISOS}&time_trunc=hour`;
 
 const gridContainer = document.querySelector('.container-grid');
 
-function fetchApi() {
+async function fetchPriceApi() {
   fetch(URL)
     .then((res) => res.json())
     .then((data) => {
@@ -78,4 +78,4 @@ function formatDate(date) {
   return `${day}-${month}-${year}`;
 }
 
-fetchApi();
+fetchPriceApi();

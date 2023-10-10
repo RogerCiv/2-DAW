@@ -302,11 +302,9 @@ const objeto11 = { nombre: "pepe", apellido: "", email: " "};
 console.log("Ejercicio 14: ",replaceChains(objeto11));
 
 
-
 // Ejercicio 15
 
 //Extraer información de objetos. Escriba una función que tome un objeto como argumento que contenga propiedades con información personal. Extraiga el nombre, el apellido, el tamaño y el peso,si están disponibles. Si se proporciona el tamaño o el peso, transforme el valor en una cadena.Adjunte la unidad cm al tamaño. Adjunte la unidad kg al peso Devuelve un nuevo objeto con todas las propiedades disponibles que nos interesan y sus modificaciones correspondientes.
-
 
 
 function extractObject(obj){
@@ -329,11 +327,9 @@ const objeto12 = { nombre: "pepe", apellido: "perez", altura: 180, peso: 80};
 
 console.log(extractObject(objeto12));
 
-
 //Ejercicio 16
 
 //Agregar propiedad a cada objeto en la matriz. Escribe una función que tome un Array de objetos y una cadena como argumentos. Agrega una propiedad con clave 'continente' y valor igual a la cadena a cada uno de los objetos. Devuelve el nuevo arreglo de objetos
-
 
 function addProperty(arr,cadena) {
     const copyArr = [ ...arr ]
@@ -341,8 +337,6 @@ function addProperty(arr,cadena) {
     copyArr.forEach(object => object.continente = cadena)
     return copyArr
 }
-
-
 
 const arrayDeObjetos = [
     {
@@ -373,7 +367,6 @@ const arrayDeObjetos = [
   
   console.log("Ejercicio 16: ",addProperty(arrayDeObjetos,"europa"));
 
-
   // Ejercicio 17
 
   //Convertir matriz en objeto con contador. Escriba una función que tome una matriz de números como argumento. Convierta la matriz en un objeto. Debe tener una clave para cada valor único de la matriz. El valor del objeto correspondiente debe ser el número de veces que aparece la clave dentro de la matriz
@@ -392,11 +385,5 @@ const arrayDeObjetos = [
     return contador;
 
   }
-
-  
   const matriz3 = [[1,2,3,4],[1,3,4,8],[4,5,7,8]];
   console.log("Ejercicio 17: ",matrizToObject(matriz));
-
-
-
-

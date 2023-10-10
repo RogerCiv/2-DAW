@@ -67,7 +67,6 @@ function loadTextAreaUsers() {
             userData += `Usuario: ${key}, Contraseña: ${decryptedPassword}\n`;
         }
     }
-
     textaarea.value = userData;
     */
    let userData = "";
@@ -83,20 +82,7 @@ function loadTextAreaUsers() {
     */
 }
 
+
+
 form.addEventListener("submit", handleSubmit);
-btnCargar.addEventListener('click',handleTextArea)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+btnCargar.addEventListener('click',handleTextArea);
