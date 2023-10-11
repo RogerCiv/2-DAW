@@ -1,0 +1,21 @@
+{
+  "name": "aemet_open_data",
+  "version": "2.0",
+  "description": "AEMET_OpenData_es_una_API_REST_desarrollado_por_AEMET_que_permite_la_difusin_y_la_reutilizacin_de_la_informacin_meteorolgica_y_climatolgica_de_la_Agencia_en_el_sentido_indicado_en_la_Ley_182015_de_9_de_julio_por_la_que_se_modifica_la_Ley_372007_de_16_de_noviembre_sobre_reutilizacin_de_la_informacin_del_sector_pblico___IMPORTANTE_Para_poder_realizar_peticiones_es_necesario_introducir_en_API_Key_haciendo_clic_en_el_crculo_rojo_de_recurso_REST_",
+  "license": "Condiciones de uso de reutilización",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --recursive"
+  },
+  "browser": {
+    "fs": false
+  },
+  "dependencies": {
+    "superagent": "3.7.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "sinon": "1.17.3",
+    "expect.js": "~0.3.1"
+  }
+}

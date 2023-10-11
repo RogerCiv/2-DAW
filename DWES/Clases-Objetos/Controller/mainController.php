@@ -5,10 +5,12 @@ require_once("Model/Publicacion.php");
 require_once("Model/PublicacionRepository.php");
 
 require_once("Model/User.php");
-require_once("Model/UsersRepository.php");
+require_once("Model/UserRepository.php");
 
 require_once("Model/Comment.php");
 require_once("Model/CommentRepository.php");
+
+
 
 session_start();
 
@@ -22,14 +24,21 @@ if(!empty($_GET['c'])){
     if($_GET['c'] == "comment"){
         require_once("Controller/commentController.php");
     }
+    if($_GET['c'] == "admin"){
+        require_once("Controller/adminController.php");
+    }
 }
 
-$users = UserRepository::getUsers();
+
+
 //usa el modelo y aplica cambios a la bd
+
 $pubs = PublicacionRepository::getPublicaciones();
 
-// adminController.php
 
+
+// adminController.php
+/*
 if (!empty($_POST['changeRole'])) {
     $userId = $_POST['userId'];
     $newRole = $_POST['newRole'];
@@ -41,7 +50,7 @@ if (!empty($_POST['changeRole'])) {
     // header("Location: index.php?c=admin");
     // exit;
 }
-
+*/
 
 /*
 if(!empty($_POST['sendComment'])) {
@@ -52,6 +61,7 @@ if(!empty($_POST['sendComment'])) {
 //$respuesta = "";
 
 //carga la vista correcta
+include("View/adminView.phtml");
 include("View/mainView.phtml");
 //include("View/adminView.phtml");
 

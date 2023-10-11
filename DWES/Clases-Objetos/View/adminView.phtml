@@ -9,9 +9,31 @@
 <body>
 
     <?php
+    /*
+    if(!empty($_SESSION['user'])){
+        
+        foreach($users as $user){
 
-    foreach($users as $user){
-        echo $user;
+            echo '
+                <strong>Usuario:</strong>'.$user->getUsername().' <strong>Rol:</strong>'.$user->getRol().'   <input type="button" name="changeRol" value="Cambiar Rol"><br> 
+            ';
+        }
+    }
+    */
+
+    if (!empty($_SESSION['user']) && !empty($users)) {
+        foreach ($users as $user) {
+            echo '<form method="POST" action="index.php">';
+            echo '<strong>Usuario:</strong>' . $user->getUsername() . ' <strong>Rol:</strong>' . $user->getRol();
+            echo '<input type="hidden" name="userId" value="' . $user->getId() . '">';
+            echo '<select name="newRole">
+            <option value="1">Usuario Normal</option>
+            <option value="2">Usuario Administrador</option>
+        </select>'
+        ;
+            echo '<input type="submit" name="changeRole" value="Cambiar Rol">';
+            echo '</form>';
+        }
     }
     ?>
 </body>
