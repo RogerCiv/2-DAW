@@ -2,78 +2,86 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>main</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./mainview.css">
+  <title>Main view</title>
 </head>
 
 <body>
-    <h1>Publicaciones</h1>
+  <h1>Publicaciones</h1>
 
-    <?php
-    /*
+  <?php
+  /*
     foreach ($pubs as $pub) {
         echo $pub->getText() . "<br>";
     }
     */
-    ?>
+  if (empty($_SESSION['user'])) {
+  ?>
 
     <form method="POST" action="index.php?c=user">
-        <br>
-        User
-        <input type="text" name="usuario" required><br>
-        Password
-        <input type="password" name="password" required><br>
-        <input type="submit" name="login" value="Entrar">
+      <br>
+      User
+      <input type="text" name="usuario" required><br>
+      Password
+      <input type="password" name="password" required><br>
+      <input type="submit" name="login" value="Entrar">
     </form>
+  <?php
+  } else {
+
+
+  ?>
     <!-- Tengo que moverlo para que solo aparezca el boton logout cuando se ha iniciado sesión. Y tambien tengo que mover el formulario de login para que desaparezca cuando hago login y que se vuelva a mostar al hacer logout.-->
     <form action="index.php?c=user" method="POST">
-        <input type="submit" value="Logout" name="logout">
+      <input type="submit" value="Logout" name="logout">
     </form>
-    <?php
+  <?php
+  }
+  if (!empty($_SESSION['user']) && $_SESSION['user']->getRol() > 1) {
+    echo "<br>Es correcto<br>";
 
-    if (!empty($_SESSION['user']) && $_SESSION['user']->getRol()>1) {
-        echo "<br>Es correcto<br>";
+    echo "<a href='index.php?c=pub&newPub=1'>Publicar</a><br>";
+    echo '<a href="index.php?c=admin&adminView=1?">Gestión de Usuarios</a><br>';
 
-        echo "<a href='index.php?c=pub&newPub=1'>Publicar</a><br>";
-        echo '<a href="index.php?c=admin&adminView=1?">Admin Tool</a><br>';
-
-        echo '<br>';
-        /*foreach($pubs as $pub){
+    echo '<br>';
+    /*foreach($pubs as $pub){
             echo '<img src="public/img/'.$pub->getImage().'"width="100px"/>';
             echo $pub->getTitle()."<br>";
             echo $pub->getText()."<br>";
         }
     */
-    } else {
-        echo "Tienes que ser admin para poder publicar <br><br>";
+  } else {
+    echo "Tienes que ser admin para poder publicar <br><br>";
+  }
+
+  if (!empty($_SESSION['user'])) {
+
+    foreach ($pubs as $pub) {
+      echo '<img src="public/img/' . $pub->getImage() . '"width="100px"/><br>';
+      echo '<strong>Titulo: </strong>' . $pub->getTitle() . '<br>';
+      echo '<strong>Texto:</strong>' . $pub->getText() . "<br>";
+      
+      $comments = CommentRepository::getCommentsByPubId($pub->getId());
+      
+      foreach ($comments as $comment) {
+        echo '<strong>' . $comment->getUser() . ':</strong> Ha dicho: ' . $comment->getComment();
+        echo '<br>';
+      }
+      
+      echo ' <form method="POST" action="index.php?c=comment">
+      <br>
+      Comentario
+      <input type="text" name="comment" required><br>
+      <input type="hidden" name="id_pub" value="' . $pub->getId() . '" />
+      <input type="submit" name="newComment" value="Comentar">
+      </form>';
+      echo '<a class="edit" href="c=editPub&editPubView=1?">Editar</a><br>';
     }
+  }
 
-    if(!empty($_SESSION['user'])){
-
-        foreach($pubs as $pub){
-            echo '<img src="public/img/'.$pub->getImage().'"width="100px"/><br>';
-            echo '<strong>Titulo: </strong>'.$pub->getTitle().'<br>';
-            echo '<strong>Texto:</strong>'.$pub->getText()."<br>";
-
-            $comments = CommentRepository::getCommentsByPubId($pub->getId());
-
-            foreach($comments as $comment){
-                echo '<strong>' . $comment->getUser() . ':</strong> Ha dicho: ' . $comment->getComment();
-                echo '<br>';
-            }
-            
-            echo '   <form method="POST" action="index.php?c=comment">';
-            echo '<br>';
-            echo 'Comentario';
-            echo '<input type="text" name="comment" required><br>';
-            echo '<input type="hidden" name="id_pub" value="'.$pub->getId().'" />';
-            echo '<input type="submit" name="newComment" value="Comentar">';
-            echo '</form>';
-        }
-    } 
-
-    ?>
+  ?>
 
 </body>
 

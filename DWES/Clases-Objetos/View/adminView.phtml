@@ -7,34 +7,36 @@
     <title>Administración de Roles</title>
 </head>
 <body>
+    <div class="roles">
 
-    <?php
+        <?php
     /*
     if(!empty($_SESSION['user'])){
         
         foreach($users as $user){
-
+            
             echo '
-                <strong>Usuario:</strong>'.$user->getUsername().' <strong>Rol:</strong>'.$user->getRol().'   <input type="button" name="changeRol" value="Cambiar Rol"><br> 
+            <strong>Usuario:</strong>'.$user->getUsername().' <strong>Rol:</strong>'.$user->getRol().'   <input type="button" name="changeRol" value="Cambiar Rol"><br> 
             ';
         }
     }
     */
-
     if (!empty($_SESSION['user']) && !empty($users)) {
         foreach ($users as $user) {
-            echo '<form method="POST" action="index.php">';
+            echo '<form method="POST" action="index.php?c=admin">';
             echo '<strong>Usuario:</strong>' . $user->getUsername() . ' <strong>Rol:</strong>' . $user->getRol();
             echo '<input type="hidden" name="userId" value="' . $user->getId() . '">';
             echo '<select name="newRole">
             <option value="1">Usuario Normal</option>
             <option value="2">Usuario Administrador</option>
-        </select>'
-        ;
+            </select>'
+            ;
             echo '<input type="submit" name="changeRole" value="Cambiar Rol">';
             echo '</form>';
         }
     }
     ?>
+    </div>
+
 </body>
 </html>

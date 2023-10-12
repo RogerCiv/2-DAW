@@ -12,7 +12,7 @@ class Publicacion{
     {
         $this->title=$datos['title'];
         $this->texto=$datos['text'];
-        $this->date=$datos['pubdate'];
+        $this->date=$datos['pubDate'];
 
         $this->id=$datos['id'];
         $this->img = $datos['img'];
