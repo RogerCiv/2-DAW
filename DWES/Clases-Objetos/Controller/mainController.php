@@ -46,3 +46,4 @@ include("View/adminView.phtml");
 include("View/mainView.phtml");
 include("View/editPubView.phtml");
 //include("View/adminView.phtml");
+?>

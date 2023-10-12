@@ -21,9 +21,12 @@ if (isset($_POST['changeRole'])) {
     exit;
 }
 
-if(!empty($_GET['editPubView'])){
-  $pub = PublicacionRepository::getPubById($_GET['editPubView']);
-  include("View/editPubView.phtml");
-  die;
-
+if (!empty($_GET['editPub'])) {
+    $editPubId = $_GET['editPub'];
+    $pubToEdit = PublicacionRepository::getPubById($editPubId);
+    
+    // Aquí puedes cargar la vista editPubView.phtml y pasar $pubToEdit a la vista
+    include("View/editPubView.phtml");
+   die;
 }
+

@@ -77,7 +77,7 @@
       <input type="hidden" name="id_pub" value="' . $pub->getId() . '" />
       <input type="submit" name="newComment" value="Comentar">
       </form>';
-      echo '<a class="edit" href="c=editPub&editPubView=1?">Editar</a><br>';
+      echo '<a class="edit" href="index.php?c=admin&editPub='.$pub->getId().'?>">Editar</a><br>';
     }
   }
 
