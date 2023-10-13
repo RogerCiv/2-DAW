@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./mainview.css">
+  <link rel="stylesheet" href="View/mainview.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
   <title>Main view</title>
 </head>
 
@@ -30,20 +31,21 @@
     </form>
   <?php
   } else {
-
-
   ?>
-    <!-- Tengo que moverlo para que solo aparezca el boton logout cuando se ha iniciado sesión. Y tambien tengo que mover el formulario de login para que desaparezca cuando hago login y que se vuelva a mostar al hacer logout.-->
+    <form method="POST" action="index.php?c=search">
+      <input type="text" name="search" placeholder="Buscar...">
+      <input type="submit" name="searchButton" value="Buscar">
+    </form>
+
     <form action="index.php?c=user" method="POST">
       <input type="submit" value="Logout" name="logout">
     </form>
   <?php
   }
   if (!empty($_SESSION['user']) && $_SESSION['user']->getRol() > 1) {
-    echo "<br>Es correcto<br>";
+    echo "<a href='index.php?c=pub&newPub=1'><button>Publicar</button></a><br>";
 
-    echo "<a href='index.php?c=pub&newPub=1'>Publicar</a><br>";
-    echo '<a href="index.php?c=admin&adminView=1?">Gestión de Usuarios</a><br>';
+    echo '<a href="index.php?c=admin&adminView=1?"><button>Gestión de Usuarios</button></a><br>';
 
     echo '<br>';
     /*foreach($pubs as $pub){
@@ -62,14 +64,14 @@
       echo '<img src="public/img/' . $pub->getImage() . '"width="100px"/><br>';
       echo '<strong>Titulo: </strong>' . $pub->getTitle() . '<br>';
       echo '<strong>Texto:</strong>' . $pub->getText() . "<br>";
-      
+
       $comments = CommentRepository::getCommentsByPubId($pub->getId());
-      
+
       foreach ($comments as $comment) {
         echo '<strong>' . $comment->getUser() . ':</strong> Ha dicho: ' . $comment->getComment();
         echo '<br>';
       }
-      
+
       echo ' <form method="POST" action="index.php?c=comment">
       <br>
       Comentario
@@ -77,9 +79,14 @@
       <input type="hidden" name="id_pub" value="' . $pub->getId() . '" />
       <input type="submit" name="newComment" value="Comentar">
       </form>';
-      echo '<a class="edit" href="index.php?c=admin&editPub='.$pub->getId().'?>">Editar</a><br>';
+      // CUidado con las ""  en el href=!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      if (!empty($_SESSION['user']->getRol() > 1)){
+
+        echo '<a class="edit" href="index.php?c=editPub&editPubView=' . $pub->getId() . '"?><button>Editar</button></a><br>';
+      }
     }
   }
+  1
 
   ?>
 

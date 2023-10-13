@@ -29,21 +29,23 @@ if(!empty($_GET['c'])){
     if($_GET['c'] == "admin"){
         require_once("Controller/adminController.php");
     }
-    if($_GET['c'] == "editPub") {
-       
+    if($_GET['c'] == "editPub") { 
         require_once("Controller/adminController.php");
+    }
+    if($_GET['c'] == "search"){
+        require_once("Controller/searchController.php");
     }
 }
 
 
 //usa el modelo y aplica cambios a la bd
-
 $pubs = PublicacionRepository::getPublicaciones();
 
 
+
 //carga la vista correcta
-include("View/adminView.phtml");
+//include("View/adminView.phtml");
 include("View/mainView.phtml");
-include("View/editPubView.phtml");
+//include("View/editPubView.phtml");
 //include("View/adminView.phtml");
 ?>

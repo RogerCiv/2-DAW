@@ -7,9 +7,63 @@
 
 a{
   text-decoration: none;
+
+}
+body{
+  height: 100vh;
+  background-color: gray;
 }
 
-.edit{
-  background-color: red;
-  color: white;
+h2{
+  margin: 0 auto;
+  text-align: center;
+}
+
+main{
+ margin: 0 auto;
+ height: 100vh;
+}
+
+.formEdit{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.formEdit input{
+  outline: 0;
+  border: 0;
+  padding: .5rem;
+  border-radius: 100vmax;
+  text-align: center;
+
+}
+.formEdit textarea{
+  resize: vertical;
+  min-height: 100px;
+  width: 280px;
+  outline: 0;
+  border: 0;
+}
+
+.formEdit input[type="submit"]{
+  cursor: pointer;
+  background-color: rgb(245, 49, 49);
+}
+
+.formEdit input[type="submit"]:hover{
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.formEdit input[type="file"]{
+  cursor: pointer;
+}
+
+.formEdit label{
+  font-weight: 700;
 }

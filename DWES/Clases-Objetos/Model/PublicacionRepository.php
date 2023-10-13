@@ -44,7 +44,6 @@ class PublicacionRepository
         */
     }
 
-
     public static function getPubById($id)
     {
         $bd = Conectar::conexion();
@@ -78,8 +77,26 @@ class PublicacionRepository
     }
 
 
-   
+    public static function searchPubs($search){
+        $bd = Conectar::conexion();
+        $sql = "SELECT * FROM publicacion WHERE title LIKE '%".$search."%' OR text LIKE '%".$search."%'";
 
+         $result = $bd->query($sql);
+      
+        if($result->num_rows > 0){
+
+            while($datos=$result->fetch_assoc()){
+               $pubs[] = new Publicacion($datos);
+            }
+
+            return $pubs;
+        }else {
+          
+            echo 'No hubo coincidencias';
+            
+        }
+
+    }
     
 }
 
