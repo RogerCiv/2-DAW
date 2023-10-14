@@ -77,9 +77,18 @@ class PublicacionRepository
     }
 
 
-    public static function searchPubs($search){
+    public static function searchPubs($search,$sortBy){
         $bd = Conectar::conexion();
-        $sql = "SELECT * FROM publicacion WHERE title LIKE '%".$search."%' OR text LIKE '%".$search."%'";
+
+        if ($sortBy === 'date') {
+            $orderBy = 'pubDate';
+        } else {
+            $orderBy = 'title';
+        }
+
+        $sql = "SELECT * FROM publicacion WHERE title LIKE '%$search%' OR text LIKE '%$search%' ORDER BY $orderBy";
+
+       //$sql = "SELECT * FROM publicacion WHERE title LIKE '%".$search."%' OR text LIKE '%".$search."%'";
 
          $result = $bd->query($sql);
       

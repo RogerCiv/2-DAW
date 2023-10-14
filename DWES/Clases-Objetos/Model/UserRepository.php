@@ -10,6 +10,9 @@ class UserRepository
             if ($datos['password'] == md5($p)) {
                 return new User($datos);
             }
+            
+        }else{
+            echo 'Credenciales no válidas';
         }
         return null;
     }

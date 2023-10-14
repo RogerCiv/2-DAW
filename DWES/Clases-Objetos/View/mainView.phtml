@@ -10,9 +10,23 @@
 </head>
 
 <body>
-  <h1>Publicaciones</h1>
 
   <?php
+    if (!empty($_SESSION['user'])){
+      ?>
+      <div class="header">
+    <form action="index.php?c=user" method="POST">
+      <input type="submit" value="Logout" name="logout">
+    </form>
+      <?php
+     if($_SESSION['user']->getRol() > 1) {
+     echo "<a href='index.php?c=pub&newPub=1'><button>Publicar</button></a><br>";
+  
+      echo '<a href="index.php?c=admin&adminView=1?"><button>Gestión de Usuarios</button></a><br>';
+    }  
+    echo '</div>';
+    
+    } 
   /*
     foreach ($pubs as $pub) {
         echo $pub->getText() . "<br>";
@@ -22,71 +36,66 @@
   ?>
 
     <form method="POST" action="index.php?c=user">
-      <br>
       User
-      <input type="text" name="usuario" required><br>
+      <input type="text" name="usuario" required>
       Password
-      <input type="password" name="password" required><br>
+      <input type="password" name="password" required>
       <input type="submit" name="login" value="Entrar">
     </form>
   <?php
   } else {
   ?>
-    <form method="POST" action="index.php?c=search">
+    <form class="buscar" method="POST" action="index.php?c=search">
       <input type="text" name="search" placeholder="Buscar...">
+      <select name="sort" id="">
+        <option value="title">Ordenar por título</option>
+        <option value="date">Ordenar por Fecha</option>
+      </select>
       <input type="submit" name="searchButton" value="Buscar">
     </form>
 
-    <form action="index.php?c=user" method="POST">
-      <input type="submit" value="Logout" name="logout">
-    </form>
+    
   <?php
   }
-  if (!empty($_SESSION['user']) && $_SESSION['user']->getRol() > 1) {
-    echo "<a href='index.php?c=pub&newPub=1'><button>Publicar</button></a><br>";
+  echo '<h1>Publicaciones</h1>';
 
-    echo '<a href="index.php?c=admin&adminView=1?"><button>Gestión de Usuarios</button></a><br>';
 
-    echo '<br>';
-    /*foreach($pubs as $pub){
-            echo '<img src="public/img/'.$pub->getImage().'"width="100px"/>';
-            echo $pub->getTitle()."<br>";
-            echo $pub->getText()."<br>";
-        }
-    */
-  } else {
+  /*  else {
     echo "Tienes que ser admin para poder publicar <br><br>";
   }
-
+*/
   if (!empty($_SESSION['user'])) {
+    
+    echo '<div class="grid-container">';
+    if (!empty($pubs)) {
+      foreach ($pubs as $pub) {
+        echo '<div class="pubs">';
+        echo '<img src="public/img/' . $pub->getImage() . '"width="100px"/><br>';
+        echo '<strong>Titulo: </strong>' . $pub->getTitle() . '<br>';
+        echo '<strong>Texto:</strong>' . $pub->getText() . "<br>";
 
-    foreach ($pubs as $pub) {
-      echo '<img src="public/img/' . $pub->getImage() . '"width="100px"/><br>';
-      echo '<strong>Titulo: </strong>' . $pub->getTitle() . '<br>';
-      echo '<strong>Texto:</strong>' . $pub->getText() . "<br>";
+        $comments = CommentRepository::getCommentsByPubId($pub->getId());
 
-      $comments = CommentRepository::getCommentsByPubId($pub->getId());
-
-      foreach ($comments as $comment) {
-        echo '<strong>' . $comment->getUser() . ':</strong> Ha dicho: ' . $comment->getComment();
-        echo '<br>';
-      }
-
-      echo ' <form method="POST" action="index.php?c=comment">
-      <br>
-      Comentario
-      <input type="text" name="comment" required><br>
-      <input type="hidden" name="id_pub" value="' . $pub->getId() . '" />
-      <input type="submit" name="newComment" value="Comentar">
-      </form>';
-      // CUidado con las ""  en el href=!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      if (!empty($_SESSION['user']->getRol() > 1)){
-
-        echo '<a class="edit" href="index.php?c=editPub&editPubView=' . $pub->getId() . '"?><button>Editar</button></a><br>';
+        echo '<h3>Comentarios:</h3>';
+        foreach ($comments as $comment) {
+          echo  $comment->getUser() . ': ' . $comment->getComment().'<br>';
+        }
+        
+        echo ' <form method="POST" action="index.php?c=comment">
+        <input type="text" name="comment" required>
+        <input type="hidden" name="id_pub" value="' . $pub->getId() . '" />
+        <input type="submit" name="newComment" value="Comentar">
+        </form>';
+        // CUidado con las ""  en el href=!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (!empty($_SESSION['user']->getRol() > 1)) {
+          
+          echo '<a class="edit" href="index.php?c=editPub&editPubView=' . $pub->getId() . '"?><button>Editar</button></a>';
+        }
+        echo '</div>';
       }
     }
+    echo '</div>';
   }
-  1
 
   ?>
 

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="View/mainview.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+  <title>Main view</title>
+</head>
+
+<body>
+  <h1>Publicaciones</h1>
+
+  <?php
+  /*
+    foreach ($pubs as $pub) {
+        echo $pub->getText() . "<br>";
+    }
+    */
+  ?>
+
+  <?php if (empty($_SESSION['user'])) { ?>
+    <form method="POST" action="index.php?c=user">
+      <label for="usuario">User</label>
+      <input type="text" name="usuario" id="usuario" required>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required>
+      <input type="submit" name="login" value="Entrar">
+    </form>
+  <?php } else { ?>
+    <form method="POST" action="index.php?c=search">
+      <input type="text" name="search" placeholder="Buscar...">
+      <select name="sort" id="">
+        <option value="title">Ordenar por título</option>
+        <option value="date">Ordenar por Fecha</option>
+      </select>
+      <input type="submit" name="searchButton" value="Buscar">
+    </form>
+
+    <form action="index.php?c=user" method="POST">
+      <input type="submit" value="Logout" name="logout">
+    </form>
+  <?php } ?>
+
+  <?php if (!empty($_SESSION['user']) && $_SESSION['user']->getRol() > 1) { ?>
+    <a href='index.php?c=pub&newPub=1'><button>Publicar</button></a><br>
+    <a href="index.php?c=admin&adminView=1?"><button>Gestión de Usuarios</button></a><br>
+  <?php } ?>
+
+  <?php if (!empty($_SESSION['user'])) { ?>
+    <div class="grid-container">
+      <?php if (!empty($pubs)) {
+        foreach ($pubs as $pub) { ?>
+          <div class="pubs">
+            <img src="public/img/<?= $pub->getImage() ?>" width="100px"><br>
+            <strong>Titulo:</strong> <?= $pub->getTitle() ?><br>
+            <strong>Texto:</strong> <?= $pub->getText() ?><br>
+
+            <?php
+            $comments = CommentRepository::getCommentsByPubId($pub->getId());
+            echo '<h3>Comentarios:</h3>';
+            foreach ($comments as $comment) {
+              echo $comment->getUser() . ': ' . $comment->getComment() . '<br>';
+            }
+            ?>
+
+            <form method="POST" action="index.php?c=comment">
+              <input type="text" name="comment" required>
+              <input type="hidden" name="id_pub" value="<?= $pub->getId() ?>" />
+              <input type="submit" name="newComment" value="Comentar">
+            </form>
+            <!-- CUidado con las "" en el href=!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+            <?php if (!empty($_SESSION['user']->getRol() > 1)) { ?>
+              <a class="edit" href="index.php?c=editPub&editPubView=<?= $pub->getId() ?>"><button>Editar</button></a>
+            <?php } ?>
+          </div>
+        <?php }
+      } ?>
+    </div>
+  <?php } ?>
+
+</body>
+
+</html>
