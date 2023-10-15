@@ -4,8 +4,6 @@ import users from './assets/modules.js';
 
 let myStructUsers = [];
 const form = document.getElementById('form');
-const btnCargar = document.getElementById('cargar');
-const textaarea = document.getElementById("infouserpassword");
 // Creamos una funcion que guarde en el localStorage la estructura usuarios .
 
 /**
@@ -22,7 +20,6 @@ insertUsers("Users",users);
 // Creamos una funcion que cargue del localStorage la estructura cuyo nombre le pase como parametro.
 
 function loadStructData(key){
-    
     return JSON.parse(localStorage.getItem(key));
 }
 
@@ -42,9 +39,7 @@ function saveUserAndPassword(key,structUsers){
    structUsers.map(user => {
        tmpArray.push({[user.login.username] : btoa(user.login.password)});// cuidado con los [] de la clave
     })
-   // return localStorage.setItem(key,JSON.stringify(tmpArray));
-   return sessionStorage.setItem(key, JSON.stringify(tmpArray));
-
+    return localStorage.setItem(key,JSON.stringify(tmpArray));
 }
 
 
@@ -90,35 +85,23 @@ function saveNewUserLocalStorage(key, username, password) {
 }
 
 
+myStructUsers = loadStructData("Users");
+saveUserAndPassword("newUsers",myStructUsers);
 
-function save(event){
-    event.preventDefault();
+function save(){
     //capturar lo que he escrito en el formulario y guardarlo en variables
-    const username = document.getElementById('username');
-    
-    const password = document.getElementById('password');
+    const username = document.getElementById('username').value;	
+    const password = document.getElementById('password').value;
     // llamara a mi funcion que guardaba en la key y el username y el password.
     //si lo guarda, alert indicando que ha sido guardado y borro el formulario.
     saveNewUserLocalStorage("newUsers",username.value,password.value);
     alert("Usuario guardado");
     form.reset();
 }
-function load(event){
-    event.preventDefault();
-    const data =  loadStructData("newUsers");
-    let userData = "";
-    for (const key of Object.entries(data)) {
-        const decryptedPassword = atob(localStorage.getItem(key));
-        userData += `Usuario: ${key} Contraseña: ${decryptedPassword}\n`;
-    }
-    textaarea.value = userData;
-}
 
-myStructUsers = loadStructData("Users");
-saveUserAndPassword("newUsers",myStructUsers);
+
+//saveNewUserLocalStorage();
+
 
 
 form.addEventListener("submit", save);
-
-btnCargar.addEventListener("click", load);
-
