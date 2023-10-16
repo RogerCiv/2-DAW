@@ -21,6 +21,14 @@ if (!empty($_POST['editPub']) && !empty($_POST['editPubId'])) {
     PublicacionRepository::updatePub($editPubId, $editedTitle, $editedText, $editedImage);
  
 }
+if(empty($_GET['page'])){
+
+    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $perPage = 5;
+    $offset = ($page - 1) * $perPage;
+    $pubs = PublicacionRepository::getPublicacionesPaged($offset, $perPage);
+    $totalPubs = PublicacionRepository::getTotalPublications(); 
+}
 
 ?>
 

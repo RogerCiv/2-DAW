@@ -79,15 +79,17 @@ class PublicacionRepository
 
     public static function searchPubs($search,$sortBy){
         $bd = Conectar::conexion();
-
+        $orderBy = "";
         if ($sortBy === 'date') {
             $orderBy = 'pubDate';
-        } else {
+        } elseif ($sortBy === 'text') {
+            $orderBy = 'text';
+        }else{
             $orderBy = 'title';
         }
 
-        $sql = "SELECT * FROM publicacion WHERE title LIKE '%$search%' OR text LIKE '%$search%' ORDER BY $orderBy";
-
+        $sql = "SELECT * FROM publicacion WHERE title LIKE '%".$search."%' OR text LIKE '%".$search."%' ORDER BY $orderBy " ;
+       // echo $sql;
        //$sql = "SELECT * FROM publicacion WHERE title LIKE '%".$search."%' OR text LIKE '%".$search."%'";
 
          $result = $bd->query($sql);
@@ -106,6 +108,25 @@ class PublicacionRepository
         }
 
     }
+
+    public static function getPublicacionesPaged($offset, $perPage) {
+        $bd = Conectar::conexion();
+        $q = "SELECT * FROM publicacion LIMIT $perPage OFFSET $offset";
+        $result = $bd->query($q);
+        while ($datos = $result->fetch_assoc()) {
+            $pubs[] = new Publicacion($datos);
+        }
+        return $pubs;
+    }
+    
+    public static function getTotalPublications() {
+        $bd = Conectar::conexion();
+        $q = "SELECT COUNT(*) as count FROM publicacion";
+        $result = $bd->query($q);
+        $count = $result->fetch_assoc()['count'];
+        return $count;
+    }
+    
     
 }
 

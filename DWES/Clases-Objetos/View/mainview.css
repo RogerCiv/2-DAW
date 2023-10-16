@@ -10,7 +10,9 @@
 h1 {
   text-align: center;
 }
-
+a{
+  text-decoration: none;;
+}
 body{
   height: 100vh;
 }
@@ -55,11 +57,34 @@ form{
   margin-top: 1rem;
   border-radius: 2rem;
   padding-block: 2rem;
-
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   gap: .5rem;
+  max-width: 400px;
   background-color: rgb(77, 70, 70);
+}
+
+.pagination{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.pagination a{
+  text-decoration: none;
+  background-color: #37495f;
+  margin: .25rem;
+  padding: .5rem;
+  border-radius: 2rem;
+  color: white;
+}
+
+.pagination a:hover{
+  transform: scale(1.1);
+  opacity: .8;
+  text-decoration: none;
 }

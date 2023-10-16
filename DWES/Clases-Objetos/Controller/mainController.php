@@ -35,11 +35,20 @@ if(!empty($_GET['c'])){
     if($_GET['c'] == "search"){
         require_once("Controller/searchController.php");
     }
+    if($_GET['c'] == "main"){
+        require_once("Controller/pubController.php");
+    }
 }
+
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$perPage = 4;
+$offset = ($page - 1) * $perPage;
+$pubs = PublicacionRepository::getPublicacionesPaged($offset, $perPage);
+$totalPubs = PublicacionRepository::getTotalPublications(); 
 
 
 //usa el modelo y aplica cambios a la bd
-$pubs = PublicacionRepository::getPublicaciones();
+//$pubs = PublicacionRepository::getPublicaciones();
 
 
 

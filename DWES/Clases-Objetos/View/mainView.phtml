@@ -46,10 +46,11 @@
   } else {
   ?>
     <form class="buscar" method="POST" action="index.php?c=search">
-      <input type="text" name="search" placeholder="Buscar...">
+      <input type="text" name="search" required placeholder="Buscar...">
       <select name="sort" id="">
         <option value="title">Ordenar por título</option>
         <option value="date">Ordenar por Fecha</option>
+        <option value="text">Ordenar por texto</option>
       </select>
       <input type="submit" name="searchButton" value="Buscar">
     </form>
@@ -98,6 +99,32 @@
   }
 
   ?>
+  <!-- Mostrar la paginación -->
+  <div class="pagination">
+    <?php
+    /*
+    $totalPages = ceil($totalPubs / $perPage);
+    for ($i = 1; $i <= $totalPages; $i++) {
+        echo '<a href="index.php?c=main&page=' . $i . '">' . $i . '</a> ';
+    }
+    */
+    if (!empty($totalPubs)) {
+      $totalPages = ceil($totalPubs / $perPage);
+      $pages = range(1, $totalPages);
+
+      // Verifica si 'search' y 'sort' están configurados en $_POST
+      $searchParam = isset($_POST['search']) ? $_POST['search'] : '';
+      $sortParam = isset($_POST['sort']) ? $_POST['sort'] : '';
+
+      foreach ($pages as $page) {
+          // Incluye 'search' y 'sort' en los enlaces de paginación
+          echo '<a href="index.php?c=main&page=' . $page . '&search=' . $searchParam . '&sort=' . $sortParam . '">' . $page . '</a> ';
+      }
+  }
+  echo '<a href="index.php">Inicio</a>';
+  ?>
+    
+  
 
 </body>
 
