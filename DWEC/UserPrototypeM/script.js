@@ -41,7 +41,7 @@ function handlerInsertarUsuario(e){
     } else {
        messageTimeOut(messageError, 5000)
     }
-arrayUsersSave.push(newUser);
+    arrayUsersSave.push(newUser);
 }
 
 function handlerLoadUsersLocalStorage(e){
@@ -49,11 +49,11 @@ function handlerLoadUsersLocalStorage(e){
     localStorage.setItem("datosUsuarios",JSON.stringify(arrayUsersSave))
 }
 
-function messageTimeOut(mensajeElement, tiempo) {
-    mensajeElement.style.display = "block";
+function messageTimeOut(messageType, tiempo) {
+    messageType.style.display = "block";
 
     setTimeout(() => {
-        mensajeElement.style.display = "none";
+        messageType.style.display = "none";
     }, tiempo);
 }
 
