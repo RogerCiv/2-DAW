@@ -59,6 +59,7 @@ const cadena = "nombre"
 console.log("Ejercicio 03: ",hasProperty2(objeto1,cadena));
 
 
+
 // Ejercicio 04
 
 //Escribe una función que tome una cadena como argumento. Cree un objeto que tenga una propiedad con la clave 'key' y un valor igual a la cadena. Devuelve el objeto.
@@ -193,6 +194,7 @@ const tempMeses = {
 console.log("Ejercicio 09: ",temperatures(tempMeses))
 
 
+
 // Ejercicio 10
 
 //Escribe una función que tome un objeto como argumento. Debería devolver un objeto con todas las propiedades del objeto original. excepto la propiedad con clave 'b
@@ -214,22 +216,42 @@ console.log("Ejercicio 10: ",returnProperty(objeto6));
 // Ejercicio 11
 //Escribe una función que tome dos objetos como argumentos. Lamentablemente, la propiedad 'b' del segundo objeto tiene la clave incorrecta. En su lugar, debería llamarse 'd'. Fusione ambos objetos y corrija el nombre de propiedad incorrecto. Devuelve el objeto resultante. Debe tener las propiedades 'a', 'b', 'c', 'd' y 'e'.
 
+function fixProperty(obj1,obj2) {
+    if(obj2.hasOwnProperty('b')){
+       obj2['d'] = obj2['b'];
+       delete obj2['b'];
+    }
+    newObject = { ...obj1, ...obj2 }
+    return Object.keys(newObject).sort()
+    .reduce((acc,key) => ({ ...acc, [key]: newObject[key] }),{});
+   // return newObject;
+ }
 
-function fixProperty(obj1,obj2){
+ const objeto13 = {a: 1, b: 2};
+const objeto14 = {c: 3, b: 4, e: 5};
+
+
+console.log("Ejercicio 11: ",fixProperty(objeto13,objeto14));
+
+
+function fixProperty2(obj1,obj2){
     if('b' in obj2){
         obj2['d'] = obj2['b'];
         delete obj2['b'];
     }
 
     const newObject = { ...obj1, ... obj2 };
-    return newObject;
+    return Object.keys(newObject).sort()
+    .reduce((acc,key) => ({ ...acc, [key]: newObject[key] }),{});
+    
+    //return newObject;
 }
 
 
 const objeto7 = {a: 1, b: 2};
 const objeto8 = {c: 3, b: 4, e: 5};
 
-console.log("Ejercicio 11: ",fixProperty(objeto7,objeto8));
+console.log("Ejercicio 11: ",fixProperty2(objeto7,objeto8));
 
 
 
@@ -387,3 +409,5 @@ const arrayDeObjetos = [
   }
   const matriz3 = [[1,2,3,4],[1,3,4,8],[4,5,7,8]];
   console.log("Ejercicio 17: ",matrizToObject(matriz));
+
+

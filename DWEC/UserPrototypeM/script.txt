@@ -41,13 +41,10 @@ function handlerInsertarUsuario(e){
     } else {
        messageTimeOut(messageError, 5000)
     }
-arrayUsersSave.push(newUser);
+
+
 }
 
-function handlerLoadUsersLocalStorage(e){
-    e.preventDefault();
-    localStorage.setItem("datosUsuarios",JSON.stringify(arrayUsersSave))
-}
 
 function messageTimeOut(mensajeElement, tiempo) {
     mensajeElement.style.display = "block";
@@ -59,7 +56,6 @@ function messageTimeOut(mensajeElement, tiempo) {
 
 function init(){
     btnSave.addEventListener("click", handlerInsertarUsuario);
-    btnLoad.addEventListener("click", handlerLoadUsersLocalStorage);
 }
 // -------- Inicio de la aplicación ---------------
 
