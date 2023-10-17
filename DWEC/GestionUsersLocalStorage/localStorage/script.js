@@ -43,8 +43,7 @@ function saveUserAndPassword(key,structUsers){
        tmpArray.push({[user.login.username] : btoa(user.login.password)});// cuidado con los [] de la clave
     })
    // return localStorage.setItem(key,JSON.stringify(tmpArray));
-   return sessionStorage.setItem(key, JSON.stringify(tmpArray));
-
+   return localStorage.setItem(key, JSON.stringify(tmpArray));
 }
 
 
@@ -70,6 +69,7 @@ function saveNewUserLocalStorage(key,username,password){
        
     }
 */
+
 function saveNewUserLocalStorage(key, username, password) {
   let tmpArray = JSON.parse(localStorage.getItem(key)) || []; // Si no hay datos en el localStorage, inicializa tmpArray como un array vacío
 
@@ -86,20 +86,22 @@ function saveNewUserLocalStorage(key, username, password) {
       ? tmpArray.push({ [username]: btoa(password) })
       : alert(`El usuario con username ${username} ya existe`);
 
-  localStorage.setItem(key, JSON.stringify(tmpArray));
-}
 
+  localStorage.setItem(key, JSON.stringify(tmpArray));
+  
+}
 
 
 function save(event){
     event.preventDefault();
     //capturar lo que he escrito en el formulario y guardarlo en variables
-    const username = document.getElementById('username');
+    const username = document.getElementById('username').value;
     
-    const password = document.getElementById('password');
+    const password = document.getElementById('password').value;
+    console.log(`Username: ${username}, Password: ${password}`);
     // llamara a mi funcion que guardaba en la key y el username y el password.
     //si lo guarda, alert indicando que ha sido guardado y borro el formulario.
-    saveNewUserLocalStorage("newUsers",username.value,password.value);
+    saveNewUserLocalStorage("newUsers",username,password);
     alert("Usuario guardado");
     form.reset();
 }
@@ -107,9 +109,10 @@ function load(event){
     event.preventDefault();
     const data =  loadStructData("newUsers");
     let userData = "";
-    for (const key of Object.entries(data)) {
-        const decryptedPassword = atob(localStorage.getItem(key));
-        userData += `Usuario: ${key} Contraseña: ${decryptedPassword}\n`;
+    for (const [key, value] of Object.entries(data)) {
+        const username = key;
+        const decryptedPassword = atob(value);
+        userData += `Usuario: ${username} Contraseña: ${decryptedPassword}\n`;
     }
     textaarea.value = userData;
 }
