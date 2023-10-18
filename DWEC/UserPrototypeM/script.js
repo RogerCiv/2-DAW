@@ -15,6 +15,7 @@ const btnLoad = document.getElementById("cargarLocalStorage");
 const messageSucces = document.getElementById("messageSucces");
 const messageError = document.getElementById("messageError");
 const arrayUsersSave = [];
+let getUsersFromLocalStorage = []; 
 
 
 // --------- Funciones ----------------
@@ -23,11 +24,11 @@ const arrayUsersSave = [];
 
 function handlerInsertarUsuario(e){
     e.preventDefault();
-    //const form = document.getElementById("formularioUsuarios");
+    const form = document.getElementById("formularioUsuarios");
     const username = document.getElementById("username").value;
     const age = document.getElementById("age").value;
     const dni = document.getElementById("dni").value;
-
+    arrayUsersSave = [];
     //para Instanciar o crear un objeto cuyo prototipo sea UsuarioLiteral
     //objetoHijo =  Object.create(nombre_del_objeto_padre)
     let newUser = Object.create(Usuario);
@@ -38,23 +39,39 @@ function handlerInsertarUsuario(e){
     if (newUser.dni) {
        // alert('Insertado correctamente');
        messageTimeOut(messageSucces, 5000);
+     //  arrayUsersSave.length = 0;
+       arrayUsersSave.push(newUser);
     } else {
        messageTimeOut(messageError, 5000)
     }
-    arrayUsersSave.push(newUser);
+
+    form.reset();
+
 }
 
-function handlerLoadUsersLocalStorage(e){
+
+
+function handlerLoadUsersLocalStorage(e) {
     e.preventDefault();
-    localStorage.setItem("datosUsuarios",JSON.stringify(arrayUsersSave))
+
+
+    if (localStorage.getItem("datosUsuarios")) {
+        getUsersFromLocalStorage = JSON.parse(localStorage.getItem("datosUsuarios"));
+    }
+    // Agrega los nuevos usuarios a los datos cargados desde LocalStorage
+    getUsersFromLocalStorage = getUsersFromLocalStorage.concat(arrayUsersSave);
+
+    // Guarda la combinación de datos en LocalStorage
+    localStorage.setItem("datosUsuarios", JSON.stringify(getUsersFromLocalStorage));
 }
 
-function messageTimeOut(messageType, tiempo) {
+
+function messageTimeOut(messageType, time) {
     messageType.style.display = "block";
 
     setTimeout(() => {
         messageType.style.display = "none";
-    }, tiempo);
+    }, time);
 }
 
 function init(){
