@@ -41,8 +41,6 @@ function handlerInsertarUsuario(e){
     newUser.edad = age;
     newUser.dni = dni; 
     
-    
-    
     if (newUser.dni) {  
         if (localStorage.getItem("datosUsuarios")) {
             getUsersFromLocalStorage = JSON.parse(localStorage.getItem("datosUsuarios"));
@@ -50,7 +48,6 @@ function handlerInsertarUsuario(e){
         console.log(getUsersFromLocalStorage);
         arrayUsersSave.push(newUser)
         if(!JSON.stringify(getUsersFromLocalStorage).includes(newUser.dni)){
-
          getUsersFromLocalStorage = getUsersFromLocalStorage.concat(arrayUsersSave);   
         localStorage.setItem("datosUsuarios", JSON.stringify(getUsersFromLocalStorage));
             
