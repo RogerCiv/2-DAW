@@ -1,5 +1,6 @@
 /**
- * @description: Crear una app web que a traves de un formulario me permita recoger los datos nombre,edad dni. Cunado pulsemos el boton de "insertar,ENvuar" usuario automaticamente creara utilizando la herencia por prototipos un usuario de tipo UsuarioLiteral y guardara en un array dichos objetos almacenandolos en el LocalStorage a traves de la clave "datosUsuarios"
+ * @description: Crear una app web que a traves de un formulario me permita recoger los datos nombre,edad dni. Cunado pulsemos el boton de "insertar,ENvuar" usuario automaticamente creara utilizando la herencia por prototipos un usuario de tipo UsuarioLiteral y guardara en un array dichos objetos almacenandolos en el LocalStorage a traves de la clave "datosUsuarios"  
+ * Si el DNI no esta en el localStorage se inserta el usuario
  */
 // --------- imports -------------
 import { usuarioLiteral as Usuario } from "./assets/modules";
@@ -14,8 +15,12 @@ const btnSave = document.getElementById("insertarUsuario");
 const btnLoad = document.getElementById("cargarLocalStorage");
 const messageSucces = document.getElementById("messageSucces");
 const messageError = document.getElementById("messageError");
-const arrayUsersSave = [];
-let getUsersFromLocalStorage = []; 
+const messageErrorDni = document.getElementById("messageErrorDni");
+//let arrayUsersSave = [];
+//localStorage.setItem("datosUsuarios",[]);
+const textarea = document.getElementById("textarea");
+let getUsersFromLocalStorage = [];
+//getUsersFromLocalStorage = JSON.parse(localStorage.getItem("datosUsuarios")); 
 
 
 // --------- Funciones ----------------
@@ -28,24 +33,36 @@ function handlerInsertarUsuario(e){
     const username = document.getElementById("username").value;
     const age = document.getElementById("age").value;
     const dni = document.getElementById("dni").value;
-    arrayUsersSave = [];
+    let arrayUsersSave = [];
     //para Instanciar o crear un objeto cuyo prototipo sea UsuarioLiteral
     //objetoHijo =  Object.create(nombre_del_objeto_padre)
     let newUser = Object.create(Usuario);
     newUser.nombre = username;
     newUser.edad = age;
     newUser.dni = dni; 
+    
+    
+    
+    if (newUser.dni) {  
+        if (localStorage.getItem("datosUsuarios")) {
+            getUsersFromLocalStorage = JSON.parse(localStorage.getItem("datosUsuarios"));
+        }
+        console.log(getUsersFromLocalStorage);
+        arrayUsersSave.push(newUser)
+        if(!JSON.stringify(getUsersFromLocalStorage).includes(newUser.dni)){
 
-    if (newUser.dni) {
-       // alert('Insertado correctamente');
-       messageTimeOut(messageSucces, 5000);
-     //  arrayUsersSave.length = 0;
-       arrayUsersSave.push(newUser);
+         getUsersFromLocalStorage = getUsersFromLocalStorage.concat(arrayUsersSave);   
+        localStorage.setItem("datosUsuarios", JSON.stringify(getUsersFromLocalStorage));
+            
+            messageTimeOut(messageSucces, 5000);
+            form.reset();
+        }else{
+            messageTimeOut(messageErrorDni, 5000)
+        }
+       
     } else {
        messageTimeOut(messageError, 5000)
     }
-
-    form.reset();
 
 }
 
@@ -53,8 +70,7 @@ function handlerInsertarUsuario(e){
 
 function handlerLoadUsersLocalStorage(e) {
     e.preventDefault();
-
-
+    /*
     if (localStorage.getItem("datosUsuarios")) {
         getUsersFromLocalStorage = JSON.parse(localStorage.getItem("datosUsuarios"));
     }
@@ -63,6 +79,13 @@ function handlerLoadUsersLocalStorage(e) {
 
     // Guarda la combinación de datos en LocalStorage
     localStorage.setItem("datosUsuarios", JSON.stringify(getUsersFromLocalStorage));
+    */
+
+    if(localStorage.getItem("datosUsuarios") === null) {
+        textarea.value = "No hay datos";
+    }
+   
+   textarea.value = JSON.stringify(localStorage.getItem("datosUsuarios"));
 }
 
 
