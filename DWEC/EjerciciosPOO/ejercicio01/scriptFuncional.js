@@ -28,128 +28,109 @@ let getBooks = [];
 
 
 function messageTimeOut(messageType, time) {
-    messageType.style.display = "block";
-    
-    setTimeout(() => {
-      messageType.style.display = "none";
-    }, time);
+  messageType.style.display = "block";
+
+  setTimeout(() => {
+    messageType.style.display = "none";
+  }, time);
+}
+
+function handlerInsertBook(e) {
+  e.preventDefault();
+
+  if (title.value === "" || author.value === "" || price.value === "") {
+    messageTimeOut(messageErrorEmpty, 5000);
+    return;
   }
 
-  function handlerInsertBook(e){
-    e.preventDefault();
-  
-    if(title.value === "" || author.value === "" || price.value === "" ){
-      messageTimeOut(messageErrorEmpty, 5000);
-      return;
-    }
-  
-    const newBook = new libroFuncional(title.value, author.value, price.value);
-  
-    if (isNaN(newBook.price) || newBook.price <= 0) {
-      messageTimeOut(messageErrorPrice, 5000);
-      price.value = "";
-      return;
-    }
-  
-    if (!getBooks) {
-      getBooks = [];
-    }
-  
-    // comprobamos si el nuevo libro ya existe en el array getBooks
-    const existingBook = getBooks.find(book => book.title.toLowerCase() === newBook.title.toLowerCase());
-  
-    if (existingBook) {
-      // el nuevo libro ya existe, actualizamos su precio
-      existingBook.price = newBook.price;
-  
-      // solo actualizamos el localStorage si el nuevo libro es diferente de los libros que ya estaban almacenados
-      if (JSON.stringify(getBooks) !== localStorage.getItem("books")) {
-        localStorage.setItem("books", JSON.stringify(getBooks));
-      }
-  
-      messageTimeOut(messageSuccess, 5000);
-    } else {
-  
-      getBooks.push(newBook);
-  
-      // solo actualizamos el localStorage si el nuevo libro es diferente de los libros que ya estaban almacenados
-      const booksFromLocalStorage = JSON.parse(localStorage.getItem("books"));
-      getBooks = [...booksFromLocalStorage, newBook];
-  
-      localStorage.setItem("books", JSON.stringify(getBooks));
-  
-      messageTimeOut(messageSuccess, 5000);
-    }
-  
-     title.value = "";
-     author.value = "";
-     price.value = "";
+  const newBook = new libroFuncional(title.value, author.value, parseFloat(price.value));
+
+  if (isNaN(newBook.price) || newBook.price <= 0) {
+    messageTimeOut(messageErrorPrice, 5000);
+    price.value = "";
+    return;
   }
-  
-  
-  
-  
 
-
-
-
-function displayBookList(){
-  
-    const books = JSON.parse(localStorage.getItem("books"));
-    if (books === null) {
-      textarea.value = "No hay libros que mostrar";
-      return;
-    }
-  
-    textarea.value = books.map(book => `*** Titulo: ${book.title}, Autor: ${book.author} , Precio: ${book.price}€ ***`).join("\n")
+  if (localStorage.getItem("books")) {
+    getBooks = JSON.parse(localStorage.getItem("books"));
   }
-  
+
+  const existingBook = getBooks.find(book => book._title === newBook._title);
+
+  if (existingBook) {
+    messageTimeOut(messageError, 5000);
+  } else {
+
+    getBooks.push(newBook);
+    localStorage.setItem("books", JSON.stringify(getBooks));
+
+    messageTimeOut(messageSuccess, 5000);
+  }
+  title.value = "";
+  author.value = "";
+  price.value = "";
+
+}
+
+function displayBookList() {
+
+  const books = JSON.parse(localStorage.getItem("books"));
+  if (books === null) {
+    textarea.value = "No hay libros que mostrar";
+    return;
+  }
+
+  const bookList = books.map(book => `*** Titulo: ${book._title}, Autor: ${book._author} , Precio: ${book._price}€ ***`).join("\n")
+
+  textarea.value = bookList;
+
+}
+
+displayBookList();
+
+function handlerTotalPrice() {
+  const books = JSON.parse(localStorage.getItem("books"));
+  if (books === null) {
+    messageTimeOut(messageErrorNoBooks, 5000);
+    return;
+  }
+
+  const totalPrice = books.reduce((acc, book) => acc + parseFloat(book._price), 0)
   displayBookList();
-  
-  function handlerTotalPrice(){
-    const books = JSON.parse(localStorage.getItem("books"));
-    if (books === null) {
-     messageTimeOut(messageErrorNoBooks,5000);
-      return;
-    }
-  
-    const totalPrice = books.reduce((acc,book) => acc + parseFloat(book.price),0)
-    displayBookList();
-    console.log(totalPrice);
-    
-    showTotalPrice.value = `${totalPrice} €`;
-    setTimeout(() => {
-     showTotalPrice.value = ""
-    }, 5000);
-  
-  }
-  
-  
-  function handlerDeleteBook(e){
-    e.preventDefault();
-    const books = JSON.parse(localStorage.getItem("books"));
-    const index = books.findIndex(book => book.title.toLowerCase() === titleDel.value.trim().toLowerCase());
-    console.log(index)
-    if(index === -1){
-      messageTimeOut(messageErrorDel,5000)
-      titleDel.value = ""
-      return;
-    }
-    books.splice(index, 1);
-    messageTimeOut(messageSuccessDel,5000)
-    localStorage.setItem("books", JSON.stringify(books));
-    displayBookList();
+  // console.log(totalPrice);
+
+  showTotalPrice.value = `${totalPrice} €`;
+  setTimeout(() => {
+    showTotalPrice.value = ""
+  }, 5000);q
+
+}
+
+function handlerDeleteBook(e) {
+  e.preventDefault();
+  const books = JSON.parse(localStorage.getItem("books"));
+  const index = books.findIndex(book => book._title.toLowerCase() === titleDel.value.trim().toLowerCase());
+  console.log(index)
+  if (index === -1) {
+    messageTimeOut(messageErrorDel, 5000)
     titleDel.value = ""
-  
+    return;
   }
-  
-  function init(){
-    btnSend.addEventListener("click", handlerInsertBook);
-    btnReload.addEventListener("click", displayBookList);
-    btnTotalPrice.addEventListener("click", handlerTotalPrice);
-    btnDelBook.addEventListener("click", handlerDeleteBook);
-  
-  }
-  // -------- Inicio de la aplicación ---------------
-  
-  document.addEventListener("DOMContentLoaded", init);
+  books.splice(index, 1);
+  messageTimeOut(messageSuccessDel, 5000)
+  localStorage.setItem("books", JSON.stringify(books));
+  displayBookList();
+  titleDel.value = ""
+
+}
+
+function init() {
+  btnSend.addEventListener("click", handlerInsertBook);
+  btnReload.addEventListener("click", displayBookList);
+  btnTotalPrice.addEventListener("click", handlerTotalPrice);
+  btnDelBook.addEventListener("click", handlerDeleteBook);
+
+}
+// -------- Inicio de la aplicación ---------------
+
+document.addEventListener("DOMContentLoaded", init);

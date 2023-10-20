@@ -1,22 +1,14 @@
-/**
- * @author: Rogelio Sánchez
- * @description:  Crea una aplicación que modele una tienda de libros. Cada libro *debe tener un título, un autor y un precio. La tienda debe permitir agregar *libros, eliminar libros y calcular el precio total de todos los libros en el *inventario.
- */
-import { libroLiteral } from './assets/modules';
+import { libroClass } from './assets/modules';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
 
-const form = document.getElementById('form');
-const title = document.getElementById('title');
-const author = document.getElementById('author');
-const price = document.getElementById('price');
 const btnSend = document.getElementById('sendBook');
 
 const textarea = document.getElementById('textarea');
 const btnReload = document.getElementById("reloadBooks");
 
-const btnTotalPrice = document.getElementById("totalPrice");	
+const btnTotalPrice = document.getElementById("totalPrice");
 const showTotalPrice = document.getElementById("showTotalPrice");
 
 const btnDelBook = document.getElementById("delBook");
@@ -30,112 +22,122 @@ const messageErrorDel = document.getElementById('messageErrorDel');
 const messageSuccessDel = document.getElementById('messageSuccessDel');
 const messageErrorNoBooks = document.getElementById('messageErrorNoBooks');
 
-let getBooks = []
+let getBooks = [];
 
+// ...
+
+
+// Función para mostrar mensajes de error o éxito
 function messageTimeOut(messageType, time) {
   messageType.style.display = "block";
-  
   setTimeout(() => {
     messageType.style.display = "none";
   }, time);
 }
 
-function handlerInsertBook(e){
-  e.preventDefault();
-  //let books = [];
-
-  if(title.value === "" || author.value === "" || price.value === "" ){
+// Función para validar los datos del libro
+function validateBookData(title, author, price) {
+  if (title === "" || author === "" || price === "") {
     messageTimeOut(messageErrorEmpty, 5000);
-    return;
+    return false;
   }
-  const newBook = {
-    title: title.value,
-    author: author.value,
-    price: price.value,
-  };
-
-  if (isNaN(newBook.price) || newBook.price <= 0) {
+  if (isNaN(price) || price <= 0) {
     messageTimeOut(messageErrorPrice, 5000);
-    price.value = "";
-    return;
+    return false;
   }
+  return true;
+}
 
+// Función para comprobar si el libro ya existe
+function checkIfBookExists(newBook) {
   if (localStorage.getItem("books")) {
     getBooks = JSON.parse(localStorage.getItem("books"));
-}
-
-const existingBook = getBooks.find(book => book.title.toLowerCase() === newBook.title.toLowerCase());
-
-if (existingBook) {
+  }
+  const existingBook = getBooks.find(book => book._title === newBook._title);
+  if (existingBook) {
     messageTimeOut(messageError, 5000);
-} else {
-
-    getBooks.push(newBook);
-    localStorage.setItem("books", JSON.stringify(getBooks));
-    messageTimeOut(messageSuccess, 5000);
+    return true;
+  }
+  return false;
 }
 
-   title.value = "";
-   author.value = "";
-   price.value = "";
-
-   //console.log(books)
+// Función para insertar un nuevo libro
+function insertNewBook(newBook) {
+  getBooks.push(newBook);
+  localStorage.setItem("books", JSON.stringify(getBooks));
+  messageTimeOut(messageSuccess, 5000);
 }
 
-
-
-
-function displayBookList(){
+// Función para manejar la inserción de libros
+function handlerInsertBook(e) {
+  e.preventDefault();
   
+  const newBook = new libroClass(title.value, author.value, parseFloat(price.value));
+  
+  if (!validateBookData(title.value, author.value, parseFloat(price.value))) return;
+  
+  if (checkIfBookExists(newBook)) return;
+  
+  insertNewBook(newBook);
+  
+  title.value = "";
+  author.value = "";
+  price.value = "";
+}
+
+
+function displayBookList() {
+
   const books = JSON.parse(localStorage.getItem("books"));
   if (books === null) {
     textarea.value = "No hay libros que mostrar";
     return;
   }
 
-  textarea.value = books.map(book => `*** Titulo: ${book.title}, Autor: ${book.author} , Precio: ${book.price} ***`).join("\n")
+  const bookList = books.map(book => `*** Titulo: ${book.title}, Autor: ${book._author} , Precio: ${book._price}€ ***`).join("\n")
+  textarea.value = bookList;
+
 }
 
 displayBookList();
 
-function handlerTotalPrice(){
+function handlerTotalPrice() {
   const books = JSON.parse(localStorage.getItem("books"));
   if (books === null) {
-   messageTimeOut(messageErrorNoBooks,5000);
+    messageTimeOut(messageErrorNoBooks, 5000);
     return;
   }
 
-  const totalPrice = books.reduce((acc,book) => acc + parseFloat(book.price),0)
+  const totalPrice = books.reduce((acc, book) => acc + parseFloat(book._price), 0)
   displayBookList();
-  console.log(totalPrice);
-  
+  // console.log(totalPrice);
+
   showTotalPrice.value = `${totalPrice} €`;
   setTimeout(() => {
-   showTotalPrice.value = ""
+    showTotalPrice.value = ""
   }, 5000);
 
 }
 
-
-function handlerDeleteBook(e){
+function handlerDeleteBook(e) {
   e.preventDefault();
   const books = JSON.parse(localStorage.getItem("books"));
-  const index = books.findIndex(book => book.title.toLowerCase() === titleDel.value.trim().toLowerCase());
+  const index = books.findIndex(book => book._title.toLowerCase() === titleDel.value.trim().toLowerCase());
   console.log(index)
-  if(index === -1){
-    messageTimeOut(messageErrorDel,5000)
+  if (index === -1) {
+    messageTimeOut(messageErrorDel, 5000)
     titleDel.value = ""
     return;
   }
   books.splice(index, 1);
-  messageTimeOut(messageSuccessDel,5000)
+  messageTimeOut(messageSuccessDel, 5000)
   localStorage.setItem("books", JSON.stringify(books));
   displayBookList();
   titleDel.value = ""
 
 }
 
-function init(){
+function init() {
   btnSend.addEventListener("click", handlerInsertBook);
   btnReload.addEventListener("click", displayBookList);
   btnTotalPrice.addEventListener("click", handlerTotalPrice);

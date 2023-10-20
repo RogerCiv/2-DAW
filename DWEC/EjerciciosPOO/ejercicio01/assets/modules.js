@@ -2,7 +2,7 @@
 
 export const libroLiteral = {
   _title: "",
-  _autor: "",
+  _author: "",
   _price: 0,
 
   get title() {
@@ -17,7 +17,7 @@ export const libroLiteral = {
   },
 
   set author(newAuthor) {
-    this._autor = newAuthor;
+    this._author = newAuthor;
   },
   
   get price() {
@@ -27,15 +27,17 @@ export const libroLiteral = {
   set price(newPrice) {
     if(newPrice > 0){
       this._price = newPrice;
+    }else{
+
+      this._price = false;
     }
-    this._price = false;
   },
 
 
 }
 
 
-export function libroFuncional(title,author,price = 0){
+export function libroFuncional(title,author,price){
   this._title = title;
   this._author = author;
   this._price = price;
@@ -63,10 +65,10 @@ export function libroFuncional(title,author,price = 0){
       return this._price;
     },
     set: function(newPrice){
-      if(newPrice > 0){
+      if(NaN(newPrice) && newPrice > 0){
         this._price = newPrice;
       }
-      this._price = false;
+      //this._price = false;
     }
   })
 }
@@ -100,7 +102,8 @@ export class libroClass{
   set price(newPrice){
     if(newPrice > 0){
       this._price = newPrice;
+    }else{
+      this._price = false;
     }
-    this._price = false;
   }
 }
