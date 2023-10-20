@@ -6,6 +6,7 @@
 // --------------------- IMPORTS ----------------------------------
 
 import { libroLiteral } from './assets/modules';
+// Importar Bootstrap. Previamente se instala con "npm i bootstrap@5.3.2"
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
@@ -66,7 +67,7 @@ function handlerInsertBook(e) {
     return;
   }
 
-  // Crear un nuevo libro a partir del objeto libroLiteral
+  // Crear un nuevo libro a partir  libroLiteral
   const newBook = Object.create(libroLiteral);
   newBook.title = title.value;
   newBook.author = author.value;
