@@ -40,4 +40,13 @@
 
 **Paso 6:**
 
-> Habilitamos el sitio con  sudo a2ensite 
+> Habilitamos el sitio con  sudo a2ensite  y realizamos el configTest
+
+![a2ensite configtest](enableSiteDawAndConfigTest.png)
+
+
+**Paso 7:**
+
+>Desde el navegador de nuestra máquina principal entramos a la dirección daw02.local
+
+![daw02.local](20231019_09h08m28s_grim.png)
