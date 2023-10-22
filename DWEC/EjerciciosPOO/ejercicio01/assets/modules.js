@@ -1,5 +1,4 @@
 
-
 export const libroLiteral = {
   _title: "",
   _author: "",
