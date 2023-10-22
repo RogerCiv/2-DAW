@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Calorías</title>
+</head>
+<body>
+
+  <header class="bg-primary text-center py-2">
+    <div class="container">
+      <h1 class="text-light">Dieta DAW</h1>
+    </div>
+  </header>
+  <div class="container mt-2 justify-content-center align-item-center text-center">
+        <h3 class=""> Cálculo de Calorías</h3>
+        <div class="row">
+          <div class="col-md-6">
+              <h2>Comida</h2>
+              <form action="" id="form">
+                <div class="mb-3">
+                  <label for="alimento" class="form-label">Alimento:</label>
+                  <input class="form-control text-center" type="text" id="alimento" required />
+                </div>
+                <div class="mb-3">
+                  <label for="calorias" class="form-label">Calorías:</label>
+                  <input class="form-control text-center" type="number" id="calorias" required />
+                </div>
+                  <button class="btn btn-primary" id="guardar">Guardar</button>
+            </form>
+            <div class="alert alert-success mt-3" id="messageSuccess" style="display:none;">
+              Insertado Correctamente.
+            </div>
+            <div class="alert alert-danger mt-3" id="messageError" style="display: none;">
+              No dejes ningún campo vacío.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h3 class="mb-3 text-center">Alimentos de la dieta</h3>
+            <textarea class="form-control text-center" id="textarea" rows="9" ></textarea>
+            <div class="d-flex justify-content-center align-item-center mt-2">
+              <button class="btn btn-primary " id="reload">Cargar Alimentos</button>
+              <button class="btn btn-info ms-2" id="totalCalorias">Calcular calorías totales</button>
+            </div>
+            <div class="d-flex justify-content-center align-item-center text-center mt-3">
+              <label for="mostrarTotalCalorias" class="form-label ">Total de calorias: </label>
+              <input class="mt-2 text-center border border-success rounded-pill" type="text" id="mostrarTotalCalorias">
+              <div class="alert alert-danger mt-3" id="messageErrorNoBooks" style="display: none;">
+                No hay libros.
+            </div>
+          </div>
+          </div>
+          </div>
+        </div>
+    <script type="module" src="scriptClass.js"></script>
+</body>
+</html>
