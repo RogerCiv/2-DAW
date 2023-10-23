@@ -2,12 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="stylesheet" href="index.css">
+    <title>Simulador de Coches</title>
   </head>
   <body>
+    <header class="header">
+      <h1>Simulador de coches</h1>
+    </header>
+    <main>
+      <div class="container">
+        <div class="coche">
+          <h2>Coche</h2>
+          <textarea class="textareaCoche" name="" id="textareaCoche" cols="30" rows="10"></textarea>
+          <button type="submit" id="arrancarCoche">Arrancar Coche</button>
+          <button id="acelerarCoche">Acelerar Coche</button>
+          <button id="frenarCoche">Frenar Coche</button>
+        </div>
+        <div class="moto">
+          <h2>Moto</h2>
+          <textarea class="textareaMoto" name="moto" id="textareaMoto" cols="30" rows="10"></textarea>
+          <button type="submit" id="arrancarMoto">Arrancar Moto</button>
+          <button id="acelerarMoto">Acelerar Moto</button>
+          <button id="frenarMoto">Frenar Moto</button>
+        </div>
+      </div>
+    </main>
  
-    <script type="module" src="/scriptLiteral.js"></script>
+    <script type="module" src="/scriptFuncional.js"></script>
   </body>
 </html>

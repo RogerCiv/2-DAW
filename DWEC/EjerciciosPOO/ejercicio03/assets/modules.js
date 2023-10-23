@@ -49,40 +49,66 @@ export function VehiculoFuncional(marca,modelo,año) {
   this._año = año;
 }
 
-Vehiculo.prototype.acelerar = function(){
-  console.log('El coche esta acelerando') 
+// Getter para 'marca'
+VehiculoFuncional.prototype.getMarca = function() {
+  return this._marca;
+}
+
+// Setter para 'marca'
+VehiculoFuncional.prototype.setMarca = function(marca) {
+  this._marca = marca;
+}
+
+VehiculoFuncional.prototype.getModelo = function() {
+  return this._modelo;
+}
+
+VehiculoFuncional.prototype.setModelo = function(modelo) {
+  this._modelo = modelo;
+}
+
+VehiculoFuncional.prototype.getAño = function() {
+  return this._año;
+}
+
+VehiculoFuncional.prototype.setAño = function(año) {
+  this._año = año;
+}
+
+VehiculoFuncional.prototype.acelerar = function() {
+  return `El ${this.getMarca()} ${this.getModelo()} está acelerando`;
 }
 
 
 export function CocheFuncional(marca,modelo,año) {
-  Vehiculo.call(this,marca,modelo,año)
+  VehiculoFuncional.call(this,marca,modelo,año)
 }
 
 CocheFuncional.prototype =  Object.create(VehiculoFuncional.prototype);
-Coche.prototype.constructor = Coche;
+CocheFuncional.prototype.constructor = CocheFuncional;
 
 CocheFuncional.prototype.arrancar = function(){
-  console.log('El coche esta arrancando');
+  return `El ${this.getMarca()} ${this.getModelo()} está arrancando`;
 }
 
 CocheFuncional.prototype.frenar = function(){
-  console.log('El coche está frenando');
+  return `El ${this.getMarca()} ${this.getModelo()} está frenando`;
 }
 
 
 export function MotoFuncional(marca,modelo,año) {
-  Vehiculo.call(this,marca,modelo,año);
+  VehiculoFuncional.call(this,marca,modelo,año);
 }
 
-MotoFuncional.prototype = Object.create(Vehiculo.prototype);
-MotoFuncional.prototype.constructor = Moto;
+MotoFuncional.prototype = Object.create(VehiculoFuncional.prototype);
+MotoFuncional.prototype.constructor = MotoFuncional;
 
 MotoFuncional.prototype.arrancar = function() {
-    console.log('La moto está arrancando');
+  return `El ${this.getMarca()} ${this.getModelo()} está arrancando`;
 };
 
 MotoFuncional.prototype.frenar = function() {
-    console.log('La moto está frenando');
+  return `El ${this.getMarca()} ${this.getModelo()} está frenando`;
 };
 
 
@@ -123,7 +149,7 @@ export class VehiculoClass {
   }
 
   acelerar() {
-    console.log("El Vehículo esta acelereando")
+    return "El Vehículo esta acelereando";
   }
 
 }
@@ -133,12 +159,16 @@ export class CocheClass extends VehiculoClass {
     super(marca,modelo,año)
   }
 
+  acelerar(){
+    return `El ${this.marca} ${this.modelo} está acelerando`;
+  }
+
   arrancar(){
-    console.log('El coche está arrancando')
+    return `El ${this.marca} ${this.modelo} está arrancando`;
   }
 
   frenar(){
-    console.log('El coche esta frenando');
+    return 'El coche esta frenando';
   }
 }
 
@@ -149,10 +179,13 @@ export class MotoClass extends VehiculoClass {
   }
 
   arrancar(){
-    console.log('La moto arranca')
+    return `${this.marca} ${this.modelo} arranca`;
   }
 
   frenar(){
-    console.log('La moto frena')
+   return `${this.marca} ${this.modelo} frena`;
+  }
+  acelerar(){
+    return `${this.marca} ${this.modelo} está acelerando`;
   }
 }

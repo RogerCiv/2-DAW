@@ -1,0 +1,95 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: gray;
+}
+
+
+.header{
+  background-color: aquamarine;
+  padding: 1rem;
+}
+
+.header h1{
+  text-align: center;
+}
+
+.container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(400px, 1fr));
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-block: 2rem;
+  padding-inline: 2rem;
+  gap: 2rem;
+}
+
+
+.coche,
+.moto{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: .5rem;
+}
+@media screen and (min-width: 968px) {
+  .coche,
+.moto{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: .5rem;
+}
+}
+
+textarea{
+  resize: none;
+  min-height: 36px;
+  width: 350px;
+  max-height: 100px;
+  border-radius: 1rem;
+  padding-inline: 1rem;
+  padding-block: .5rem;
+  text-align: center;
+}
+
+
+button{
+  padding: .25rem;
+  border-radius: 100vmax;
+  border: 0;
+  outline: 0;
+  width: 125px;
+  color: whitesmoke;
+}
+
+
+button:hover{
+  transform: scale(1.1);
+  opacity: .9;
+  color: black;
+  font-weight: 700;
+}
+
+#arrancarCoche,
+#arrancarMoto{
+  background-color: green;
+}
+
+#frenarCoche,
+#frenarMoto{
+  background-color: rgb(182, 37, 37);
+}
+
+#acelerarCoche,
+#acelerarMoto{
+  background-color: orange;
+}

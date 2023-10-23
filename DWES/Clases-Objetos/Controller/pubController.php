@@ -1,7 +1,6 @@
 <?php
 
 
-
 if (!empty($_GET['newPub'])) {
     include("View/newPubView.phtml");
     die;

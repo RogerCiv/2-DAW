@@ -37,14 +37,7 @@ El sistema podría mejorar su atractivo para el usuario. La web utiliza un dise�
 - **Ayuda y documentación:** 
 El sistema podría mejorar su documentación. La web ofrece un buen sistema de ayuda, pero la documentación podría ser más completa y detallada.
 
-
-
-
-
-
-
-
-
+<br><br><br>
 
 ## 2. Evalúa la usabilidad de diferentes sitios web. Deberás encontrar  al menos10 fallos de usabilidad distintos en, al menos dos sitios de los sitios web diferentes, aunque puedes analizar más de dos sitios distintos. El resultado se ha de volcar en una tabla, tal y como se indica a continuación:
 
@@ -67,7 +60,8 @@ El sistema podría mejorar su documentación. La web ofrece un buen sistema de a
 | |* **14. El sistema es memorable para el usuario** | La estructura del sitio web es compleja y puede ser difícil de recordar para los usuarios. |
 | |* **15. El sistema minimiza los errores del usuario** | Los mensajes de error no son claros y no proporcionan información suficiente para ayudar al usuario a corregir el error. |
 
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br>
 
 ## 3. Imagina que te has quedado sin ratón. Analiza la navegación en uno de los sitios web de la lista utilizando tan solo el teclado. Indica si es posible llegar a todos los puntos del sistema de navegación sin usar el ratón.
 
