@@ -1,0 +1,44 @@
+<?php
+class User {
+    private $id;
+    private $name;
+    private $email;
+
+    public function __construct($id, $name, $email) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->email = $email;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function __sleep() {
+        return ['id', 'name'];
+    }
+
+    public function __wakeup() {
+        // Restaurar cualquier conexión a bases de datos, etc.
+    }
+}
+
+$user = new User(1, 'John Doe', 'john.doe@example.com');
+
+// Serializar el objeto
+$serializedUser = serialize($user);
+
+// Deserializar el objeto
+$unserializedUser = unserialize($serializedUser);
+
+// Imprimir el nombre del usuario deserializado
+echo $unserializedUser->getName(); // John Doe
+?>

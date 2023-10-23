@@ -122,9 +122,11 @@ class PublicacionRepository
     public static function getTotalPublications() {
         $bd = Conectar::conexion();
         $q = "SELECT COUNT(*) as count FROM publicacion";
+        echo $q;
         $result = $bd->query($q);
         $count = $result->fetch_assoc()['count'];
         return $count;
+        var_dump($count);
     }
     
     

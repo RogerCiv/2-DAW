@@ -39,12 +39,20 @@ if(!empty($_GET['c'])){
         require_once("Controller/pubController.php");
     }
 }
-
+/*
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $perPage = 4;
 $offset = ($page - 1) * $perPage;
 $pubs = PublicacionRepository::getPublicacionesPaged($offset, $perPage);
-$totalPubs = PublicacionRepository::getTotalPublications(); 
+*/
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$perPage = 4; // Establece la cantidad de publicaciones por página
+$offset = ($page - 1) * $perPage; // Calcula el desplazamiento
+
+// Luego, en tu consulta SQL, usa $offset y $perPage para limitar los resultados.
+$pubs = PublicacionRepository::getPublicacionesPaged($offset, $perPage);
+
+$totalPubs = PublicacionRepository::getTotalPublications($search); 
 
 
 //usa el modelo y aplica cambios a la bd
