@@ -1,0 +1,84 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: gray ;
+}
+
+header{
+  background-color: darkgray;
+}
+header h1{
+  text-align: center;
+  padding: 1rem;
+}
+.container{
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  padding-block: 2rem;
+  margin-inline: 2rem;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding-block: 2rem;
+  padding-inline: 2rem;
+  width: 500px;
+  margin: auto 0;
+  background-color: rgb(161, 156, 156);
+  border-radius: 2rem;
+}
+ input{
+  border: 0;
+  outline: 0;
+  padding: .25rem;
+  border-radius: 100vmax;
+  text-align: center;
+}
+
+label{
+  font-weight: 900;
+}
+
+
+button{
+  padding: .5rem;
+  width: 120px;
+  border: 0;
+  outline: 0;
+  border-radius: 100vmax;
+  cursor: pointer;
+  background-color: rgb(60, 66, 66);
+  color: white;
+}
+
+
+button:hover{
+  transform: scale(1.1);
+  opacity: .8;
+}
+
+
+.resultado{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  padding-block: 1rem;
+  padding-inline: 1rem;
+}
+
+.resultado input{
+  background-color: green ;
+  color: white;
+}
+
