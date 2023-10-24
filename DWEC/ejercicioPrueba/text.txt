@@ -1,0 +1,6 @@
+Disponemos de un centro medico que permite realizar reservas para asistir a la consulta medica de un medico.
+Disponemos de un array que contiene las horas entre las 9:00 AM y las 15:00 PM , separadas en intervalos de 15 minutos.
+Disponemos de un array con 5 emoticonos (carita feliz, carita triste,bandera roja, bandera verde, bandera .naranja).
+A traves de un formulario, crearemos una interfaz cuyo titulo sea COnsulta medica "DAW", dispondremos de un label que diga nombre paciente, input de nombre paciente, tendremos un label "fecha", input fecha. Generareis una matriz con botones que sean las horas de las consultas y un ENVIAR.
+Automaticamente de dicho formlario se gestionaran las citas medicas, almacenando en una clave hospital, un array de Map que contenga, nombre de usuario, fecha-hora. 
+No esta permitido insertar usuarios repetidos.

@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: gray;
+}
+
+header{
+    background-color: rgb(19, 199, 19);
+    padding: 1rem;
+}
+
+header h1{
+    text-align: center;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+form input {
+    border: 0;
+    outline: 0;
+    padding: .25rem;
+    border-radius: 100vmax;
+    text-align: center;
+}
+
+
+button {
+    padding: .5rem;
+    border: 0;
+    outline: 0;
+    border-radius: 100vmax;
+}
+
+
+button:hover{
+    transform: scale(1.1);
+    opacity: .8;
+}
+
+.horarios{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(120px,100px));
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-inline: 2rem;
+    padding-block: 2rem;
+}
+
+.enviar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

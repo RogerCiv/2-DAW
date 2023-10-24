@@ -137,25 +137,25 @@ export function UsuarioFuncional(id,firstname,username) {
     }
   })
   
-}
-
-UsuarioFuncional.prototype.obtenerComentarios = function(postId) {
-  let publicacionesUsuario = datos.filter(function(dato) {
+  
+  UsuarioFuncional.prototype.obtenerComentarios = function(postId) {
+    let publicacionesUsuario = datos.filter(function(dato) {
       return dato.userId === this.id;
-  }, this);
-
+    }, this);
+    
   console.log('Publicaciones del usuario:', publicacionesUsuario);
 
   let publicacion = publicacionesUsuario.find(function(publicacion) {
-      return publicacion.id === postId;
+    return publicacion.id === postId;
   });
-
+  
   console.log('Publicación encontrada:', publicacion);
-
+  
   if (publicacion) {
-      return publicacion.comment;
+    return publicacion.comment;
   } else {
-      return null;
+    return null;
   }
 };
 
+}
