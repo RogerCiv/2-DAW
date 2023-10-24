@@ -27,7 +27,7 @@ Automaticamente de dicho formlario se gestionaran las citas medicas, almacenando
 No esta permitido insertar usuarios repetidos.
 */
 
-import { Cita, Usuario } from './assets/modules.js';
+import { Cita } from './assets/modules.js';
 
 // Selecciona todos los botones de hora por su id.
 const form = document.getElementById('form');
@@ -52,9 +52,9 @@ horaButtons.forEach(button => {
     });
 });
 
-function crearCita(nombrePaciente,fecha){
+function crearCita(nombrePaciente,horaFecha) {
     //console.log(horaFecha)
-    cita = new Cita(nombrePaciente, fecha);
+    cita = new Cita(nombrePaciente, horaFecha);
 }
 
 
@@ -74,7 +74,6 @@ function handlerSetCita(e){
         localStorage.setItem("hospital", JSON.stringify(Array.from(citas.entries())));
     }
 
-    
 
 }
 function horasOcupadas(){
@@ -94,7 +93,7 @@ function horasOcupadas(){
                 if (button.id === horaCita) {
                     button.textContent += " 🚩";
                     // No necesitamos buscar más citas para este botón, así que salimos del bucle
-                    break;
+                    //break;
                 }
             }
         });
