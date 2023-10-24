@@ -16,10 +16,9 @@ export class Usuario {
 
 
 export class Cita {
-    constructor(usuario,fecha,hora){
+    constructor(usuario,fecha){
         this._usuario = usuario
         this._fecha = fecha;
-        this._hora = hora;
     }
 
     get usuario(){
@@ -35,10 +34,4 @@ export class Cita {
         this._fecha = nuevaFecha;
     }
 
-    get hora(){
-        return this.hora;
-    }
-    set hora(nuevaHora){
-        this.hora = nuevaHora;
-    }
 }

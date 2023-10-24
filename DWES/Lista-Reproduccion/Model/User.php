@@ -6,7 +6,7 @@ class User{
 
     public function __construct($datos){
         $this->id = $datos['id'];
-        $this->user = $datos['user'];
+        $this->user = $datos['name'];
         $this->rol = $datos['rol'];
     }
     public function getUserName(){

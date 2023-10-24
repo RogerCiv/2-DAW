@@ -35,9 +35,10 @@ const horaButtons = document.querySelectorAll('.horarios button');
 const btnEnviar = document.getElementById("btnEnviar");
 const hoursArray = ["09:00 AM", "09:15 AM", "09:30 AM", "09:45 AM", "10:00 AM", "10:15 AM", "10:30 AM", "10:45 AM", "11:00 AM", "11:15 AM", "11:30 AM", "11:45 AM", "12:00 PM", "12:15 PM", "12:30 PM", "12:45 PM", "01:00 PM", "01:15 PM", "01:30 PM", "01:45 PM", "02:00 PM", "02:15 PM", "02:30 PM", "02:45 PM"];
 const emojiArray = ["😃", "😞", "🚩", "🟢"];
-const citas = [];
+let citas = new Map();
 
-let cita = ""
+let cita = [];
+
 
 // Agrega un evento de clic a cada botón de hora.
 horaButtons.forEach(button => {
@@ -45,31 +46,66 @@ horaButtons.forEach(button => {
         const horaSeleccionada = button.id; 
         const nombrePaciente = document.getElementById('nombrePaciente').value;
         const fecha = document.getElementById('date').value;
+        const horaFecha = `${fecha} ${horaSeleccionada}`;
 
-        cita = new Cita(nombrePaciente, fecha,horaSeleccionada)
-       // console.log(cita)
+       crearCita(nombrePaciente, horaFecha); 
     });
 });
 
+function crearCita(nombrePaciente,fecha){
+    //console.log(horaFecha)
+    cita = new Cita(nombrePaciente, fecha);
+}
 
 
 function handlerSetCita(e){
     e.preventDefault();
     console.log(cita);
     if(localStorage.getItem("hospital")){
-        citas = JSON.stringify(localStorage.getItem("hospital"));
+        citas = new Map(JSON.parse(localStorage.getItem("hospital")));
+    }
+    
+    if(citas.has(cita._usuario)){
+        console.log("ya existe el usuario");
+    }else{
+
+        citas.set(cita._usuario,cita.fecha);
+        console.log(citas)
+        localStorage.setItem("hospital", JSON.stringify(Array.from(citas.entries())));
     }
 
-    citas.push(cita);
-    console.log(citas);
-    JSON.parse(localStorage.setItem("hospital",citas));
+    
+
 }
-
-
+function horasOcupadas(){
+    if (localStorage.getItem("hospital")) {
+        let citas = new Map(JSON.parse(localStorage.getItem("hospital")));
+    
+        // Recorre todos los botones de hora
+        horaButtons.forEach(button => {
+            // Recorre todas las citas
+            for (let cita of citas.values()) {
+                // Divide la fecha y hora de la cita en dos partes
+                let partesCita = cita.split(" ");
+                // La segunda parte es la hora
+                let horaCita = partesCita[1];
+    
+                // Si la hora del botón coincide con la hora de la cita, añade una bandera roja al texto del botón
+                if (button.id === horaCita) {
+                    button.textContent += " 🚩";
+                    // No necesitamos buscar más citas para este botón, así que salimos del bucle
+                    break;
+                }
+            }
+        });
+    }
+  
+}
 
 
 function init(){
  btnEnviar.addEventListener("click", handlerSetCita); 
+ horasOcupadas();
 }
 
 

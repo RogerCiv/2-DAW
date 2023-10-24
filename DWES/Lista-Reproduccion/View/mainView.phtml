@@ -7,18 +7,50 @@
 </head>
 <body>
     <?php
-        if($_SESSION['user']->getRol() < 1){
+    if (empty($_SESSION['user'])) {
+        // Mostrar el formulario de inicio de sesión y registro
+    ?>
+    <h1>Bienvenido, Logueate!</h1>
+    <form method="POST" action="index.php?c=user">
+      User
+      <input type="text" name="usuario" required>
+      Password
+      <input type="password" name="password" required>
+      <input type="submit" name="login" value="Entrar">
+    </form>
 
-        
-    ?>
     <h1>Bienvenido Usuario sin registrar</h1>
+    <form method="POST" action="index.php?c=user">
+      User
+      <input type="text" name="usuario" required>
+      Password
+      <input type="password" name="password" required>
+      <input type="submit" name="register" value="Registrar">
+    </form>
     <?php
+    } else {
+     
+    ?>
+    <h1>Estás logueado</h1>
+    <form method="POST" action="index.php?c=user">
+        <input type="submit" name="logout" value="Cerrar Sesión">
+    </form>
+    <a href="index.php?c=song&addSong=1">Añadir una Canción</a>
+    <br>
+    <?php
+    }
+
+    if(!empty($songs)){
+        foreach($songs as $song){
+            echo '
+            <p>Titulo:'.$song->getTitle().' </p>
+            <p>Artista:'.$song->getArtist().' </p>
+            <p>Duración:'.$song->getDuration().' </p>
+            <p>Imagen:'.$song->getImg().' </p>
+            <p>Archivo:'.$song->getRuta().' </p>
+            ';
         }
+    }
     ?>
-    <?php
-        if($_SESSION['user']->getRol() > 0){
-    ?>
-    <h1>Bienvenido usuario registrado</h1>
-    <?php } ?>
 </body>
 </html>

@@ -1,15 +1,33 @@
 <?php
 class UserRepository
 {
-
+    
     public static function register($user,$password){
         $bd = Conectar::conexion();
-        $sql = "INSERT INTO users"
+    
+        // Verificar si el nombre de usuario ya existe
+        $existingUser = $bd->query('SELECT * FROM users WHERE name="' . $user . '"');
+        if ($existingUser->fetch_assoc()) {
+            echo 'El nombre de usuario ya está en uso';
+            return;
+        }
+        
+        // Si el nombre de usuario no existe, proceder con el registro
+        $hashedPassword = md5($password); // Hash de la contraseña (debes considerar usar una función más segura)
+        $sql = 'INSERT INTO users (name, password) VALUES ("' . $user . '", "' . $hashedPassword . '")';
+        echo $sql;
+        
+        if ($bd->query($sql)) {
+            echo 'Usuario registrado con éxito';
+        } else {
+            echo 'Error al registrar el usuario';
+        }
     }
+
     public static function validar($u, $p)
     {
         $bd = Conectar::conexion();
-        $result = $bd->query('SELECT * FROM users WHERE user="' . $u . '"');
+        $result = $bd->query('SELECT * FROM users WHERE name="' . $u . '"');
 
         if ($datos = $result->fetch_assoc()) {
             if ($datos['password'] == md5($p)) {
@@ -60,7 +78,6 @@ class UserRepository
         return $users;
         
     }
-
 
 }
 ?>
