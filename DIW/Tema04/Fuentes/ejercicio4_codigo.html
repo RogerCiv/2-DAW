@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ejercicio formatear tabla</title>
+<style type="text/css">
+  *{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .euro,
+  .dolar,
+  .libra,
+  .yen{
+    background-color:#E6F3FF;
+  }
+  th{
+    background-color: rgb(168, 166, 166);
+  }
+  .par{
+    background-color: #FFFFCC;
+  }
+  table{
+    border-collapse: collapse;
+    text-align: center;
+  }
+  tr,td,th{
+    border: 1px solid black;
+  }
+</style>
+</head>
+
+<body>
+<table summary="Tipos de cambio">
+  <thead>
+    <tr class="cabecera">
+      <th scope="col">Cambio</th>
+      <th scope="col">Compra</th>
+      <th scope="col">Venta</th>
+      <th scope="col">Máximo</th>
+      <th scope="col">Mínimo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="par">
+      <th scope="row" class="euro"><img src="euro.png" alt="">Euro/Dolar</th>
+      <td>1.2524</td>
+      <td>1.2527</td>
+      <td>1.2539</td>
+      <td>1.2488</td>
+    </tr>
+    <tr>
+      <th scope="row" class="dolar"><img src="dolar.png" alt="">Dolar/Yen</th>
+      <td>119.01</td>
+      <td>119.05</td>
+      <td>119.82</td>
+      <td>119.82</td>
+    </tr>
+    <tr class="par">
+      <th scope="row" class="libra"><img src="libra.png" alt="">Libra/Dolar</th>
+      <td>1.8606</td>
+      <td>1.8611</td>
+      <td>1.8651</td>
+      <td>1.8522</td>
+    </tr>
+    <tr>
+      <th scope="row" class="yen"><img src="yen.png" alt="">Yen/Euro</th>
+      <td>0.6711</td>
+      <td>0.6705</td>
+      <td>0.6676</td>
+      <td>0.6713</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+</body></html>
