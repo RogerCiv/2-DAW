@@ -16,6 +16,8 @@ function selectHorarios(event) {
     // Puedes usar este valor seleccionado como necesario en tu formulario.
     document.getElementById("appointmentDate").value = selectedHour;
 }
+
+const hoursArray = ["09:00 AM", "09:15 AM", "09:30 AM", "09:45 AM", "10:00 AM", "10:15 AM", "10:30 AM", "10:45 AM", "11:00 AM", "11:15 AM", "11:30 AM", "11:45 AM", "12:00 PM", "12:15 PM", "12:30 PM", "12:45 PM", "01:00 PM", "01:15 PM", "01:30 PM", "01:45 PM", "02:00 PM", "02:15 PM", "02:30 PM", "02:45 PM"];
 */
 
 
@@ -33,7 +35,7 @@ import { Cita } from './assets/modules.js';
 const form = document.getElementById('form');
 const horaButtons = document.querySelectorAll('.horarios button');
 const btnEnviar = document.getElementById("btnEnviar");
-const hoursArray = ["09:00 AM", "09:15 AM", "09:30 AM", "09:45 AM", "10:00 AM", "10:15 AM", "10:30 AM", "10:45 AM", "11:00 AM", "11:15 AM", "11:30 AM", "11:45 AM", "12:00 PM", "12:15 PM", "12:30 PM", "12:45 PM", "01:00 PM", "01:15 PM", "01:30 PM", "01:45 PM", "02:00 PM", "02:15 PM", "02:30 PM", "02:45 PM"];
+
 const emojiArray = ["😃", "😞", "🚩", "🟢"];
 let citas = new Map();
 
@@ -91,9 +93,8 @@ function horasOcupadas(){
     
                 // Si la hora del botón coincide con la hora de la cita, añade una bandera roja al texto del botón
                 if (button.id === horaCita) {
-                    button.textContent += " 🚩";
-                    // No necesitamos buscar más citas para este botón, así que salimos del bucle
-                    //break;
+                    button.textContent += emojiArray[2];
+                    break;
                 }
             }
         });

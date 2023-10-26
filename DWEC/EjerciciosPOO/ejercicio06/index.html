@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 06</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Insertar Gerente</h2>
+      <form id="formEmpleado">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre">
+        <label for="salario">Salario:</label>
+        <input type="number" id="salario" name="salario">
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" name="tipo">
+            <option value="empleado">Empleado</option>
+            <option value="gerente">Gerente</option>
+            <option value="desarrollador">Desarrollador</option>
+        </select>
+        <label for="departamento">Departamento:</label>
+        <input type="text" id="departamento" name="departamento">
+        <label for="lenguaje">Lenguaje:</label>
+        <input type="text" id="lenguaje" name="lenguaje">
+        <button id="agregar">Agregar</button>
+    </form>
+
+      <div class="mostrarSalarios">
+        <input type="text" id="mostrarTotalSalarios">
+        <button id="btnTotalSalarios">Calcular Total Salarios</button>
+      </div>
+      <div class="mostrarEmpleados">
+        <textarea name="" id="mostrarEmpleados" cols="30" rows="10"></textarea>
+        <button id="btnMostrarEmpleados">Mostrar Empleados</button>
+      </div>
+    </div>
+    
+    
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>

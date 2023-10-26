@@ -138,24 +138,11 @@ export function UsuarioFuncional(id,firstname,username) {
   })
   
   
-  UsuarioFuncional.prototype.obtenerComentarios = function(postId) {
-    let publicacionesUsuario = datos.filter(function(dato) {
-      return dato.userId === this.id;
-    }, this);
-    
-  console.log('Publicaciones del usuario:', publicacionesUsuario);
-
-  let publicacion = publicacionesUsuario.find(function(publicacion) {
-    return publicacion.id === postId;
-  });
+  UsuarioFuncional.prototype.obtenerComentarios = function() {
+    const comentariosUsuario = datos.filter((dato) => dato.userId === this.id);
+    const comentarios = comentariosUsuario.map((comentario) => comentario.comment);
+    return comentarios;
+  };
   
-  console.log('Publicación encontrada:', publicacion);
-  
-  if (publicacion) {
-    return publicacion.comment;
-  } else {
-    return null;
-  }
-};
 
 }
