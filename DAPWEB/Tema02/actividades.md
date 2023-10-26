@@ -50,3 +50,42 @@
 >Desde el navegador de nuestra máquina principal entramos a la dirección daw02.local
 
 ![daw02.local](20231019_09h08m28s_grim.png)
+
+
+
+# 2.Permitir el protocolo HTTPS en el host virtual daw02 y comprobar que funciona.
+
+
+**Paso 1:**
+
+> Activamos el modulo SSL a2enmod ssl y reiniciamos apache2. Instalamos openssl. Creamos el certificado y lo autofirmamos.
+
+![autofirma](Ejercicio3img/SSLDAW02.png)
+
+![autofirma](Ejercicio3img/AutofrimaDAW02.png)
+
+
+**Paso 2:**
+
+>Creamos el archivo para el sitio daw02-ssl. y añadimos el certificado y la clave privada.
+
+
+![creacion ssl](Ejercicio3img/SSLVIRTUALHOSTDAW02conf.png)
+
+
+**Paso 3:**
+
+> Habilitamos el soporte SSL y el sitio daw02-ssl. Reiniciamos apache.
+
+![enable](Ejercicio3img/enableDAW02SSL.png)
+
+
+**Paso 4:**
+
+> En nuestra máquina entramos en la dirección de la pagina con https://
+
+![web](Ejercicio3img/20231023_11h05m11s_grim.png)
+
+>Aceptamos y veremos la web.
+
+![web2](Ejercicio3img/20231023_11h07m32s_grim.png)

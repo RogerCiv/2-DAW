@@ -29,7 +29,7 @@ const titleDel = document.getElementById("titleDel");
 const messageError = document.getElementById('messageError');
 const messageSuccess = document.getElementById('messageSuccess');
 const messageErrorPrice = document.getElementById('messageErrorPrice');
-const messageErrorEmpty = document.getElementById('messageErrorEmpty');
+//const messageErrorEmpty = document.getElementById('messageErrorEmpty');
 const messageErrorDel = document.getElementById('messageErrorDel');
 const messageSuccessDel = document.getElementById('messageSuccessDel');
 const messageErrorNoBooks = document.getElementById('messageErrorNoBooks');
@@ -62,7 +62,8 @@ function handlerInsertBook(e) {
   e.preventDefault();
   // Comprobar si los campos del libro están vacíos
   if (title.value === "" || author.value === "" || price.value === "") {
-    messageTimeOut(messageErrorEmpty, 5000);
+    messageError.textContent = "No puedes dejar los campos vacios"
+    messageTimeOut(messageError, 5000);
     return;
   }
   // Crear un nuevo libro a partir de libroFuncional
@@ -70,7 +71,8 @@ function handlerInsertBook(e) {
 
   // Comprobar si el precio del libro es válido
   if (isNaN(newBook.price) || newBook.price <= 0) {
-    messageTimeOut(messageErrorPrice, 5000);
+    messageError.textContent = "El precio debe ser mayor que 0";
+    messageTimeOut(messageError, 5000);
     price.value = "";
     return;
   }
@@ -113,7 +115,6 @@ function displayBookList() {
   //Formatea y muestra la lista de libros en el textarea
   textarea.value = books.map(book => `*** Titulo: ${book._title}, Autor: ${book._author} , Precio: ${book._price}€ ***`).join("\n")
 }
-
 
 
 /**
