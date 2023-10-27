@@ -3,16 +3,23 @@ class User{
     private $id;
     private $user ;
     private $rol;
+    private $password;
+    private $plfavs;
+    private $mypls;
 
     public function __construct($datos){
         $this->id = $datos['id'];
-        $this->user = $datos['name'];
+        $this->user = $datos['user'];
+        $this->password = $datos['password'];
         $this->rol = $datos['rol'];
     }
     public function getUserName(){
         return $this->user;
     }
-
+  
+    public function getPassword(){
+        return $this->password;
+    }
     public function getId(){
         return $this->id;
     }
@@ -21,9 +28,14 @@ class User{
         return $this->rol;
     }
 
-    public function __toString()
-    {
-        return $this->user;
+    public function getPlfavs(){
+
     }
+   
+    public function getMypls(){
+        
+    }
+
+
 }
 ?>

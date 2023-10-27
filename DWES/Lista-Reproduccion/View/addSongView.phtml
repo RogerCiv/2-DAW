@@ -7,11 +7,11 @@
 </head>
 <body>
     <h1>Añadir Canción</h1>
-    <form method="POST" action="index.php?c=song">
+    <form method="POST" action="index.php?c=song" enctype="multipart/form-data">
         <label for="titulo">Titulo:</label>
         <input type="text" name="title" required>
-        <label for="artista">Artista:</label>
-        <input type="text" name="artist" required>
+        <label for="author">Artista:</label>
+        <input type="text" name="author" required>
         <label for="duracion">Duración:</label>
         <input type="text" name="duration" required>
         <label for="imagen">Imagen:</label>

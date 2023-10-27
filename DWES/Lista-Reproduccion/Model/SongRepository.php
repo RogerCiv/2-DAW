@@ -1,54 +1,42 @@
 <?php
 
-class SongRepository{
+class SongRepository
+{
 
-  public static function addSong($datos)
+  public static function addSong($datos, $files)
   {
-      $bd = Conectar::Conexion();
-  
-      // Verifica si todos los campos necesarios están presentes en $datos
-      if (isset($datos['title'], $datos['artist'], $datos['duration'], $datos['img'], $datos['file'])) {
-          // Utiliza sentencias preparadas para evitar inyecciones SQL
-          $sql = "INSERT INTO song (title, artist, duration, img, ruta) VALUES (?, ?, ?, ?, ?)";
-  
-          // Prepara la sentencia
-          $stmt = $bd->prepare($sql);
-  
-          if ($stmt) {
-              // Vincula los valores de $datos a la sentencia preparada
-              $stmt->bind_param("sssss", $datos['title'], $datos['artist'], $datos['duration'], $datos['img'], $datos['file']);
-  
-              // Ejecuta la sentencia preparada
-              if ($stmt->execute()) {
-                  echo 'Canción añadida con éxito';
-              } else {
-                  echo 'Error al añadir la canción';
-              }
-  
-              // Cierra la sentencia
-              $stmt->close();
-          } else {
-              echo 'Error en la preparación de la sentencia';
-          }
-      } else {
-          echo 'Faltan datos necesarios';
-      }
+    $image = $files['img']['name'];
+    move_uploaded_file($files['img']['tmp_name'], 'public/img/' . $image);
+    $mp3 = $files['file']['name'];
+    move_uploaded_file($files['file']['tmp_name'], 'public/mp3/' . $mp3);
+    $bd = Conectar::Conexion();
+    $userId = $_SESSION['user']->getId();
+    
+    $sql = "INSERT INTO song (id,title, author, duration, img,user_id, file) VALUES (null,'" . $datos['title'] . "','" . $datos['author'] . "','" . $datos['duration'] . "','" . $image. "','" . $userId . "','" . $mp3. "')";
+
+    //echo $sql;
+    //var_dump($datos);
+    //var_dump($files);
+
+    $result = $bd->query($sql);
+
+    if (!$result) {
+        echo "Error en la consulta: " . $bd->error;
+    } else {
+        echo "Inserción exitosa.";
+    }
   }
 
-  public static function getSongs($datos,$img,$mp3){
+  public static function getSongs($datos, $img, $mp3)
+  {
     $bd = Conectar::conexion();
     $sql = "SELECT * FROM song";
     $result = $bd->query($sql);
 
-    while($datos = $result->fetch_assoc()){
+    while ($datos = $result->fetch_assoc()) {
       $songs[] = new Song($datos);
     }
 
     return $songs;
   }
-  
-
 }
-
-
-?>

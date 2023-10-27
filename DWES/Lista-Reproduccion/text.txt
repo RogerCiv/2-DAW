@@ -1,0 +1,10 @@
+Tablas intermedias
+
+-user_plfav  
+id_u
+id_pl
+
+-song_pl
+id_s
+id_pl
+
