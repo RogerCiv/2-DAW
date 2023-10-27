@@ -2,12 +2,69 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Ejercicio 01</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <header class="bg-primary text-center py-2">
+      <div class="container">
+        <h1 class="text-light">Libreria DAW</h1>
+      </div>
+    </header>
+    <div class="container mt-2 justify-content-center align-item-center text-center">
+          <h3 class=""> Tienda de libros</h3>
+          <form action="" class="userPrototype" id="form">
+            <div class="mb-3 " >
+              <label for="title" class="form-label">Titulo del libro:</label>
+              <input type="text" class="form-control text-center" required id="title"/>
+            </div>
+            <div class="mb-3">
+              <label for="author" class="form-label">Autor del Libro:</label>
+              <input type="text" class="form-control text-center" required id="author"/>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Precio:</label>
+              <input type="number" class="form-control text-center" required id="price"/>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-primary " id="sendBook">Enviar</button>
+            </div>
+          </form>
+          <div class="alert alert-success mt-3" id="messageSuccess" style="display:none;">
+            Insertado Correctamente.
+          </div>
+          <div class="alert alert-danger mt-3" id="messageError" style="display: none;">
+            El libro ya existe.
+          </div>
+        <div class="mb-3 mt-5">
+          <h3 class="mb-3 text-center">Libros Disponibles</h3>
+          <textarea class="form-control text-center" id="textarea" rows="9" readonly></textarea>
+        </div>
+        <div class="d-flex justify-content-center align-item-center ">
+          <button class="btn btn-primary " id="reloadBooks">Recargar</button>
+          <button class="btn btn-info ms-2" id="totalPrice">Calcular Precio global</button>
+        </div>
+        <div class="d-flex justify-content-center align-item-center">
+          <input class="mt-2 text-center border border-success rounded-pill" type="text" id="showTotalPrice">
+          <div class="alert alert-danger mt-3" id="messageErrorNoBooks" style="display: none;">
+            No hay libros.
+        </div>
+        </div>
+        <div class="mb-3 mt-5">
+          <h2 class="text-center">Borrar libros</h2>
+          <form action="" id="formDeleteBooks">
+            <label class="mb-2" for="titleDel">Titulo:</label>
+            <input type="text" class="form-control text-center" required id="titleDel"/>
+            <button class="btn btn-danger mt-2" id="delBook">Borrar</button>
+          </form>
+          <div class="alert alert-success mt-3" id="messageSuccessDel" style="display:none;">
+            Borrado Correctamente.
+          </div>
+          <div class="alert alert-danger mt-3" id="messageErrorDel" style="display: none;">
+            El libro no existe.
+          </div>
+        </div>
+        </div>
+    <script type="module" src="/scriptFuncional.js"></script>
   </body>
 </html>
