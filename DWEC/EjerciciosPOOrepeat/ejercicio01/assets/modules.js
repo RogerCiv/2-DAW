@@ -38,36 +38,42 @@ export class Tienda {
   }
 
   eliminarLibro(titulo){
-    const nuevosLibros = this.inventario = this.inventario.filter(libro => libro.titulo !== titulo);
+    const nuevosLibros = this.inventario.filter(libro => libro.titulo !== titulo);
     this._inventario = nuevosLibros;
   }
-  calcularPrecioTotal(){
-    return this.inventario.reduce((acc, libro) => acc + libro.precio ,0);
+
+  calcularPrecioTotal() {
+    return this.inventario.reduce((acc, libro) => acc + libro.precio, 0);
   }
-  infolibros(){
+
+  infolibros() {
     if (this.inventario.length === 0) {
-      return 'No hay libros en el inventario.';
+      return "No hay libros en el inventario.";
     }
-    return this.inventario.map( libro => `Titulo: ${libro.titulo} Autor: ${libro.autor} Precio: ${libro.precio}` ).join('\n');
+    return this.inventario
+      .map(
+        (libro) =>
+          `Titulo: ${libro.titulo} Autor: ${libro.autor} Precio: ${libro.precio}`
+      )
+      .join("\n");
   }
 }
 
-
-export function backup(nombre,arr){
-  return localStorage.setItem(nombre,JSON.stringify(arr));
+export function backup(nombre, arr) {
+  return localStorage.setItem(nombre, JSON.stringify(arr));
 }
 
 export function load(nombre) {
   let arr = [];
-  
+
   if (localStorage.getItem(nombre)) {
     let temp = JSON.parse(localStorage.getItem(nombre));
-    
-    if(Array.isArray(temp)){
+
+    if (Array.isArray(temp)) {
       arr = temp;
     }
   }
-  
+
   // Convierte los objetos del almacenamiento local en instancias de Libro
-  return arr.map(obj => new Libro(obj._titulo, obj._autor, obj._precio));
+  return arr.map((obj) => new Libro(obj._titulo, obj._autor, obj._precio));
 }

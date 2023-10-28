@@ -58,6 +58,7 @@ function handlerShowPrice(e){
 
 function handlerDelBook(e){
   e.preventDefault();
+  
   tienda.eliminarLibro(delBook.value);
 }
 
