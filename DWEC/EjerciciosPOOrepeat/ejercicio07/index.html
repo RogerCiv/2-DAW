@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Hotel Granada</h2>
+      <form action="">
+        <label for="">Listado Habitaciones</label>
+        <select name="" id="numHabitacion">
+          <option value="habitacion1">Habitacion 101 - 100€</option>
+          <option value="habitacion2">Habitacion 102 - 150€</option>
+          <option value="habitacion3">Habitacion 103 - 80€</option>
+          <option value="habitacion4">Habitacion 104 - 50€</option>
+        </select>
+        <button id="reservar">Reservar Habitacion</button>
+        <button id="cancelar">Cancelar Habitacion</button>
+      </form>
+      <label for="">Habitaciones Reservadas</label>
+      <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+
+      <label for="">Precio total de todas las reservadas</label>
+      <input type="number" id="totalPrecio" placeholder="Precio total reservas...">
+      <button id="btnTotal">Calcular Precio Total</button>
+    </div>
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>

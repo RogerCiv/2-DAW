@@ -6,7 +6,26 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <div class="container">
+      <form action="">
+        <label for="">Nombre:</label>
+        <input type="text" id="nombre" placeholder="Nombre...">
+        <label for="salario">Salario:</label>
+        <input type="number" id="salario" placeholder="Salario...">
+        <select name="" id="tipo">
+          <option value="gerente">Gerente</option>
+          <option value="desarrollador">Desarrollador</option>
+        </select>
+        <label for="">Tipo(Desarrollador = Lenguaje || Gerente = Departamento)</label>
+        <input type="text" id="especificar" placeholder="Lenguaje o departamento...">
+        <button id="btnEnviar">Enviar</button>
+      </form>
+
+      <textarea name="textarea" id="textarea" cols="30" rows="10"> </textarea>
+      <button id="btnMostrar">Mostrar empleados</button>
+      <button id="btnSalarios">Calcular total salarios</button>
+      <input type="number" id="totalSalario" placeholder="Total Salarios">
+    </div>
+    <script type="module" src="/script.js"></script>
   </body>
 </html>
