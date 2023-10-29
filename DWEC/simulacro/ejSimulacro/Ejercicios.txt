@@ -1,0 +1,39 @@
+## Ejercicios _Simulacro de Examen_
+
+**Ejercicio 1: Gestión de Citas Médicas**
+
+En una clínica médica, necesitas gestionar las citas de los pacientes. Debes crear una estructura de programación orientada a objetos (POO) basada en _**Prototipos**_ que represente las citas médicas con las siguientes características:
+
+- Atributos: `dni` `datos del paciente`, `fecha`, `hora`.
+- Métodos: `obtenerInformacion` para obtener la información completa de la cita.
+
+**Tres Variantes:**
+
+1. Usando Objetos Literales.
+2. Usando funciones constructoras.
+3. Usando la clase de JavaScript.
+
+**Ejercicio 2: Seguimiento de Paquetes en una Empresa de Envíos**
+
+En una empresa de envíos, necesitas gestionar el seguimiento de paquetes. Debes crear una estructura de POO basada en _**Prototipos**_ que represente el envío de los paquetes con las siguientes características:
+
+- Atributos: `id`, `destino`, `peso`. El id será un número aleatorio entre 1 y 1000 sumado al año donde me encuentro.
+- Métodos: `calcularTarifa` para calcular la tarifa de envío.
+
+**Tres Variantes:**
+
+1. Usando Objetos Literales.
+2. Usando funciones constructoras.
+3. Usando la clase de JavaScript.
+
+Los ejercicios deben:
+```
+1. Debes de elegir para cada ejercicio una variante, no pudiendo repetir la misma variante en el siguiente ejercicio.
+2. Demostrar herencia , encapsulación a través de  getter y setter.
+3. No se puede repetir una cita médica al mismo dni ni un paquete con el mismo id.
+4. Cada objeto creado se irá almacenando en un array de Objetos, transladandose posteriormente al LocalStorage para
+   ejemplificar persistencia a través de una función backup reutilizable para ambos ejercicios a través de un módulo.
+5. No es necesario crear código HTML, sólo JavaScript.
+6. Los test se realizarán manualmente en este caso, pasando nosotros los parámetros.
+7. Se dispone de 1,5 horas para realizar los dos ejercicios.
+```

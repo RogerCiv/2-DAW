@@ -44,7 +44,7 @@ function handlerShowInfo(e) {
 
 function handlerShowSalary(e) {
   e.preventDefault();
-  inputTotalSalario.value = sistema.calcularSalarioTotal()
+  inputTotalSalario.value = sistema.calcularSalarioTotal();
 }
 
 btnEnviar.addEventListener("click", handlerInsertarEmpleado);

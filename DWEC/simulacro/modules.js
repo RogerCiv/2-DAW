@@ -77,7 +77,7 @@ export class Paquete{
         return this._id;
     }
     set id(nuevoID){
-        this._id = id;
+        this._id = nuevoID;
     }
 
     get destino(){
@@ -108,7 +108,7 @@ export class Tipo extends Paquete{
     }
 
     setPaquetes(arr,objeto) {
-        const encontrado = arr.some(el => el.dni === objeto.dni)
+        const encontrado = arr.some(el => el.id === objeto.id)
         if(!encontrado){
             arr.push(objeto)
             backup("Paquetes",objeto);
