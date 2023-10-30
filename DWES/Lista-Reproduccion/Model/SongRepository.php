@@ -9,6 +9,7 @@ class SongRepository
     move_uploaded_file($files['img']['tmp_name'], 'public/img/' . $image);
     $mp3 = $files['file']['name'];
     move_uploaded_file($files['file']['tmp_name'], 'public/mp3/' . $mp3);
+    
     $bd = Conectar::Conexion();
     $userId = $_SESSION['user']->getId();
     
@@ -38,5 +39,20 @@ class SongRepository
     }
 
     return $songs;
+  }
+
+  public static function searchSong($song){
+    $bd = Conectar::conexion();
+    $sql = "SELECT * FROM song WHERE title LIKE '%$song%'";
+    echo $sql;
+    
+    $result = $bd->query($sql);
+   // $songs = array();
+    while($datos = $result->fetch_assoc()){
+
+        $song = new Song($datos);
+    }
+    return $song;
+
   }
 }

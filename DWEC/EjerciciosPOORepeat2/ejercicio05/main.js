@@ -1,7 +1,5 @@
 import { Usuario } from "./assets/modules";
 
+const usuario = new Usuario("Kailee.Larkin@amina.org");
 
-const usuario = new Usuario("Kailee.Larkin@amina.org")
-
-
-console.log(usuario.obenerComentarios())
+console.log(usuario.obenerComentarios());

@@ -32,6 +32,9 @@ if(empty($_SESSION['user'])){
   include("View/loginView.phtml");
   
 }
+//$pls = PlaylistRepository::getPlaylistById($_SESSION['user']->getId()); 
+$allPls = PlaylistRepository::getAllPlaylist();
+
 //$songs = SongRepository::getSongs();
   include("View/mainView.phtml");
 

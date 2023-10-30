@@ -22,7 +22,18 @@
     <a href="index.php?c=song&addSong=1">Añadir una Canción</a>
     <a href="index.php?c=playlist&addPlaylist=1">Añadir una playlist</a>
     <br>
-    <?php } ?>
+    <?php } 
+    
+    if (!empty($allPls)) {
+        echo '<h2>Listas de Reproducción Disponibles:</h2>';
+        echo '<ul>';
+        
+        foreach ($allPls as $pl) {
+            echo '<li><a href="index.php?c=playlist&playlistId=' . $pl->getId() . '">' . $pl->getName() . '</a></li>';
+        }
+        echo '</ul>';
+    }
+    ?>
     
 
 </body>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista reprodución</title>
+</head>
+<body>
+    <h2>Playlist </h2>
+  <?php
+    if (!empty($pl)) {
+        echo '<h2>Tu playlist</h2>';
+        echo '<ul>';
+        $idUser = $_SESSION['user']->getId();
+        $idPl = $_GET['playlistId'];
+        //echo $idUser;
+        //echo $idPl;
+        foreach ($pl as $p) {
+            if($p->getId() == $idPl){
+                echo $p->getName();
+               
+                if($p->getIdUser() ==$idUser ){
+                    echo '<a href="index.php?c=playlist&editPlaylist=1"> Editar Playlist</a>';
+                }else{
+                    echo '<a href="">Seguir playlist</a>';
+                }
+            }
+        
+        }
+        echo '</ul>';
+    }
+?>
+
+
+</body>
+</html>
