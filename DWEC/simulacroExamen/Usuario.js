@@ -12,13 +12,15 @@ export function Usuario(username, nombreCompleto, amigos, publiaciones) {
   this.getNombreCompleto = function () {
     return this._nombreCompleto;
   };
-}
-Usuario.prototype.agregarAmigo = function (amigo) {
-  this._amigos.push(amigo);
-};
+  this.agregarAmigo = function (amigo) {
+    this._amigos.push(amigo);
+  }
 
-Usuario.prototype.agregarPublicacion = function (mensaje, fecha) {
-  this._publiaciones.push(new Publicacion(mensaje, fecha));
-};
+  this.agregarPublicacion = function (mensaje,fecha) {
+    this._publiaciones.push(new Publicacion(mensaje, fecha));
+  }
+}
+
+
 
 
