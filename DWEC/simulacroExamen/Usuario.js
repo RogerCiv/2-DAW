@@ -1,0 +1,24 @@
+import { Publicacion } from "./Publicacion";
+
+export function Usuario(username, nombreCompleto, amigos, publiaciones) {
+  this._username = username;
+  this._nombreCompleto = nombreCompleto;
+  this._amigos = [];
+  this._publiaciones = [];
+
+  this.getUsername = function () {
+    return this._username;
+  };
+  this.getNombreCompleto = function () {
+    return this._nombreCompleto;
+  };
+}
+Usuario.prototype.agregarAmigo = function (amigo) {
+  this._amigos.push(amigo);
+};
+
+Usuario.prototype.agregarPublicacion = function (mensaje, fecha) {
+  this._publiaciones.push(new Publicacion(mensaje, fecha));
+};
+
+

@@ -1,5 +1,13 @@
 import { Usuario } from "./assets/modules";
+import { users, comments } from "./assets/constantes";
 
-const usuario = new Usuario("Kailee.Larkin@amina.org");
+const user1 = new Usuario(1, "Jane", "Smith", "janesmith@example.com");
 
-console.log(usuario.obenerComentarios());
+const comment = user1.obenerComentarios(comments);
+
+
+document.getElementById('textarea').value = comment;
+
+console.log(comment);
+
+
