@@ -7,11 +7,14 @@ export function RedSocial() {
   this.agregarUsuario = function (usuario) {
     this._usuarios.push(usuario);
   };
+
   this.obtenerUsuarios = function () {
     return this._usuarios;
   };
 
   this.obtenerPublicacionesUsuario = function (username) {
+<<<<<<< HEAD
+=======
     /*
     const user = this._usuarios.find((u) => u._username === username);
     const userPubs = new Map();
@@ -23,12 +26,14 @@ export function RedSocial() {
     return userPubs;
     */
 
+>>>>>>> 08aad0cf4296c680b22d35fcd7effa1b540c32a9
     return examenRedSocial.usuarios.map((el) => {
       if (el.username === username) {
         return new Map().set(el.username, el.publicaciones);
       }
     });
   };
+
   this.encontrarPublicacionMasLikes = function () {
     let maxLikes = 0;
     let res = {};
@@ -72,4 +77,8 @@ export function RedSocial() {
     };
     localStorage.setItem("ExamenRedSocial", JSON.stringify(data));
   };
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 08aad0cf4296c680b22d35fcd7effa1b540c32a9
