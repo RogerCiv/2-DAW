@@ -14,7 +14,19 @@ export function Usuario(username, nombreCompleto, amigos, publicaciones) {
   };
   this.agregarAmigo = function (amigo) {
     this._amigos.push(amigo);
+<<<<<<< HEAD
   };
+=======
+  }
+
+  this.agregarPublicacion = function (mensaje,fecha) {
+    this._publiaciones.push(new Publicacion(mensaje, fecha));
+  }
+}
+
+
+
+>>>>>>> 08aad0cf4296c680b22d35fcd7effa1b540c32a9
 
   this.agregarPublicacion = function (mensaje, fecha) {
     this._publicaciones.push(new Publicacion(mensaje, fecha));

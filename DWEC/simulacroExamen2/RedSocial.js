@@ -1,5 +1,4 @@
-import { Usuario } from "./Usuario.js";
-import { examenRedSocial } from "./assets/datos.js";
+import { examenRedSocial } from "./assets/datos";
 
 export function RedSocial() {
   this._usuarios = [];
@@ -8,25 +7,11 @@ export function RedSocial() {
     this._usuarios.push(usuario);
   };
 
-  this.obtenerUsuarios = function () {
+  this.obtenerUsuario = function () {
     return this._usuarios;
   };
 
-  this.obtenerPublicacionesUsuario = function (username) {
-<<<<<<< HEAD
-=======
-    /*
-    const user = this._usuarios.find((u) => u._username === username);
-    const userPubs = new Map();
-
-    if (user) {
-      user._publicaciones.map((pub) => userPubs.set("key", pub._publicaciones));
-    }
-
-    return userPubs;
-    */
-
->>>>>>> 08aad0cf4296c680b22d35fcd7effa1b540c32a9
+  this.obetenerPublicacionesUsuario = function (username) {
     return examenRedSocial.usuarios.map((el) => {
       if (el.username === username) {
         return new Map().set(el.username, el.publicaciones);
@@ -35,40 +20,37 @@ export function RedSocial() {
   };
 
   this.encontrarPublicacionMasLikes = function () {
+    let result = {};
     let maxLikes = 0;
-    let res = {};
 
     examenRedSocial.usuarios.forEach((user) => {
       user.publicaciones.forEach((el) => {
         if (el.likes > maxLikes) {
           maxLikes = el.likes;
-          res = el;
+          result = el;
         }
       });
     });
-
-    return res;
+    return result;
   };
 
   this.encontrarUsuarioMasLikes = function () {
-    let res = "";
+    let result = {};
     let maxLikes = 0;
 
     examenRedSocial.usuarios.forEach((user) => {
       let userLikes = 0;
-
       user.publicaciones.forEach((pub) => {
         userLikes += pub.likes;
       });
       if (userLikes > maxLikes) {
         maxLikes = userLikes;
-        res = user.nombreCompleto;
+        result = user.nombreCompleto;
       } else {
         userLikes = 0;
       }
     });
-
-    return res;
+    return result;
   };
 
   this.guardarEnLocalStorage = function () {
@@ -77,8 +59,4 @@ export function RedSocial() {
     };
     localStorage.setItem("ExamenRedSocial", JSON.stringify(data));
   };
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 08aad0cf4296c680b22d35fcd7effa1b540c32a9
