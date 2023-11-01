@@ -15,7 +15,7 @@ export function Libro(ISBN, titulo, numeroDePaginas, autor, editorial, tags, pre
     }
   }
   this.modificarValoracion = function (nuevaValoracion){
-    if (nuevaValoracion >= 1 && nuevaValoracion <= 5) {
+    if (nuevaValoracion.length >= 1 && nuevaValoracion.length <= 5) {
       this._valoracion = nuevaValoracion;
     }
   }

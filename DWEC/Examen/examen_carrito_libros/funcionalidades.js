@@ -15,8 +15,8 @@ export function menorStock(){
 export function buscarLibro(cadena) {
   return bdExamen.libros.filter(
     (libro) =>
-      libro.titulo.includes(cadena.toLowerCase()) ||
-      libro.editorial.includes(cadena.toLowerCase())
+      libro.titulo.toLowerCase().includes(cadena.toLowerCase()) ||
+      libro.editorial.toLowerCase().includes(cadena.toLowerCase())
   );
 }
 
