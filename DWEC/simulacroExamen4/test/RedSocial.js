@@ -5,6 +5,7 @@ export function RedSocial() {
   this.agregarUsuario = function (usuario) {
     this._usuarios.push(usuario);
   };
+
   this.obtenerUsuarios = function () {
     return this._usuarios;
   };
@@ -19,12 +20,12 @@ export function RedSocial() {
 
   this.encontrarPublicacionMasLikes = function () {
     let result = {};
-    let maxLikes = 0;
+    let masLikes = 0;
 
     examenRedSocial.usuarios.forEach((user) => {
       user.publicaciones.forEach((el) => {
-        if (el.likes > maxLikes) {
-          maxLikes = el.likes;
+        if (el.likes > masLikes) {
+          masLikes = el.likes;
           result = el;
         }
       });
@@ -33,33 +34,30 @@ export function RedSocial() {
   };
 
   this.encontrarUsuarioMasLikes = function () {
-    let result = {};
+    let res = "";
     let maxLikes = 0;
 
     examenRedSocial.usuarios.forEach((user) => {
       let userLikes = 0;
+
       user.publicaciones.forEach((pub) => {
         userLikes += pub.likes;
       });
       if (userLikes > maxLikes) {
         maxLikes = userLikes;
-        result = user.nombreCompleto;
+        res = user.nombreCompleto;
       } else {
         userLikes = 0;
       }
     });
-    return result;
+
+    return res;
   };
 
   this.guardarEnLocalStorage = function () {
     const data = {
       usuarios: this._usuarios,
     };
-    localStorage.setItem("ExamenRedSocial",JSON.stringify(data))
+    localStorage.setItem("ExamenRedSocial", JSON.stringify(data));
   };
 }
-
-
-
-
-
