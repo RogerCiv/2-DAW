@@ -38,7 +38,4 @@ $allPls = PlaylistRepository::getAllPlaylist();
 //$songs = SongRepository::getSongs();
   include("View/mainView.phtml");
 
-
-
-
 ?>

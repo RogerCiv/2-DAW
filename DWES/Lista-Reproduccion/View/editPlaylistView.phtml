@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h2>Editar playlist</h2>
     <form method="post" action="index.php?c=playlist">
-    <input type="text" name="song" placeholder="Buscar canción..."/>
-    <input type="submit" name="searchSong" value="Buscar">
-    
-</form>
+        <input type="text" name="song" placeholder="Buscar canción..." />
+        <input type="submit" name="searchSong" value="Buscar">
 
-<?php
-   // var_dump( $resultSearch);
-   //var_dump($resultSearch);
-   var_dump($resultSearch->getImg());
-    echo '<img src="public/img/'.$resultSearch->getImg().'">'.' Titulo:  '.$resultSearch->getTitle() .' Autor: '.$resultSearch->getAuthor(). ' Duracion: '.$resultSearch->getDuration(). '<a href="">Añadir a playlist</a>';
-?>
+    </form>
+
+    <?php
+    // var_dump( $resultSearch);
+    //var_dump($resultSearch);
+    // var_dump($resultSearch->getImg());
+    if (!empty($resultSearch)) {
+        foreach ($resultSearch as $song) {
+            echo '<ul>
+                     <li>';
+            echo '       <img src="public/img/' . $song->getImg() . '"> Titulo: ' . $song->getTitle() . ' Autor: ' . $song->getAuthor() . ' Duracion: ' . $song->getDuration() . ' 
+                            <a href="">Añadir a playlist</a>
+                     </li> 
+                  </ul>';
+        }
+    } ?>
 </body>
+
 </html>

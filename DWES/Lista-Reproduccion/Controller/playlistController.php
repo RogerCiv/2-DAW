@@ -33,24 +33,6 @@ if(!empty($_POST['searchSong'])){
     include("View/editPlaylistView.phtml");
     die;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 
         if ($playlist) {

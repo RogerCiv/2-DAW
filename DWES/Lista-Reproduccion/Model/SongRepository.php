@@ -43,16 +43,20 @@ class SongRepository
 
   public static function searchSong($song){
     $bd = Conectar::conexion();
-    $sql = "SELECT * FROM song WHERE title LIKE '%$song%'";
-    echo $sql;
+    $sql = "SELECT * FROM song WHERE title LIKE '%$song%' OR author LIKE '%$song%' ";
+    //echo $sql;
     
     $result = $bd->query($sql);
-   // $songs = array();
+    $songs = array();
     while($datos = $result->fetch_assoc()){
 
         $song = new Song($datos);
+        $songs[] = $song;
     }
-    return $song;
+    if(!$songs){
+      echo 'No se han encontrado coincidencias';
+    }
+    return $songs;
 
   }
 }
