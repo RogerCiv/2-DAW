@@ -72,7 +72,7 @@ export function Reserva(hotel, numHabitacion) {
   this._hotel = hotel;
   this._numHabitacion = numHabitacion;
 
-  this.getHote = function () {
+  this.getHotel = function () {
     return this._hotel;
   };
   this.getNumHabitacion = function () {
