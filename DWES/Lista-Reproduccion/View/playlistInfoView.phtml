@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <title>Lista reprodución</title>
 </head>
 <body>
@@ -17,12 +18,28 @@
         //echo $idPl;
         foreach ($pl as $p) {
             if($p->getId() == $idPl){
-                echo $p->getName();
+              //  echo $p->getName();
+                //echo $p->getDuration();
+                echo 'Titulo Playlist: '.$p->getName().' Duración: '.$p->getDuration().'';
+               
                
                 if($p->getIdUser() ==$idUser ){
-                    echo '<a href="index.php?c=playlist&editPlaylist=1"> Editar Playlist</a>';
+                    echo '<a href="index.php?c=playlist&editPlaylist=1&playListId='.$p->getId().'"> Editar Playlist</a>';
                 }else{
-                    echo '<a href="">Seguir playlist</a>';
+                    echo '<a href="index.php?c=playlist&follow=1&loadIdplaylist='.$p->getId().'">Seguir playlist</a>';
+               
+                }
+                echo '<br>
+                <h3>lista de canciones</h3>';
+                
+                foreach ($p->getSongs() as $song) {
+                    //var_dump($song['author']);
+                    echo '<p><img src="public/img/' . $song['img'] . '" style="width:30px"> Titulo: '.$song['title'].' Author: '.$song['author'].' Duracion: '.$song['duration'].'</p>
+                    <audio controls>
+                        <source src="public/mp3/'.$song['file'].'" type="audio/mp3">
+                        Tu navegador no soporta la reproducción de audio.
+                        </audio>
+                        ';
                 }
             }
         

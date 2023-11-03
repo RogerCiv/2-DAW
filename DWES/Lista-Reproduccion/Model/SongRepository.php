@@ -15,7 +15,7 @@ class SongRepository
     
     $sql = "INSERT INTO song (id,title, author, duration, img,user_id, file) VALUES (null,'" . $datos['title'] . "','" . $datos['author'] . "','" . $datos['duration'] . "','" . $image. "','" . $userId . "','" . $mp3. "')";
 
-    //echo $sql;
+    echo $sql;
     //var_dump($datos);
     //var_dump($files);
 

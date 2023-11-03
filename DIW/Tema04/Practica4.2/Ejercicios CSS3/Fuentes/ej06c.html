@@ -4,13 +4,9 @@
 <meta charset="utf-8" />
 <title>HTML &amp; CSS: Curso práctico avanzado</title>
 <style>
-    body{
-        padding: 10px;
-    }
     h1{
-        border: 2px solid #00F;
-        padding: 10px;
-        margin: 30px 0;
+        border-bottom: 2px solid #00F;
+
     }
     h2{
         border: 2px solid #AAA;
@@ -18,15 +14,18 @@
         margin:  15px 0;
     }
     ul{
-        border: 2px solid #0F0;
+        border-top: 4px  dotted red;
+        border-bottom: 4px dotted red;
     }
-    li{
-        margin: 15px 0;
+    .lista2{
+        border: 2px  dashed #0F0;
+
     }
-   
+
 </style>
 </head>
 <body>
+      
 <h1>HTML &amp; CSS: Curso práctico avanzado</h1>
 
 <h2 >Datos del libro</h2>
@@ -61,7 +60,7 @@ Este libro es adecuado para cualquiera que tenga interés en aprender a desarrol
 El contenido de este libro se estructura en tres apartados bien diferenciados:
 </p>
 
-<ul>
+<ul class="lista2">
 <li>En la primera parte del libro se trabajan conceptos generales que son necesarios para poder desarrollar páginas web; se explican conceptos de estructura física y estructura lógica (o estructura de navegación) de un sitio web. Se detalla cómo influye la estructura física en las URL o direcciones que se emplean a la hora de crear los enlaces de un sitio web. Pasando por el concepto de "estándar web", un término general que se emplea para refererirse a los estándares que define su funcionamiento como HTML y CSS, empleados para el desarrollo de las páginas web en el lado del cliente.</li>
 
 <li>En la segunda parte se trabaja HTML. Partiendo de la estructura básica de una página web, se explican las etiquetas de HTML que se utilizan para definir el texto, los enlaces, las listas, las tablas, los formularios y los elementos multimedia.</li>

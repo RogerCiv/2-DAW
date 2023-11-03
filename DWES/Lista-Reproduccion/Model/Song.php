@@ -13,6 +13,7 @@
     $this->title = $datos['title'];
     $this->author = $datos['author'];
     $this->duration = $datos['duration'];
+    $this->img = $datos['img'];
     $this->file = $datos['file'];
     $this->user_id = $datos['user_id'];
   }

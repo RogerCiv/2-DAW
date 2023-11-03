@@ -1,40 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <title>Document</title>
 </head>
+
 <body>
     <?php
-    if(!empty($_SESSION['user'])){
+    if (!empty($_SESSION['user'])) {
 
-    
+
     ?>
-    <h1>Estás logueado</h1>
-    <form method="POST" action="index.php?c=user">
-        <input type="submit" name="logout" value="Cerrar Sesión">
-    </form>
-    <?php } ?>
-    <?php 
-        if(!empty($_SESSION['user']) && $_SESSION['user']->getRol() > 0){
-    ?>
-    <a href="index.php?c=song&addSong=1">Añadir una Canción</a>
-    <a href="index.php?c=playlist&addPlaylist=1">Añadir una playlist</a>
-    <br>
-    <?php } 
-    
-    if (!empty($allPls)) {
-        echo '<h2>Listas de Reproducción Disponibles:</h2>';
-        echo '<ul>';
-        
-        foreach ($allPls as $pl) {
-            echo '<li><a href="index.php?c=playlist&playlistId=' . $pl->getId() . '">' . $pl->getName() . '</a></li>';
+        <h1>Estás logueado</h1>
+        <form method="POST" action="index.php?c=user">
+            <input type="submit" name="logout" value="Cerrar Sesión">
+        </form>
+
+        <?php
+        if (!empty($_SESSION['user']) && $_SESSION['user']->getRol() > 0) {
+        ?>
+            <a href="index.php?c=song&addSong=1">Añadir una Canción</a>
+            <a href="index.php?c=playlist&addPlaylist=1">Añadir una playlist</a>
+            <br>
+        <?php }
+
+        if (!empty($allPls)) {
+            echo '<h2>Listas de Reproducción Disponibles:</h2>';
+            echo '<ul>';
+
+            foreach ($allPls as $pl) {
+                echo '<li><a href="index.php?c=playlist&playlistId=' . $pl->getId() . '">' . $pl->getName() . '</a></li>';
+            }
+            echo '</ul>';
         }
-        echo '</ul>';
-    }
-    ?>
-    
+        ?>
+
+        <h3>Mis listas de Reprodución</h3>
+        <?php
+
+        if (!empty($_SESSION['user']->getMypls())) {
+            //var_dump($_SESSION['user']->getMypls());
+            $myPl = $_SESSION['user']->getMypls();
+            foreach ($myPl as $pl) {
+                echo '
+            <li><a href="index.php?c=playlist&playlistId=' . $pl->getId() . '">' . $pl->getName() . '</a></li>';
+            }
+        }
+        ?>
+
+
+        <h3>Mis listas seguidas</h3>
+        <?php
+        if (!empty($_SESSION['user']->getPlfavs())) {
+            $myFavs = $_SESSION['user']->getPlfavs();
+            foreach ($myFavs as $pl) {
+                echo '
+                <li><a href="index.php?c=playlist&playlistId=' . $pl->getId() . '">' . $pl->getName() . '</a></li>';
+            }
+        }
+        ?>
+    <?php } ?>
 
 </body>
+
 </html>

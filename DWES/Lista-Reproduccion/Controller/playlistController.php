@@ -17,20 +17,36 @@ if(!empty($_GET['playlistId'])){
    // var_dump($pl);
         include("View/playlistInfoView.phtml");
         die;
-    
 }
 
 if(!empty($_GET['editPlaylist'])){
-
+    $playlistId = $_GET['loadIdplaylist'];
+    $_SESSION['playListId'] = $playlistId;
     include("View/editPlaylistView.phtml");
     die;
 }
 
-if(!empty($_POST['searchSong'])){
+if(!empty($_POST['searchSong']) && !empty($_SESSION['playListId'])){
     $search = $_POST['song'];
     //var_dump($search);
     $resultSearch = SongRepository::searchSong($search);
     include("View/editPlaylistView.phtml");
+    die;
+}
+
+if(!empty($_GET["addSongPlaylist"])){
+    $songId = $_GET["songId"];
+    $playListId = $_GET['playListId'];
+    PlaylistRepository::addSongToPlayList($songId, $playListId);
+    include("View/editPlaylistView.phtml");
+    die;
+}
+
+if(!empty($_GET['follow'])){
+    $playListId = $_GET['loadIdplaylist'];
+    $userId = $_SESSION['user']->getId();
+    PlaylistRepository::followPlaylist($playListId,$userId);
+    include("View/mainView.phtml");
     die;
 }
 /*

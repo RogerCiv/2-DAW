@@ -12,24 +12,15 @@
     <h2>Editar playlist</h2>
     <form method="post" action="index.php?c=playlist">
         <input type="text" name="song" placeholder="Buscar canción..." />
-        <datalist id="songList">
-            <?php
-            // Aquí dentro colocarás las opciones generadas a partir de los resultados de la búsqueda
-            if (!empty($resultSearch)) {
-                foreach ($resultSearch as $song) {
-                    echo '<option value="' . $song->getTitle() . '">';
-                }
-            }
-            ?>
-        </datalist>
         <input type="submit" name="searchSong" value="Buscar">
 
     </form>
+
     <?php
     //var_dump( $resultSearch);
     //var_dump($resultSearch);
     // var_dump($resultSearch->getImg());
-    //echo $_SESSION['playListId'];
+    echo $_SESSION['playListId'];
     if (!empty($resultSearch)) {
         foreach ($resultSearch as $song) {
             //$sonId = $song->getId();
@@ -42,7 +33,6 @@
             </ul>';
         }
     } ?>
-
 </body>
 
 </html>
