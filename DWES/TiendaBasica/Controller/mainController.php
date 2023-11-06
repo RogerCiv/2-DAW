@@ -1,0 +1,36 @@
+<?php
+
+require_once("Model/User.php");
+require_once("Model/UserRepository.php");
+
+require_once("Model/Product.php");
+require_once("Model/ProductRepository.php");
+/*
+require_once("Model/Linea.php");
+require_once("Model/LineaRepository.php");
+
+require_once("Model/Order.php");
+require_once("Model/OrderRepository");
+*/
+
+
+session_start();
+
+
+if (!empty($_GET['c'])) {
+    if ($_GET['c'] == "user") {
+        require_once("Controller/userController.php");
+    }
+    if ($_GET['c'] == "product") {
+        require_once("Controller/productController.php");
+    }
+}
+
+
+if (empty($_SESSION['user'])) {
+    include("View/loginView.phtml");
+}
+
+$products = ProductRepository::getAllProducts();
+
+include("View/mainView.phtml");

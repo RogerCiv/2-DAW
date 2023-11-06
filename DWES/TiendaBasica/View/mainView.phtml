@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Tienda </title>
+</head>
+
+<body>
+    <?php
+    if (!empty($_SESSION['user'])) {
+
+
+    ?>
+        <h1>Estás logueado</h1>
+        <form method="POST" action="index.php?c=user">
+            <input type="submit" name="logout" value="Cerrar Sesión">
+        </form>
+    <?php
+    if (!empty($_SESSION['user']) && $_SESSION['user']->getRol() > 1) {
+    ?>
+        <a href="index.php?c=product&addProduct=1"><button>Agregar Producto</button></a>
+
+    <?php }
+
+        foreach($products as $product){
+            ?>
+            <div class="products">
+                <div class="img-product">
+                    <img src="public/img/<?php echo $product->getImg(); ?>" style="width: 30px">
+                </div>
+                <div class="name">
+                    <h3><?php echo $product->getName(); ?></h3>
+                    <p class="description">Descripción producto: <br><?php echo $product->getDesc(); ?></p>
+                    <p class="price">Precio: <?php echo $product->getPrice(); ?></p>
+                </div>
+                <?php if($_SESSION['user']->getRol() > 0) { ?>
+                <a href="#"><button>Comprar</button></a>
+                <?php } // Cierre del if para verificar el rol del usuario ?>
+            </div>
+            <?php } // Cierre del bucle foreach
+            }
+            ?>
+</body>
+
+</html>
