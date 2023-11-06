@@ -60,5 +60,4 @@
       return $formattedDuration;
   }
 
-  
  }

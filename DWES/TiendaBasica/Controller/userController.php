@@ -30,6 +30,19 @@ if (!empty($_POST['register'])) {
     //exit;
 }
 
+if(!empty($_POST['addToCart'])){
+    $productID = $_POST['productID'];
+    $amount = $_POST['quantity'];
+   
+
+
+    $product = ProductRepository::getProductById($productID);
+
+    if($product && $amount <= $product->getStock()){
+        $_SESSION['user']->addToCart($product,$amount);
+    }
+
+}
 
 
 ?>

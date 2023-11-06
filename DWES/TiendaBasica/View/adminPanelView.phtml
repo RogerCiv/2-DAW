@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Administración de Roles</title>
+</head>
+<body>
+    <a href="index.php"><button>Volver</button></a>
+    <div class="roles">
+        <?php
+
+    if (!empty($_SESSION['user']) && !empty($users)) {
+        foreach ($users as $user) {
+            echo '<form method="POST" action="index.php?c=admin">';
+            echo '<strong>Usuario:</strong>' . $user->getName() . ' <strong>Rol:</strong>' . $user->getRol();
+            echo '<input type="hidden" name="userId" value="' . $user->getId() . '">';
+            echo '<select name="newRole">
+            <option value="1">Usuario Normal</option>
+            <option value="2">Usuario Administrador</option>
+            <option value="0">Banear Usuario</option>
+            </select>'
+            ;
+            echo '<input type="submit" name="changeRole" value="Cambiar Rol">';
+            echo '</form>';
+        }
+    }
+    ?>
+    </div>
+
+</body>
+</html>

@@ -75,7 +75,7 @@ class UserRepository
         $bd = Conectar::conexion();
         
         // Realiza la actualización del rol en la base de datos
-        $sql = "UPDATE users SET rol = '$newRole' WHERE id = $userId";
+        $sql = "UPDATE user SET rol = '$newRole' WHERE id = $userId";
         $result=$bd->query($sql);
     }
     

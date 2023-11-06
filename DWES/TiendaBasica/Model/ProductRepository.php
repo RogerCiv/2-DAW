@@ -45,4 +45,25 @@ class ProductRepository
 
         return $products;
     }
+
+    public static function getProductById($productID){
+        $bd = Conectar::conexion();
+        echo 'La id es: '.$productID;
+        $sql = "SELECT * FROM product WHERE id = $productID";
+        echo $sql;
+        $result= $bd->query($sql);
+
+        if($datos=$result->fetch_assoc()){
+            return new Product($datos);
+        }
+        /*
+        if($result->num_rows>0){
+            $productData = $result->fetch_assoc();
+            return new Product($productData);
+        }
+        */
+        return null;
+
+
+    }
 }

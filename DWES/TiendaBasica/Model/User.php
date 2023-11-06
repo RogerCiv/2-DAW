@@ -5,6 +5,7 @@ class User
     private $name;
     private $password;
     private $rol;
+    private $cart;
 
 
     public function __construct($datos)
@@ -13,6 +14,7 @@ class User
         $this->name = $datos['name'];
         $this->password = $datos['password'];
         $this->rol = $datos['rol'];
+        $this->cart = array();
     }
     public function getName()
     {
@@ -37,7 +39,37 @@ class User
         //Hacer consultas
     }
 
-    public function getCarrito(){
+    public function getCart(){
         //hacer consultas
+        return $this->cart;
     }
+    public function addToCart(Product $product, $quantity)
+    {
+        if ($quantity > 0) {
+            // Verifica si el producto ya está en el carrito
+            foreach ($this->cart as &$item) {
+                if ($item['product']->getId() === $product->getId()) {
+                    // El producto ya está en el carrito, actualiza la cantidad
+                    $item['quantity'] += $quantity;
+                    return;
+                }
+            }
+
+            // El producto no está en el carrito, agrégalo
+            $this->cart[] = [
+                'product' => $product,
+                'quantity' => $quantity,
+            ];
+        }
+    }
+/*
+    public static function calcularTotalCarrito($cart)
+    {
+        $total = 0;
+        foreach ($cart as $item) {
+            $total += $item['quantity'] * $item['product']->getPrice();
+        }
+        return $total;
+    }
+    */
 }

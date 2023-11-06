@@ -5,6 +5,8 @@ require_once("Model/UserRepository.php");
 
 require_once("Model/Product.php");
 require_once("Model/ProductRepository.php");
+
+require_once("Model/CarUtility.php");
 /*
 require_once("Model/Linea.php");
 require_once("Model/LineaRepository.php");
@@ -24,6 +26,9 @@ if (!empty($_GET['c'])) {
     if ($_GET['c'] == "product") {
         require_once("Controller/productController.php");
     }
+    if ($_GET['c'] == "admin") {
+        require_once("Controller/adminController.php");
+    }
 }
 
 
@@ -33,4 +38,5 @@ if (empty($_SESSION['user'])) {
 
 $products = ProductRepository::getAllProducts();
 
+$totalCarrito = CartUtility::calcularTotalCarrito($_SESSION['user']->getCart());
 include("View/mainView.phtml");

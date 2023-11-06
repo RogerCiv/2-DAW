@@ -37,22 +37,17 @@ class User
     public function getPlfavs()
     {
         $bd = Conectar::conexion();
-        $sql = "SELECT p.*, sp.id AS user_plfav_id
-        FROM playlist p
-        INNER JOIN user_plfav upf ON p.id = upf.id_pl
-        WHERE upf.user_id = " . $this->id;
-
+        $sql = "SELECT p.*
+                FROM user_plfav upf
+                INNER JOIN playlist p ON upf.id_pl = p.id
+                WHERE upf.user_id = $this->id";
+    
         $result = $bd->query($sql);
-        if (!$result) {
-            echo "Error: " . mysqli_error($bd);
-        } else {
-            echo "Inserción exitosa";
-        }
         $playlists = array();
-        while($datos=$result->fetch_assoc()){
-            $playlists[] = $datos;
-          }
-
+        while ($datos = $result->fetch_assoc()) {
+            $playlists[] = new Playlist($datos);
+        }
+    
         return $playlists;
         
     }

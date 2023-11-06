@@ -14,18 +14,20 @@
         <input type="text" name="song" placeholder="Buscar canción..." />
         <datalist id="songList">
             <?php
-            // Aquí dentro colocarás las opciones generadas a partir de los resultados de la búsqueda
+            // En construccion....
             if (!empty($resultSearch)) {
                 foreach ($resultSearch as $song) {
                     echo '<option value="' . $song->getTitle() . '">';
                 }
             }
+           
             ?>
         </datalist>
         <input type="submit" name="searchSong" value="Buscar">
 
     </form>
     <?php
+     echo '<a href="index.php"><button>Volver...</button></a>';
     //var_dump( $resultSearch);
     //var_dump($resultSearch);
     // var_dump($resultSearch->getImg());
