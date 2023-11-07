@@ -22,16 +22,21 @@ a {
   text-decoration: none;
   color: #000;
   font-size: 1rem;
+  font-weight: 600;
 }
 a:hover {
-  color: lightcoral;
+  color: #dcd473;
 }
 
 /* HEADER */
 
 header {
-  position: relative;
-  padding: 0 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color:  rgb(218, 213, 213) ;
+  
 }
 
 .navbar {
@@ -45,7 +50,7 @@ header {
   justify-content: space-between;
 }
 
-.navbar .logoa {
+.navbar .logo a{
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -56,14 +61,14 @@ header {
 }
 
 .navbar .toggle_btn {
-  color: #fff;
+  color: #000;
   font-size: 1.5rem;
   cursor: pointer;
   display: none;
 }
 
 .action_btn {
-  background-color: #948b7b;
+  background-color: #aa948c;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -151,6 +156,7 @@ section#hero {
   align-items: center;
   text-align: center;
   gap: 2rem;
+  background-color: #f2f0ea;
 
 }
 .product_title{
@@ -168,9 +174,63 @@ section#hero {
   
 }
 
+.form-contact{
+  background-color: #ced5a0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 5rem;
+
+}
+
+.form-contact form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: .75rem;
+}
+
+.form-contact form input{
+  padding: .5rem;
+
+  border: 0;
+  outline: 0;
+  border-radius: 100vmax;
+  background-color:#aa948c ;
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+}
+
+.form-contact p {
+  font-size: 13px;
+}
+
+.form-contact form input[type="submit"]{
+ cursor: pointer;
+ background-color: #ebd48a;
+}
+.form-contact form input[type="submit"]:hover{
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.8);
+  color: #f2f0ea;
+  transform: scale(1.1);
+}
+
 footer{
-  background-color: #000;
+  background-color: #475640;
   color: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  padding-inline: 2rem;
+  padding-block: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 /* RESPONSIVE */
 @media (max-width: 992px) {

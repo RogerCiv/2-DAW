@@ -49,8 +49,9 @@ function addTaskToList(task, tasksListUl) {
   const taskElement = createTaskElement(task);
   tasksListUl.appendChild(taskElement);
 
+ 
   //insertar en el  localstorage
-  saveTaskToLocalStorage("tasks", app.tasks);
+  saveTaskToLocalStorage(task)
 }
 
 // creacion de los elementos en HTML de la tarea
@@ -75,13 +76,11 @@ function createTaskElement(task) {
     if (taskIndex !== -1) {
       app.tasks.splice(taskIndex, 1);
       taskElement.remove();
-      saveTaskToLocalStorage("tasks", app.tasks);
     }
   });
   taskCheckBox.addEventListener("change", () => {
     task.isCompleted ? (task.isCompleted = false) : (task.isCompleted = true);
     taskTitleElement.classList.toggle("completed", task.isCompleted);
-    saveTaskToLocalStorage("tasks", app.tasks);
   });
   // Append child elements to taskElement
   taskElement.appendChild(taskCheckBox);
@@ -99,25 +98,11 @@ function addTask() {
     addTaskToList(newTask, app.taskslistUl);
     app.newTaskInput.value = "";
   }
-}
-function saveTaskToLocalStorage(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
+
 }
 
-function loadTasksFromLocalSTorgae(key) {
-  const tasksFromLocalStorage = JSON.parse(localStorage.getItem(key));
-  if (tasksFromLocalStorage) {
-    tasksFromLocalStorage.forEach((task) => {
-      const newTask = createNewTask(task.title, task.isCompleted);
-      app.tasks.push(newTask);
-      addTaskToList(newTask, app.taskslistUl);
-    });
-  }
 
-  //saveTaskToLocalStorage("tasks",app.tasks);
-}
 
-// Grafico
 
 // EVENTOS
 
@@ -131,7 +116,7 @@ newTaskInput.addEventListener("keydown", function (e) {
 
 function init() {
   // Load del LocalSTorage
-  loadTasksFromLocalSTorgae("tasks");
+  
 }
 
 // Inicio de la aplicacion
@@ -143,3 +128,47 @@ document.addEventListener("DOMContentLoaded", init);
  *
  * Realizar un metodo llamado loadTasksFromLocalSTorgae que cargue  las tareas y las pinte en la web.
  */
+
+
+
+
+
+// ... (tu código existente)
+
+// Inicializa ECharts en el contenedor "chart-container"
+var chart = echarts.init(document.getElementById('graficoContainer'));
+
+// Configura los datos para el gráfico
+var chartData = {
+  xAxis: {
+    type: 'category',
+    data: app.tasks.map(task => task.title), // Utiliza los títulos de las tareas como etiquetas
+  },
+  yAxis: {
+    type: 'value',
+  },
+  series: [
+    {
+      name: 'Completado',
+      data: app.tasks.map(task => task.isCompleted ? 1 : 0), // 1 para tareas completadas, 0 para no completadas
+      type: 'bar',
+    },
+  ],
+};
+
+// Configura el título del gráfico
+var chartTitle = {
+  text: 'Tareas Completadas',
+};
+
+// Configura el gráfico con los datos y el título
+chart.setOption({
+  title: chartTitle,
+  tooltip: {},
+  xAxis: chartData.xAxis,
+  yAxis: chartData.yAxis,
+  series: chartData.series,
+});
+
+// Continúa con la inicialización de la aplicación y los eventos
+// ...
