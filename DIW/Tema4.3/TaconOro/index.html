@@ -20,11 +20,11 @@
         <div class="logo"><a href="#">Tacón de Oro</a></div>
         <ul class="links">
           <li><a href="#">Inicio</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#">Tienda</a></li>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <li><a href="#">Contacto</a></li>
         </ul>
-        <a href="#" class="action_btn">Get Startd</a>
+        <a href="#" class="action_btn">Registro</a>
         <div class="toggle_btn">
           <i class="fa-solid fa-bars"></i>
         </div>
@@ -32,36 +32,26 @@
 
       <div class="dropdown_menu">
         <li><a href="#">Inicio</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#" class="action_btn">Get Startd</a></li>
+        <li><a href="#">Tienda</a></li>
+        <li><a href="#">Sobre Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#" class="action_btn">Registro</a></li>
       </div>
     </header>
    
     <main>
       <section id="hero">
-        <h1>Welcome</h1>
+        <h1>Bienvenido a Tacón De Oro</h1>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br> Atque veritatis
           labore eos voluptatibus corporis optio.
         </p>
       </section>
+
     </main>
 
-    <script>
-      const toggleBtn = document.querySelector(".toggle_btn");
-      const toggleBtnIcon = document.querySelector(".toggle_btn i");
-      const dropDownMenu = document.querySelector(".dropdown_menu");
-
-      toggleBtn.onclick = function () {
-        dropDownMenu.classList.toggle("open");
-        const isOpen = dropDownMenu.classList.contains("open");
-
-        toggleBtnIcon.classList = isOpen
-          ? "fa-solid fa-xmark"
-          : "fa-solid fa-bars";
-      };
+    <script src="main.js">
+     
     </script>
   </body>
 </html>
