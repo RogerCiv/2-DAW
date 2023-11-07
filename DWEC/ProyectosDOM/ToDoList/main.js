@@ -2,39 +2,123 @@
  * @author: Rogelio
  */
 // ----- imports
-import "./style.css";
+import "/styles.css";
 import { v4 as uuidv4 } from "uuid";
+import autoAnimate from "@formkit/auto-animate";
 
-const inputTask = document.getElementById("new-task-input");
-const btnAddTask = document.querySelector(".add-task-btn");
-const list = document.querySelector(".tasks-list-ul");
+// Captura Componentes html
+
+const newTaskInput = document.getElementById("new-task-input");
+const addTaskBtn = document.querySelector(".add-task-btn");
+const taskslistUl = document.querySelector(".tasks-list-ul");
+const showChartBtn = document.querySelector(".mostrar-grafico-link");
+
+// Animaciones auto-animate
+
+autoAnimate(taskslistUl);
+
+// ----- Estado de la aplicacion -----
 const tasks = [];
 
+// app es el objeto que almacena el estado de mi aplicacion.
+/*
+const app = {
+  tasks: tasks,
+  newTaskInput: newTaskInput,
+  tasksListUl: tasksListUl,
+}
+*/
+const app = {
+  tasks,
+  newTaskInput,
+  taskslistUl,
+};
 
-
-function addTask(e) {
-  e.preventDefault();
-  const task = inputTask.value;
-  const id = uuidv4();
-
-
-
-  if (task !== "") {
-    const li = document.createElement("li");
-    li.innerText = task
-
-    list.appendChild(li);
-  }
-  tasks.push({
-    [id]: task,
-  })
-  localStorage.setItem("Tareas",JSON.stringify(tasks))
-  inputTask.value = ''
-  
-console.log(tasks)
+// funcion para crear una tarea
+function createNewTask(title, isCompleted = false) {
+  return {
+    id: uuidv4().toString(),
+    title,
+    isCompleted,
+  };
 }
 
+//funcion que añade un element <li> al <ul> generando un hijo nuevo.
+function addTaskToList(task, tasksListUl) {
+  // aqui mando a llamar a la funcioon que cree la tarea en html.
+  const taskElement = createTaskElement(task);
+  tasksListUl.appendChild(taskElement);
+
+  //insertar en el  localstorage
+}
+
+// creacion de los elementos en HTML de la tarea
+
+// funcion que genera el codigo <li> para insertarlo en el UL
+function createTaskElement(task) {
+  const taskElement = document.createElement("li");
+  const taskCheckBox = document.createElement("input");
+  taskCheckBox.type = "checkbox";
+  taskCheckBox.checked = task.isCompleted;
+  const taskTitleElement = document.createElement("span");
+  taskTitleElement.textContent = task.title;
+  // aquí pondria cambiar el color del texto si pulso el check
+  taskTitleElement.classList.toggle("completed", task.isCompleted);
+
+  const taskDeleteBtn = document.createElement("button");
+  taskDeleteBtn.textContent = "Eliminar Tarea";
+  taskDeleteBtn.className = "delete-buton";
+  // aqui programar el eliminar y el check del checkBox
+  taskDeleteBtn.addEventListener("click", () => {
+    const taskIndex = app.tasks.indexOf(task);
+    if (taskIndex !== -1) {
+      app.tasks.splice(taskIndex, 1);
+      taskElement.remove();
+    }
+  });
+  taskCheckBox.addEventListener("change", () => {
+    task.isCompleted ? (task.isCompleted = false) : (task.isCompleted = true);
+    taskTitleElement.classList.toggle("completed",task.isCompleted);
+  });
+  // Append child elements to taskElement
+  taskElement.appendChild(taskCheckBox);
+  taskElement.appendChild(taskTitleElement);
+  taskElement.appendChild(taskDeleteBtn);
+
+  return taskElement;
+}
+
+function addTask() {
+  const newTaskTitle = app.newTaskInput.value;
+  if (newTaskTitle) {
+    const newTask = createNewTask(newTaskTitle);
+    app.tasks.push(newTask);
+    addTaskToList(newTask, app.taskslistUl);
+    app.newTaskInput.value = "";
+  }
+}
+
+// EVENTOS
+
+addTaskBtn.addEventListener("click", addTask);
+
+newTaskInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    addTask();
+  }
+});
+
+function init() {
+  // Load del LocalSTorage
+}
+
+// Inicio de la aplicacion
+
+document.addEventListener("DOMContentLoaded", init);
 
 
-
-btnAddTask.addEventListener("click", addTask);
+/**
+ * PAra casa. Realizar un metodo llamado saveTaskToLocalStorage que almacene en el local storage el uuid, el nombre de la tarea y si es true y false
+ * 
+ * Realizar un metodo llamado loadTasksFromLocalSTorgae que cargue  las tareas y las pinte en la web.
+ */

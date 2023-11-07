@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f0f0;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #852020;
+  font-weight: 700;
+  font-size: 18px;
+}
+a:hover {
+  color: #ff9000;
+}
+nav {
+  background: transparent;
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+}
+nav li {
+  margin: 0 20px;
+}
+
+main {
+  width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.task-list-section{
+    max-width: 800px;
+    margin: 0 auto;
+    padding:20px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition: .5s linear;
+}
+.task-list-section:hover{
+    box-shadow: 10px 10px 14px 2px rgba(0,0,0,0.5);
+    transform: scale(1.01);
+}
+.img-titulo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding-block: 1rem;
+}
+.img-lista {
+  max-width: 40%;
+  border-radius: 100vmax;
+  box-shadow: 0 0 20px 2px rgba(17, 1, 1, 0.4);
+}
+
+.titulo{
+    font-size: 30px;
+    text-align: center;
+    transition: font-size 1s ease;
+}
+.titulo:hover{
+    font-size: 40px;
+}
+
+.form-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+#new-task-input{
+    width: 80%;
+    padding: .65rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-task-btn{
+    width: 20%;
+    padding: .65rem;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 100vmax;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    font-size: 15px;
+}
+.add-task-btn:hover{
+    transform: scale(1.1);
+    opacity: .7;
+}
+
+.tasks-list-ul{
+    padding: .5rem;
+}
+
+.tasks-list-ul li{
+    background-color: #fff;
+    border-radius: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+}
+
+
+.graficoContainer{
+
+}
+
+.delete-buton{
+    background-color: #ff4545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: .25rem;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: .5rem;
+}
+
+.delete-buton:hover{
+    background-color: #852020;
+}
+
+.tasks-list-ul .completed{
+    text-decoration: line-through ;
+    color: #0ecf68;
+}
+
+
+/*
+input,
+button {
+  padding: .5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+input{
+    width: 70%;
+}
+*/

@@ -6,18 +6,33 @@
     <title>ToDo List</title>
   </head>
   <body>
+    <nav>
+      <ul>
+        <li><a href="#" class="mostrar-grafico-link">Mostrar Gráfico</a></li>
+      </ul>
+    </nav>
     <main>
       <section class="task-list-section">
-        <h1 class="titulo">ToDo List</h1>
-        <!-- input para introducir la tarea-->
-        <input type="text" id="new-task-input" placeholder="Añadir Tarea..." />
-        <!-- btn para insertar tarea-->
-        <button class="add-task-btn">Añadir Tarea</button>
+        <!-- Imagen y titulo de portada-->
+        <div class="img-titulo">
+          <img src="assets/img/todolist.jpg" alt="" class="img-lista" />
+          <h1 class="titulo">Lista de Tareas</h1>
+        </div>
+        <!--Contenedor para todo el formulario-->
+        <div class="form-container">
+          <input
+            type="text"
+            id="new-task-input"
+            placeholder="Añade la Tarea..."
+          />
+          <!-- btn para insertar tarea-->
+          <button class="add-task-btn">Añadir Tarea</button>
+        </div>
         <!--Lista de tareas-->
-        <ul class="tasks-list-ul">
-            <li class="task-item-li">Ejercicios de javascript</li>
-        </ul>
-        
+        <ul class="tasks-list-ul"></ul>
+        <!--Seccion que agrupa el grafico-->
+        <section class="graficoContainer"></section>
+        <!-- input para introducir la tarea-->
       </section>
     </main>
     <script type="module" src="/main.js"></script>
