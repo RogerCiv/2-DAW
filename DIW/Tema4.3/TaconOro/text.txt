@@ -60,3 +60,48 @@
     </footer>
   </body>
 </html>
+
+
+
+
+
+
+/*
+fetch("https://fakestoreapi.com/products")
+  .then((res) => res.json())
+  .then((data) => {
+    data.forEach((product) => {
+      const productItem = document.createElement("div");
+      productItem.className = "product__item";
+
+      const imgProduct = document.createElement("div");
+      imgProduct.className = "img__product"; // Agregamos el div faltante
+      const img = document.createElement("img");
+      img.src = product.image;
+      img.alt = product.title;
+      imgProduct.appendChild(img);
+
+      const productInfo = document.createElement("div");
+      productInfo.className = "product__info";
+      const h3 = document.createElement("h3");
+      h3.textContent = product.title;
+      const p = document.createElement("p");
+      p.textContent = `Precio: ${product.price}€`;
+      productInfo.appendChild(h3);
+      productInfo.appendChild(p);
+
+      const addProduct = document.createElement("div");
+      addProduct.className = "add__product";
+      const button = document.createElement("button");
+      button.textContent = "Añadir Carrito";
+      addProduct.appendChild(button);
+
+      // Agrega los elementos al contenedor de productos
+      productItem.appendChild(imgProduct);
+      productItem.appendChild(productInfo);
+      productItem.appendChild(addProduct);
+      productContainer.appendChild(productItem);
+    });
+  })
+  .catch(error => console.error("Error al obtener los productos:", error));;
+*/
