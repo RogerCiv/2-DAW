@@ -35,8 +35,8 @@ header {
   width: 100%;
   top: 0;
   left: 0;
-  background-color:  rgb(218, 213, 213) ;
-  
+  background-color:  rgba(218, 213, 213,0.7) ;
+  backdrop-filter: blur(2px);
 }
 
 .navbar {
@@ -68,7 +68,7 @@ header {
 }
 
 .action_btn {
-  background-color: #aa948c;
+  background-color: #f4db03;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -145,6 +145,7 @@ section#hero {
 
 .products img {
   max-width: 80%;
+  border-radius: 1rem;
 }
 
 .products {
@@ -156,7 +157,7 @@ section#hero {
   align-items: center;
   text-align: center;
   gap: 2rem;
-  background-color: #f2f0ea;
+  background-color: #f1d8ae;
 
 }
 .product_title{
@@ -171,7 +172,9 @@ section#hero {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  
+}
+.img__product{
+
 }
 
 .form-contact{
@@ -197,11 +200,10 @@ section#hero {
 
 .form-contact form input{
   padding: .5rem;
-
   border: 0;
   outline: 0;
   border-radius: 100vmax;
-  background-color:#aa948c ;
+  background-color:#97a676 ;
   color: #000;
   font-weight: 600;
   text-align: center;
@@ -220,7 +222,41 @@ section#hero {
   color: #f2f0ea;
   transform: scale(1.1);
 }
+.registro{
+  background-color: #ebd48a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.registro h2{
+  margin-top: 2rem;
+}
 
+.registro form{
+  padding-block: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: .5rem
+}
+.registro input{
+  padding: .5rem;
+  border-radius: 100vmax;
+  text-align: center;
+}
+
+.registro input[type="submit"]{
+  cursor: pointer;
+  background-color: #f4db03;
+  font-weight: 600;
+}
+
+
+/* ==== Footer ==== */
 footer{
   background-color: #475640;
   color: white;
@@ -232,6 +268,46 @@ footer{
   align-items: center;
   text-align: center;
 }
+
+footer h3{
+  font-size: 14px;/* Ajusta esta altura según tu diseño */
+
+}
+
+footer a{
+  font-size: 12px;
+}
+.footer__logo img{
+  width: 20%;
+}
+.footer__information{
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+}
+.footer__information:hover,
+.footer__description:hover{
+  color: #dcd473;
+}
+
+.footer__social{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 1rem;
+}
+
+.footer__social i{
+  font-size: 20px;
+}
+
+.footer__description{
+  font-size: 13px;
+  color: #000;
+  font-weight: 600;
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 992px) {
   .navbar .links,
