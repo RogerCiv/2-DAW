@@ -1,0 +1,20 @@
+foreach($products as $product){
+            ?>
+            <div class="products">
+                <div class="img-product">
+                    <img src="public/img/<?php echo $product->getImg(); ?>" style="width: 30px">
+                </div>
+                <div class="name">
+                    <h3><?php echo $product->getName(); ?></h3>
+                    <p class="description">Descripción producto: <br><?php echo $product->getDesc(); ?></p>
+                    <p class="price">Precio: <?php echo $product->getPrice(); ?></p>
+                    <!--<p>id Producto: <?php echo $product->getId() ?></p>-->
+                </div>
+                <?php if($_SESSION['user']->getRol() > 0) { ?>
+                  
+                    <a href="index.php?c=user&addItem=<?php echo $product->getId(); ?>"><button>Añadir Carrito</button></a>
+                <?php } // Cierre del if para verificar el rol del usuario ?>
+            </div>
+            <?php } // Cierre del bucle foreach
+            }
+            ?>

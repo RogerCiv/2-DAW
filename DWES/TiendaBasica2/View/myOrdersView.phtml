@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Document</title>
+</head>
+<body>
+<?php
+ if (!empty($_SESSION['user'])) {
+    ?>
+        <h1>Estás logueado</h1>
+        <form method="POST" action="index.php?c=user">
+            <input type="submit" name="logout" value="Cerrar Sesión">
+        </form>
+        <a href="index.php?c=user&myOrders=1"><button>Ver Pedidos</button></a>
+        <a href="index.php"><button>Volver</button></a>
+        <?php
+        if (!empty($_SESSION['user']) && $_SESSION['user']->getRol() > 1) {
+        ?>
+            <a href="index.php?c=product&addProduct=1"><button>Agregar Producto</button></a>
+            <a href="index.php?c=admin&adminPanelView=1"><button>Panel Administración</button></a>
+        <?php }
+
+        foreach ($orders as $order) {
+            echo "<h2>Orden ID: " . $order->getId() . "</h2>";
+            echo "<p>Fecha de Compra: " . $order->getDatetime() . "</p>";
+            echo "<p>Estado: " . $order->getState() . "</p>";
+
+            $totalPedido = 0;
+            // Itera sobre las líneas de la orden
+            foreach ($order->getLineas() as $linea) {
+                echo "<h3>Detalles de la Línea</h3>";
+                echo "<p>Producto ID: " . $linea->get_p_id() . "</p>";
+                echo "<p>Nombre del Producto: " . ProductRepository::getProductNameById($linea->get_p_id()) . "</p>";
+                echo "<p>Cantidad: " . $linea->get_amount() . "</p>";
+                echo "<p>Precio del Producto: " . $linea->getPriceProduct() . "</p>";
+                $totalPedido += $linea->get_amount() * $linea->getPriceProduct();
+            }
+            echo "<h2>Precio Total del Pedido: " . $totalPedido . "€</h2>";
+        }
+    }
+    ?>
+</body>
+</html>
