@@ -37,6 +37,7 @@ if (empty($_SESSION['user'])) {
 }
 
 $products = ProductRepository::getAllProducts();
-
-$totalCarrito = CartUtility::calcularTotalCarrito($_SESSION['user']->getCart());
+if(!empty($_SESSION["user"])) {
+    $totalCarrito = CartUtility::calcularTotalCarrito($_SESSION['user']->getCart());
+}
 include("View/mainView.phtml");

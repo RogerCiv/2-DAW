@@ -6,6 +6,7 @@ class User
     private $password;
     private $rol;
     private $cart;
+    private $order;
 
 
     public function __construct($datos)
@@ -15,6 +16,7 @@ class User
         $this->password = $datos['password'];
         $this->rol = $datos['rol'];
         $this->cart = array();
+        $this->order = array();
     }
     public function getName()
     {
@@ -35,8 +37,9 @@ class User
         return $this->rol;
     }
 
-    public function getOrders(){
+    public function getOrder(){
         //Hacer consultas
+        return $this->order;
     }
 
     public function getCart(){
@@ -51,6 +54,7 @@ class User
                 if ($item['product']->getId() === $product->getId()) {
                     // El producto ya está en el carrito, actualiza la cantidad
                     $item['quantity'] += $quantity;
+
                     return;
                 }
             }

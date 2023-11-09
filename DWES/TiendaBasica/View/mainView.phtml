@@ -53,18 +53,21 @@
     <h1>Carrito de Compras</h1>
 <ul>
     <?php 
-    foreach ($_SESSION['user']->getCart() as $item){
+    $_SESSION['carrito'] = $_SESSION['user']->getCart();
+    
+    foreach ($_SESSION['carrito'] as $item){
     ?>
         <li>
             <h2><?php echo $item['product']->getName(); ?></h2>
             <p>Cantidad: <?php echo $item['quantity']; ?></p>
-            <p>Precio Unitario: <?php echo $item['product']->getPrice(); ?></p>
-            <p>Total: <?php echo $item['quantity'] * $item['product']->getPrice(); ?></p>
+            <p>Precio Unidad: <?php echo $item['product']->getPrice(); ?>€</p>
+            <p>Total: <?php echo $item['quantity'] * $item['product']->getPrice(); ?>€</p>
         </li>
-    <?php } ?>
+    <?php } 
+    ?>
 </ul>
-<p>Total del Carrito: <?php ?></p>
-<a href="finalizarCompra.php">Finalizar Compra</a>
+<p>Total del Carrito: <?php echo $totalCarrito?>€</p>
+<a href="index.php?c=user&shopEnd">Finalizar Compra</a>
 <?php
 }
 ?>
