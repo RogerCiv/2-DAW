@@ -211,6 +211,9 @@ header {
   padding: 5rem;
   border-radius: 2rem;
 }
+.product__item:hover{
+  transform: scale(1.02);
+}
   
 /* ==== Footer ==== */
 footer{

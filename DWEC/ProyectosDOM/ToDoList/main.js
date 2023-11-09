@@ -5,6 +5,8 @@
 import "/styles.css";
 import { v4 as uuidv4 } from "uuid";
 import autoAnimate from "@formkit/auto-animate";
+import crearGrafico from "./components/chart";
+import { messageTimeOut } from "./components/errores";
 
 // Captura Componentes html
 
@@ -12,7 +14,7 @@ const newTaskInput = document.getElementById("new-task-input");
 const addTaskBtn = document.querySelector(".add-task-btn");
 const taskslistUl = document.querySelector(".tasks-list-ul");
 const showChartBtn = document.querySelector(".mostrar-grafico-link");
-
+const messageError = document.querySelector(".message-error");
 // Animaciones auto-animate
 
 autoAnimate(taskslistUl);
@@ -46,8 +48,22 @@ function createNewTask(title, isCompleted = false) {
 //funcion que añade un element <li> al <ul> generando un hijo nuevo.
 function addTaskToList(task, tasksListUl) {
   // aqui mando a llamar a la funcioon que cree la tarea en html.
+  /*
+  const data = JSON.parse(localStorage.getItem("tasks")) || [];
+  console.log(data.map(task => task.title).includes(task.title));
+  //console.log(task);
+
+  let encontrado = data.map(task => task.title).includes(task.title)
+  if(!encontrado){
+    const taskElement = createTaskElement(task);
+    tasksListUl.appendChild(taskElement);
+  }else{
+    messageTimeOut(messageError,3000);
+  }*/
   const taskElement = createTaskElement(task);
-  tasksListUl.appendChild(taskElement);
+    tasksListUl.appendChild(taskElement);
+
+  
 
   //insertar en el  localstorage
   saveTaskToLocalStorage("tasks", app.tasks);
@@ -57,14 +73,25 @@ function addTaskToList(task, tasksListUl) {
 
 // funcion que genera el codigo <li> para insertarlo en el UL
 function createTaskElement(task) {
-  const taskElement = document.createElement("li");
+  const taskElementLi = document.createElement("li");
+
   const taskCheckBox = document.createElement("input");
   taskCheckBox.type = "checkbox";
   taskCheckBox.checked = task.isCompleted;
+
   const taskTitleElement = document.createElement("span");
   taskTitleElement.textContent = task.title;
   // aquí pondria cambiar el color del texto si pulso el check
   taskTitleElement.classList.toggle("completed", task.isCompleted);
+
+  const taskEditBtn = document.createElement("button");
+  taskEditBtn.textContent = "Editar Tarea";
+  taskEditBtn.className = "edit-buton";
+
+  taskEditBtn.addEventListener("click", () => {
+    const inputEditTitle = document.createElement("input");
+    console.log("Hola");
+  });
 
   const taskDeleteBtn = document.createElement("button");
   taskDeleteBtn.textContent = "Eliminar Tarea";
@@ -74,7 +101,7 @@ function createTaskElement(task) {
     const taskIndex = app.tasks.indexOf(task);
     if (taskIndex !== -1) {
       app.tasks.splice(taskIndex, 1);
-      taskElement.remove();
+      taskElementLi.remove();
       saveTaskToLocalStorage("tasks", app.tasks);
     }
   });
@@ -84,11 +111,12 @@ function createTaskElement(task) {
     saveTaskToLocalStorage("tasks", app.tasks);
   });
   // Append child elements to taskElement
-  taskElement.appendChild(taskCheckBox);
-  taskElement.appendChild(taskTitleElement);
-  taskElement.appendChild(taskDeleteBtn);
+  taskElementLi.appendChild(taskCheckBox);
+  taskElementLi.appendChild(taskTitleElement);
+  taskElementLi.appendChild(taskEditBtn);
+  taskElementLi.appendChild(taskDeleteBtn);
 
-  return taskElement;
+  return taskElementLi;
 }
 
 function addTask() {
@@ -113,8 +141,6 @@ function loadTasksFromLocalSTorgae(key) {
       addTaskToList(newTask, app.taskslistUl);
     });
   }
-
-  //saveTaskToLocalStorage("tasks",app.tasks);
 }
 
 // Grafico
@@ -129,6 +155,12 @@ newTaskInput.addEventListener("keydown", function (e) {
   }
 });
 
+showChartBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  crearGrafico(".grafico-container", app);
+});
+
 function init() {
   // Load del LocalSTorage
   loadTasksFromLocalSTorgae("tasks");
@@ -139,7 +171,27 @@ function init() {
 document.addEventListener("DOMContentLoaded", init);
 
 /**
- * PAra casa. Realizar un metodo llamado saveTaskToLocalStorage que almacene en el local storage el uuid, el nombre de la tarea y si es true y false
+ * Doble click automaticamente me generara un pdf con la tarea.
+ * Dos botones a la derecha, editar y eliminar.
+ *Añadir un boton de exportar tareas que genere un pdf con todas las tareas.
+ * Boton de buscar una tarea en concreto.
  *
- * Realizar un metodo llamado loadTasksFromLocalSTorgae que cargue  las tareas y las pinte en la web.
+ * (X) CREAR UN MODULO errores.js que le pase como parametro el texto que quiero mostrar y como segundo parametro el elemento del DOM donde lo quiero mostrar, de tal forma que cuando inserte una tarea cuyo nombre(title) ya exista mostrara un error debajo del input cuya duracion sea de 3 segundos
+ *
+ *  
+ *
+ * DOble click sobre el title de una tarea me lanzara un prompt con el contenido de esa tarea, pudiendo modificar solo el texto
+ *
+ * Añadir un boton al lado de eliminar tarea, imprimir tarea, que impria en un PDF los siguientes datos:
+ * 1- Texto tarea
+ * 2- Id Tarea
+ * 3- SI esta completada o no
+ * 4- Fecha actual en la que se imprimie
+ *
+ * Utilizando Bob descargar el pdf a nuestro PC con el nombre que sea las Cuatro primeras letras de tu texto de la tarea_dia_mes_año.pdf
+ *
+ * Pulsando el boton de la lupa, e introduciendo cualquier texto, al lanzar el evento del enter me filtrará todas aquellas tareas que contengan en su title el texto introducido.
+ *
+ * Crear un boton al lado de mostrar grafico llamado, Generar Evento Calendario, de tipo ICS  que genere  un evento del calendario cuya fecha de inicio sea la actual  y cuya fecha de finalizacion sea justamente 30 dias despues y cuyo contenido sea el numero de tareas que tengo sin realizar.
+ *
  */

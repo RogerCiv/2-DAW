@@ -3,10 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>ToDo List</title>
   </head>
   <body>
     <nav>
+      <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" class="search-input" placeholder="Buscar tarea...">
+      </div>
       <ul>
         <li><a href="#" class="mostrar-grafico-link">Mostrar Gráfico</a></li>
       </ul>
@@ -28,10 +33,14 @@
           <!-- btn para insertar tarea-->
           <button class="add-task-btn">Añadir Tarea</button>
         </div>
+          <div class="message-error">
+            <p>Ya existe la Tarea</p>
+          </div>
+        
         <!--Lista de tareas-->
         <ul class="tasks-list-ul"></ul>
         <!--Seccion que agrupa el grafico-->
-        <section class="graficoContainer"></section>
+        <section class="grafico-container"></section>
         <!-- input para introducir la tarea-->
       </section>
     </main>
