@@ -48,9 +48,9 @@ class ProductRepository
 
     public static function getProductById($productID){
         $bd = Conectar::conexion();
-        echo 'La id es: '.$productID;
+        //echo 'La id es: '.$productID;
         $sql = "SELECT * FROM product WHERE id = $productID";
-        echo $sql;
+        //echo $sql;
         $result= $bd->query($sql);
 
         if($datos=$result->fetch_assoc()){
@@ -88,12 +88,13 @@ class ProductRepository
     {
         try {
             $bd = Conectar::conexion();
-            $sql = "SELECT name FROM product WHERE id = $productId";
+            $sql = "SELECT * FROM product WHERE id = $productId";
             $result = $bd->query($sql);
 
             if ($result->num_rows > 0) {
                 $productData = $result->fetch_assoc();
-                return $productData['name'];
+               // return $productData['name'];
+               return $productData;
             }
 
             return null;

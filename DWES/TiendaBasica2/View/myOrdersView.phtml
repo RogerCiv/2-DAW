@@ -10,7 +10,7 @@
 <?php
  if (!empty($_SESSION['user'])) {
     ?>
-        <h1>Estás logueado</h1>
+        <h1>Tus pedidios <?php echo $_SESSION['user']->getName()?></h1>
         <form method="POST" action="index.php?c=user">
             <input type="submit" name="logout" value="Cerrar Sesión">
         </form>
@@ -26,14 +26,20 @@
         foreach ($orders as $order) {
             echo "<h2>Orden ID: " . $order->getId() . "</h2>";
             echo "<p>Fecha de Compra: " . $order->getDatetime() . "</p>";
-            echo "<p>Estado: " . $order->getState() . "</p>";
+           // echo "<p>Estado: " . $order->getState() . "</p>";
 
             $totalPedido = 0;
             // Itera sobre las líneas de la orden
             foreach ($order->getLineas() as $linea) {
+                $productData = ProductRepository::getProductNameById($linea->get_p_id());
                 echo "<h3>Detalles de la Línea</h3>";
                 echo "<p>Producto ID: " . $linea->get_p_id() . "</p>";
-                echo "<p>Nombre del Producto: " . ProductRepository::getProductNameById($linea->get_p_id()) . "</p>";
+                echo "<p>Nombre del Producto: " . $productData['name'] . "</p>";
+        
+                // Muestra la imagen del producto si está disponible
+                if (!empty($productData['img'])) {
+                    echo "<img src='public/img/" . $productData['img'] . "' alt='Imagen del Producto' style='width:20%'>";
+                }
                 echo "<p>Cantidad: " . $linea->get_amount() . "</p>";
                 echo "<p>Precio del Producto: " . $linea->getPriceProduct() . "</p>";
                 $totalPedido += $linea->get_amount() * $linea->getPriceProduct();

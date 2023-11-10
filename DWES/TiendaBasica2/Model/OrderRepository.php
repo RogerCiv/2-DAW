@@ -1,5 +1,4 @@
 <?php
-
 class OrderRepository
 {
     public static function getActiveOrderByUserID($userId)
@@ -28,7 +27,7 @@ class OrderRepository
             $datetime = (new DateTime())->format('Y-m-d H:i:s');
             $sql = "INSERT INTO orders (u_id, state,datetime) VALUES ($userID, 0,'".$datetime."')";
             
-           echo $sql;
+          // echo $sql;
             $result = $bd->query($sql);
 
             if ($result) {
@@ -84,7 +83,7 @@ class OrderRepository
             }
         }catch(Exception $e){
             throw new Exception("Error al actualizar el state de la order: ". $e->getMessage());
-            exit;
+           
         }
     }
 }
