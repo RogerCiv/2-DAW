@@ -1,23 +1,33 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* ======== Import de 2 fuentes, Roboto y Poppins ===========*/
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&family=Roboto:wght@500;700;900&display=swap');
 
+/* ---- Estilos globales: Eliminar todos los bordes, relleno por defecto en 0, Elimina todos los margin,
+border-box, el ancho y la altura del elemento incluyen el contenido, el relleno y el borde, lo que facilita el control del tamaño total de un elemento. -----*/
 * {
   border: 0;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+/*-----Transcición suave al desplazar  ----- */
 html {
   scroll-behavior: smooth;
 }
+/* ---- Familia por defecto "poppins" y una altura del body del total del viewport ----- */
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
 }
+/*----Fuente "roboto" para todos los "h" de la web -----*/
+h1,h2,h3,h4,h5{
 
+font-family: 'Roboto', sans-serif;
+}
+/*---- Quitar la decoracion a los li ----*/
 li {
   list-style: none;
 }
-
+/**/
 a {
   text-decoration: none;
   color: #000;
@@ -29,7 +39,7 @@ a:hover {
 }
 
 /* HEADER */
-
+/*----fijar su posición en la parte superior, aplicar un color de fondo con opacidad y agregar un filtro de desenfoque.----*/
 header {
   position: fixed;
   width: 100%;
@@ -38,7 +48,18 @@ header {
   background-color:  rgba(218, 213, 213,0.7) ;
   backdrop-filter: blur(2px);
 }
-
+/*---- div con el logo y el nombre del sitio ---*/
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* --- tamaño maximo de la imagen y su border radius  */
+.logo img{
+  max-width: 10%;
+  border-radius: 50%;
+}
+/* Estableces la altura, el ancho máximo y otros estilos para la barra de navegación.*/
 .navbar {
   width: 100%;
   height: 60px;
@@ -49,17 +70,17 @@ header {
   align-items: center;
   justify-content: space-between;
 }
-
+/* tamaño de la fuente y peso*/
 .navbar .logo a{
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 600;
 }
-
+/*--- ----*/
 .navbar .links {
   display: flex;
   gap: 2rem;
 }
-
+/* Aquí, estás proporcionando estilos para un botón de menú desplegable que se muestra en pantallas más pequeñas.*/
 .navbar .toggle_btn {
   color: #000;
   font-size: 1.5rem;
@@ -328,6 +349,10 @@ footer a{
     left: 2rem;
     width: unset;
   }
+}
+
+@media screen and (max-width: 576px){
+  
 }
 
 ::-webkit-scrollbar {

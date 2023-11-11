@@ -60,14 +60,13 @@ class User
         if ($quantity > 0) {
             // Verifica si el producto ya está en el carrito
             foreach ($this->cart as &$item) {
-                if ($item['product']->getId() === $product->getId()) {
+                if ($item['product_id'] === $product->getId()) {
                     // El producto ya está en el carrito, actualiza la cantidad
                     $item['quantity'] += $quantity;
 
                     return;
                 }
             }
-
             // El producto no está en el carrito, agrégalo
             $this->cart[] = [
                 'product' => $product,
@@ -98,6 +97,9 @@ class User
 
         // Limpiar el carrito
         $this->cart = array();
+    }
+    public function setCart($cart){
+        $this->cart = $cart;
     }
     /*
     public static function calcularTotalCarrito($cart)

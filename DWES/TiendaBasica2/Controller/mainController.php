@@ -14,6 +14,9 @@ require_once("Model/LineaRepository.php");
 require_once("Model/Order.php");
 require_once("Model/OrderRepository.php");
 
+require_once("Model/Cart.php");
+require_once("Model/CartRepository.php");
+
 session_start();
 
 
@@ -35,6 +38,7 @@ if (empty($_SESSION['user'])) {
 }
 
 $products = ProductRepository::getAllProducts();
+//$product = ProductRepository::getProductById($item['product_id']);
 if(!empty($_SESSION["user"])) {
     $totalCarrito = CartUtility::calcularTotalCarrito($_SESSION['user']->getCart());
 }

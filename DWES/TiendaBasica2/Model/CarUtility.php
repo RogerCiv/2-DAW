@@ -6,7 +6,12 @@ class CartUtility
     {
         $total = 0;
         foreach ($cart as $item) {
-            $total += $item['quantity'] * $item['product']->getPrice();
+            $productID = $item["product_id"];
+            $product = ProductRepository::getProductById($productID);
+            if($product){
+
+                $total += $item['quantity'] * $product->getPrice();
+            }
         }
         return $total;
     }
