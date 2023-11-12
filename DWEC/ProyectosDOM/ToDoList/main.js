@@ -17,8 +17,6 @@ const taskslistUl = document.querySelector(".tasks-list-ul");
 const showChartBtn = document.querySelector(".mostrar-grafico-link");
 const messageError = document.querySelector(".message-error");
 
-const inputContainer = document.querySelector(".form-container");
-
 const eventCalendar = document.querySelector(".evento-calendario");
 
 const searchInput = document.querySelector(".search-input");
@@ -136,7 +134,7 @@ function createTaskElement(task) {
 
 function addTask() {
   const newTaskTitle = app.newTaskInput.value;
-  let encontrado = app.tasks.map((task) => task.title).includes(newTaskTitle);
+  let encontrado = app.tasks.map((task) => task.title.toLowerCase()).includes(newTaskTitle.toLowerCase());
   if (!encontrado) {
     const newTask = createNewTask(newTaskTitle);
     app.tasks.push(newTask);
