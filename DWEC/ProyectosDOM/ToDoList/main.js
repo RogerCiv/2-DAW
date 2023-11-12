@@ -17,6 +17,8 @@ const taskslistUl = document.querySelector(".tasks-list-ul");
 const showChartBtn = document.querySelector(".mostrar-grafico-link");
 const messageError = document.querySelector(".message-error");
 
+const inputContainer = document.querySelector(".form-container");
+
 const eventCalendar = document.querySelector(".evento-calendario");
 
 const searchInput = document.querySelector(".search-input");
@@ -71,10 +73,9 @@ function addTaskToList(task, tasksListUl) {
     messageTimeOut(messageError,"Error",3000);
   }
   */
-    const taskElement = createTaskElement(task);
-    tasksListUl.appendChild(taskElement);
-    saveTaskToLocalStorage("tasks", app.tasks);
-
+  const taskElement = createTaskElement(task);
+  tasksListUl.appendChild(taskElement);
+  saveTaskToLocalStorage("tasks", app.tasks);
 }
 
 // creacion de los elementos en HTML de la tarea
@@ -135,11 +136,17 @@ function createTaskElement(task) {
 
 function addTask() {
   const newTaskTitle = app.newTaskInput.value;
-  if (newTaskTitle) {
+  let encontrado = app.tasks.map((task) => task.title).includes(newTaskTitle);
+  if (!encontrado) {
     const newTask = createNewTask(newTaskTitle);
     app.tasks.push(newTask);
     addTaskToList(newTask, app.taskslistUl);
     app.newTaskInput.value = "";
+  } else {
+    messageTimeOut("La tarea ya existe ", messageError, 3000);
+   
+
+    console.log("ya existe");
   }
 }
 function saveTaskToLocalStorage(key, data) {

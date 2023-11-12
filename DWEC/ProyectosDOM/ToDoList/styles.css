@@ -122,6 +122,7 @@ main {
     font-size: 30px;
     text-align: center;
     transition: font-size 1s ease;
+    color: white;
 }
 .titulo:hover{
     font-size: 40px;
@@ -135,11 +136,23 @@ main {
     gap: 1rem;
 }
 .message-error{
-  display: none;
-  justify-content: center;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
-  color: red;
+
+
+}
+.message-error-p{
+  background-color:#d38888;
+  color: #e70a0a;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 15px;
+  margin-top: 0.4rem;
+  font-weight: 500;
+  width: 78%;
 }
 
 #new-task-input{
