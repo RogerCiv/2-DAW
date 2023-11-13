@@ -4,6 +4,7 @@
     padding-block: .5rem;
     background-color: #e6e1d4;
     width: 100%;
+    min-height: calc(100vh - 156px);
   }
 .shop__header{
      width: 100%;
