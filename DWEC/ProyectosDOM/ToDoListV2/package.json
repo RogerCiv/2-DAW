@@ -1,5 +1,5 @@
 {
-  "name": "todo-list",
+  "name": "todolistv2",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,13 +10,5 @@
   },
   "devDependencies": {
     "vite": "^4.4.5"
-  },
-  "dependencies": {
-    "@formkit/auto-animate": "^0.8.1",
-    "echarts": "^5.4.3",
-    "ics": "^3.5.0",
-    "jspdf": "^2.5.1",
-    "pdf-lib": "^1.17.1",
-    "uuid": "^9.0.1"
   }
 }

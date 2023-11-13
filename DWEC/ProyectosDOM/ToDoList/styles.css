@@ -135,22 +135,24 @@ main {
     align-items: center;
     gap: 1rem;
 }
+/*
 .message-error{
   display: flex;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-
+  background-color: red;
 
 }
-.message-error-p{
+*/
+.message-error{
   background-color:#d38888;
   color: #e70a0a;
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
   font-size: 15px;
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
   font-weight: 500;
   width: 78%;
 }

@@ -1,4 +1,4 @@
-
+/*
 export function messageTimeOut(message, element, duration) {
   // Crea el elemento del mensaje de error
   const errorMessage = document.createElement('p');
@@ -14,4 +14,15 @@ export function messageTimeOut(message, element, duration) {
     element.removeChild(errorMessage);
   }, duration);
 }
+*/
 
+export function messageErrorTimeOut(message, element,duration) {
+  const newDiv = document.createElement("div");
+  newDiv.textContent = message;
+  newDiv.classList.add("message-error");
+  element.parentNode.insertBefore(newDiv, element.nextSibling);
+
+  setTimeout(() => {
+    newDiv.remove();
+  }, duration);
+}

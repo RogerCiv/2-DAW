@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <!-- Configuración de caracteres y viewport -->
+    <meta charset="UTF-8" name="charset" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Enlace a la hoja de estilos -->
     <link rel="stylesheet" href="index.css" />
+    <!-- Enlace a Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -11,6 +14,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- Cambios en el diseño -->
     <!-- HE CAMBIADO EL DISEÑO DEL MOCKUP ENTREGADO. HE ACTUALIZADO EL DISEÑO DE LA WEB-->
     <title>Tacón De Oro</title>
   </head>
@@ -20,7 +24,7 @@
       <!-- Barra de navegación-->
       <nav class="navbar">
         <div class="logo">
-            <img src="img/logotipo.png" alt="">
+            <img src="img/logotipo.png" alt="Logo Tienda Tacón De Oro">
           <a href="#">Tacón de Oro</a>
         </div>
         <ul class="links">
@@ -28,7 +32,9 @@
           <li><a href="tienda.html">Tienda</a></li>
           <li><a href="#">Sobre Nosotros</a></li>
           <li><a href="#contact">Contacto</a></li>
+          <li>  <input type="text" placeholder="Buscador..."></li>
         </ul>
+      
         <a href="registro.html" class="action_btn">Registro</a>
         <div class="toggle_btn">
           <i class="fa-solid fa-bars"></i>
@@ -36,11 +42,13 @@
       </nav>
 <!-- Dropdown_menu sirve para cuando se cambia el tamaño del dispositivo para mostrarlo en un menú "hamburguesa"-->
       <div class="dropdown_menu">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="tienda.html">Tienda</a></li>
-        <li><a href="#">Sobre Nosotros</a></li>
-        <li><a href="#">Contacto</a></li>
-        <li><a href="#" class="action_btn">Registro</a></li>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#" class="action_btn">Registro</a></li>
+        </ul>
       </div>
     </header>
     <!--===================== MAIN ==================-->
@@ -74,33 +82,20 @@
       <section class="form-contact" id="contact">
         <h3>Introduce tu Correo electrónico para mantenerte informado</h3>
         <p>Consigue un 15% de descuento por subscribirte.</p>
-        <form action="">
+        <form action="newsletter.php" method="post">
           <input type="text" placeholder="Email..." id="email" />
           <input type="submit" value="Subscribete" />
         </form>
       </section>
-
-      <!--<section class="registro">
-        <h2>Registrate y disfruta de nuestro productos</h2>
-        <form action="">
-          <label for="nombre">Nombre:</label>
-          <input type="text" />
-          <label for="">Email</label>
-          <input type="email" name="email" id="email" />
-          <label for="password">Contraseña</label>
-          <input type="password" />
-          <input type="submit" value="Registrar" />
-        </form>
-      </section>
-    </main>-->
     <!--  ================= FOOTER ===========================-->
     <!--Footer con toda la información necesaria sobre la tienda online y sobre los datos propios de dicha tienda.-->
     <footer>
       <div>
+        <!--Logo en el Footer-->
         <a href="" class="footer__logo">
           <img src="" alt="logo image" />
         </a>
-
+        <!--Descripción de la tienda-->
         <p class="footer__description">
           Tu tienda de calzado favorita <br />100% española
         </p>
@@ -108,6 +103,7 @@
       <div class="info">
         <h3>Menu Principal</h3>
         <ul>
+          <!--Enlaces del menú principal en el footer-->
           <li><a href="#">Inicio</a></li>
           <li><a href="#">Registro</a></li>
           <li><a href="#">Tienda</a></li>
@@ -116,6 +112,7 @@
       <div class="info2">
         <h3>Información</h3>
         <ul>
+          <!--Enlaces de información-->
           <li><a href="#">Sobre Nosotros</a></li>
           <li><a href="">Contacto</a></li>
           <li><a href="#">Pedidos</a></li>
@@ -123,8 +120,8 @@
       </div>
       <div class="address__info">
         <h3 class="footer__title">Address</h3>
-
         <ul class="footer__links">
+          <!-- Información de dirección en el footer -->
           <li class="footer__information">
             <br />Av. Hacienda 1234 <br />
             Granada 4321, Spain
@@ -137,17 +134,22 @@
         <h3 class="footer__title">Social Media</h3>
         <br />
         <ul class="footer__social">
-          <a
+          <li>
+
+            <a
             href="https://www.facebook.com"
             target="_blank"
             class="footer__social-link"
-          >
+            aria-label="Facebook"
+            >
             <i class="fa-brands fa-facebook"></i>
+          </li>
           </a>
           <a
             href="https://www.instagram.com"
             target="_blank"
             class="footer__social-link"
+            aria-label="Instagram"
           >
             <i class="fa-brands fa-instagram"></i>
           </a>
@@ -155,13 +157,14 @@
             href="https://www.twitter.com"
             target="_blank"
             class="footer__social-link"
+            aria-label="Twitter"
           >
             <i class="fa-brands fa-twitter"></i>
           </a>
         </ul>
       </div>
     </footer>
-
+    <!-- Llamada al script para hacer el toggle del Menu-->
     <script src="main.js"></script>
   </body>
 </html>

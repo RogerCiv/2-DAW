@@ -6,16 +6,19 @@ import "/styles.css";
 import { v4 as uuidv4 } from "uuid";
 import autoAnimate from "@formkit/auto-animate";
 import crearGrafico from "./components/chart";
-import { messageTimeOut } from "./components/errores";
-import { jsPDF } from "jspdf";
-import * as ics from "ics";
+import { messageErrorTimeOut } from "./components/errores";
+
+
+import { createPDF } from "./helpers/createPDF";
+import { createCalendar } from "./helpers/createCalendar";
 // Captura Componentes html
 
 const newTaskInput = document.getElementById("new-task-input");
 const addTaskBtn = document.querySelector(".add-task-btn");
 const taskslistUl = document.querySelector(".tasks-list-ul");
 const showChartBtn = document.querySelector(".mostrar-grafico-link");
-const messageError = document.querySelector(".message-error");
+//const messageError = document.querySelector(".message-error");
+const form = document.querySelector(".form-container")
 
 const eventCalendar = document.querySelector(".evento-calendario");
 
@@ -52,12 +55,11 @@ function createNewTask(title, isCompleted = false) {
 
 //funcion que añade un element <li> al <ul> generando un hijo nuevo.
 function addTaskToList(task, tasksListUl) {
-  // aqui mando a llamar a la funcioon que cree la tarea en html.
   /*
   const data = JSON.parse(localStorage.getItem("tasks")) || [];
   //console.log(data.map(task => task.title).includes(task.title));
   //console.log(task);
-
+  
   let encontrado = data.map(task => task.title).includes(task.title)
   if(!encontrado){
     const taskElement = createTaskElement(task);
@@ -66,11 +68,12 @@ function addTaskToList(task, tasksListUl) {
     //insertar en el  localstorage
     saveTaskToLocalStorage("tasks", app.tasks);
   }else{
- 
+    
     console.log("Entra aqui en encontrado")
     messageTimeOut(messageError,"Error",3000);
   }
   */
+ // aqui mando a llamar a la funcioon que cree la tarea en html.
   const taskElement = createTaskElement(task);
   tasksListUl.appendChild(taskElement);
   saveTaskToLocalStorage("tasks", app.tasks);
@@ -141,12 +144,14 @@ function addTask() {
     addTaskToList(newTask, app.taskslistUl);
     app.newTaskInput.value = "";
   } else {
-    messageTimeOut("La tarea ya existe ", messageError, 3000);
+    messageErrorTimeOut("La tarea ya existe ", form, 3000);
    
 
     console.log("ya existe");
   }
 }
+
+
 function saveTaskToLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
@@ -161,34 +166,8 @@ function loadTasksFromLocalSTorgae(key) {
     });
   }
 }
-function createPDF(task) {
-  const pdf = new jsPDF();
-  pdf.text("Tarea", 10, 10);
-  pdf.text(`Tarea: ${task.title}`, 10, 20);
-  pdf.text(`ID Tarea: ${task.id}`, 10, 30);
-  pdf.text(`Completada: ${task.isCompleted ? "Si" : "No"}`, 10, 40);
-  pdf.text(`Fecha impresion: ${new Date().toLocaleString()}`, 10, 50);
-  pdf.save(`tarea_${task.id}.pdf`);
 
-  // Crear un Blob con el contenido del PDF
-  const blobPdf = new Blob([pdf.output("blob")], { type: "aplication/pdf" });
 
-  // Crear URL para el blob de arriba
-  const urlBlob = URL.createObjectURL(blobPdf);
-
-  // Crear enlace descarga
-  const enlacePdf = document.createElement("a");
-  enlacePdf.href = urlBlob;
-  enlacePdf.download = `${task.title.substring(
-    0,
-    4
-  )}_${new Date().toLocaleDateString()}.pdf`;
-
-  // Agregar enlace al DOM
-  document.body.appendChild(enlacePdf);
-  enlacePdf.click();
-  URL.revokeObjectURL(enlacePdf);
-}
 function searchTask(search) {
   const filterTasks = app.tasks.filter((task) =>
     task.title.toLowerCase().includes(search)
@@ -201,64 +180,6 @@ function searchTask(search) {
   searchInput.value = "";
 }
 
-function createCalendar() {
-  // Obtiene la fecha actual
-  const now = new Date();
-  const start = [
-    now.getFullYear(),
-    now.getMonth() + 1,
-    now.getDate(),
-    now.getHours(),
-    now.getMinutes(),
-  ];
-
-  // Calcula la fecha 30 días después
-  const end = new Date();
-  end.setDate(now.getDate() + 30);
-  const endArray = [
-    end.getFullYear(),
-    end.getMonth() + 1,
-    end.getDate(),
-    end.getHours(),
-    end.getMinutes(),
-  ];
-
-  // Cuenta las tareas pendientes
-  const pendingTasks = tasks.filter((task) => !task.isCompleted).length;
-
-  const event = {
-    start: start,
-    end: endArray,
-    title: "Tareas pendientes",
-    description: `Tienes ${pendingTasks} tareas pendientes.`,
-    organizer: { name: "Roger", email: "roger@example.com" },
-    attendees: [{ name: "Roger", email: "roger@example.com" }],
-    status: "CONFIRMED",
-    busyStatus: "BUSY",
-    categories: ["Tareas"],
-  };
-
-  // Crea el evento y maneja el error si existe
-  ics.createEvent(event, (error, value) => {
-    // Crea un Blob con el contenido del evento
-    const blob = new Blob([value], { type: "text/calendar" });
-
-    // Crea una URL para el blob de arriba
-    const url = URL.createObjectURL(blob);
-
-    // Crea un enlace de descarga
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `tareas_pendientes.ics`;
-
-    // Agrega el enlace al DOM y haz clic en él
-    document.body.appendChild(link);
-    link.click();
-
-    // Limpia después de la descarga
-    document.body.removeChild(link);
-  });
-}
 
 // Grafico
 

@@ -101,5 +101,7 @@
 
 **Paso 2:**
 
-> Ya lo tendriamos instalado, entramos a la dirección y lo comprobamos
+> Ya lo tendriamos instalado, entramos a la dirección y lo comprobamos.
+
+![web](Ejercicio7/20231113_10h41m06s_grim.png)
 

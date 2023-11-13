@@ -46,6 +46,7 @@ header {
   top: 0;
   left: 0;
   background-color:  rgba(218, 213, 213,0.7) ;
+  /* Aplica un filtro de desenfoque al encabezado para crear un efecto de profundidad */
   backdrop-filter: blur(2px);
 }
 /*---- div con el logo y el nombre del sitio ---*/
@@ -59,7 +60,7 @@ header {
   max-width: 10%;
   border-radius: 50%;
 }
-/* Estableces la altura, el ancho máximo y otros estilos para la barra de navegación.*/
+/* Establece la altura, el ancho máximo y otros estilos para la barra de navegación.*/
 .navbar {
   width: 100%;
   height: 60px;
@@ -75,11 +76,20 @@ header {
   font-size: 1.5rem;
   font-weight: 600;
 }
-/*--- ----*/
+/*--- Display de los links del navbar----*/
 .navbar .links {
   display: flex;
   gap: 2rem;
 }
+/* --- Diseño del buscador del navbar --- */
+.navbar .links input{
+  padding: .25rem;
+  border-radius: 100vmax;
+  text-align: center;
+  border: 0;
+
+}
+
 /* Aquí, estás proporcionando estilos para un botón de menú desplegable que se muestra en pantallas más pequeñas.*/
 .navbar .toggle_btn {
   color: #000;
@@ -87,7 +97,7 @@ header {
   cursor: pointer;
   display: none;
 }
-
+/* Diseño del botón de registro del navbar*/
 .action_btn {
   background-color: #f4db03;
   color: #fff;
@@ -99,17 +109,17 @@ header {
   font-weight: bold;
   cursor: pointer;
 }
-
+/* Efecto cuando se pasa el ratón por el botón de registro */
 .action_btn:hover {
   scale: 1.05;
   color: #fff;
 }
-
+/*Cuando el usuario mantiene presionado el botón  se le cambia la escala.*/
 .action_btn:active {
   scale: 0.95;
 }
 /* DROPDOWN MENU */
-
+/*Menú Hamburguesa para cuando se cambia el tamaño de la pantalla*/
 .dropdown_menu {
   display: none;
   position: absolute;
@@ -121,8 +131,10 @@ header {
   backdrop-filter: blur(15px);
   border-radius: 10px;
   overflow: hidden;
+  /* Aplica una transición al menú desplegable para que se abra y se cierre suavemente */
   transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 .dropdown_menu li {
   padding: 0.7rem;
   display: flex;
@@ -194,9 +206,7 @@ section#hero {
   align-items: center;
   text-align: center;
 }
-.img__product{
 
-}
 
 .form-contact{
   background-color: #ced5a0;
@@ -330,7 +340,7 @@ footer a{
 
 
 /* RESPONSIVE */
-@media (max-width: 992px) {
+@media (max-width: 1150px) {
   .navbar .links,
   .navbar .action_btn {
     display: none;
