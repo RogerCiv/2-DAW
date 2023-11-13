@@ -17,6 +17,10 @@ class Cart{
     public function clearCart(){
         $this->items = array();
     }
+
+    public function getApiCart(){
+        return json_encode($this);
+    }
 }
 
 

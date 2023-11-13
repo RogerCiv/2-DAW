@@ -1,101 +1,105 @@
 # Actividades.
 
 
-## 2. Crear el subdirectorio todo-daw02/delimitado teniendo en cuenta que:
-## ✓ El directorio todo-daw02 permite el acceso a cualquier usuario.
-## ✓ El subdirectorio todo-daw02/delimitado permite el acceso solamente al usuario admin.
+## Desplegar las aplicaciones vistas en los puntos 8.2 y 8.3 (añadir acceso mediante HTTPS).
 
+
+### MOODLE
 
 **Paso 1:**
 
-> Crear los usuarios y password con htpassword
+>Nos vamos a la documentación de Moodle y nos descargamos la version 4.3. Añadimos al archivo hosts la ip y dirección.
 
-![htpassword](Ejercicio2/Paso1.png)
-
-<br><br><br><br><br><br><br><br>
+![hosts](Ejercicio7/HOSTS.png)
 
 
 **Paso 2:**
 
-> Añadir un nuevo directory al archivo daw02-ssl.conf
+>Creamos el archivo moodle. Reiniciamos apache, habilitamos el sitio y le damos permisos a los directorios.
 
-![ssl.conf](Ejercicio2/Paso4.png)
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+![tiendaCOnf](Ejercicio6/Moodle2.png)
 
 **Paso 3:**
 
-> Comprobar con apachectl configtest si esta bien la sintaxis del archivo anterior
+> Una vez todo habilitado, entramos en la direccion de tienda-virtual.conf y nos aparecerá la instalación de moodle.
 
-![configtest](Ejercicio2/Paso3.png)
+![moodle0](Ejercicio6/Moodle4.png)
+
+![moodle0.2](Ejercicio6/Moodle5.png)
+
+![moodle1](Ejercicio6/20231109_09h59m07s_grim.png)
+
+![moodle2](Ejercicio6/20231109_10h03m01s_grim.png)
+
+![moodle3](Ejercicio6/20231109_10h04m03s_grim.png)
+
+![moodle4](Ejercicio6/20231109_10h04m25s_grim.png)
 
 
 **Paso 4:**
 
-> Le damos permisos a la nueva carpeta.
+>Una vez instalado, faltaria crear el usuario y moodle.
 
-![permisos](Ejercicio2/Permisos.png)
+![moodle5](Ejercicio6/20231111_18h00m44s_grim.png)
 
-
-**Paso 5:**
-
-> Entramos a la nueva web de delimitado
-
-![delimitado](Ejercicio2/20231026_11h00m25s_grim.png)
+![moodle6](Ejercicio6/20231111_18h08m39s_grim.png)
 
 
-> Una vez hecho el login
-
-![delimitado2](Ejercicio2/20231026_11h00m35s_grim.png)
-
-
-
-## Configurar los archivos de registro como sigue:
-## ✓ Identificación log de acceso: daw02-access.log.
-## ✓ Identificación log de error: daw02-error.log.
-## ✓ Alias logformat: combined
-
+### OPENCART
 
 **Paso 1:**
 
-> Añadimos los logs para daw02 en el archivo -ssl.conf del sitio y reiniciamos el apache.
+>Clonamos el repositorio de Opencart. Añadimos al archivo HOSTS la ip y nombre de la página. Creamos el archivo .conf
 
-![sslCOnf](Ejercicio4/DAW02LOGS.png)
+![conf](Ejercicio6/Paso2.png)
 
 
 **Paso 2:**
 
-> Comprobamos que han sido creados.
+> Le damos los permisos al directorio, habilitamos el sitio, reiniciamos apache. Entramos en la dirección de tienda y nos aparecerá la instalación de OpenCart.
 
-![logs](Ejercicio4/LOGS.png)
+![paso2](Ejercicio6/Paso5.png)
 
 
 **Paso 3:**
 
-> Ahora vamos comprobando el log de access en tiempo real con tail -f.
+>Instalamos siguiendo los pasos.
 
-![access](Ejercicio4/AccessLog.png)
+![paso3](Ejercicio6/Paso5b.png)
 
+![paso3](Ejercicio6/Paso5c.png)
 
-**Paso 4:**
+![paso3](Ejercicio6/Paso5d.png)
 
-> Comprobamos el log de error en tiempo real con tail -f.
-
-![error](Ejercicio4/ErrorLog.png)
-
+![paso3](Ejercicio6/Paso5e.png)
 
 
-## 5. Rotar logs por intervalo temporal: cada 48 horas
+### Version con SSL de ambos sitios
 
 **Paso 1:**
 
-> Modificamos el -ssl.conf
+> En cada sitio, debemos cambiar la configuración de config.php y añadir a la dirección, la "s" a http.
 
-![archivo](Ejercicio5/Paso01.png)
+![opencart](Ejercicio7/OpenCART.png)
 
-**Paso 2:**:
+![opencart2](Ejercicio7/OPENCART2.png)
 
-> vemos los archivos creados nuevos.
 
-![logs](Ejercicio5/Paso1.png)
+
+
+
+
+## Desplegar Symfony tanto en Windows como en Ubuntu.
+
+**Paso 1:**
+
+> Modificamos el archivo php.ini con los parametros del pdf. Reiniciamos el apache2. Descargamos la última versión de Composer. Nos vamos a /var/www/html y descargamos symfony: `sudo composer create-project symfony/website-skeleton web`. Le damos permisos a los directorios. Creamos el archivo web-s5.local
+
+
+![conf](Ejercicio7/SymfonyCOnf.png)
+
+
+**Paso 2:**
+
+> Ya lo tendriamos instalado, entramos a la dirección y lo comprobamos
+

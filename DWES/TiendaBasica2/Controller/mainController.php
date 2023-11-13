@@ -30,6 +30,9 @@ if (!empty($_GET['c'])) {
     if ($_GET['c'] == "admin") {
         require_once("Controller/adminController.php");
     }
+    if ($_GET['c'] == "api") {
+        require_once("Controller/apiController.php");
+    }
 }
 
 
@@ -39,9 +42,7 @@ if (empty($_SESSION['user'])) {
 
 $products = ProductRepository::getAllProducts();
 //$product = ProductRepository::getProductById($item['product_id']);
-if(!empty($_SESSION["user"])) {
+if (!empty($_SESSION["user"])) {
     $totalCarrito = CartUtility::calcularTotalCarrito($_SESSION['user']->getCart());
 }
 include("View/mainView.phtml");
-
-

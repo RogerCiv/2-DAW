@@ -208,7 +208,8 @@ function createCalendar() {
   ];
 
   // Calcula la fecha 30 días después
-  const end = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+  const end = new Date();
+  end.setDate(now.getDate() + 30);
   const endArray = [
     end.getFullYear(),
     end.getMonth() + 1,

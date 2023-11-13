@@ -16,6 +16,7 @@
             <input type="submit" name="logout" value="Cerrar Sesión">
         </form>
         <a href="index.php?c=user&myOrders=1"><button>Ver Pedidos</button></a>
+        <a href="index.php?c=api&carrito"></a>
         <?php
         if (!empty($_SESSION['user']) && $_SESSION['user']->getRol() > 1) {
         ?>
