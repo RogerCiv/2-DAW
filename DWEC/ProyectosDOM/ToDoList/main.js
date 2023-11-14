@@ -8,9 +8,9 @@ import autoAnimate from "@formkit/auto-animate";
 import crearGrafico from "./components/chart";
 import { messageErrorTimeOut } from "./components/errores";
 
-
 import { createPDF } from "./helpers/createPDF";
 import { createCalendar } from "./helpers/createCalendar";
+import { actualizarGraficoSiVisible } from "./helpers/updateChart";
 // Captura Componentes html
 
 const newTaskInput = document.getElementById("new-task-input");
@@ -18,7 +18,7 @@ const addTaskBtn = document.querySelector(".add-task-btn");
 const taskslistUl = document.querySelector(".tasks-list-ul");
 const showChartBtn = document.querySelector(".mostrar-grafico-link");
 //const messageError = document.querySelector(".message-error");
-const form = document.querySelector(".form-container")
+const form = document.querySelector(".form-container");
 
 const eventCalendar = document.querySelector(".evento-calendario");
 
@@ -73,14 +73,19 @@ function addTaskToList(task, tasksListUl) {
     messageTimeOut(messageError,"Error",3000);
   }
   */
- // aqui mando a llamar a la funcioon que cree la tarea en html.
+  // aqui mando a llamar a la funcioon que cree la tarea en html.
   const taskElement = createTaskElement(task);
   tasksListUl.appendChild(taskElement);
   saveTaskToLocalStorage("tasks", app.tasks);
+  actualizarGraficoSiVisible(app);
 }
 
 // creacion de los elementos en HTML de la tarea
-
+function taskTitleDuplicate(newTitle) {
+  return app.tasks
+    .map((task) => task.title.toLowerCase())
+    .includes(newTitle.toLowerCase());
+}
 // funcion que genera el codigo <li> para insertarlo en el UL
 function createTaskElement(task) {
   const taskElementLi = document.createElement("li");
@@ -95,11 +100,15 @@ function createTaskElement(task) {
   taskTitleElement.classList.toggle("completed", task.isCompleted);
 
   taskTitleElement.addEventListener("dblclick", () => {
-    const newTittle = prompt("Edita la tarea: ", task.title);
-    if (newTittle !== null) {
-      task.title = newTittle;
-      taskTitleElement.textContent = newTittle;
-      saveTaskToLocalStorage("tasks", app.tasks);
+    const newTitle = prompt("Edita la tarea: ", task.title);
+    if (newTitle !== null) {
+      if (!taskTitleDuplicate(newTitle)) {
+        task.title = newTitle;
+        taskTitleElement.textContent = newTitle;
+        saveTaskToLocalStorage("tasks", app.tasks);
+      } else {
+        messageErrorTimeOut("La tarea ya existe ", form, 3000);
+      }
     }
   });
 
@@ -112,6 +121,7 @@ function createTaskElement(task) {
   const taskDeleteBtn = document.createElement("button");
   taskDeleteBtn.textContent = "Eliminar Tarea";
   taskDeleteBtn.className = "delete-buton";
+
   // aqui programar el eliminar y el check del checkBox
   taskDeleteBtn.addEventListener("click", () => {
     const taskIndex = app.tasks.indexOf(task);
@@ -125,6 +135,7 @@ function createTaskElement(task) {
     task.isCompleted ? (task.isCompleted = false) : (task.isCompleted = true);
     taskTitleElement.classList.toggle("completed", task.isCompleted);
     saveTaskToLocalStorage("tasks", app.tasks);
+    actualizarGraficoSiVisible(app);
   });
   // Append child elements to taskElement
   taskElementLi.appendChild(taskCheckBox);
@@ -137,20 +148,16 @@ function createTaskElement(task) {
 
 function addTask() {
   const newTaskTitle = app.newTaskInput.value;
-  let encontrado = app.tasks.map((task) => task.title.toLowerCase()).includes(newTaskTitle.toLowerCase());
-  if (!encontrado) {
+  if (!taskTitleDuplicate(newTaskTitle)) {
     const newTask = createNewTask(newTaskTitle);
     app.tasks.push(newTask);
     addTaskToList(newTask, app.taskslistUl);
     app.newTaskInput.value = "";
+    //crearGrafico(".grafico-container", app);
   } else {
     messageErrorTimeOut("La tarea ya existe ", form, 3000);
-   
-
-    console.log("ya existe");
   }
 }
-
 
 function saveTaskToLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
@@ -167,7 +174,6 @@ function loadTasksFromLocalSTorgae(key) {
   }
 }
 
-
 function searchTask(search) {
   const filterTasks = app.tasks.filter((task) =>
     task.title.toLowerCase().includes(search)
@@ -179,7 +185,6 @@ function searchTask(search) {
   });
   searchInput.value = "";
 }
-
 
 // Grafico
 
@@ -195,8 +200,17 @@ newTaskInput.addEventListener("keydown", function (e) {
 
 showChartBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  const containerChart = document.querySelector(".grafico-container");
+  containerChart.style.display =
+    containerChart.style.display === "block" ? "none" : "block";
+  showChartBtn.textContent =
+    containerChart.style.display === "block"
+      ? "Ocultar Gráfico"
+      : "Mostrar Gráfico";
 
-  crearGrafico(".grafico-container", app);
+  if (containerChart.style.display === "block") {
+    crearGrafico(".grafico-container", app);
+  }
 });
 
 searchInput.addEventListener("keydown", (e) => {
@@ -206,7 +220,7 @@ searchInput.addEventListener("keydown", (e) => {
   }
 });
 
-eventCalendar.addEventListener("click", createCalendar);
+eventCalendar.addEventListener("click", () => createCalendar(app.tasks));
 
 function init() {
   // Load del LocalSTorage

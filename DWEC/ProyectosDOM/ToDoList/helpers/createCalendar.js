@@ -1,5 +1,5 @@
 import * as ics from "ics";
-export function createCalendar() {
+export function createCalendar(tasks) {
   // Obtiene la fecha actual
   const now = new Date();
   const start = [
@@ -36,7 +36,7 @@ export function createCalendar() {
     categories: ["Tareas"],
   };
 
-  // Crea el evento y maneja el error si existe
+  // Crea el evento y maneja el error si existee
   ics.createEvent(event, (error, value) => {
     // Crea un Blob con el contenido del evento
     const blob = new Blob([value], { type: "text/calendar" });

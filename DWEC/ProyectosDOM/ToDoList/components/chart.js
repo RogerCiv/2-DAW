@@ -48,9 +48,9 @@ export default function crearGrafico(nameContainer, { tasks }) {
     },
     series: [
       {
-        name: "Access From",
+        name: "Tareas",
         type: "pie",
-        radius: ["40%", "70%"],
+        radius: ["30%", "70%"],
         avoidLabelOverlap: false,
         label: {
           show: false,
@@ -59,7 +59,7 @@ export default function crearGrafico(nameContainer, { tasks }) {
         emphasis: {
           label: {
             show: true,
-            fontSize: 40,
+            fontSize: 30,
             fontWeight: "bold",
           },
         },
@@ -68,7 +68,7 @@ export default function crearGrafico(nameContainer, { tasks }) {
         },
         data: [
           { value: completadas, name: "Completadas" },
-          { value: noCompletadas, name: "No Completadas" },
+          { value: noCompletadas, name: "No Completadaasds" },
         ],
       },
     ],
