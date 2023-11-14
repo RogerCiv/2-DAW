@@ -1,0 +1,358 @@
+/* ======== Import de 2 fuentes, Roboto y Poppins ===========*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&family=Roboto:wght@500;700;900&display=swap");
+
+/* ---- Estilos globales: Eliminar todos los bordes, relleno por defecto en 0, Elimina todos los margin,
+border-box, el ancho y la altura del elemento incluyen el contenido, el relleno y el borde, lo que facilita el control del tamaño total de un elemento. -----*/
+* {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/*-----Transcición suave al desplazar  ----- */
+html {
+  scroll-behavior: smooth;
+}
+/* ---- Familia por defecto "poppins" y una altura del body del total del viewport ----- */
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+/*----Fuente "roboto" para todos los "h" de la web -----*/
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Roboto", sans-serif;
+}
+/*---- Quitar la decoracion a los li ----*/
+li {
+  list-style: none;
+}
+/**/
+a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 600;
+}
+a:hover {
+  color: #dcd473;
+}
+
+/* HEADER */
+/*----fijar su posición en la parte superior, aplicar un color de fondo con opacidad y agregar un filtro de desenfoque.----*/
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(218, 213, 213, 0.7);
+  /* Aplica un filtro de desenfoque al encabezado para crear un efecto de profundidad */
+  backdrop-filter: blur(2px);
+}
+/*---- div con el logo y el nombre del sitio ---*/
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* --- tamaño maximo de la imagen y su border radius  */
+.logo img {
+  max-width: 10%;
+  border-radius: 50%;
+}
+/* Establece la altura, el ancho máximo y otros estilos para la barra de navegación.*/
+.navbar {
+  width: 100%;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+/* tamaño de la fuente y peso*/
+.navbar .logo a {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+/*--- Display de los links del navbar----*/
+.navbar .links {
+  display: flex;
+  gap: 2rem;
+}
+/* --- Diseño del buscador del navbar --- */
+.navbar .links input {
+  padding: 0.25rem;
+  border-radius: 100vmax;
+  text-align: center;
+  border: 0;
+}
+
+/* Aquí, estás proporcionando estilos para un botón de menú desplegable que se muestra en pantallas más pequeñas.*/
+.navbar .toggle_btn {
+  color: #000;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+/* Diseño del botón de registro del navbar*/
+.action_btn {
+  background-color: #f4db03;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* Efecto cuando se pasa el ratón por el botón de registro */
+.action_btn:hover {
+  scale: 1.05;
+  color: #fff;
+}
+/*Cuando el usuario mantiene presionado el botón  se le cambia la escala.*/
+.action_btn:active {
+  scale: 0.95;
+}
+/* DROPDOWN MENU */
+/*Menú Hamburguesa para cuando se cambia el tamaño de la pantalla*/
+.dropdown_menu {
+  display: none;
+  position: absolute;
+  right: 2rem;
+  top: 60px;
+  height: 0;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  overflow: hidden;
+  /* Aplica una transición al menú desplegable para que se abra y se cierre suavemente */
+  transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+/* elementos li del menú hamburguesa*/
+.dropdown_menu li {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*Cuando se pincha en el menú hamburguesa se le pone un alto para que aparezca el desplegable*/
+.dropdown_menu.open {
+  height: 240px;
+}
+/*El botón de registro*/
+.dropdown_menu .action_btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* HERO*/
+/* Diseño para el primer section.*/
+#hero {
+  background-color: #000;
+  background-image: url(img/taconHero.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+/*Cambio tamaño fuente del h1 del HERO */
+#hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+#hero p {
+  color: #000;
+}
+/*Tamaño máximo de las imagenes de la seccion productos*/
+/*Si le ponemos tamaño maximo a la imagen más a lo que hay en la clase product_img no haria falta hacer media query para hacer flexbox responsivo*/
+.products img {
+  max-width: 350px;
+  border-radius: 1rem;
+}
+/*Section de productos. Padding block es para*/
+.products {
+  /*Mete un padding de 2rem arriba y abajo del section*/
+  padding-block: 2rem;
+  /*mete un padding de 3rem a la izquierda y derecha*/
+  padding-inline: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  background-color: #f1d8ae;
+}
+/*Estilos para el div de titulo  de la section product*/
+.product_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/*Div con las imagenes de los productos de la section product*/
+/*Aqui hacemos un flex mas un flex-wrap con valor wrap para que se vayan desplazando las imagenes a la siguiente fila conforme vamos reduciendo el tamaño de la pagina*/
+.product_img {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+ 
+}
+
+/*Section para el formulario de newsletter*/
+.form-contact {
+  background-color: #ced5a0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 5rem;
+}
+/*estilo para el formulario */
+.form-contact form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+/*Diseño para los input del formulario*/
+.form-contact form input {
+  padding: 0.5rem;
+  border: 0;
+  outline: 0;
+  border-radius: 100vmax;
+  background-color: #97a676;
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+}
+/*Estilo para el parrafo que hay dentro de la section form-contact*/
+.form-contact p {
+  font-size: 13px;
+}
+/*Diseño para el input de tipo submit*/
+.form-contact form input[type="submit"] {
+  cursor: pointer;
+  background-color: #ebd48a;
+}
+/*Efecto para cuando se pasa el ratón por encima del input de tipo submit*/
+.form-contact form input[type="submit"]:hover {
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.8);
+  color: #f2f0ea;
+  transform: scale(1.1);
+}
+
+/* ==== Footer ==== */
+footer {
+  background-color: #475640;
+  color: white;
+  display: grid;
+  /*Columnas de 150px hasta una sola columna*/
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  padding-inline: 2rem;
+  padding-block: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/*Tamaño para el h3 del footer*/
+footer h3 {
+  font-size: 14px;
+}
+/*Tamaño para los ankor del footer*/
+footer a {
+  font-size: 12px;
+}
+/*tamaño para el logo del footer*/
+.footer__logo img {
+  width: 20%;
+}
+/*Estilos para la el div information del footer*/
+.footer__information {
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+}
+/*efecto de paso del ratón para ambos div*/
+.footer__information:hover,
+.footer__description:hover {
+  color: #dcd473;
+}
+/*estilo para el div de redes sociales*/
+.footer__social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+/*tamaño para los iconos de las redes sociales*/
+.footer__social i {
+  font-size: 20px;
+}
+/*Div de la descripción del footer*/
+.footer__description {
+  font-size: 13px;
+  color: #000;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+/*AJuste del navbar para tamaño maximo de 1150px*/
+@media (max-width: 1150px) {
+  .navbar .links,
+  .navbar .action_btn {
+    display: none;
+  }
+
+  .navbar .toggle_btn {
+    display: block;
+  }
+  .dropdown_menu {
+    display: block;
+  }
+}
+/*Ajuste del menú hamburgesa como maximo de 576px*/
+@media (max-width: 576px) {
+  .dropdown_menu {
+    left: 2rem;
+    width: unset;
+  }
+}
+/*Para estilar la barra del navegador*/
+
+::-webkit-scrollbar {
+  background-color: rgb(163, 159, 159);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(110, 110, 110);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #575555;
+}
