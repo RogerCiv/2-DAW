@@ -1,136 +1,54 @@
-
+/*diseño del main*/
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-
   background-color: #ebd48a;
+  /*al main se le aplica el 100 del viewheigt y se le resta el tamaño del footer*/
   height: calc(100vh - 156px);
+
 }
+/*Estilo flexpara la section registro*/
 .registro{
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 4rem;
   width: 100%;
+  
 }
+/* estilo para el formulario de la section registro*/
 .registro form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-block: 2rem;
-  width: 100%;
+  max-width: 100%;
 }
-
+/*Estilo para los input del formulario*/
 .registro form input {
-  padding: .75rem;
+  padding: .5rem;
+  /*Aplica un borde redondeado con un radio del 100% del valor máximo entre la altura y el ancho de la caja. Esto crea un borde circular.*/
   border-radius: 100vmax;
   outline: 0;
   text-align: center;
-  width: 50%;
-  margin: .5rem;
+  max-width: 100%;
+  margin: .25rem;
 }
-
+/*Estilo para el input de tipo submit*/
 .registro form input[type="submit"]{
   background-color: #f4db03;
   font-weight: 600;
-  width: 20%;
+  max-width: 50%;
 }
-
+/*Estilo para cuando se pasa el ratón por el submit*/
 .registro form input[type="submit"]:hover{
+  /*Al pasar el raton por el submit este se agranda un 1.1 */
   transform: scale(1.1);
-  
+  /*se le pone una opacidad al boton*/
   opacity: .8;
   border: 2px solid #000;
-}
-
-/* ==== Footer ==== */
-/*
-footer {
-  background-color: #475640;
-  color: white;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  padding-inline: 2rem;
-  padding-block: 2rem;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-*/
-footer {
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  min-height: 150px;
-  background-color: #475640;
-  color: white;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  padding-inline: 2rem;
-  padding-block: 2rem;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-
-footer h3 {
-  font-size: 14px; /* Ajusta esta altura según tu diseño */
-}
-
-footer a {
-  font-size: 12px;
-}
-.footer__logo img {
-  width: 20%;
-}
-.footer__information {
-  color: #000;
-  font-size: 12px;
-  font-weight: 600;
-}
-.footer__information:hover,
-.footer__description:hover {
-  color: #dcd473;
-}
-
-.footer__social {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.footer__social i {
-  font-size: 20px;
-}
-
-.footer__description {
-  font-size: 13px;
-  color: #000;
-  font-weight: 600;
-}
-
-::-webkit-scrollbar {
-  background-color: rgb(163, 159, 159);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgb(110, 110, 110);
-  border-radius: 20px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #575555;
 }

@@ -1,5 +1,5 @@
 /* ======== Import de 2 fuentes, Roboto y Poppins ===========*/
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&family=Roboto:wght@500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&family=Roboto:wght@500;700;900&display=swap");
 
 /* ---- Estilos globales: Eliminar todos los bordes, relleno por defecto en 0, Elimina todos los margin,
 border-box, el ancho y la altura del elemento incluyen el contenido, el relleno y el borde, lo que facilita el control del tamaño total de un elemento. -----*/
@@ -19,9 +19,12 @@ body {
   height: 100vh;
 }
 /*----Fuente "roboto" para todos los "h" de la web -----*/
-h1,h2,h3,h4,h5{
-
-font-family: 'Roboto', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Roboto", sans-serif;
 }
 /*---- Quitar la decoracion a los li ----*/
 li {
@@ -45,18 +48,18 @@ header {
   width: 100%;
   top: 0;
   left: 0;
-  background-color:  rgba(218, 213, 213,0.7) ;
+  background-color: rgba(218, 213, 213, 0.7);
   /* Aplica un filtro de desenfoque al encabezado para crear un efecto de profundidad */
   backdrop-filter: blur(2px);
 }
 /*---- div con el logo y el nombre del sitio ---*/
-.logo{
+.logo {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 /* --- tamaño maximo de la imagen y su border radius  */
-.logo img{
+.logo img {
   max-width: 10%;
   border-radius: 50%;
 }
@@ -72,7 +75,7 @@ header {
   justify-content: space-between;
 }
 /* tamaño de la fuente y peso*/
-.navbar .logo a{
+.navbar .logo a {
   font-size: 1.5rem;
   font-weight: 600;
 }
@@ -82,12 +85,11 @@ header {
   gap: 2rem;
 }
 /* --- Diseño del buscador del navbar --- */
-.navbar .links input{
-  padding: .25rem;
+.navbar .links input {
+  padding: 0.25rem;
   border-radius: 100vmax;
   text-align: center;
   border: 0;
-
 }
 
 /* Aquí, estás proporcionando estilos para un botón de menú desplegable que se muestra en pantallas más pequeñas.*/
@@ -134,17 +136,18 @@ header {
   /* Aplica una transición al menú desplegable para que se abra y se cierre suavemente */
   transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
+/* elementos li del menú hamburguesa*/
 .dropdown_menu li {
   padding: 0.7rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+/*Cuando se pincha en el menú hamburguesa se le pone un alto para que aparezca el desplegable*/
 .dropdown_menu.open {
   height: 240px;
 }
-
+/*El botón de registro*/
 .dropdown_menu .action_btn {
   width: 100%;
   display: flex;
@@ -152,13 +155,14 @@ header {
 }
 
 /* HERO*/
-section#hero {
+/* Diseño para el primer section.*/
+#hero {
   background-color: #000;
   background-image: url(img/taconHero.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: calc(100vh - 60px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -166,7 +170,7 @@ section#hero {
   text-align: center;
   color: #fff;
 }
-
+/*Cambio tamaño fuente del h1 del HERO */
 #hero h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -175,14 +179,16 @@ section#hero {
 #hero p {
   color: #000;
 }
-
+/*Tamaño máximo de las imagenes de la seccion productos*/
 .products img {
   max-width: 80%;
   border-radius: 1rem;
 }
-
+/*Section de productos. Padding block es para*/
 .products {
+  /*Mete un padding de 2rem arriba y abajo del section*/
   padding-block: 2rem;
+  /*mete un padding de 3rem a la izquierda y derecha*/
   padding-inline: 3rem;
   display: flex;
   flex-direction: column;
@@ -191,24 +197,26 @@ section#hero {
   text-align: center;
   gap: 2rem;
   background-color: #f1d8ae;
-
 }
-.product_title{
+/*Estilos para el div de titulo  de la section product*/
+.product_title {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
+/*Div con las imagenes de los productos de la section product*/
 .product_img {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+  /*Crea columnas de 400px, si no caben se desplazan hacia abajo hasta mostrar solo 1 columna. Te ahorras el media query*/
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   justify-content: space-between;
   align-items: center;
   text-align: center;
 }
 
-
-.form-contact{
+/*Section para el formulario de newsletter*/
+.form-contact {
   background-color: #ced5a0;
   display: flex;
   flex-direction: column;
@@ -217,82 +225,50 @@ section#hero {
   text-align: center;
   gap: 1rem;
   padding: 5rem;
-
 }
-
-.form-contact form{
+/*estilo para el formulario */
+.form-contact form {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: .75rem;
+  gap: 0.75rem;
 }
-
-.form-contact form input{
-  padding: .5rem;
+/*Diseño para los input del formulario*/
+.form-contact form input {
+  padding: 0.5rem;
   border: 0;
   outline: 0;
   border-radius: 100vmax;
-  background-color:#97a676 ;
+  background-color: #97a676;
   color: #000;
   font-weight: 600;
   text-align: center;
 }
-
+/*Estilo para el parrafo que hay dentro de la section form-contact*/
 .form-contact p {
   font-size: 13px;
 }
-
-.form-contact form input[type="submit"]{
- cursor: pointer;
- background-color: #ebd48a;
+/*Diseño para el input de tipo submit*/
+.form-contact form input[type="submit"] {
+  cursor: pointer;
+  background-color: #ebd48a;
 }
-.form-contact form input[type="submit"]:hover{
+/*Efecto para cuando se pasa el ratón por encima del input de tipo submit*/
+.form-contact form input[type="submit"]:hover {
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.8);
   color: #f2f0ea;
   transform: scale(1.1);
 }
-.registro{
-  background-color: #ebd48a;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.registro h2{
-  margin-top: 2rem;
-}
-
-.registro form{
-  padding-block: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: .5rem
-}
-.registro input{
-  padding: .5rem;
-  border-radius: 100vmax;
-  text-align: center;
-}
-
-.registro input[type="submit"]{
-  cursor: pointer;
-  background-color: #f4db03;
-  font-weight: 600;
-}
-
 
 /* ==== Footer ==== */
-footer{
+footer {
   background-color: #475640;
   color: white;
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  /*Columnas de 150px hasta una sola columna*/
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   padding-inline: 2rem;
   padding-block: 2rem;
   justify-content: center;
@@ -300,46 +276,49 @@ footer{
   text-align: center;
 }
 
-footer h3{
-  font-size: 14px;/* Ajusta esta altura según tu diseño */
-
+/*Tamaño para el h3 del footer*/
+footer h3 {
+  font-size: 14px;
 }
-
-footer a{
+/*Tamaño para los ankor del footer*/
+footer a {
   font-size: 12px;
 }
-.footer__logo img{
+/*tamaño para el logo del footer*/
+.footer__logo img {
   width: 20%;
 }
-.footer__information{
+/*Estilos para la el div information del footer*/
+.footer__information {
   color: #000;
   font-size: 12px;
   font-weight: 600;
 }
+/*efecto de paso del ratón para ambos div*/
 .footer__information:hover,
-.footer__description:hover{
+.footer__description:hover {
   color: #dcd473;
 }
-
-.footer__social{
- display: flex;
- align-items: center;
- justify-content: center;
- gap: 1rem;
+/*estilo para el div de redes sociales*/
+.footer__social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
-
-.footer__social i{
+/*tamaño para los iconos de las redes sociales*/
+.footer__social i {
   font-size: 20px;
 }
-
-.footer__description{
+/*Div de la descripción del footer*/
+.footer__description {
   font-size: 13px;
   color: #000;
   font-weight: 600;
 }
 
-
 /* RESPONSIVE */
+/*AJuste del navbar para tamaño maximo de 1150px*/
 @media (max-width: 1150px) {
   .navbar .links,
   .navbar .action_btn {
@@ -353,17 +332,14 @@ footer a{
     display: block;
   }
 }
-
+/*Ajuste del menú hamburgesa como maximo de 576px*/
 @media (max-width: 576px) {
   .dropdown_menu {
     left: 2rem;
     width: unset;
   }
 }
-
-@media screen and (max-width: 576px){
-  
-}
+/*Para estilar la barra del navegador*/
 
 ::-webkit-scrollbar {
   background-color: rgb(163, 159, 159);
