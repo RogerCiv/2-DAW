@@ -1,0 +1,37 @@
+# Usa la imagen oficial de Node-RED como base
+FROM nodered/node-red
+
+# Instala las dependencias necesarias
+USER root
+RUN apk add --update nodejs npm
+
+# Cambia de nuevo al usuario no-root de Node-RED
+USER node-red
+
+# Copia el archivo de configuración personalizado de Node-RED
+COPY settings.js /data/settings.js
+
+# Cambia de nuevo al usuario root para instalar Home Assistant
+USER root
+
+# Instala Home Assistant
+RUN apk add --no-cache python3
+RUN pip3 install homeassistant
+
+# Cambia de nuevo al usuario no-root de Node-RED
+USER node-red
+
+# Expone los puertos de Node-RED y Home Assistant
+EXPOSE 1880 8123
+
+# Comando de inicio para ejecutar ambos servicios
+CMD ["npm", "start", "--cache", "/data/.npm", "--", "--userDir", "/data"]
+
+# Para instalar y ejecutar(ejecutar desde el directorio donde este el dockerfile)
+#docker build -t mi_proyecto:etiqueta .
+#docker run -p 1880:1880 -p 8123:8123 mi_proyecto:etiqueta
+
+#Si el dockerfile tiene otro nombre, usar lo siguiiente
+#docker build -t mi_imagen:etiqueta -f MiDockerfile .
+
+
