@@ -1,6 +1,6 @@
 import * as echarts from "echarts";
 
-export default function crearGrafico(nameContainer, { tasks }) {
+export default function crearGrafico(nameContainer, { tasks }) { 
   const container = document.querySelector(nameContainer);
   //dimensiones
 
