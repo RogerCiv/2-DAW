@@ -1,0 +1,29 @@
+<!-- mainView -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOTY</title>
+</head>
+<body>
+    <h2>Mejor juego año</h2>
+    <div class="goty-container">
+        <div class="goty-item">
+        <?php
+        foreach ($games as $game) {
+            echo '
+                <h2>'.$game->getNombre().'</h2>
+                <p>'.$game->getIdCategoria().'</p>
+                <p>Votos: '.$game->getVotes().'</p>
+                <form action="index.php?c=vote" method="post">
+                    <input type="hidden" name="idGame" value="'.$game->getId().'">
+                    <input type="submit" value="Votar" name="Vote">
+                </form>
+         ';  
+        }
+        ?>
+        </div>
+    </div>
+</body>
+</html>

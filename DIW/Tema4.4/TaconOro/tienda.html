@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="tienda.css" />
+    <link rel="stylesheet" href="index.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Tacón De Oro</title>
+  </head>
+  <body>
+    <!--==================== HEADER ====================-->
+    <header>
+      <nav class="navbar">
+        <!-- Logo y enlace de la tienda-->
+        <div class="logo">
+          <img src="img/logotipo.png" alt="">
+        <a href="index.html">Tacón de Oro</a>
+      </div>
+      <!--Links de la navbar para navegar por la tienda.-->
+        <ul class="links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <li><a href="#contact">Contacto</a></li>
+          <li>  <input type="text" placeholder="Buscador..."></li>
+        </ul>
+        <a href="registro.html" class="action_btn">Registro</a>
+        <div class="toggle_btn">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </nav>
+      <!--DropMenu para hacer responsive el navbar, para que aparezca el menú de Hamburgesa-->
+      <div class="dropdown_menu">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="#">Sobre Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#" class="action_btn">Registro</a></li>
+      </div>
+    </header>
+    <!--=======MAIN ========-->
+    <main>
+      <!-- Section para la tienda-->
+        <section class="shop">
+          <!-- Div que contiene el header de la tienda con productos-->
+            <div class="shop__header">
+              <!--Formulario con el buscador de productos-->
+                <form action="">
+                    <input type="text" placeholder="Buscador...">
+                    <input type="submit" value="Buscar">
+                </form> 
+                <!-- lista con las categorias-->
+                <ul class="shop__list">
+                    <li><a href="">All</a></li>
+                    <li><a href="">Exclusivos</a></li>
+                    <li><a href="">Mujer</a></li>
+                    <li><a href="">Hombres</a></li>
+                </ul>
+            </div>
+            <!-- div contenedor de cada producto-->
+                <div class="product__list">
+                  <!-- Div comentado usado como referencia para crear el estilo css. Este div se crea dinamicamente en el scrip shop.js-->
+                  <!-- Div product item ejemplo 
+                    <div class="product__item">
+                      <div class="img__product">
+                        <img src="img/shoe.jpg" alt="">
+                      </div>
+                      <div class="product__info">
+                        <h3>Zapato Negro</h3>
+                        <p>Precio: 250€</p>
+                      </div>
+                      <div class="add__product">
+                        <button>Añadir Carrito</button>
+                      </div>
+                    </div>
+                  -->
+                  </div>
+           
+        </section>
+    </main>
+
+     <!--  ================= FOOTER ===========================-->
+     <footer>
+        <div>
+          <a href="" class="footer__logo">
+            <img src="" alt="logo image" />
+          </a>
+  
+          <p class="footer__description">
+            Tu tienda de calzado favorita <br />100% española
+          </p>
+        </div>
+        <div class="info">
+          <h3>Menu Principal</h3>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Registro</a></li>
+            <li><a href="#">Tienda</a></li>
+          </ul>
+        </div>
+        <div class="info2">
+          <h3>Información</h3>
+          <ul>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="">Contacto</a></li>
+            <li><a href="#">Pedidos</a></li>
+          </ul>
+        </div>
+        <div class="address__info">
+          <h3 class="footer__title">Address</h3>
+  
+          <ul class="footer__links">
+            <li class="footer__information">
+              <br />Av. Hacienda 1234 <br />
+              Granada 4321, Spain
+            </li>
+  
+            <li class="footer__information">9AM - 11 PM</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer__title">Social Media</h3>
+          <br />
+          <ul class="footer__social">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              class="footer__social-link"
+            >
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              class="footer__social-link"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.twitter.com"
+              target="_blank"
+              class="footer__social-link"
+            >
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+          </ul>
+        </div>
+      </footer>
+
+    <script src="main.js"></script>
+    <script src="shop.js"></script>
+  </body>
+</html>

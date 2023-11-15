@@ -1,37 +1,14 @@
-# Usa la imagen oficial de Node-RED como base
 FROM nodered/node-red
 
-# Instala las dependencias necesarias
-USER root
-RUN apk add --update nodejs npm
-
-# Cambia de nuevo al usuario no-root de Node-RED
-USER node-red
-
-# Copia el archivo de configuración personalizado de Node-RED
-COPY settings.js /data/settings.js
-
-# Cambia de nuevo al usuario root para instalar Home Assistant
-USER root
-
-# Instala Home Assistant
-RUN apk add --no-cache python3
-RUN pip3 install homeassistant
-
-# Cambia de nuevo al usuario no-root de Node-RED
-USER node-red
-
-# Expone los puertos de Node-RED y Home Assistant
-EXPOSE 1880 8123
-
-# Comando de inicio para ejecutar ambos servicios
-CMD ["npm", "start", "--cache", "/data/.npm", "--", "--userDir", "/data"]
-
-# Para instalar y ejecutar(ejecutar desde el directorio donde este el dockerfile)
-#docker build -t mi_proyecto:etiqueta .
-#docker run -p 1880:1880 -p 8123:8123 mi_proyecto:etiqueta
-
-#Si el dockerfile tiene otro nombre, usar lo siguiiente
-#docker build -t mi_imagen:etiqueta -f MiDockerfile .
-
-
+RUN npm install node-red-contrib-actionflows \
+        # https://flows.nodered.org/node/node-red-contrib-actionflows
+				node-red-contrib-home-assistant-websocket \
+        # https://flows.nodered.org/node/node-red-contrib-home-assistant-websocket
+				node-red-contrib-stoptimer \
+        # https://flows.nodered.org/node/node-red-contrib-stoptimer
+				node-red-contrib-time-range-switch \
+        # A simple Node-RED node that routes messages depending on the time. If the current time falls within the range specified in the node configuration, the message is routed to output 1. Otherwise the message is routed to output 2.
+				node-red-contrib-timecheck \
+        # Is it that time yet? This node compares a given time to the current time.
+				node-red-node-timeswitch
+        # node to provide a simple timeswitch node to schedule daily on/off events
