@@ -1,0 +1,253 @@
+MAINJS
+import { drawAppWeather } from "./components/drawApp";
+import "./style.css";
+
+document.querySelector("#app").innerHTML = `
+  <div>
+   
+  <div class="card">
+  <div class="search">
+  <input type="text" placeholder="Enter city" spellcheck="true" />
+  <button><img src="../assets/img/search.png" alt="search icon" /></button>
+</div>
+  </div>
+`;
+
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+
+const elementCard = document.querySelector(".card");
+
+const searchWeather = () => {
+  // Obtén el valor del cuadro de búsqueda
+  const cityName = searchBox.value;
+
+  // Verifica si se ingresó un nombre de ciudad antes de llamar a la función drawAppWeather
+  if (cityName.trim() !== "") {
+    elementCard.innerHTML = "";
+    // Llama a la función drawAppWeather con el elemento de la tarjeta y el nombre de la ciudad
+    drawAppWeather(elementCard, cityName);
+    searchBox.textContent = '';
+  }
+  // Si no se ingresó un nombre de ciudad, puedes mostrar un mensaje de error o manejarlo según tus necesidades.
+};
+
+// Asocia la función searchWeather al evento de clic del botón de búsqueda
+searchBtn.addEventListener("click", searchWeather);
+
+// Asocia la función searchWeather al evento de tecla "Enter" en el cuadro de búsqueda
+searchBox.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    searchWeather();
+  }
+});
+//drawAppWeather(elementCard);
+
+drawAppJS
+
+const apiKey = "9e18e3ebb69592a6be807f1b3ac17bd1";
+const apiUrl =
+  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+import { weatherIcons } from "../utils/weatherIcons";
+
+export function drawAppWeather(element,cityName) {
+  fetchApiJSON(`${apiUrl}${cityName}&appid=${apiKey}`)
+    .then((data) => {
+      const imgHeader = document.createElement("img");
+      imgHeader.className = "weather-icon";
+      const weatherMain = data.weather[0].main;
+
+      imgHeader.src = `../assets/img/${weatherIcons[weatherMain]}`;
+      //imgHeader.src = "../assets/img/clouds.png"
+
+      const temp = document.createElement("tempo");
+      temp.className = "temp";
+      temp.innerHTML = `${Math.round(data.main.temp)} °C`;
+      const city = document.createElement("h2");
+      city.className = "city";
+      city.innerHTML = data.name;
+
+      const divDetails = document.createElement("div");
+      divDetails.className = "details";
+
+      const detailsData = [
+        {
+          icon: "max.png",
+          value: Math.round(data.main.temp_max),
+          label: "Máxima",
+        },
+        {
+          icon: "min.png",
+          value: Math.round(data.main.temp_min),
+          label: "Mínima",
+        },
+        {
+          icon: "humidity.png",
+          value: `${data.main.humidity}%`,
+          label: "Humedad",
+        },
+        { icon: "wind.png", value: `${data.wind.speed} Km/h`, label: "Viento" },
+      ];
+
+      detailsData.forEach((item) => {
+        const col = document.createElement("div");
+        col.className = "col";
+
+        const img = document.createElement("img");
+        img.src = `../assets/img/${item.icon}`;
+        img.alt = "";
+
+        const dataDiv = document.createElement("div");
+
+        const valueParagraph = document.createElement("p");
+        valueParagraph.className = `temp${item.label}`;
+        valueParagraph.innerHTML = item.value;
+
+        const labelParagraph = document.createElement("p");
+        labelParagraph.innerHTML = item.label;
+
+        dataDiv.appendChild(valueParagraph);
+        dataDiv.appendChild(labelParagraph);
+
+        col.appendChild(img);
+        col.appendChild(dataDiv);
+
+        divDetails.appendChild(col);
+      });
+      element.appendChild(imgHeader);
+      element.appendChild(temp);
+      element.appendChild(city);
+      element.appendChild(divDetails);
+    })
+    .catch((error) => console.error("Error al obtener datos:", error));
+}
+
+function fetchApiJSON(url) {
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Failed to fetch");
+        }
+        return resp.json();
+      })
+      .then((data) => resolve(data))
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
+STYLESCSS
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body{
+  background-color: #222;
+}
+
+.card {
+  width: 90%;
+  max-width: 550px;
+  background: linear-gradient(135deg,#604a5b,#6783be);
+  color: #fff;
+  margin: 100px auto 0;
+  padding: 50px 40px;
+  text-align: center;
+  border-radius: 40px;
+}
+
+.search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search input {
+  border: 0;
+  outline: 0;
+  background: #ebfffc;
+  padding: 10px 25px;
+  height: 50px;
+  border-radius: 50px;
+  flex: 1;
+  margin-right: 15px;
+  font-size: 18px;
+}
+
+.search button{
+  border: 0;
+  outline: 0;
+  background: #ebfffc;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.search button img{
+  width: 20px;
+}
+
+.weather-icon{
+  width: 200px;
+}
+
+.weather-container h1 {
+  font-size: 90px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.weather-container h2{
+  font-size: 60px;
+  font-weight: 400;
+  margin-top: -10px;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2,180px);
+  justify-content: space-between;
+  padding: 0 30px;
+  margin-top: 32px;
+}
+
+.col {
+  display: flex;
+ align-items: center;
+ text-align: left;
+ margin-top: 10px;
+}
+
+.col img{
+  width: 60px;
+  margin-right: 20px;
+}
+
+.humidity,
+.wind,
+.tempMax,
+.tempMin {
+  font-size: 20px;
+  margin-top: -5px;
+}
+
+.weather-container{
+  display: block;
+}
+
+.error{
+  color: red;
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  display: none;
+}
