@@ -12,6 +12,10 @@ function cargarImagen(url) {
   });
 }
 
+
+
+
+
 const esPar = (num) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {

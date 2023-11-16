@@ -1,107 +1,111 @@
 # Actividades.
 
 
-## Desplegar las aplicaciones vistas en los puntos 8.2 y 8.3 (añadir acceso mediante HTTPS).
+## Realiza el despliegue del CMS Drupal como sitio seguro. Buscar información en la web sobre cómo realizar su despliegue
 
-
-### MOODLE
 
 **Paso 1:**
 
->Nos vamos a la documentación de Moodle y nos descargamos la version 4.3. Añadimos al archivo hosts la ip y dirección.
-
-![hosts](Ejercicio7/HOSTS.png)
-
+>Abre el archivo sudo nano /etc/php/8.1/apache2/php.ini  y cambiamos los siguientes valores:
+```bash
+memory_limit = 512M
+upload_max_filesize = 60M
+max_execution_time = 300
+date.timezone = Europe/Paris
+```
+> Y reiniciamos apache: `sudo systemctl restart apache2`
 
 **Paso 2:**
 
->Creamos el archivo moodle. Reiniciamos apache, habilitamos el sitio y le damos permisos a los directorios.
+>Descargamos la ultima versión de Drupal
+```bash
+wget https://www.drupal.org/download-latest/tar.gz -O drupal.tar.gz
+```
+>Extraemos con tar
+```bash
+tar -xvf drupal.tar.gz
+mv drupal-* /var/www/drupal
+```
+>A continuación, cambia la propiedad y el permiso del directorio de instalación de Drupal`/var/www/drupal` utilizando el siguiente comando. La propiedad debe ser usuario y grupo `www-data` con el permiso de usuario normal`755`.
 
-![tiendaCOnf](Ejercicio6/Moodle2.png)
+```bash
+sudo chown -R www-data:www-data /var/www/drupal/
+sudo chmod -R 755 /var/www/drupal/
+```
+>Ahora vamos al directorio  `/var/www/drupal` y ejecutamos el `composer`.
+```bash
+cd /var/www/drupal
+sudo -u www-data composer install --no-dev
+```
 
 **Paso 3:**
 
-> Una vez todo habilitado, entramos en la direccion de tienda-virtual.conf y nos aparecerá la instalación de moodle.
-
-![moodle0](Ejercicio6/Moodle4.png)
-
-![moodle0.2](Ejercicio6/Moodle5.png)
-
-![moodle1](Ejercicio6/20231109_09h59m07s_grim.png)
-
-![moodle2](Ejercicio6/20231109_10h03m01s_grim.png)
-
-![moodle3](Ejercicio6/20231109_10h04m03s_grim.png)
-
-![moodle4](Ejercicio6/20231109_10h04m25s_grim.png)
-
+> Ahora habilitamos algunos módulos necesarios
+```bash
+sudo a2enmod rewrite ssl headers deflate
+```
 
 **Paso 4:**
 
->Una vez instalado, faltaria crear el usuario y moodle.
+>Ahora creamos en `/etc/apache2/sites-available/` el archivo drupal.conf.
 
-![moodle5](Ejercicio6/20231111_18h00m44s_grim.png)
+![drupal](Ejercicio8/conf.png)
 
-![moodle6](Ejercicio6/20231111_18h08m39s_grim.png)
+>Añadimos la linea de `Redirect permanent "/" "https://drupal.local/"` para que nos mande siempre al sitio seguro.
 
+>Ahora cremamos el archivo drupal-ssl.conf
 
-### OPENCART
-
-**Paso 1:**
-
->Clonamos el repositorio de Opencart. Añadimos al archivo HOSTS la ip y nombre de la página. Creamos el archivo .conf
-
-![conf](Ejercicio6/Paso2.png)
+![drupal](Ejercicio8/confSSL.png)
 
 
-**Paso 2:**
+>Habilitamos los sitios y comprobamos la sintaxis
+```bash
+sudo a2ensite drupal.conf
+sudo a2ensite drupal-ssl.conf
+sudo apachectl configtest
+```
+>Por ultimo reiniciamos apache
+```bash
+sudo systemctl restart apache2
+```
 
-> Le damos los permisos al directorio, habilitamos el sitio, reiniciamos apache. Entramos en la dirección de tienda y nos aparecerá la instalación de OpenCart.
+**Paso 5:**
 
-![paso2](Ejercicio6/Paso5.png)
+>Antes de entrar al sitio para configurar, creamos la base de datos. Accedemos a mariadb
 
+```bash
+sudo mysql -u root -p
+```
 
-**Paso 3:**
+>Una vez dentro creamos la database y el usuario.
 
->Instalamos siguiendo los pasos.
+```sql
+CREATE DATABASE drupaldb;
+CREATE USER drupal@localhost IDENTIFIED BY 'password';
+GRANT ALL ON drupaldb.* TO drupal@localhost WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
 
-![paso3](Ejercicio6/Paso5b.png)
+**Paso 6:**
 
-![paso3](Ejercicio6/Paso5c.png)
+> Ahora accedemos a `drupal.local` y directamente nos metera en la https. Nos saldrá la instalación.
 
-![paso3](Ejercicio6/Paso5d.png)
+![paso1](Ejercicio8/20231116_09h58m47s_grim.png)
 
-![paso3](Ejercicio6/Paso5e.png)
-
-
-### Version con SSL de ambos sitios
-
-**Paso 1:**
-
-> En cada sitio, debemos cambiar la configuración de config.php y añadir a la dirección, la "s" a http.
-
-![opencart](Ejercicio7/OpenCART.png)
-
-![opencart2](Ejercicio7/OPENCART2.png)
-
-
-
-
-
-
-## Desplegar Symfony tanto en Windows como en Ubuntu.
-
-**Paso 1:**
-
-> Modificamos el archivo php.ini con los parametros del pdf. Reiniciamos el apache2. Descargamos la última versión de Composer. Nos vamos a /var/www/html y descargamos symfony: `sudo composer create-project symfony/website-skeleton web`. Le damos permisos a los directorios. Creamos el archivo web-s5.local
+![paso1](Ejercicio8/20231116_08h59m56s_grim.png)
 
 
-![conf](Ejercicio7/SymfonyCOnf.png)
+![paso2](Ejercicio8/20231116_09h00m12s_grim.png)
+
+![paso1](Ejercicio8/20231116_09h06m38s_grim.png)
+
+![paso1](Ejercicio8/20231116_09h07m14s_grim.png)
 
 
-**Paso 2:**
+> Una vez instalado, nos mostrará la siguiente página:
 
-> Ya lo tendriamos instalado, entramos a la dirección y lo comprobamos.
+![paso1](Ejercicio8/20231116_09h59m12s_grim.png)
 
-![web](Ejercicio7/20231113_10h41m06s_grim.png)
+
+
 
