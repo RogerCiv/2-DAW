@@ -13,4 +13,16 @@ class CategoriaRepository {
 
         return $categorias;
     }
+
+    public static function getCategoriaById($idCategoria){
+        $bd = Conectar::conexion();
+        $sql = "SELECT name FROM categorias WHERE id = $idCategoria";
+
+        $result = $bd->query($sql);
+
+        if ($result->num_rows > 0) {
+            $datos = $result->fetch_assoc();
+            return new Categoria($datos);
+        }
+    }
 }

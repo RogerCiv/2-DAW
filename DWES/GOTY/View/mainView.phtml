@@ -1,18 +1,62 @@
 <!-- mainView -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost/DWES/GOTY/View/main.css">
     <title>GOTY</title>
 </head>
+<style>
+
+</style>
+
 <body>
-    <h2>Mejor juego año</h2>
+    <div class="title-category-goty">
+
+        <h2>Mejor juego año</h2>
+    </div>
     <div class="goty-container">
-        <div class="goty-item">
+        <?php
+        foreach ($games as $game) { ?>
+            <div class="goty-item">
+                <h2><?php echo $game->getNombre(); ?></h2>
+                <img src="public/img/<?php echo $game->getImg(); ?>" alt="">
+                <p><?php echo $game->getCategoria()->getName(); ?></p>
+                <p>Votos: <?php echo $game->getVotes(); ?></p>
+                <form action="index.php?c=vote" method="post">
+                    <input type="hidden" name="idGame" value="<?php echo $game->getId() ?>">
+                    <input type="submit" value="Votar" name="Vote">
+                </form>
+            </div>
+        <?php } ?>
+    </div>
+    <div class="title-category-goty">
+
+        <h2>Mejor Shooter del  año</h2>
+    </div>
+    <div class="shooter-container">
         <?php
         foreach ($games as $game) {
-            echo '
+            if ($game->getCategoria()->getName() == "shooter") { ?>
+                <div class="shooter-item">
+                    <h2><?php echo $game->getNombre(); ?></h2>
+                    <img src="public/img/<?php echo $game->getImg(); ?>" alt="">
+                    <p><?php echo $game->getCategoria()->getName(); ?></p>
+                    <p>Votos: <?php echo $game->getVotes(); ?></p>
+                    <form action="index.php?c=vote" method="post">
+                        <input type="hidden" name="idGame" value="<?php echo $game->getId() ?>">
+                        <input type="submit" value="Votar" name="Vote">
+                    </form>
+                </div>
+        <?php }
+        } ?>
+    </div>
+
+
+
+    <!-- echo '
                 <h2>'.$game->getNombre().'</h2>
                 <p>'.$game->getIdCategoria().'</p>
                 <p>Votos: '.$game->getVotes().'</p>
@@ -20,10 +64,7 @@
                     <input type="hidden" name="idGame" value="'.$game->getId().'">
                     <input type="submit" value="Votar" name="Vote">
                 </form>
-         ';  
-        }
-        ?>
-        </div>
-    </div>
+         ';  -->
 </body>
+
 </html>

@@ -5,7 +5,7 @@ class Categoria{
     private $name;
 
     public function __construct($datos){
-        $this->id = $datos["id"];
+        $this->id = isset($datos["id"]) ? $datos["id"] : null;
         $this->name = $datos["name"];
     }
 

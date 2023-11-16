@@ -1,6 +1,9 @@
 <?php
 require_once("Model/Game.php");
 require_once("Model/GameRepository.php");
+
+require_once("Model/Categoria.php");
+require_once("Model/CategoriaRepository.php");
 //session_start();
 
 if (!empty($_REQUEST['c'])) {

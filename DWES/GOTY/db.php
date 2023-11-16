@@ -2,8 +2,8 @@
 class Conectar {
     public static function conexion(){
         try {
-            //$conexion = new mysqli("localhost","root","","tienda-basica");
-            $conexion = new mysqli("db","root","test","goty");
+            $conexion = new mysqli("localhost","root","","goty");
+            //$conexion = new mysqli("db","root","test","goty");
             $conexion->query("SET NAMES 'utf8'");
             return $conexion;
         } catch (Exception $e) {
