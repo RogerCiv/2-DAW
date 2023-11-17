@@ -16,7 +16,8 @@ html {
 /* ---- Familia por defecto "poppins" y una altura del body del total del viewport ----- */
 body {
   font-family: "Poppins", sans-serif;
-  background-color: red;
+  background-color: rgb(6, 20, 150);
+
  
 }
 /*----Fuente "roboto" para todos los "h" de la web -----*/
@@ -69,7 +70,7 @@ header {
   width: 100%;
   height: 60px;
   max-width: 1200px;
-  margin: 0 auto;
+ 
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -95,7 +96,7 @@ header {
 
 /* Aquí, estás proporcionando estilos para un botón de menú desplegable que se muestra en pantallas más pequeñas.*/
 .toggle_btn i{
-  margin: 1rem;
+  margin-right: .25rem;
 }
 .navbar .toggle_btn {
   color: #000;
@@ -133,7 +134,7 @@ header {
   top: 60px;
   height: 0;
   width: 30%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(15px);
   border-radius: 10px;
   overflow: hidden;
@@ -158,9 +159,11 @@ header {
   justify-content: center;
 }
 main{
-  width: 100%;
- 
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
 }
 /* HERO*/
 /* Diseño para el primer section.*/
@@ -177,7 +180,8 @@ main{
   justify-content: center;
   text-align: center;
   color: #fff;
- max-width: 100%;
+  width: 100%;
+  padding-inline: 2rem;
 }
 /*Cambio tamaño fuente del h1 del HERO */
 #hero h1 {
@@ -190,7 +194,7 @@ main{
 }
 /*Tamaño máximo de las imagenes de la seccion productos*/
 .products img {
-  max-width: 80%;
+  max-width: 90%;
   border-radius: 1rem;
 }
 /*Section de productos. Padding block es para*/
@@ -211,9 +215,14 @@ main{
 /*Estilos para el div de titulo  de la section product*/
 .product_title {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-bottom: 2rem;
+}
+.product_title p{
+  margin-top: 2rem;
 }
 /*Div con las imagenes de los productos de la section product*/
 .product_img {
@@ -223,6 +232,7 @@ main{
   justify-content: space-between;
   align-items: center;
   text-align: center;
+
 }
 
 /*Section para el formulario de newsletter*/
@@ -235,6 +245,7 @@ main{
   text-align: center;
   gap: 1rem;
   padding: 5rem;
+  
 }
 /*estilo para el formulario */
 .form-contact form {
@@ -284,6 +295,7 @@ footer {
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: 100%;
 }
 
 /*Tamaño para el h3 del footer*/
@@ -342,18 +354,23 @@ footer a {
     display: block;
   }
 }
+
 /*Ajuste del menú hamburgesa como maximo de 576px*/
 @media (max-width: 480px) {
   .dropdown_menu {
     left: 2rem;
     width: unset;
   }
+.products img{
+  max-width: 70%;
+}
+
   
 }
 
 
-@media (max-width: 400px){
-
+@media screen and (max-width: 399px){
+ 
 }
 /*Para estilar la barra del navegador*/
 

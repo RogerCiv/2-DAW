@@ -102,3 +102,21 @@ main {
   transform: scale(1.1);
   color: #fff;
 }
+
+@media screen and (max-width: 827px){
+  .shop__header{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width:478px){
+  .shop__list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(50px,1fr));
+    gap: 1rem;
+  }
+  .shop__header input[type="submit"]{
+    margin-top: 1rem;
+  }
+}

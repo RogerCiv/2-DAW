@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajador</title>
+</head>
+<body>
+    <h2>Bienvenido Trabajador</h2>
+
+    <h4>Tickets nuevos</h4>
+    <?php 
+         foreach($tickets as $ticket){ ?>
+            <div>
+                <h4>Titulo: <?php echo $ticket['title'];?></h4>
+                <p><?php echo $ticket['text'];?></p>
+                <form action="index.php?c=response" method="post">
+                    <input type="text" name="respuesta" value="Responder">
+                    <input type="hidden" name="idTrabajadorResponde" value="<?php echo $_SESSION['user']->getId(); ?>">
+                    <input type="hidden" name="idTicket" value="<?php echo $ticket['id'];?>">
+                    <input type="submit" name="respondido" value="Enviar">
+                </form>
+            </div>
+        <?php } ?>
+
+        <h3>Tickets Respondios</h3>
+        <?php
+        foreach($ticketsWhitT as $ticket){?>
+         <div>
+                <h4>Titulo: <?php echo $ticket['title'];?></h4>
+                <p><?php echo $ticket['text'];?></p>
+                <form action="index.php?c=response" method="post">
+                    <input type="text" name="NuevaRespuesta" value="Responder">
+                    <input type="hidden" name="idTrabajadorResponde" value="<?php echo $_SESSION['user']->getId(); ?>">
+                    <input type="hidden" name="idTicket" value="<?php echo $ticket['id'];?>">
+                    <input type="submit" name="respondido" value="Enviar">
+                    <input type="submit" name="cerrar" value="Cerrar">
+                </form>
+            </div>
+<?php
+        }
+?>
+    
+
+</body>
+</html>
