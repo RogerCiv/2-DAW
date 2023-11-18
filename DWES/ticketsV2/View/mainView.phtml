@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets</title>
+</head>
+<body>
+    <form action="index.php?c=user" method="POST">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" id="" placeholder="Password">
+        <input type="submit" name="login" value="Enviar">
+        <input type="submit" value="Cerrar sesion" name="logout">
+    </form>
+    <?php
+    if(!empty($_SESSION['user'])) { 
+        echo "hola";
+        if($_SESSION['user']->getRol() == "cliente"){ ?>
+         <a href="index.php?c=ticket&clientView=1&userId=<?php echo $_SESSION['user']->getId();?>">Ir a tu apartado tickets</a>  
+         <?php
+        }
+        if($_SESSION['user']->getRol() == "trabajador"){ echo $_SESSION['user']->getId()?>
+
+           <a href="index.php?c=response&trabajadorView=1&idTrabajador=<?php echo $_SESSION['user']->getId(); ?>">Responder Tickets</a>
+
+     <?php }
+    if($_SESSION['user']->getRol() == "admin"){ ?>
+    <h2>ADMIN</h2>
+    <a href="index.php?c=admin&adminPanelView=1">Ir a panel de admin</a>
+    <?php
+}
+    }
+    ?>
+</body>
+</html>

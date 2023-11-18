@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente</title>
+</head>
+
+<body>
+    <h2>Cliente Vista</h2>
+
+    <h2>Cliente</h2>
+    <a href="index.php">Volver a inicio.</a>
+    <h4>Enviar ticket</h4>
+    <form action="index.php?c=ticket" method="post">
+        <input type="text" name="title" placeholder="Titulo">
+        <input type="text" name="text" placeholder="Texto ticket...">
+        <input type="hidden" name="idUser" value="<?php echo $_SESSION['user']->getId() ?>">
+        <input type="submit" name="sendTicket" value="Enviar">
+    </form>
+
+    <h4>Tus tickets enviados</h4>
+
+    <?php
+
+    //var_dump($tickets);
+    foreach ($tickets as $ticket) { ?>
+        <div>
+            <h4>Titulo: <?php echo $ticket['title']; ?></h4>
+            <p><?php echo $ticket['text']; ?></p>
+        </div>
+    <?php }        ?>
+
+    <h3>Tus tickets con respuesta</h3>
+    <?php
+    //var_dump($ticketsWhitResponse);
+    foreach ($ticketsWhitResponse as $ticket) { ?>
+        <h4>Titulo: <?php echo $ticket['title']; ?></h4>
+        <p>Respuesta : <?php echo $ticket['response_text']; ?></p>
+        <form action="index.php?c=ticket" method="post">
+            <input type="text" name="text" placeholder="Texto ticket...">
+            <input type="hidden" name="idTicket" value="<?php echo $ticket['id']; ?>">
+            <input type="submit" name="updateTicket" value="Enviar">
+        </form>
+        <?php }  ?>
+           
+
+    <h3>Tickets Cerrads. Valora si quieres</h3>
+    <?php
+    //var_dump($ticketsClosed);
+        foreach($ticketsClosed as $ticket){ echo $ticket['id'];?>
+        <h4>Titulo: <?php echo $ticket['title']; ?></h4>
+        <p>Mi Respuesta: <?php echo $ticket['text'] ?></p>
+        <p>Respuesta : <?php echo $ticket['response_text']; ?></p>
+        <form action="index.php?c=rating" method="post">
+          <select name="valoracion" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <input type="hidden" name="idTicket" value="<?php echo $ticket['id'];?>">
+            <input type="submit" name="sendRating" value="Enviar">
+        </form>
+        
+<?php
+        }
+    ?>
+</body>
+
+</html>
