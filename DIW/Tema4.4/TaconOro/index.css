@@ -158,6 +158,7 @@ header {
   display: flex;
   justify-content: center;
 }
+
 main{
   display: flex;
   flex-direction: column;
@@ -196,6 +197,7 @@ main{
 .products img {
   max-width: 90%;
   border-radius: 1rem;
+
 }
 /*Section de productos. Padding block es para*/
 .products {
@@ -226,14 +228,14 @@ main{
 }
 /*Div con las imagenes de los productos de la section product*/
 .product_img {
-  display: grid;
-  /*Crea columnas de 400px, si no caben se desplazan hacia abajo hasta mostrar solo 1 columna. Te ahorras el media query*/
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
+ display: grid;
+ grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+ justify-content: space-around;
+ align-items: center;
+ text-align: center;
 
 }
+
 
 /*Section para el formulario de newsletter*/
 .form-contact {
@@ -367,11 +369,20 @@ footer a {
 
   
 }
+@media screen and (max-width: 300px){
 
+ .form-contact form{
+  display: flex;
+  flex-direction: column;
+ }
+ .product_img {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
 
-@media screen and (max-width: 399px){
- 
+ }
 }
+
+
 /*Para estilar la barra del navegador*/
 
 ::-webkit-scrollbar {

@@ -1,0 +1,48 @@
+import "./style.css";
+
+const container = document.querySelector(".container");
+
+function operacionesAritmeticas(num1, num2, operacion) {
+  const opracionesValidas = ["suma", "resta", "multiplicacion", "division"];
+  if (!opracionesValidas.includes(operacion)) {
+    console.log("Error. No existe dicha operacion");
+  }
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let result;
+
+      switch (operacion) {
+        case "sumar":
+          result = num1 + num2;
+          break;
+        case "restar":
+          result = num1 - num2;
+          break;
+        case "multiplicacion":
+          result = num1 * num2;
+          break;
+        case "division":
+          if (num2 === 0) {
+            reject(new Error("No se puede dividir por 0"));
+            return;
+          }
+          result = num1 / num2;
+          break;
+        default:
+          // No debería llegar aquí si la validación inicial es correcta
+          reject(new Error("Operación no reconocida"));
+          return;
+      }
+      container.innerHTML = "";
+      container.innerHTML = `Resultado de la operación ${operacion} es: ${result}`;
+      resolve(result);
+    }, 2000);
+  });
+}
+
+operacionesAritmeticas(2, 5, "multiplicacion")
+  .then((result) =>
+    console.log(`Operación realizada con exito.Resultado: ${result}`)
+  )
+  .catch((error) => new Error(error));
