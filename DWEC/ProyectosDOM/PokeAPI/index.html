@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>PokeAPI App</title>
+  </head>
+  <body>
+    <span class="loader">Load&nbsp;ng</span>
+    <div id="app" class="hidden">
+      <header>
+        <nav >
+          <input type="text" id="pokemonSearch" placeholder="Buscar Pokémon" />
+          <input type="submit" value="Buscar" />
+        </nav>
+      </header>
+
+      <main>
+        <div id="card" class="pokemon-container">
+          <div class="pokemon-all" id="pokemonList"></div>
+        </div>
+      </main>
+
+      <footer>
+        <button id="prevPage">◀</button>
+        <button id="nextPage">▶</button>
+      </footer>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
