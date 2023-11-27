@@ -1,0 +1,16 @@
+{
+  "name": "apirestful",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "post_api": "json-server --watch server/db.json --port 4000"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4",
+    "vite": "^4.4.5"
+  }
+}
