@@ -1,0 +1,95 @@
+//import "./style.css";
+const pokeAPI = "https://pokeapi.co/api/v2/pokemon/?limit=1292&offset=9";
+
+const listaPokemon = document.getElementById("pokemonList");
+
+async function fetchPokemon(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching Pokemon data:", error);
+  }
+}
+
+async function obtenerTodosLosPokemon() {
+  const response = await fetch(pokeAPI);
+  const data = await response.json();
+  return data.results;
+}
+
+async function obtenerPokemonAleatorio(cantidad) {
+  const todosLosPokemon = await obtenerTodosLosPokemon();
+  const pokemonArray = [];
+  for (let i = 0; i < cantidad; i++) {
+    const indiceAleatorio = Math.floor(Math.random() * todosLosPokemon.length);
+    const pokemon = await fetchPokemon(todosLosPokemon[indiceAleatorio].url);
+    if (!pokemonArray.some(p => p.species.name === pokemon.species.name)) {
+      pokemonArray.push(pokemon);
+    }
+  }
+  return pokemonArray;
+}
+
+const mostrarPokemon = (poke) => {
+  let tipos = poke.types.map(
+    (type) => `<p class="${type.type.name} tipo">${type.type.name}</p>`
+  );
+  tipos = tipos.join("");
+
+  let abilities = poke.abilities.map(
+    (ability) =>
+      `<p class="${ability.ability.name} ability">${ability.ability.name}</p>`
+  );
+  abilities = abilities.join("");
+
+  let pokeId = poke.id.toString();
+
+  if (pokeId.length === 1) {
+    pokeId = `00${pokeId}`;
+  } else if (pokeId.length === 2) {
+    pokeId = `0${pokeId}`;
+  }
+
+  const div = document.createElement("div");
+  div.classList.add("pokemon");
+
+  div.innerHTML = `
+          <p class="pokemon-id-back">#${pokeId}</p>
+          <div class="pokemon-img">
+           <img src="${poke.sprites.other["official-artwork"].front_default}" alt="${poke.name}">
+          </div>
+          <div class="pokemon-info">
+              <div class="name-container">
+                  <p class="pokemon-id">#${pokeId}</p>
+                  <p class="pokemon-name">${poke.name}</p>
+              </div>
+              <div class="pokemon-tipos">
+                  ${tipos}
+              </div>
+              <div class="pokemon-stats">
+                  <p class="stat">${poke.height}M</p>
+                  <p class="stat">${poke.weight}Kg</p>
+              </div>
+              <div class"pokemon-abilities">
+                  ${abilities}
+              </div>
+          </div>
+  `;
+  listaPokemon.append(div);
+};
+/*
+// Ahora puedes obtener 9 Pokémon aleatorios sin conocer el máximo de antemano
+obtenerPokemonAleatorio(9).then(pokemonArray => {
+  pokemonArray.forEach(pokemon => mostrarPokemon(pokemon));
+});
+*/
+setTimeout(() => {
+  document.querySelector('.loader').style.display = 'none'; // oculta el loader
+  document.getElementById('app').style.display = 'block'; // muestra el navbar
+  // muestra los Pokémon
+  obtenerPokemonAleatorio(9).then(pokemonArray => {
+    pokemonArray.forEach(pokemon => mostrarPokemon(pokemon));
+  });
+}, 3000);
