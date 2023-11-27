@@ -1,0 +1,23 @@
+btnSend.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  // Obtener el valor del usuario y la contraseña del formulario
+  const inputUsername = username.value;
+  const inputPassword = password.value;
+
+  try {
+    // Intentar el inicio de sesión utilizando la función simulateLogin
+    const result = await login(inputUsername, inputPassword);
+    form.style.display = "none";
+    createCard(result);
+    console.log(result);
+  } catch (error) {
+    // Capturar errores y mostrar el mensaje de error
+    console.log(error);
+    form.textContent = "Error de credenciales";
+  }
+});
+
+
+
+https://leafletjs.com/examples/quick-start/

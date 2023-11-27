@@ -1,13 +1,11 @@
-import './style.css'
+import "./style.css";
 
-const username = document.getElementById('username')
-const password = document.getElementById('password')
-const btnSend = document.getElementById('btnSend')
-const users = "https://jsonplaceholder.org/users"
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const btnSend = document.getElementById("btnSend");
+const form = document.getElementById("login");
 
-
-
-// ...
+const users = "https://jsonplaceholder.org/users";
 
 async function fetchApi(url) {
   try {
@@ -18,52 +16,80 @@ async function fetchApi(url) {
 
     const datos = await response.json();
 
-    // Devuelve los datos obtenidos
     return datos;
   } catch (error) {
-    // Maneja el error y rechaza la promesa
     throw new Error("Error al obtener los datos de la API");
   }
 }
 
 async function login(inputUsername, inputPassword) {
   try {
-    // Obtiene los datos de la API
     const datos = await fetchApi(users);
 
-    // Accede a los usernames y passwords
-    const usernames = datos.map(user => user.login.username);
-    const passwords = datos.map(user => user.login.password);
+    const user = datos.find(
+      (user) =>
+        user.login.username === inputUsername &&
+        user.login.password === inputPassword
+    );
 
-    // Comprueba si el usuario y la contraseña coinciden con los de la API
-    const userIndex = usernames.indexOf(inputUsername);
-
-    if (userIndex !== -1 && passwords[userIndex] === inputPassword) {
-      // Credenciales correctas, resuelve la promesa
-      return Promise.resolve("¡Inicio de sesión exitoso!");
+    if (user) {
+      return Promise.resolve(user);
     } else {
       // Credenciales incorrectas, rechaza la promesa
       throw new Error("Usuario o contraseña incorrectos.");
     }
   } catch (error) {
-    // Maneja errores, rechaza la promesa con el mensaje de error
     return Promise.reject(error.message);
   }
 }
 
-btnSend.addEventListener('click', async (e) => {
-  e.preventDefault();
+function hideLoginForm() {
+  form.style.display = "none";
+}
 
+function displayError(message) {
+  form.textContent = message;
+
+  setTimeout(() => {
+    form.textContent = "";
+  }, 2000);
+}
+
+async function handleLogin(e) {
+  e.preventDefault();
   // Obtener el valor del usuario y la contraseña del formulario
   const inputUsername = username.value;
   const inputPassword = password.value;
 
   try {
-    // Intentar el inicio de sesión utilizando la función simulateLogin
+    // Intentar el inicio de sesión utilizando la función login
     const result = await login(inputUsername, inputPassword);
+    hideLoginForm();
+    createCard(result);
     console.log(result);
   } catch (error) {
     // Capturar errores y mostrar el mensaje de error
     console.log(error);
+    displayError("Error de credenciales");
   }
-});
+}
+
+function createCard(data) {
+  const card = document.createElement("div");
+  card.id = "userCard";
+
+  const pName = document.createElement("p");
+  pName.classList.add("name");
+  pName.textContent = `Nombre y apellido: ${data.firstname} ${data.lastname}`;
+
+  const pEmail = document.createElement("p");
+  pEmail.classList.add("email");
+  pEmail.textContent = `El email es : ${data.email}`;
+
+  card.appendChild(pName);
+  card.appendChild(pEmail);
+
+  document.body.appendChild(card); 
+}
+
+btnSend.addEventListener("click", handleLogin);

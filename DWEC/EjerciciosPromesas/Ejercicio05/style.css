@@ -82,6 +82,21 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+#userCard {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .25rem;
+}
+
+#map {
+  height: 400px; /* o el tamaño que desees */
+  width: 100%;
+}
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
