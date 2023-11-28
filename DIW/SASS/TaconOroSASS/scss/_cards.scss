@@ -1,0 +1,58 @@
+.product__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding-block: 2rem;
+    padding-inline: 2rem;
+  
+    .product__item {
+      border: $border-width #{$border-style} $border-color;
+      border-radius: $border-radius;
+      display: inline-block;
+      padding: 1rem;
+  
+      .img__product {
+        img {
+          border-radius: $boder-radius-big;
+          width: 100%;
+  
+          &:hover {
+            @include duration(3);
+            @include girar(1);
+          }
+        }
+      }
+  
+      .product__info {
+        font-size: 0.8rem;
+        margin: 0.5rem;
+        text-align: center;
+      }
+  
+      .add__product {
+        display: flex;
+        flex-direction: column; /* Alinea los elementos en columna */
+        justify-content: center; /* Centra verticalmente */
+        align-items: center; /* Centra horizontalmente */
+      }
+      /*Estilo para el boton del añadir carrito*/
+      .add__product button {
+        /* Puedes ajustar estos estilos según tus preferencias */
+        margin-top: 1rem; /* Agrega un margen superior para separar el botón del contenido superior */
+        padding: 0.5rem 1rem;
+        background-color: #dcd473;
+        font-weight: 700;
+        cursor: pointer;
+        border-radius: 100vmax;
+      }
+      /*Para cuadno se le pasa el ratón por encima*/
+      .add__product button:hover {
+        transform: scale(1.1);
+        color: #fff;
+      }
+    }
+  }
+  

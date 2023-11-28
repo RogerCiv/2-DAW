@@ -1,0 +1,122 @@
+/*Estilo para main. El min-height coge como minimo de altura el 100 viewheight menos el heigt del footer*/
+main {
+  padding-block: 0.5rem;
+  background-color: #e6e1d4;
+  width: 100%;
+  min-height: calc(100vh - 156px);
+}
+/*Estilo para el section shop*/
+.shop {
+  padding-block: 5rem;
+  width: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*estilos para el div header  */
+.shop__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  background-color: #d3cec1;
+  padding: 1rem;
+}
+/*Estilo para los input*/
+.shop__header input {
+  padding: 0.5rem;
+  outline: 0;
+  border: 0;
+  border-radius: 100vmax;
+  text-align: center;
+}
+/*Estilo para el input tipo submit*/
+.shop__header input[type="submit"] {
+  cursor: pointer;
+  background-color: #dcd473;
+  font-weight: 700;
+}
+/*Estilo de la lista de categorias*/
+.shop__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 5rem;
+}
+/*tamaño maximo para las imagenes de los productos*/
+.img__product img {
+  max-width: 50%;
+}
+/*diseño grid para el contenedor de los productos*/
+.product__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding-block: 2rem;
+  padding-inline: 2rem;
+}
+/*Estilo para cada div de cada producto*/
+.product__item {
+  background-color: #d3cec1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+/*Estilo para cuando se pasa el ratón por encima de cada producto*/
+.product__item:hover {
+  transform: scale(1.02);
+  box-shadow: 1px 1px 10px 1px #000;
+}
+/*Estilo para el div para añadir el producto al carrito*/
+.add__product {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en columna */
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+}
+/*Estilo para el boton del añadir carrito*/
+.add__product button {
+  /* Puedes ajustar estos estilos según tus preferencias */
+  margin-top: 1rem; /* Agrega un margen superior para separar el botón del contenido superior */
+  padding: 0.5rem 1rem;
+  background-color: #dcd473;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 100vmax;
+}
+/*Para cuadno se le pasa el ratón por encima*/
+.add__product button:hover {
+  transform: scale(1.1);
+  color: #fff;
+}
+
+@media screen and (max-width: 827px){
+  .shop__header{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width:478px){
+  .shop__list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(50px,1fr));
+    gap: 1rem;
+  }
+  .shop__header input[type="submit"]{
+    margin-top: 1rem;
+  }
+}
