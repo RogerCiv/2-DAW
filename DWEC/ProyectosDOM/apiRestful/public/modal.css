@@ -1,0 +1,43 @@
+/* modal.css */
+
+#modal {
+    width: 60%;
+    padding: 20px;
+    border: 1px solid #ec0505;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+
+  }
+  
+  .edit-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+
+  .title-label{
+    font-weight: 700;
+    
+  }
+  .title-input{
+    border-radius: 100vmax;
+    padding: .25rem;
+  }
+  .content-label{
+    font-weight: 700;
+  }
+  .context-textarea{
+    border-radius: 1rem;
+  }
+  .update-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 100vmax;
+  }
+  
