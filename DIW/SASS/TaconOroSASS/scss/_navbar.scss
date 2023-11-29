@@ -1,0 +1,139 @@
+/* HEADER */
+/*----fijar su posición en la parte superior, aplicar un color de fondo con opacidad y agregar un filtro de desenfoque.----*/
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: $color-background-header;
+  
+    /* Aplica un filtro de desenfoque al encabezado para crear un efecto de profundidad */
+    backdrop-filter: blur(2px);
+  }
+  
+  /*---- div con el logo y el nombre del sitio ---*/
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    img {
+      max-width: 10%;
+      border-radius: 50%;
+    }
+  }
+  
+  /* --- tamaño maximo de la imagen y su border radius  */
+  
+  /* Establece la altura, el ancho máximo y otros estilos para la barra de navegación.*/
+  
+  .navbar {
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  
+    .logo a {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  
+    .links {
+      display: flex;
+      gap: 2rem;
+  
+      input {
+        padding: 0.25rem;
+        border-radius: 100vmax;
+        text-align: center;
+        border: 0;
+      }
+    }
+  }
+  
+  /* tamaño de la fuente y peso*/
+  
+  /*--- Display de los links del navbar----*/
+  
+  /* --- Diseño del buscador del navbar --- */
+  
+  /* Aquí, estás proporcionando estilos para un botón de menú desplegable que se muestra en pantallas más pequeñas.*/
+  
+  .toggle_btn i {
+    margin-right: .25rem;
+  }
+  
+  .navbar .toggle_btn {
+    color: #000;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+  }
+  
+  /* Diseño del botón de registro del navbar*/
+  
+  .action_btn {
+    background-color: $color-action-button;
+    color: $color-font;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: $border-radius-small;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+  
+    &:hover {
+      scale: 1.05;
+      color: $color-font;
+    }
+  
+    &:active {
+      scale: 0.95;
+    }
+  }
+  
+  /* Efecto cuando se pasa el ratón por el botón de registro */
+  
+  /*Cuando el usuario mantiene presionado el botón  se le cambia la escala.*/
+  
+  /* DROPDOWN MENU */
+  /*Menú Hamburguesa para cuando se cambia el tamaño de la pantalla*/
+  
+  .dropdown_menu {
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    height: 0;
+    width: 30%;
+    background: $color-background-dropmenu;
+    backdrop-filter: blur(15px);
+    border-radius: $border-radius-small;
+    overflow: hidden;
+  
+    /* Aplica una transición al menú desplegable para que se abra y se cierre suavemente */
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+    li {
+      padding: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    &.open {
+      height: 240px;
+    }
+  
+    .action_btn {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }  

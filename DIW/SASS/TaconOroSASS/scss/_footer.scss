@@ -1,0 +1,76 @@
+/* ==== Footer ==== */
+
+footer {
+    background-color: $color-background-footer;
+    color: $color-font;
+    display: grid;
+  
+    /*Columnas de 150px hasta una sola columna*/
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    padding-inline: 2rem;
+    padding-block: 2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  
+    h3 {
+      font-size: $font-size-h3
+    }
+  
+    a {
+      font-size: $font-size-small;
+    }
+  }
+  
+  /*Tamaño para el h3 del footer*/
+  
+  /*Tamaño para los ankor del footer*/
+  
+  /*tamaño para el logo del footer*/
+  
+  .footer__logo img {
+    width: 20%;
+  }
+  
+  /*Estilos para la el div information del footer*/
+  
+  .footer__information {
+    color: #000;
+    font-size: $font-size-small;
+    font-weight: 600;
+  
+    &:hover {
+      color: $color-hover-footer;
+    }
+  }
+  
+  /*efecto de paso del ratón para ambos div*/
+  
+  .footer__description:hover {
+    color: $color-hover-footer;
+  }
+  
+  /*estilo para el div de redes sociales*/
+  
+  .footer__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  
+    i {
+      font-size: $font-size-big;
+    }
+  }
+  
+  /*tamaño para los iconos de las redes sociales*/
+  
+  /*Div de la descripción del footer*/
+  
+  .footer__description {
+    font-size: $font-size-small;
+    color: #000;
+    font-weight: 600;
+  }
+  

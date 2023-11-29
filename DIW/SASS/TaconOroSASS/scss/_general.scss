@@ -4,6 +4,55 @@
 /// @group colores
 $color-background:  #e6e1d4;
 
+/// Color fondo dropmenu
+/// @group colores
+$color-background-dropmenu:rgba(255, 255, 255, 0.8);
+
 /// Color shop header
 /// @group colores
-$color-background-header: #d3cec1;
+$color-background-shop-header: #d3cec1;
+
+/// Color Header NAV
+/// @group colores
+$color-background-header: rgba(218, 213, 213, 0.7);
+
+/// Color font white
+/// @group colores
+$color-font: #fff;
+/// Color fondo FOOTER
+/// @group colores
+$color-background-footer: #475640;
+
+/// Hover color footer
+/// @group colores
+$color-hover-footer: #dcd473;
+/// Color button add Product
+/// @group colores
+$color-background-add-product: #dcd473;
+
+/// COlor action button
+/// @group colores
+$color-action-button: #f4db03;
+
+/// Border radius small
+/// @group dimensiones
+$border-radius-small: .75rem;
+/// Border radius product item
+/// @group dimensiones
+$border-radius: 2rem;
+
+/// Border radius input - button
+/// @group dimensiones
+$border-radius-big: 100vmax;
+
+/// Font size h3
+/// @group fonts
+$font-size-h3: 14px;
+
+/// FOnt size ankor
+/// @group fonts
+$font-size-small: 12px;
+
+/// Font size big
+/// @group fonts
+$font-size-big: 20px;
