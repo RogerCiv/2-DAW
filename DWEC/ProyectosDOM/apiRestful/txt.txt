@@ -1,11 +1,9 @@
-import { createEditModal } from "./components/renderModal/renderModal";
 import { renderPost } from "./components/renderPost/renderPost";
 import { createPostApi } from "./utils/createPost";
 import { deletePostApi } from "./utils/deletePostsApi";
 import { getPostApi } from "./utils/getPostApi";
 import { updatePostApi } from "./utils/updatePostApi";
 
-import './public/modal.css';
 const URL = `${import.meta.env.VITE_URL_API}/posts`;
 
 // DOM elements
@@ -119,24 +117,38 @@ postList.addEventListener("click", (e) => {
        title: postTitle,
        post: postContent,
      };
-     
-    // Mostrar el modal con la información del post
-    createEditModal(post, (updatedPost) => {
-      // Actualizamos el DOM con la nueva información
-      const cardDataId = postList.querySelector(`[data-id="${updatedPost.id}"]`);
-
-      const cardTitle = cardDataId.querySelector(".card-title");
-      cardTitle.textContent = updatedPost.title;
-
-      const cardSubtitle = cardDataId.querySelector(".card-subtitle");
-      cardSubtitle.textContent = updatedPost.id;
-
-      const cardText = cardDataId.querySelector(".card-text");
-      cardText.textContent = updatedPost.post;
-    });
+ 
+     // Mostrar el modal con la información del post
+     createModal(post);
    
   }
 });
 
 
+function createModal(post) {
+  // Limpiamos el contenido del modal antes de agregar nueva información
+  modal.innerHTML = "";
 
+  const titlePost = document.createElement("h2");
+  titlePost.textContent = post.title;
+
+  const idPost = document.createElement("span");
+  idPost.textContent = post.id;
+
+  const textPost = document.createElement("p");
+  textPost.textContent = post.post;
+
+  const closeModalBtn = document.createElement("button");
+  closeModalBtn.textContent = "Cerrar";
+  closeModalBtn.addEventListener("click", () => {
+    modal.close();
+  });
+
+  modal.appendChild(titlePost);
+  modal.appendChild(idPost);
+  modal.appendChild(textPost);
+  modal.appendChild(closeModalBtn);
+
+  // Mostramos el modal
+  modal.showModal();
+}

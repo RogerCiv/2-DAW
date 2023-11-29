@@ -1,0 +1,17 @@
+//// Importación de todas las hojas de estilo CSS
+@use "sass:math";
+@import "../vendors/normalize.css";
+@import "../vendors/font-awesome.min.css";
+@import "utilities";
+@import "colores";
+@import "dimensiones";
+@import "funciones";
+@import "mixins";
+@import "layout";
+@import "botones";
+@import "tablas";
+@import "menu";
+@import "cards";
+
+
+
