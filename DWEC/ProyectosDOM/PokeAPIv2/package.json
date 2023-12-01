@@ -1,0 +1,22 @@
+{
+  "name": "pokeapiv2",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "fetch_and_save": "node src/helper/fetchAndSave.js",
+    "get_pokemons": "node src/helper/getPokemonInfo.js",
+    "json-server": "json-server --watch server/db.json --port 4000",
+    "examen": "bun run get_pokemons && (bun run json-server & bun run vite)"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4",
+    "node-fetch": "^3.3.2"
+  }
+}
