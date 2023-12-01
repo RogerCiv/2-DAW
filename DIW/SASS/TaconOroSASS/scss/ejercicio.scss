@@ -3,12 +3,13 @@
 @import "../vendors/normalize.css";
 @import "../vendors/font-awesome.min.css";
 
-@import "mixins";
 
+@import "reset";
 @import "general";
-@import "footer";
 @import "navbar";
 @import "cards";
+@import "footer";
+@import "mixins";
 
 
 

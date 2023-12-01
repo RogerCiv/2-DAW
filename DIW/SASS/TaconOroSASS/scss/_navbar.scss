@@ -11,6 +11,13 @@ header {
     /* Aplica un filtro de desenfoque al encabezado para crear un efecto de profundidad */
     backdrop-filter: blur(2px);
   }
+
+  a{
+    text-decoration: none;
+  }
+  ul {
+    list-style: none;
+  }
   
   /*---- div con el logo y el nombre del sitio ---*/
   
@@ -41,6 +48,7 @@ header {
     .logo a {
       font-size: 1.5rem;
       font-weight: 600;
+      text-decoration: none;
     }
   
     .links {
@@ -125,6 +133,7 @@ header {
       display: flex;
       align-items: center;
       justify-content: center;
+      list-style: none;
     }
   
     &.open {
