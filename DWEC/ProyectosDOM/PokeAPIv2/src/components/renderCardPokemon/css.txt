@@ -174,10 +174,3 @@
     justify-content: center;
     border-radius: 100vmax;
 }
-
-.tipo{
-    border-radius: 100vmax;
-    padding: .25rem;
-    font-weight: 700;
-    min-width: 5rem;
-}

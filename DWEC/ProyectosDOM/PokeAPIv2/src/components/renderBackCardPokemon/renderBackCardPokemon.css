@@ -115,12 +115,6 @@
     color: var(--clr-black);
 }
 
-#app{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-    gap: 2rem;
-}
-
 .card{
     border-radius: 1rem;
     background-color: var(--clr-white);
@@ -164,20 +158,16 @@
     font-weight: 600;
 }
 
-.card-text{
+.ability{
     text-transform: lowercase;
     display: flex;
     gap: .5rem;
+    padding: .5rem;
     flex-wrap: wrap;
     font-size: .75rem;
     font-weight: 600;
     justify-content: center;
     border-radius: 100vmax;
-}
-
-.tipo{
-    border-radius: 100vmax;
-    padding: .25rem;
-    font-weight: 700;
-    min-width: 5rem;
+    background-color: gray;
+    color: #fff;
 }

@@ -1,0 +1,62 @@
+import './navTypeList.css';
+
+export function createNavigation() {
+
+    const nav = document.createElement("nav");
+    nav.className = "nav";
+  
+    // Crea el elemento de imagen del logo
+    const logo = document.createElement("img");
+    logo.src = "public/logo.png";
+    logo.alt = "Logo Pokédex";
+  
+
+    const ul = document.createElement("ul");
+    ul.className = "nav-list";
+    
+  
+    const buttonData = [
+      { text: "Ver todos", id: "ver-todos", className: "btn btn-header" },
+      { text: "Normal", id: "normal", className: "btn btn-header normal" },
+      { text: "Fire", id: "fire", className: "btn btn-header fire" },
+      { text: "Water", id: "water", className: "btn btn-header water" },
+      { text: "Grass", id: "grass", className: "btn btn-header grass" },
+      { text: "Electric", id: "electric", className: "btn btn-header electri" },
+      { text: "Ice", id: "ice", className: "btn btn-header ice" },
+      { text: "Fighting", id: "fighting", className: "btn btn-header fighting" },
+      { text: "Poison", id: "poison", className: "btn btn-header poison" },
+      { text: "Ground", id: "Ground", className: "btn btn-header ground" },
+      { text: "Flying", id: "flying", className: "btn btn-header fliying" },
+      { text: "Psychic", id: "psychic", className: "btn btn-header psychic" },
+      { text: "Bug", id: "bug", className: "btn btn-header bug" },
+      { text: "Rock", id: "rock", className: "btn btn-header rock" },
+      { text: "Ghost", id: "ghost", className: "btn btn-header ghost" },
+      { text: "Dark", id: "dark", className: "btn btn-header dark" },
+      { text: "Dragon", id: "dragon", className: "btn btn-header dragon" },
+      { text: "Steel", id: "steel", className: "btn btn-header steel" },
+      { text: "Fairy", id: "fairy", className: "btn btn-header fairy" },
+    ];
+  
+    buttonData.forEach((buttonInfo) => {
+      const li = document.createElement("li");
+      li.className = "nav-item";
+  
+      const button = document.createElement("button");
+      button.className = buttonInfo.className;
+      button.id = buttonInfo.id;
+      button.textContent = buttonInfo.text;
+  
+      li.appendChild(button);
+      ul.appendChild(li);
+    });
+  
+    // Agrega elementos al nav
+    nav.appendChild(logo);
+    nav.appendChild(ul);
+  
+    return nav;
+  }
+  
+
+
+  
