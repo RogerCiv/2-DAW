@@ -18,6 +18,7 @@ fetch(URL)
     app.appendChild(navComponent);
     //console.log(data);
     data.map((pokemon) => renderCardPokemon(app, pokemon));
+    
     const cardItems = document.querySelectorAll(".card");
     cardItems.forEach((cardItem) => {
       cardItem.addEventListener("click", (e) => flipCard(e, data));

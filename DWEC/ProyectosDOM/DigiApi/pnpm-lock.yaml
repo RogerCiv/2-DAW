@@ -14,7 +14,7 @@ dependencies:
 
 devDependencies:
   vite:
-    specifier: ^5.0.0
+    specifier: ^5.0.5
     version: 5.0.5
 
 packages:

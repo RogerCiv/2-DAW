@@ -1,0 +1,19 @@
+{
+  "name": "examen-dwec-dic23-b",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "json-server": "json-server --watch server/db.json --port 4000",
+    "examen": "pnpm run json-server && pnpm run vite"
+  },
+  "devDependencies": {
+    "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  }
+}

@@ -11,8 +11,9 @@ async function getDigimons(){
         const data = await response.json();
         
         const { content } = data;
+        console.log({ content });
        
-        const digiData = 
+        const digiData = await Promise.all(
             content.map(async (digi) => {
             const digiInfo = await (await fetch(digi.href)).json();
             return {
@@ -22,8 +23,7 @@ async function getDigimons(){
                 image: digi.image,
             }
         })
-     
-
+        )
         await fs.writeFile(filePath,JSON.stringify({ digiData },null,2));
 
     }catch(err){

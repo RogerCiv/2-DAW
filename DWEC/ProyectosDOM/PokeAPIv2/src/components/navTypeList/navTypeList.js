@@ -41,7 +41,7 @@ export function navTypeList(pokemonData, app) {
       button.className = buttonInfo.className;
       button.id = buttonInfo.id;
       button.textContent = buttonInfo.text;
-     
+          
       // Agrega un evento de clic al botón
     // Agrega un evento de clic al botón
   
