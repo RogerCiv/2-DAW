@@ -1,7 +1,11 @@
 import { renderCardFoods } from "../components/renderCardFoods/renderCardFoods";
-import { renderOrderFood } from "../components/renderOrderFood/renderOrderFood";
 
 
+/**
+ * funcion fetch para recibir los datos de. db.json
+ * @param {URL} url url de la base de datos creada en json-server
+ * @param {HTMLElement} container Contenedor que se le pasa al renderCardFoods para renderizar los cards
+ */
 export function getFoodApi(url,container){
   //const URL = "http://localhost:4000/categories";
   //const cardsContainer = document.querySelector(".cards");

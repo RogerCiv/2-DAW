@@ -1,6 +1,10 @@
 import { renderOrderFood } from "../renderOrderFood/renderOrderFood";
 
-
+/**
+ * Crear cards con toda la información del db.json
+ * @param {Element} container contenedor donde se renderizará los card
+ * @param {JSON} foodData Datos del db.json para pasar al card
+ */
 export function renderCardFoods(container,foodData){
     container.innerHTML += `
     
