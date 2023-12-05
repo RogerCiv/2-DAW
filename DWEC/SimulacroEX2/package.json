@@ -8,9 +8,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "json-server": "json-server --watch server/db.json --port 4000",
-    "examen": "pnpm run json-server && pnpm run vite"
+    "examen": "concurrently \"pnpm run json-server\" \"pnpm run dev\""
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "vite": "^4.4.5"
   },
   "dependencies": {

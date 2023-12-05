@@ -21,21 +21,25 @@ export function renderCardFoods(container,foodData){
     `
     
     const addButton = document.querySelectorAll(".card-link")
-    const orderContainer = document.querySelector(".order");
-    console.log(foodData);
+   
+   // console.log(foodData);
 
     addButton.forEach((add) => {
         
         add.addEventListener("click", (e) => {
 
             e.preventDefault();
-            console.log(e.target);
+            //console.log(e.target);
            // console.log(e.currentTarget);
             const foodCard = e.currentTarget
             const foodItem = foodCard.getAttribute("data-id");
             //console.log(foodItem);
-            
-            renderOrderFood(foodItem)
+            //console.log(e.target.closest(".card"));
+            const div = e.target.closest('.card');
+            div.style.opacity = 0.3;
+            e.target.style.display = 'none';
+            div.classList.add('added-to-order')
+            renderOrderFood(foodItem,div)
         })
     })
 

@@ -38,27 +38,81 @@ export function renderOrderFood(foodItem, foodCardDiv) {
       
         orderContainer.appendChild(divOrder);
 
+
         const removeButton = divOrder.querySelector(".card-link");
         handleRemoveOrderItem(removeButton, f, foodCardDiv);
+        /*
+        removeButton.addEventListener("click", () => {
+          const orderContainer = document.querySelector(".order");
+          orderContainer.removeChild(divOrder);
+          //removeOrderItem(div)
+          updateTotal(f.price, false);
+          if (foodCardDiv) {
+            foodCardDiv.style.opacity = 1;
+            const addButton = foodCardDiv.querySelector(
+              ".btn.btn-link.card-link"
+            );
+            if (addButton) {
+              addButton.style.display = "block";
+            }
+            foodCardDiv.classList.remove("added-to-order");
+          }
+        });
+        */
       });
     })
     .catch((err) => console.log("Error", err.message));
 }
-
+/*
+function handleRemoveOrderItem(removeButton, f, foodCardDiv) {
+  removeButton.addEventListener("click", () => {
+    const orderContainer = document.querySelector(".order");
+    orderContainer.removeChild(removeButton.parentElement.parentElement.parentElement);
+    updateTotal(f.price, false);
+    if (foodCardDiv) {
+      foodCardDiv.style.opacity = 1;
+      const addButton = foodCardDiv.querySelector(".btn.btn-link.card-link");
+      if (addButton) {
+        addButton.style.display = "block";
+      }
+      foodCardDiv.classList.remove("added-to-order");
+    }
+  });
+}
+*/
+/*
+function updateTotal(price, add) {
+  total = add ? total + price : total - price;
+  const totalElement = document.querySelector('.total');
+  if (totalElement) {
+    totalElement.textContent = `Total a pagar: ${total}$`;
+  }
+  const payButton = document.querySelector('.pay-button');
+  const payButtonContainer = document.querySelector('.pay-button-container');
+  const orderContainer = document.querySelector(".order");
+  if (payButton && payButtonContainer && orderContainer) {
+    if (total > 0) {
+      payButton.classList.remove('d-none');
+    } else {
+      payButton.classList.add('d-none');
+    }
+    setTimeout(() => {
+      orderContainer.appendChild(payButtonContainer);
+    }, 0);
+  }
+}
+*/
 const payButton = document.querySelector('.pay-button');
 if (payButton) {
   payButton.addEventListener('click', () => {
     const orderItems = Array.from(document.querySelectorAll('.order .card'));
-    const products = orderItems.map(item => {
+    const orderData = orderItems.map(item => {
       return {
         id: item.querySelector('.card-link').getAttribute('data-id'),
         title: item.querySelector('.card-title').textContent,
         price: parseFloat(item.querySelector('.card-text').textContent.replace('Precio: ', '').replace('$', '')),
       };
     });
-    const total = products.reduce((total, item) => total + item.price, 0);
-    // Añade el total a pagar a orderData
-   const orderData = { products , total}
     localStorage.setItem('OrderFoods', JSON.stringify(orderData));
     saveOrderApi(orderData).then(() => {
       location.reload()
