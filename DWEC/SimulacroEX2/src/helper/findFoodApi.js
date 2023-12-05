@@ -12,10 +12,7 @@ export async function findFoodApi(container, query) {
       const datos = await response.json();
       
       console.log("Datos desde la API:", datos);
-      
       container.innerHTML = '';
-      
- 
       datos.forEach(food => {
         renderCardFoods(container, food);
       });

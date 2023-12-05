@@ -49,6 +49,7 @@ const payButton = document.querySelector('.pay-button');
 if (payButton) {
   payButton.addEventListener('click', () => {
     const orderItems = Array.from(document.querySelectorAll('.order .card'));
+   
     const products = orderItems.map(item => {
       return {
         id: item.querySelector('.card-link').getAttribute('data-id'),
