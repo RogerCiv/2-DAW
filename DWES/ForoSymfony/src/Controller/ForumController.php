@@ -23,8 +23,8 @@ class ForumController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_forum_new', methods: ['GET', 'POST'])]
     #[IsGranted("ROLE_ADMIN")]
+    #[Route('/new', name: 'app_forum_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $forum = new Forum();
