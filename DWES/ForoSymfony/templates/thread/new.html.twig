@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Thread{% endblock %}
+
+{% block body %}
+    <h1>Create new Thread</h1>
+
+    {{ include('thread/_form.html.twig') }}
+
+    <a href="{{ path('app_forum_show', {'id': forum.id }) }}">Volver al foro</a>
+{% endblock %}

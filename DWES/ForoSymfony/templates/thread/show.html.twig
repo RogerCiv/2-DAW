@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Thread{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('app_forum_show', {'id': thread.forum.id }) }}">Volver al foro</a>
+    <h1>{{ thread.title }}</h1>
+
+    <p> <span class="fw-bold">Fecha Creación:</span> {{ thread.createDate ? thread.createDate|date('Y-m-d H:i:s') : '' }}
+
+
+{% for comment in thread.comments %}
+ .<div class="container mb-5">
+   <p class="fs-3"> {{ comment.text }}</p>
+   <p class="">{{ comment.img }} </p>
+   {% if comment.img %}
+   <img src="{{ asset('uploads/imgs/' ~ comment.img) }}" class="rounded border border-5 border-danger" style="width: 200px;"> <br>
+   {% endif %}
+    <span class="fs-6 mt-4">Author: {{ comment.author.username }}</span>
+    <span class="fs-6">Fecha: {{ comment.createDate|date ('Y-m-d H:i:s') }}</span>
+ </div>
+  
+{% endfor %}
+
+
+{% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+   {{ include('comment/_form.html.twig') }}
+{% endif %}
+
+{% if is_granted("ROLE_ADMIN")%}
+    <a href="{{ path('app_thread_edit', {'id': thread.id}) }}">edit</a>
+
+    {{ include('thread/_delete_form.html.twig') }}
+{% endif %}
+{% endblock %}

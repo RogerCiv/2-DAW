@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block body %}
+    <h1>Publication</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publication.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ publication.title }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ publication.text }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ publication.author.username }}</td>
+            </tr>
+            <tr>
+                <th>PubDate</th>
+                <td>{{ publication.pubDate ? publication.pubDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Img</th>
+                <td>{{ publication.img }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_publication_index') }}">back to list</a>
+
+    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
+    <a name="" id="" class="btn btn-info" href="{{path('app_comments_new', {'id': publication.id })}}" role="button">Comentar</a>
+
+      <h2>Comentarios</h2>
+    {% for comment in publication.comments %}
+        <h4> Comentario {{ comment.id }}: </h4>
+        <p>{{ comment.comment }}</p>
+     
+        <p> Fecha: </p>
+    {% endfor %}
+    {{ include('publication/_delete_form.html.twig') }}
+{% endblock %}

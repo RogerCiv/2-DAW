@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publication index{% endblock %}
+
+{% block body %}
+{% if(is_granted("ROLE_USER")) %}
+    <h1>Publication index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Author</th>
+                <th>PubDate</th>
+                <th>Img</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publication in publications %}
+            <tr>
+                <td>{{ publication.id }}</td>
+                <td>{{ publication.title }}</td>
+                <td>{{ publication.text }}</td>
+                <td>{{ publication.author.username }}</td>
+                <td>{{ publication.pubDate ? publication.pubDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ publication.img }}</td>
+                <td>
+                    <a href="{{ path('app_publication_show', {'id': publication.id}) }}">show</a>
+                    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_publication_new') }}">Create new</a>
+{% endif %}
+{% endblock %}
