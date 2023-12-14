@@ -26,10 +26,12 @@
                 <td>{{ publication.text }}</td>
                 <td>{{ publication.author.username }}</td>
                 <td>{{ publication.pubDate ? publication.pubDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ publication.img }}</td>
+                <td><img src="{{ asset('uploads/img/' ~ publication.img) }}" style="width:40px;"></td>
                 <td>
                     <a href="{{ path('app_publication_show', {'id': publication.id}) }}">show</a>
+                {% if is_granted("ROLE_ADMIN") %}
                     <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
+                {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -39,7 +41,8 @@
         {% endfor %}
         </tbody>
     </table>
-
+{% if is_granted("ROLE_ADMIN") %}
     <a href="{{ path('app_publication_new') }}">Create new</a>
+{% endif %}
 {% endif %}
 {% endblock %}

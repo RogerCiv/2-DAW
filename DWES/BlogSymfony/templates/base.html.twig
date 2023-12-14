@@ -12,6 +12,13 @@
         {% endblock %}
     </head>
     <body>
+     {% if is_granted("ROLE_USER")%}
+    Hola {{ app.user.username }}
+    <a href="{{ path('app_logout')}}">Cerrar Sesion</a>
+    {% else %}
+    <a href="{{ path('app_login')}}">Iniciar Sesion</a>
+    <a href="{{ path('app_register')}}">Registrar</a>
+    {% endif %}
         {% block body %}{% endblock %}
     </body>
 </html>

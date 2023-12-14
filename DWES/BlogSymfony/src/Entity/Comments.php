@@ -28,6 +28,9 @@ class Comments
     #[ORM\JoinColumn(nullable: false)]
     private ?Publication $id_pub = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $img = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +80,18 @@ class Comments
     public function setIdPub(?Publication $id_pub): static
     {
         $this->id_pub = $id_pub;
+
+        return $this;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(?string $img): static
+    {
+        $this->img = $img;
 
         return $this;
     }

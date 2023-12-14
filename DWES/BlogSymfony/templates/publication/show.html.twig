@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Publication</h1>
+    <a href="{{ path('app_publication_index') }}">Volver a las publicaciones</a>
 
     <table class="table">
         <tbody>
@@ -29,22 +30,24 @@
             </tr>
             <tr>
                 <th>Img</th>
-                <td>{{ publication.img }}</td>
+                <td><img src="{{ asset('uploads/img/' ~ publication.img) }}" style="width:20px"></td>
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_publication_index') }}">back to list</a>
-
-    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
-    <a name="" id="" class="btn btn-info" href="{{path('app_comments_new', {'id': publication.id })}}" role="button">Comentar</a>
 
       <h2>Comentarios</h2>
     {% for comment in publication.comments %}
         <h4> Comentario {{ comment.id }}: </h4>
         <p>{{ comment.comment }}</p>
      
-        <p> Fecha: </p>
+        <p> Fecha: {{ comment.commentDate ? comment.commentDate|date('Y-m-d H:i:s') : '' }} </p>
+        <p> {{ comment.img }} </p>
+        <img src="{{ asset('uploads/img/' ~ comment.img) }}" style="width: 100px">
+        <br>
     {% endfor %}
+
+    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
+    <a name="" id="" class="btn btn-info" href="{{path('app_comments_new', {'id': publication.id })}}" role="button">Comentar</a>
+
     {{ include('publication/_delete_form.html.twig') }}
 {% endblock %}
