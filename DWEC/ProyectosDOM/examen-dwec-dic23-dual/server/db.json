@@ -1,0 +1,126 @@
+{
+  "habitaciones": [
+    {
+      "id": 1,
+      "numero_habitacion": 101,
+      "precio_dia": 100,
+      "descripcion": "Habitación doble con vista al mar - Planta 1"
+    },
+    {
+      "id": 2,
+      "numero_habitacion": 102,
+      "precio_dia": 80,
+      "descripcion": "Habitación individual - Planta 1"
+    },
+    {
+      "id": 3,
+      "numero_habitacion": 103,
+      "precio_dia": 120,
+      "descripcion": "Habitación triple con balcón - Planta 1"
+    },
+    {
+      "id": 4,
+      "numero_habitacion": 104,
+      "precio_dia": 150,
+      "descripcion": "Suite familiar - Planta 1"
+    },
+    {
+      "id": 5,
+      "numero_habitacion": 201,
+      "precio_dia": 110,
+      "descripcion": "Habitación doble con vistas - Planta 2"
+    },
+    {
+      "id": 6,
+      "numero_habitacion": 202,
+      "precio_dia": 90,
+      "descripcion": "Habitación individual estándar - Planta 2"
+    },
+    {
+      "id": 7,
+      "numero_habitacion": 203,
+      "precio_dia": 130,
+      "descripcion": "Habitación triple con terraza - Planta 2"
+    },
+    {
+      "id": 8,
+      "numero_habitacion": 204,
+      "precio_dia": 160,
+      "descripcion": "Suite deluxe - Planta 2"
+    },
+    {
+      "id": 9,
+      "numero_habitacion": 301,
+      "precio_dia": 120,
+      "descripcion": "Habitación doble con jardín privado - Planta 3"
+    },
+    {
+      "id": 10,
+      "numero_habitacion": 302,
+      "precio_dia": 100,
+      "descripcion": "Habitación individual con vistas - Planta 3"
+    },
+    {
+      "id": 11,
+      "numero_habitacion": 303,
+      "precio_dia": 140,
+      "descripcion": "Habitación triple con jacuzzi - Planta 3"
+    },
+    {
+      "id": 12,
+      "numero_habitacion": 304,
+      "precio_dia": 170,
+      "descripcion": "Suite presidencial - Planta 3"
+    }
+  ],
+  "checkins": [
+    {
+      "id": 1,
+      "nombre": "Laura Gómez",
+      "correo": "laura@example.com",
+      "numero_habitacion": 101,
+      "numero_personas": 2,
+      "fecha_entrada": "2023-12-10",
+      "fecha_salida": "2023-12-15",
+      "precio_facturado": 200
+    },
+    {
+      "id": 2,
+      "nombre": "Roberto Fernández",
+      "correo": "roberto@example.com",
+      "numero_habitacion": 202,
+      "numero_personas": 1,
+      "fecha_entrada": "2023-12-12",
+      "fecha_salida": "2023-12-18",
+      "precio_facturado": 90
+    },
+    {
+      "id": 3,
+      "nombre": "Elena Pérez",
+      "correo": "elena@example.com",
+      "numero_habitacion": 303,
+      "numero_personas": 3,
+      "fecha_entrada": "2023-12-14",
+      "fecha_salida": "2023-12-17",
+      "precio_facturado": 390
+    }
+  ],
+  "checkouts": [
+    {
+      "id": 1,
+      "nombre": "Sara Fernández",
+      "correo": "elena@example.com",
+      "numero_habitacion": 103,
+      "numero_personas": 3,
+      "fecha_entrada": "2023-11-14",
+      "fecha_salida": "2023-11-17",
+      "precio_facturado": 490
+    }
+  ],
+  "users": [
+    {
+      "username": "rgr",
+      "password": 1234
+    }
+  ]
+}
