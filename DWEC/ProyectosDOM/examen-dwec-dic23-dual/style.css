@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font: "Inter", sans-serif;
+  /* --color-primary: #5050f0; */
+  --color-primary: #bd5532;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  /* background-image: url(../fondo2.jfif); */
+  /* background-size: cover; */
+  /* fill-opacity: 30%; */
+}
+
+.cabecera {
+  /* width: 90%; */
+  width: 100%;
+  height: 100px;
+  /* margin: 20px auto; */
+  background-color: var(--color-primary);
+}
+.titulo {
+  font-size: 2.5rem;
+  text-align: center;
+  line-height: 100px;
+  color: white;
+}
+
+.contact {
+  min-height: 700px; /* Ajusta esto según sea necesario */
+  position: relative;
+  z-index: 1;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  padding-bottom: 100px; /* Ajusta este valor según sea necesario para dejar espacio para la tabla */
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: min-content min-content 1fr; /* Ajuste en las filas */
+}
+
+.contact__picture {
+  /* background-color: yellow; */
+  grid-column: 6/-1;
+  grid-row: 1/-2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* position: relative; */
+}
+
+.contact::before {
+  content: "";
+  background-image: url("/public/fondo2.png");
+  background-size: cover;
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.contact__img {
+  width: 70%;
+  border-radius: 30px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.contact__form {
+  grid-column: 1/6;
+  grid-row: 1/-2;
+  place-self: center;
+  display: grid;
+  width: 70%;
+  /* grid-auto-rows: max-content; */
+  gap: 30px;
+}
+
+.imagen {
+  /* background-color: yellow; */
+  grid-column: 6/-1;
+  grid-row: 1/-2;
+}
+.tabla {
+  width: 83%;
+  margin: 0 auto;
+  /* background-color: var(--color-primary); */
+  grid-column: 1/-1;
+  grid-row: 3; /* Establece la fila a la tercera fila de la cuadrícula */
+  margin-top: 20px;
+}
+.title__tabla {
+  margin-left: 20px;
+  /* color: white; */
+}
+th {
+  height: 50px;
+  font-size: 22px;
+  font-weight: bold;
+}
+.contact__title {
+  color: #373b44;
+  font-size: 2rem;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.contact__title::after {
+  content: "";
+  display: block;
+  width: 250px;
+  height: 4px;
+  background: #bd5532;
+  margin-top: 10px;
+}
+
+.contact__input {
+  padding: 18px 10px;
+  font-family: var(--font);
+  width: 100%;
+  outline: none;
+  border: 2px solid #bd5532;
+  border-radius: 5px;
+}
+
+.contact__input--area {
+  resize: none;
+  height: 150px;
+}
+
+.contact__cta {
+  display: block;
+  background: #bd5532;
+  width: 200px;
+  color: #fff;
+  font-family: var(--font);
+  padding: 18px 0;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  box-shadow: 0 2px 10px -4px rgba(0, 0, 0, 0.5);
+  place-self: end;
+}
+.tabla table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgb(114, 103, 103); /* Fondo negro para la cabecera */
+  color: rgb(189, 189, 189); /* Texto blanco en la cabecera */
+  border-radius: 5px;
+}
+
+.tabla th,
+.tabla td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Ajustes en el ancho de las columnas */
+.tabla th:nth-child(1),
+.tabla td:nth-child(1),
+.tabla th:nth-child(3),
+.tabla td:nth-child(3) {
+  width: 5%; /* Ancho más estrecho para número de habitación y número de personas */
+}
+.tabla th:nth-child(2),
+.tabla td:nth-child(2) {
+  width: 25%; /* Ancho más amplio para la segunda columna */
+}
+/* Estilizar filas */
+.tabla tr {
+  box-shadow: 0 8px 10px 0 rgba(44, 43, 43, 0.3); /* Sombra para cada fila */
+  transition: box-shadow 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+.tabla tr:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al pasar el ratón */
+}
+
+/* Estilos para botones */
+.tabla button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #fff;
+}
+
+.tabla button:hover {
+  background-color: #bd5532; /* Color de fondo al pasar el ratón */
+}
+.editar {
+  background-color: darkgreen;
+}
+
+.check-out {
+  background-color: rgb(114, 37, 153);
+}
+.pie {
+  width: 100%;
+  height: 80px;
+  background-color: #bd5532;
+}
+.title__pie {
+  text-align: center;
+  line-height: 80px;
+  color: #dee1b6;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --contact-columns: 1fr;
+    --contact-rows: max-content 1fr;
+    --clip: polygon(0 0, 0% 100%, 100% 0);
+  }
+
+  .contact__form {
+    grid-column: 1/-1;
+    grid-row: 2/3;
+    padding: 40px 0 40px;
+    width: 90%;
+    max-width: 500px;
+  }
+
+  .contact__picture {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .contact__img {
+    max-width: 400px;
+  }
+}
