@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tipo{% endblock %}
+
+{% block body %}
+    <h1>Tipo</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tipo.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ tipo.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_tipo_index') }}">back to list</a>
+
+    <a href="{{ path('app_tipo_edit', {'id': tipo.id}) }}">edit</a>
+
+    {{ include('tipo/_delete_form.html.twig') }}
+{% endblock %}

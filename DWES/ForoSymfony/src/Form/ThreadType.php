@@ -19,7 +19,7 @@ class ThreadType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('text',TextType::class, array('mapped' => false))
+            ->add('text',TextType::classay('mapped' => false)), arr
             /*
             ->add('createDate')
             ->add('status')
