@@ -159,4 +159,22 @@ class PokemonController extends AbstractController
             'pokemon' => $pokemon,
         ]);
     }
+    #[Route("/remove/{id}", name:"app_pokemon_remove", methods: ['GET'])]
+    public function removePokemon(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
+    {
+        // Asegúrate de que el usuario esté autenticado y de que el Pokémon pertenezca al usuario
+        $user = $this->getUser();
+        if (!$user || !$user->getPokemon()->contains($pokemon)) {
+            throw $this->createNotFoundException();
+        }
+
+        // Elimina el Pokémon del usuario
+        $user->removePokemon($pokemon);
+
+        // Guarda los cambios en la base de datos
+        $entityManager->flush();
+
+        // Redirige a la página del Pokémon o a donde desees después de eliminarlo
+        return $this->redirectToRoute('app_pokemon_show', ['id' => $pokemon->getId()]);
+    }
 }

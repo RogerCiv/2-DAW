@@ -1,57 +1,83 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pokemon index{% endblock %}
+{% block title %}Pokemon index
+{% endblock %}
 
 {% block body %}
-    <h1>Pokemon index</h1>
+	<h1 class="text-center mb-5">Pokemon index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Number</th>
-                <th>Tipo</th>
-                <th>Imagen</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for pokemon in pokemon %}
-            <tr>
-                <td>{{ pokemon.id }}</td>
-                <td>{{ pokemon.name }}</td>
-                <td>{{ pokemon.number }}</td>
-                <td> {{ pokemon.tipo.name }} </td>
-                <td><img src="{{ asset('uploads/imgs/' ~ pokemon.img) }}" style="width:50px;" ></td>
-                <td>
-                {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
-                    {% if not app.user or pokemon not in app.user.getPokemon() %}
-                                <a href="{{ path('app_pokemon_add', {'id': pokemon.id}) }}">Añadir</a>
-               <button>  <a href="{{ path('app_user_show', {'id': app.user.id}) }}">Mostrar mis Pokémon</a></button>
+	{# <table class="table">
+						        <thead>
+						            <tr>
+						                <th>Id</th>
+						                <th>Name</th>
+						                <th>Number</th>
+						                <th>Tipo</th>
+						                <th>Imagen</th>
+						                <th>actions</th>
+						            </tr>
+						        </thead>
+						        <tbody> #}
+	<div class="container text-center">
+		<div class="row justify-content-center">
+			{% for pokemon in pokemon %}
+				{# <tr>
+														                <td>{{ pokemon.id }}</td>
+														                <td>{{ pokemon.name }}</td>
+														                <td>{{ pokemon.number }}</td>
+														                <td> {{ pokemon.tipo.name }} </td>
+														                <td><img src="{{ asset('uploads/imgs/' ~ pokemon.img) }}" style="width:50px;" ></td>
+														                <td>
+														                {% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+														                    {% if not app.user or pokemon not in app.user.getPokemon() %}
+														                                <a href="{{ path('app_pokemon_add', {'id': pokemon.id}) }}">Añadir</a>
+														
+														                            {% endif %}
+														
+														                <a href="{{ path('app_pokemon_show',{'id':pokemon.id })}}"> Mostrar</a>
+														                {% endif %}
+														
+														                    {% if is_granted("ROLE_ADMIN") %}
+														                        
+														                    <a href="{{ path('app_pokemon_edit', {'id': pokemon.id}) }}">edit</a>
+														                    {% endif %}
+														                </td>
+														            </tr> #}
+				<div class="col-md-4 mb-2">
+					<div class="card card-hover d-flex justify-content-center align-items-center" style="width: 18rem;">
+						<img src="{{ asset('uploads/imgs/' ~ pokemon.img) }}" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title text-center">{{pokemon.name}}</h5>
+							<p class="card-text text-center">
+								<span class="fw-bold">Tipo:</span>
+								{{ pokemon.tipo.name }}</p>
+							{% if not app.user or pokemon not in app.user.getPokemon() %}
+								<a href="{{ path('app_pokemon_add', {'id': pokemon.id}) }}" class="btn btn-primary">Añadir</a>
+							{% endif %}
+							<a href="{{ path('app_pokemon_show',{'id':pokemon.id })}}" class="btn btn-secondary">
+								Mostrar</a>
+							{% if is_granted("ROLE_ADMIN") %}
+								<a href="{{ path('app_pokemon_edit', {'id': pokemon.id}) }}" class="btn btn-warning">Editar</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
 
-                            {% endif %}
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</div>
+		<button>
+			<a href="{{ path('app_user_show', {'id': app.user.id}) }}">Mostrar mis Pokémon</a>
+		</button>
+		{% if is_granted("ROLE_ADMIN") %}
 
-                <a href="{{ path('app_pokemon_show',{'id':pokemon.id })}}"> Mostrar</a>
-                {% endif %}
-
-                    {% if is_granted("ROLE_ADMIN") %}
-                        
-                    <a href="{{ path('app_pokemon_edit', {'id': pokemon.id}) }}">edit</a>
-                    {% endif %}
-                </td>
-            </tr>
-   
-
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% if is_granted("ROLE_ADMIN") %}
-    
-    <a href="{{ path('app_pokemon_new') }}">Create new</a>
-{% endif %}
+			<a href="{{ path('app_pokemon_new') }}">Create new</a>
+			<a href="{{ path('app_tipo_index') }}">Tipos</a>
+		{% endif %}
+	</div>
+	{# </tbody>
+									    </table> #}
 {% endblock %}

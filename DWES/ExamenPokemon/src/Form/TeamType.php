@@ -16,16 +16,19 @@ class TeamType extends AbstractType
     {
         $builder
             ->add('name')
-//             ->add('trainer', EntityType::class, [
-//                 'class' => User::class,
-// 'choice_label' => 'id',
-//             ])
+            //             ->add('trainer', EntityType::class, [
+            //                 'class' => User::class,
+            // 'choice_label' => 'id',
+            //             ])
             ->add('pokemons', EntityType::class, [
                 'class' => Pokemon::class,
-'choice_label' => 'name',
-'multiple' => true,
-            ])
-        ;
+                'choice_label' => 'name',
+                'multiple' => true,
+                'attr' => [
+                    'class' => 'form-control-sm text-center' , 
+                    'style' => 'height: 150px',
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

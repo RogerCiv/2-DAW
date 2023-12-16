@@ -6,6 +6,7 @@ use App\Repository\TeamRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TeamRepository::class)]
 class Team
@@ -20,8 +21,8 @@ class Team
 
     #[ORM\ManyToOne(inversedBy: 'teams')]
     private ?User $trainer = null;
-
     #[ORM\ManyToMany(targetEntity: Pokemon::class, inversedBy: 'teams')]
+    #[Assert\Count(max: 6, maxMessage: 'No puedes agregar más de 6 Pokémon a tu equipo.')]
     private Collection $pokemons;
 
     public function __construct()
