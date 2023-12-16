@@ -4,10 +4,40 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Pokedex de
-		{{ user.username }}</h1>
+	<h1 class="text-center mb-5">Pokedex de {{ user.username }}</h1>
+		<div class="container text-center">
+		<div class="row justify-content-center">
+			{% for pokemon in user.getPokemon() %}
+				<div class="col-md-4 mb-2">
+					<div class="card card-hover d-flex justify-content-center align-items-center" style="width: 18rem;">
+						<img src="{{ asset('uploads/imgs/' ~ pokemon.img) }}" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title text-center">{{pokemon.name}}</h5>
+							<p class="card-text text-center">
+								<span class="fw-bold">Tipo:</span>
+								{{ pokemon.tipo.name }}</p>
+							{% if not app.user or pokemon not in app.user.getPokemon() %}
+								{% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+									
+								<a href="{{ path('app_pokemon_add', {'id': pokemon.id}) }}" class="btn btn-primary">Añadir</a>
+								{% endif %}
+							{% endif %}
+							<a href="{{ path('app_pokemon_show',{'id':pokemon.id })}}" class="btn btn-secondary">
+								Mostrar</a>
+							{% if is_granted("ROLE_ADMIN") %}
+								<a href="{{ path('app_pokemon_edit', {'id': pokemon.id}) }}" class="btn btn-warning">Editar</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
 
-	<table class="table">
+			{% else %}
+
+			<p class="text-danger">No tienes añadidos pokemons a tu pokedex </p>
+				
+			{% endfor %}
+
+	{# <table class="table">
 		<tbody>
 			<tr>
 				<th>Pokémon</th>
@@ -19,7 +49,7 @@
 									<img src="{{ asset('uploads/imgs/' ~ pokemon.img) }}" style="width:50px;"></li>
 								{# Añadir enlace para agregar Pokémon al equipo #}
                             
-								{% if team is not null %}
+								{# {% if team is not null %}
 									<a href="{{ path('app_team_add_pokemon', {'id': team.id, 'pokemonId': pokemon.id}) }}">Agregar a mi equipo</a>
 								{% endif %}
 							{% endfor %}
@@ -30,7 +60,8 @@
 				</td>
 			</tr>
 		</tbody>
-	</table>
+	</table> #}
+	 
     {% if user.getTeams()|length > 0 %}
 
     {% for team in user.getTeams() %}
@@ -39,14 +70,14 @@
         
     {% else %}
         <p>No hay equipos</p>
-        <a href="{{ path('app_team_new',{})}}"> Crear equipo</a>
+        <a href="{{ path('app_team_new',{})}}" class="btn btn-primary"> Crear equipo</a>
         <br>
     {% endif %}
 
 
-	<a href="{{ path('app_pokemon_index') }}">Volver a Pokemons</a>
+	<a href="{{ path('app_pokemon_index') }}" class="btn btn-secondary">Volver a Pokemons</a>
 	{% if is_granted("ROLE_ADMIN") %}
-		<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+		<a href="{{ path('app_user_edit', {'id': user.id }) }}">edit</a>
 
 		{{ include('user/_delete_form.html.twig') }}
 

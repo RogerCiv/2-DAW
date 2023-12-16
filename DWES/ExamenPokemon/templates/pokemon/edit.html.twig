@@ -7,7 +7,7 @@
 
     {{ include('pokemon/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_pokemon_index') }}">back to list</a>
+    <a href="{{ path('app_pokemon_index') }}" class="btn btn-dark text-ligth-emphasis mt-2">back to list</a>
 
     {{ include('pokemon/_delete_form.html.twig') }}
 {% endblock %}

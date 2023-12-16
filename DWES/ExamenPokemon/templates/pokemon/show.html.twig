@@ -61,13 +61,13 @@
             {% endif %}
 			{% if is_granted("ROLE_ADMIN") %}
 				<a href="{{ path('app_pokemon_edit', {'id': pokemon.id}) }}" class="btn btn-warning">edit</a>
-				{{ include('pokemon/_delete_form.html.twig') }}
+		
 
 			{% endif %}
 		</div>
 	</div>
 
-	<a href="{{ path('app_pokemon_index') }}">Volver a pokemons</a>
+	<a href="{{ path('app_pokemon_index') }}" class="btn btn-primary mt-2">Volver a pokemons</a>
 
 	{{ include('pokemon/_delete_form.html.twig') }}
 {% endblock %}
