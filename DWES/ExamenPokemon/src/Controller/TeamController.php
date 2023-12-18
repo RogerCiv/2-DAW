@@ -34,10 +34,16 @@ class TeamController extends AbstractController
     }
 
     #[Route('/new', name: 'app_team_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,SecurityController $security): Response
     {
         $team = new Team();
-        $form = $this->createForm(TeamType::class, $team);
+        $user = $security->getUser();
+
+        // Asigna el usuario al equipo
+        $team->setTrainer($user);
+        $form = $this->createForm(TeamType::class, $team,[
+            'user' => $user,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -65,7 +71,9 @@ class TeamController extends AbstractController
     #[Route('/{id}/edit', name: 'app_team_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Team $team, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(TeamType::class, $team);
+        $form = $this->createForm(TeamType::class, $team,[
+            'user' => $this->getUser(),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -4,30 +4,10 @@
 {% endblock %}
 
 {% block body %}
+ <div class="container d-flex flex-column justify-content-center align-items-center">
 	<h1>
 		{{ pokemon.name }}
 	</h1>
-
-	{# <table class="table">
-			        <tbody>
-			            <tr>
-			                <th>Id</th>
-			                <td>{{ pokemon.id }}</td>
-			            </tr>
-			            <tr>
-			                <th>Name</th>
-			                <td>{{ pokemon.name }}</td>
-			            </tr>
-			            <tr>
-			                <th>Number</th>
-			                <td>{{ pokemon.number }}</td>
-			            </tr>
-			               <tr>
-			                <th>Imagen</th>
-			                <td><img src="{{ asset('uploads/imgs/' ~ pokemon.img) }}" style="width:50px;" ></td>
-			            </tr>
-			        </tbody>
-			    </table> #}
 	<div class="card" style="width: 18rem;">
 		<img src="{{ asset('uploads/imgs/' ~ pokemon.img) }}" class="card-img-top" alt="...">
 		<div class="card-body">
@@ -38,7 +18,8 @@
 				{{pokemon.tipo.name}}</p>
 		</div>
 		<ul class="list-group list-group-flush">
-
+	{% if is_granted("ROLE_ADMIN") or is_granted("ROLE_USER") %}
+		
 			{% if app.user and pokemon in app.user.getPokemon() %}
 				<li class="list-group-item">
 					<p class="text-success">Este Pokémon está en tu Pokédex.</p>
@@ -50,6 +31,7 @@
 				</li>
 
 			{% endif %}
+	{% endif %}
 		</ul>
 		<div class="card-body">
             {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_USER") %}
@@ -68,6 +50,9 @@
 	</div>
 
 	<a href="{{ path('app_pokemon_index') }}" class="btn btn-primary mt-2">Volver a pokemons</a>
-
+	{% if is_granted("ROLE_ADMIN") %}
+		
 	{{ include('pokemon/_delete_form.html.twig') }}
+	</div>
+	{% endif %}
 {% endblock %}

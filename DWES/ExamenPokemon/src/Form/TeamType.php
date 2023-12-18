@@ -14,6 +14,7 @@ class TeamType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $user = $options['user'];
         $builder
             ->add('name')
             //             ->add('trainer', EntityType::class, [
@@ -22,7 +23,8 @@ class TeamType extends AbstractType
             //             ])
             ->add('pokemons', EntityType::class, [
                 'class' => Pokemon::class,
-                'choice_label' => 'name',
+                 'choice_label' => 'name',
+                'choices' => $user->getPokemon(), 
                 'multiple' => true,
                 'attr' => [
                     'class' => 'form-control-sm text-center' , 
@@ -35,6 +37,8 @@ class TeamType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Team::class,
+            'user' => null,
         ]);
+        $resolver->setAllowedTypes('user', [User::class, 'null']);
     }
 }

@@ -118,6 +118,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getTeams(): Collection
     {
+        //dd($this->teams);
         return $this->teams;
     }
 

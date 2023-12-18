@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,11 +69,20 @@ class PokemonController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_pokemon_show', methods: ['GET'])]
-    public function show(Pokemon $pokemon): Response
+    public function show(Pokemon $pokemon): JsonResponse
     {
-        return $this->render('pokemon/show.html.twig', [
-            'pokemon' => $pokemon,
-        ]);
+
+        $data = [
+            'id' => $pokemon->getId(),
+            'name' => $pokemon->getName(),
+            'img' => $pokemon->getImg(),
+            // ... otros campos
+        ];
+        header('Content-type: application/json');
+        return $this->json($pokemon->toJson());
+        // return $this->render('pokemon/show.html.twig', [
+        //     'pokemon' => $pokemon,
+        // ]);
     }
 
     #[Route('/{id}/edit', name: 'app_pokemon_edit', methods: ['GET', 'POST'])]
@@ -159,7 +169,7 @@ class PokemonController extends AbstractController
             'pokemon' => $pokemon,
         ]);
     }
-    #[Route("/remove/{id}", name:"app_pokemon_remove", methods: ['GET'])]
+    #[Route("/remove/{id}", name: "app_pokemon_remove", methods: ['GET'])]
     public function removePokemon(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
     {
         // Asegúrate de que el usuario esté autenticado y de que el Pokémon pertenezca al usuario

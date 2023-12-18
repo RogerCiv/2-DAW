@@ -4,8 +4,9 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center mb-5">Pokedex de {{ user.username }}</h1>
-		<div class="container text-center">
+	<h1 class="text-center mb-5">Pokedex de
+		{{ user.username }}</h1>
+	<div class="container text-center">
 		<div class="row justify-content-center">
 			{% for pokemon in user.getPokemon() %}
 				<div class="col-md-4 mb-2">
@@ -18,8 +19,8 @@
 								{{ pokemon.tipo.name }}</p>
 							{% if not app.user or pokemon not in app.user.getPokemon() %}
 								{% if is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
-									
-								<a href="{{ path('app_pokemon_add', {'id': pokemon.id}) }}" class="btn btn-primary">Añadir</a>
+
+									<a href="{{ path('app_pokemon_add', {'id': pokemon.id}) }}" class="btn btn-primary">Añadir</a>
 								{% endif %}
 							{% endif %}
 							<a href="{{ path('app_pokemon_show',{'id':pokemon.id })}}" class="btn btn-secondary">
@@ -33,53 +34,63 @@
 
 			{% else %}
 
-			<p class="text-danger">No tienes añadidos pokemons a tu pokedex </p>
-				
+				<p class="text-danger">No tienes añadidos pokemons a tu pokedex
+				</p>
+
 			{% endfor %}
 
-	{# <table class="table">
-		<tbody>
-			<tr>
-				<th>Pokémon</th>
-				<td>
-					{% if user.getPokemon()|length > 0 %}
-						<ul>
-							{% for pokemon in user.getPokemon() %}
-								<li>{{ pokemon.name }}
-									<img src="{{ asset('uploads/imgs/' ~ pokemon.img) }}" style="width:50px;"></li>
-								{# Añadir enlace para agregar Pokémon al equipo #}
-                            
-								{# {% if team is not null %}
-									<a href="{{ path('app_team_add_pokemon', {'id': team.id, 'pokemonId': pokemon.id}) }}">Agregar a mi equipo</a>
+			{# <table class="table">
+					<tbody>
+						<tr>
+							<th>Pokémon</th>
+							<td>
+								{% if user.getPokemon()|length > 0 %}
+									<ul>
+										{% for pokemon in user.getPokemon() %}
+											<li>{{ pokemon.name }}
+												<img src="{{ asset('uploads/imgs/' ~ pokemon.img) }}" style="width:50px;"></li>
+											{# Añadir enlace para agregar Pokémon al equipo #}
+
+			{# {% if team is not null %}
+												<a href="{{ path('app_team_add_pokemon', {'id': team.id, 'pokemonId': pokemon.id}) }}">Agregar a mi equipo</a>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								{% else %}
+									<p>No tiene ningún Pokémon todavía.</p>
 								{% endif %}
-							{% endfor %}
-						</ul>
-					{% else %}
-						<p>No tiene ningún Pokémon todavía.</p>
-					{% endif %}
-				</td>
-			</tr>
-		</tbody>
-	</table> #}
-	 
-    {% if user.getTeams()|length > 0 %}
+							</td>
+						</tr>
+					</tbody>
+				</table> #}
 
-    {% for team in user.getTeams() %}
-        hola
-    {% endfor %}
-        
-    {% else %}
-        <p>No hay equipos</p>
-        <a href="{{ path('app_team_new',{})}}" class="btn btn-primary"> Crear equipo</a>
-        <br>
-    {% endif %}
+			{% if user.getTeams()|length > 0 %}
 
+				{% for team in user.getTeams() %}
+					<ul class="list-group mt-4">
+						<li class="list-group-item active" aria-current="true">{{team.getName()}}</li>
+						{% for pokemons in team.getPokemons() %}
+							<li class="list-group-item">{{ pokemons.name }}	<img src="{{ asset('uploads/imgs/' ~ pokemons.img) }}" style="width:50px"></li>
+							
+						{% endfor %}
+						<a href="{{ path('app_team_show',{'id': team.id})}}" class="btn btn-warning mt-2"> Editar Equipo</a>
+					</ul>
+					{% endfor %}
 
-	<a href="{{ path('app_pokemon_index') }}" class="btn btn-secondary">Volver a Pokemons</a>
-	{% if is_granted("ROLE_ADMIN") %}
-		<a href="{{ path('app_user_edit', {'id': user.id }) }}">edit</a>
+				{% else %}
+					<p>No hay equipos</p>
+					<a href="{{ path('app_team_new',{'id': app.user.id})}}" class="btn btn-primary">
+						Crear equipo</a>
+					<br>
+				{% endif %}
 
-		{{ include('user/_delete_form.html.twig') }
+				<a href="{{ path('app_team_new',{'id': app.user.id})}}" class="btn btn-dark mt-2">
+					Crear nuevo equipo</a>
+				<a href="{{ path('app_pokemon_index') }}" class="btn btn-secondary mt-2">Volver a Pokemons</a>
+				{% if is_granted("ROLE_ADMIN") %}
+					<a href="{{ path('app_user_edit', {'id': user.id }) }}" class="btn btn-warning mt-4">Edit</a>
 
-	{% endif %}
-{% endblock %}
+					{{ include('user/_delete_form.html.twig') }}
+
+				{% endif %}
+			{% endblock %}

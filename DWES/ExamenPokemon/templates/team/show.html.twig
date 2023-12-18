@@ -19,9 +19,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_team_index') }}">back to list</a>
+    <a href="{{ path('app_team_index') }}" class="btn btn-primary">back to list</a>
 
-    <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
+    <a href="{{ path('app_team_edit', {'id': team.id}) }}" class="btn btn-dark">edit</a>
 
     {{ include('team/_delete_form.html.twig') }}
 {% endblock %}

@@ -143,4 +143,17 @@ class Pokemon
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->name; // o cualquier propiedad que desees mostrar como cadena
+    }
+    public function toJson(){
+        $data = [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'img' => $this->getImg(),
+            'tipo' => $this->getTipo() 
+        ];
+        return $data;
+    }
 }
