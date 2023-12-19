@@ -163,6 +163,11 @@ img {
   width: 450px;
   color: white;
 }
+.carrito-productos img{
+  width: 50px;
+  cursor: pointer;
+
+}
 .carrito-productos h2 {
   margin-top: 4rem;
   color: white;

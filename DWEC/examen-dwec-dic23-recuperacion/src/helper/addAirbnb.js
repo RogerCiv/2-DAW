@@ -10,6 +10,9 @@ export function addAirbnb(element,data){
       console.log(data.imagen);
 
       console.log(nombre);
+      
+      //const imgMasterCard = document.querySelector(".pay-card")
+      
 
       const cart = document.querySelector(".carrito-productos")
 
@@ -27,7 +30,11 @@ export function addAirbnb(element,data){
 
 
       if(acepta_mascotas){
+        const labelAnimal = document.createElement("label")
+        labelAnimal.textContent = "Acepta mascotas, contratar?"
+        card.appendChild(labelAnimal)
         const checkbox = document.createElement('input')
+        
         checkbox.type = 'checkbox'
         checkbox.id = `mascotas-${id}`;
         checkbox.addEventListener('change',() => {
