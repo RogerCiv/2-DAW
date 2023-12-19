@@ -8,10 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "json-server": "json-server --watch server/db.json --port 4000",
-    "examen": "start /B pnpm run json-server & start /B pnpm run dev"
-
-
-
+    "examen": "start /B pnpm run json-server & start /B pnpm run dev",
+    "examen_linux": "(npm run json-server & npm run dev)"
   },
   "devDependencies": {
     "json-server": "^0.17.4",
