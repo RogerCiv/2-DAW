@@ -1,0 +1,28 @@
+
+
+
+.heatMap {
+    width: 100%;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    margin-top: 6rem;
+    padding:2rem;
+}
+table{
+    font-weight: 700;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+ th {
+    background: grey;
+    text-align: center;
+}
+ tr:nth-child(1) { background: red; width: 120%; }
+ tr:nth-child(2) { background: orange; }
+ tr:nth-child(3) { background: green; }
