@@ -8,6 +8,7 @@ use App\Entity\Pokemon;
 use App\Form\PokemonType;
 use App\Repository\PokemonRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -69,8 +70,9 @@ class PokemonController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_pokemon_show', methods: ['GET'])]
-    public function show(Pokemon $pokemon): JsonResponse
+    public function show(Pokemon $pokemon,LoggerInterface $logger): JsonResponse
     {
+        $logger->info('Me han pedido el pokemon '.$pokemon->getName());
 
         $data = [
             'id' => $pokemon->getId(),
@@ -94,7 +96,12 @@ class PokemonController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_pokemon_index', [], Response::HTTP_SEE_OTHER);
+            $a['status'] = 'sucess';
+            $a['pokemon'] = $pokemon->toJson();
+
+            return new JsonResponse($a);
+
+            //return $this->redirectToRoute('app_pokemon_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('pokemon/edit.html.twig', [
@@ -187,4 +194,20 @@ class PokemonController extends AbstractController
         // Redirige a la página del Pokémon o a donde desees después de eliminarlo
         return $this->redirectToRoute('app_pokemon_show', ['id' => $pokemon->getId()]);
     }
+    #[Route('/add/{id}', name: 'app_pokemon_up')]
+    public function up(Pokemon $pokemon): Response
+    {
+        $data = [
+            'id' => $pokemon->getId(),
+            'name' => $pokemon->getName(),
+            'img' => $pokemon->getImg(),
+            // ... otros campos
+        ];
+        header('Content-type: application/json');
+        return $this->json($pokemon->toJson());
+
+        // Redirigir a la página de índice de Pokémon
+       // return $this->redirectToRoute('app_pokemon_index');
+    }
+
 }

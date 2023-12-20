@@ -152,7 +152,7 @@ class Pokemon
             'id' => $this->getId(),
             'name' => $this->getName(),
             'img' => $this->getImg(),
-            'tipo' => $this->getTipo() 
+            'tipo' => $this->getTipo()->getName(), 
         ];
         return $data;
     }
