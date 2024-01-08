@@ -23,14 +23,15 @@ class Game
     #[ORM\JoinColumn(nullable: false)]
     private ?User $player1 = null;
 
-    #[ORM\ManyToOne(inversedBy: 'wins')]
-    private ?User $winner = null;
 
     #[ORM\ManyToMany(targetEntity: Card::class)]
     private Collection $player1Hand;
 
     #[ORM\ManyToMany(targetEntity: Card::class, mappedBy: 'gamed')]
     private Collection $cpuHand;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $winner = null;
 
     public function __construct()
     {
@@ -67,17 +68,7 @@ class Game
         return $this;
     }
 
-    public function getWinner(): ?User
-    {
-        return $this->winner;
-    }
-
-    public function setWinner(?User $winner): static
-    {
-        $this->winner = $winner;
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection<int, Card>
@@ -126,6 +117,18 @@ class Game
         if ($this->cpuHand->removeElement($cpuHand)) {
             $cpuHand->removeGamed($this);
         }
+
+        return $this;
+    }
+
+    public function getWinner(): ?int
+    {
+        return $this->winner;
+    }
+
+    public function setWinner(?int $winner): static
+    {
+        $this->winner = $winner;
 
         return $this;
     }

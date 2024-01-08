@@ -104,7 +104,7 @@ class GameController extends AbstractController
         // COmprobar que cardId es una de las cartas de player
 
 
-        if (!$game->getPlayer1Hand()->contains($card)) {
+        if (!$game->getPlayer1Hand()->contains($card) || $game->getWinner() != NULL) {
 
             return $this->redirectToRoute('app_main',);
         }
@@ -114,7 +114,9 @@ class GameController extends AbstractController
         shuffle($cpuHand);
         $cpuCard = $cpuHand[0];
         if ($card->getValue() > $cpuCard->getValue()) {
-            $game->setWinner($this->getUser());
+            $game->setWinner(1);
+        }else{
+            $game->setWinner(0);
         }
         $entityManager->flush();
         $entityManager->persist($game);
