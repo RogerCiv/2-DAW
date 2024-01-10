@@ -1,15 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Hello MainController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
 
-<br>usuario - total jugadas - ganadas - perdidas<br>
- {% for user in users %}
-    {{user.username}} - {{ user.games|length }} - {{wins[user.id]}} - {{user.games|length - wins[user.id]}} <br>
-{% endfor %}
-{% endblock %}
+<br><br>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Jugador</th>
+				<th scope="col">Partidas</th>
+				<th scope="col">Ganadas</th>
+				<th scope="col">Perdidas</th>
+				<th scope="col">% Victorias</th>
+				<th scope="col">% Derrotas</th>
+			</tr>
+		</thead>
+		{% for user in users %}
+			{% set totalGames = user.games|length %}
+			{% set totalWins = wins[user.id] %}
+			{% set totalLosses = totalGames - totalWins %}
+
+			<tbody>
+				<tr>
+					<th scope="row">1</th>
+					<td>
+						{{ user.username }}</td>
+					<td>
+						{{ totalGames }}</td>
+					<td>
+						{{ totalWins }}</td>
+					<td>
+						{{ totalLosses }}</td>
+					<td>{{ totalGames > 0 ? (totalWins / totalGames * 100)|number_format(2) : 0 }}%</td>
+					<td>	{{ totalGames > 0 ? (totalLosses / totalGames * 100)|number_format(2) : 0 }}%</td>
+				</tr>
+			{% endfor %}
+				</tbody>
+			</table>
+
+<div class="alert alert-primary" role="alert">
+  El usuario con más partidas es: {{userWhitMoreGames.username }} con {{ userWhitMoreGames.total_games }}
+</div>
+
+<div class="alert alert-success" role="alert">
+El usuario con más victorias es: {{userWhitMoreWins.username }} con {{ userWhitMoreWins.total_wins }}
+</div>
+
+<div class="alert alert-danger" role="alert">
+ El usuario con más perdidas es: {{userWhitMostLostGames.username }} con {{ userWhitMostLostGames.total_lost_games }}
+</div>
+		{% endblock %}

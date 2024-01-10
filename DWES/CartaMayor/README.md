@@ -30,3 +30,29 @@ php bin/console make:registration-form
 
 php bin/console doctrine:schema:update --force
 php bin/console cache:clear
+
+
+
+
+
+
+
+
+
+<br>usuario - total jugadas - ganadas - perdidas - porcentaje victorias - porcentaje derrotas<br>
+{% for user in users %}
+    {% set totalGames = user.games|length %}
+    {% set totalWins = wins[user.id] %}
+    {% set totalLosses = totalGames - totalWins %}
+    
+    {{ user.username }} - {{ totalGames }} - {{ totalWins }} - {{ totalLosses }} - 
+    {{ totalGames > 0 ? (totalWins / totalGames * 100)|number_format(2) : 0 }}% - 
+    {{ totalGames > 0 ? (totalLosses / totalGames * 100)|number_format(2) : 0 }}% <br>
+{% endfor %}
+
+El usuario con más partidas es: {{userWhitMoreGames.username }} con {{ userWhitMoreGames.total_games }}
+<br>
+El usuario con más victorias es: {{userWhitMoreWins.username }} con {{ userWhitMoreWins.total_wins }}
+<br>
+El usuario con más perdidas es: {{userWhitMostLostGames.username }} con {{ userWhitMostLostGames.total_lost_games }}
+<br>

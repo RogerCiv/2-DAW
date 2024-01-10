@@ -46,7 +46,7 @@ class GameRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-public function getWinsByUser($value): array
+public function getWinsByUser($value): ?array
    {
         return $this->createQueryBuilder('g')
         ->select('count(g.id) as total')
@@ -55,6 +55,45 @@ public function getWinsByUser($value): array
             ->getQuery()
            ->getOneOrNullResult();
      
-        ;
+        
+    }
+
+    public function getUserWhitMoreWins(): ?array
+    {
+        return $this->createQueryBuilder('g')
+        ->select('IDENTITY(g.player1) as user_id', 'COUNT(g.id) as total_wins', 'u.username')
+        ->leftJoin('g.player1', 'u')
+        ->where('g.winner = 1')
+        ->groupBy('g.player1')
+        ->orderBy('total_wins', 'DESC')
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getOneOrNullResult();
+     }
+
+
+     public function getUserWithMostGames(): ?array
+    {
+        return $this->createQueryBuilder('g')
+            ->select('IDENTITY(g.player1) as user_id', 'COUNT(g.id) as total_games', 'u.username')
+            ->leftJoin('g.player1', 'u')
+            ->groupBy('g.player1')
+            ->orderBy('total_games', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function getUserWithMostLostGames(): ?array
+    {
+        return $this->createQueryBuilder('g')
+            ->select('IDENTITY(g.player1) as user_id', 'COUNT(g.id) as total_lost_games', 'u.username')
+            ->leftJoin('g.player1', 'u')
+            ->where('g.winner = 0') // Assuming 0 indicates a lost game, adjust if needed
+            ->groupBy('g.player1')
+            ->orderBy('total_lost_games', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }

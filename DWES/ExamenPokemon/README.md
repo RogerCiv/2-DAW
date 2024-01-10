@@ -11,6 +11,7 @@ DATABASE_URL="mysql://root:test@127.0.0.1:3306/NombreBaseDatos"
 - php bin/console make:entity
 - php bin/console make:migration
 - php bin/console doctrine:migrations:migrate
+- php bin/console doctrine:migrations:status
 - php bin/console make:controller  
 - php bin/console make:crud
 
@@ -30,3 +31,4 @@ php bin/console make:registration-form
 
 php bin/console doctrine:schema:update --force
 php bin/console cache:clear
+php bin/console doctrine:cache:clear-metadata

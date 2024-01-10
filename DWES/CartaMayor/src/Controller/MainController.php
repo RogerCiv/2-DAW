@@ -27,10 +27,23 @@ class MainController extends AbstractController
             $w= $gameRepository->getWinsByUser($user);
            $wins[$user->getId()] = $w['total'];
         }
+        //usuario con más partidas
+
+        $userWhitMoreGames = $gameRepository->getUserWithMostGames();
+        //usuario con más victorias
+
+        $userWhitMoreWins = $gameRepository->getUserWhitMoreWins();
+
+        //usuario con mas derrottas
+        $userWhitMostLosGames = $gameRepository->getUserWithMostLostGames();
+    
 
         return $this->render('main/stats.html.twig', [
             'users' => $users,
             'wins' => $wins,
+            'userWhitMoreWins' => $userWhitMoreWins,
+            'userWhitMoreGames' => $userWhitMoreGames,
+            'userWhitMostLostGames' => $userWhitMostLosGames,
         ]);
     }
 
