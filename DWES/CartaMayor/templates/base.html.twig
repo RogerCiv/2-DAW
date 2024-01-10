@@ -15,6 +15,7 @@
     <h1> MI juego cartas </h1>
         {% if app.user %}
             Hola {{ app.user.username }} <a href="/logout">Logout </a>
+            <a href="/stats"> Tus estadisticas</a>
             {% else %}
             Hola visitante <a href="/login">Inicia sesion </a>
         {% endif %}

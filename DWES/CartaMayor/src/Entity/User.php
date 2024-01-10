@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\GameRepository;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -34,13 +35,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'player1', targetEntity: Game::class)]
     private Collection $games;
 
-    #[ORM\OneToMany(mappedBy: 'winner', targetEntity: Game::class)]
-    private Collection $wins;
+
 
     public function __construct()
     {
         $this->games = new ArrayCollection();
-        $this->wins = new ArrayCollection();
+ 
     }
 
     public function getId(): ?int
@@ -143,33 +143,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Game>
-     */
-    public function getWins(): Collection
-    {
-        return $this->wins;
-    }
-
-    public function addWin(Game $win): static
-    {
-        if (!$this->wins->contains($win)) {
-            $this->wins->add($win);
-            $win->setWinner($this);
-        }
-
-        return $this;
-    }
-
-    public function removeWin(Game $win): static
-    {
-        if ($this->wins->removeElement($win)) {
-            // set the owning side to null (unless already changed)
-            if ($win->getWinner() === $this) {
-                $win->setWinner(null);
-            }
-        }
-
-        return $this;
-    }
 }

@@ -45,4 +45,16 @@ class GameRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function getWinsByUser($value): array
+   {
+        return $this->createQueryBuilder('g')
+        ->select('count(g.id) as total')
+           ->andWhere('g.player1 = :val AND g.winner = 1')
+            ->setParameter('val', $value)
+            ->getQuery()
+           ->getOneOrNullResult();
+     
+        ;
+    }
 }
