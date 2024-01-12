@@ -1,0 +1,43 @@
+body {
+    margin:0;
+    background:#000;
+  }
+
+#bern {
+    width:112px;
+    height:156px;
+    margin:auto;  
+    background: url(ifk0SLH.png) repeat-x;
+    animation:walk 1s steps(6) infinite;
+    position:relative;
+    bottom:34px;
+    
+  }
+
+#sky {
+  background: url(PhHVjgw.png) repeat-X;
+  animation: movebg 9s linear infinite;
+}
+
+#sea {
+  background: url(sea.png) repeat-x;
+  position: relative;
+  top: 145px;
+  animation: movebg 6s linear infinite;
+}
+
+@keyframes walk {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: -672px;
+  }
+}
+
+@keyframes movebg {
+    0% { background-position:550px }
+    100% { background-position:0 }
+  }
+
+

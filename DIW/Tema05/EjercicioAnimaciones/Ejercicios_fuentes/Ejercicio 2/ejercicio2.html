@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 2 - Transformaciones CSS</title>
+    <style type="text/css" media="screen">
+      #container > div {
+        margin-bottom: 10px;
+        border: 1px dotted #000;
+        width: 250px;
+      }
+      .box {
+        width: 200px;
+        height: 100px;
+        border: 5px solid gray;
+        background-color: silver;
+        margin: 25px auto;
+      }
+
+      #ex01 {
+        .box:nth-child(2) {
+          transform: translate(100px, 50px);
+        }
+      }
+
+      #ex02 {
+        .box:nth-child(2) {
+          transform: scale(2);
+        }
+      }
+
+      #ex03 {
+        .box:nth-child(2) {
+          transform: rotate(45deg);
+        }
+      }
+      #ex03 .box:nth-child(3) {
+        transform: rotate(45deg) translate(0%, 90%);
+      }
+
+      #ex04 {
+        .box:nth-child(2) {
+          transform: skew(25deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h2>Translate</h2>
+      <div id="ex01">
+        <div class="box">&nbsp;</div>
+        <div class="box">&nbsp;</div>
+      </div>
+      <h2>Scale</h2>
+      <div id="ex02">
+        <div class="box">&nbsp;</div>
+        <div class="box">&nbsp;</div>
+      </div>
+      <h2>Rotate</h2>
+      <div id="ex03">
+        <div class="box">&nbsp;</div>
+        <div class="box">&nbsp;</div>
+        <div class="box">&nbsp;</div>
+      </div>
+      <h2>Skew</h2>
+      <div id="ex04">
+        <div class="box">&nbsp;</div>
+        <div class="box">&nbsp;</div>
+      </div>
+    </div>
+  </body>
+</html>

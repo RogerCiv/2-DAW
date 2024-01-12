@@ -1,0 +1,65 @@
+body {
+    font-family: Comic Sans MS, sans-serif;
+}
+
+div#contenedor{
+	width: 950px;
+	margin: 0 auto;
+	
+}
+
+h2{
+	text-align: center;
+	
+}
+div#animation {
+    width: 950px;
+    height: 500px;
+    background: url("../img/background.png") no-repeat left top;
+    position: absolute;
+    box-shadow: 0 0 15px #000;
+
+}
+
+div#cloud {
+    width: 200px;
+    height: 75px;
+    background-image: url("../img/cloud.png");
+    background-repeat:  no-repeat;
+	position: absolute;
+	left: 350px;
+}
+
+
+
+
+div#rain {
+    width: 200px;
+    height: 400px;
+    background-image: url("../img/rain-background.png");
+    background-repeat: no-repeat;
+    margin:65px 0 0 0;
+	position: absolute;
+}
+
+div#sun {
+    background: url("../img/sun.png") no-repeat top left;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top:20px;
+    left: 700px;
+}
+
+div#flower {
+    width: 90px;
+    height: 130px;
+    background-image: url("../img/flower.png");
+    background-repeat:no-repeat;
+    position: absolute;
+	top: 370px;
+	left: 430px;
+}
+
+
+

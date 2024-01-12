@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<title>Cuadrado rojo animado</title>
+		<meta charset="UTF-8" />
+		<style>
+			#caja {
+				background-color: red;
+				position: relative;
+				width: 100px;
+				height: 100px;
+				-webkit-animation: redBox 5s infinite;
+				animation: redBox 5s infinite;
+			}
+			
+			@-webkit-keyframes redBox {
+				0% {
+					left: 10px;
+				}
+				50% {
+					left: 400px;
+					background-color: darkblue;
+					border-radius: 50px;
+				}
+				100% {
+					left: 10px;
+				}
+			}
+			@keyframes redBox {
+				0% {
+					left: 10px;
+				}
+				50% {
+					left: 400px;
+					background-color: darkblue;
+					border-radius: 50px;
+				}
+				100% {
+					left: 10px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="caja"><p>&nbsp;</p></div>
+	</body>
+</html>

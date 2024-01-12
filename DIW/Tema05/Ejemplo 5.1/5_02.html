@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+	<html lang="es">
+	<head>
+		<title>Transformación</title>
+		<meta charset="UTF-8" />
+		<style>
+			#galeria {
+				width: 700px;
+				margin: 60px auto;
+			}
+			#galeria figure {
+				float: left;
+				margin: 0 10px 10px 0;
+				padding: 10px 10px 25px 10px;
+				background: #ccc;
+				border: 1px solid #fff;
+				box-shadow: 0px 2px 15px #333;
+			}
+			#galeria figcaption {
+				text-align: center;
+			}
+			#galeria figure.pic-1 {
+				z-index: 1;
+				-webkit-transform: rotate(-10deg);
+				transform: rotate(-10deg);
+			}
+			#galeria figure.pic-2 {
+				z-index: 2;
+				-webkit-transform: rotate(3deg);
+				transform: rotate(3deg);
+			}
+			#galeria figure.pic-3 {
+				z-index: 3;
+				-webkit-transform: rotate(5deg);
+				transform: rotate(5deg);
+			}
+			#galeria figure.pic-4 {
+				z-index: 4;
+				-webkit-transform: rotate(-10deg);
+				transform: rotate(-10deg);
+			}
+			#galeria figure:hover {
+				z-index: 10;
+				-webkit-transform: rotate(-3deg);
+				transform: rotate(-3deg);
+				-webkit-box-shadow: 3px 5px 15px #000;
+				box-shadow: 3px 5px 15px #000;
+				background-color: #fff;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<section id="galeria">
+			<figure class="pic-1">
+				<img src="foto1.jpg" alt="Hipopótamo" />
+				<figcaption>Hipopótamo</figcaption>
+			</figure>
+			<figure class="pic-2">
+				<img src="foto2.jpg" alt="Tigre" />
+				<figcaption>Tigre</figcaption>
+			</figure>
+			<figure class="pic-3">
+				<img src="foto3.jpg" alt="Cebra" />
+				<figcaption>Cebra</figcaption>
+			</figure>
+			<figure class="pic-1">
+				<img src="foto4.jpg" alt="Suricata" />
+				<figcaption>Suricata</figcaption>
+			</figure>
+		</section>
+	</body>
+</html>

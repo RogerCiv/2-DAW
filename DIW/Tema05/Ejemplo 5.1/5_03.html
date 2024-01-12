@@ -1,0 +1,40 @@
+<html lang="es">
+	<head>
+		<title>Las transiciones</title>
+		<meta charset="UTF-8" />
+		<style>
+			body {
+				padding: 20px;
+				margin: 0;
+			}
+			#navegacion li {
+				list-style: none;
+			}
+			#navegacion a {
+				display: block;
+				float: left;
+				width: 100px;
+				padding: 3px;
+				margin-right: 20px;
+				border: 1px solid #333;
+				background-color: lightyellow;
+				text-align: center;
+				color: black;
+				text-decoration: none;
+				/* Las transiciones */
+				transition: background-color 1s linear, color 1s linear;
+			}
+			#navegacion a:hover {
+				background-color: darkblue;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="navegacion">
+			<li><a href="#">Inicio</a></li>
+			<li><a href="#">Referencias</a></li>
+			<li><a href="#">Contacto</a></li>
+		</ul>
+	</body>
+</html>
