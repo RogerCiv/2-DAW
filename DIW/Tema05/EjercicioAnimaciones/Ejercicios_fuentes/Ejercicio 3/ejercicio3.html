@@ -13,9 +13,7 @@
         background-color: red;
         font-size: 20px;
         position:absolute;
-        padding: 5px;
-        transform: rotate(270deg);
-    
+        padding: 5px;    
     }
     .box:hover {
         width: 50px;
@@ -51,7 +49,7 @@
         transform: translateX(0);
     }
     to {
-        transform: translateX(1000px) translateY(100px) ; 
+        transform: translateX(1000px) translateY(100px) rotate(270deg) ; 
         width: 50px;
         height: 50px;
         background-color: blue;
@@ -66,7 +64,7 @@
         transform: translateX(0);
     }
     to {
-        transform: translateX(1000px) translateY(-100px) ; 
+        transform: translateX(1000px) translateY(-100px) rotate(270deg) ; 
         width: 50px;
         height: 50px;
         background-color: blue;
@@ -77,10 +75,10 @@
 }
 @keyframes ex03 {
     from {
-        transform: translateX(0);
+        transform: translateX(0) ;
     }
     to {
-        transform: translateX(1000px) translateY(40px) ; 
+        transform: translateX(1000px) translateY(40px) rotate(270deg); 
         width: 50px;
         height: 50px;
         background-color: blue;
@@ -95,12 +93,13 @@
         transform: translateX(0);
     }
     to {
-        transform: translateX(1000px) translateY(-160px) ; 
+        transform: translateX(1000px) translateY(-160px) rotate(270deg) ; 
         width: 50px;
         height: 50px;
         background-color: blue;
         color: yellow;
         font-size: 18px;
+        
    
     }
 }

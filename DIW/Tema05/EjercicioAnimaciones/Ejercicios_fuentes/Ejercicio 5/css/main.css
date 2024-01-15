@@ -1,14 +1,14 @@
 body {
-    background: #f9f9f9 url(../img/white_texture.jpg) repeat top left;
-    color: #333;
-    font-family: 'Oswald', Arial, sans-serif;
-    font-size: 13px;
+   background: #f9f9f9 url(../img/white_texture.jpg) repeat top left;
+   color: #333;
+   font-family: 'Oswald', Arial, sans-serif;
+   font-size: 13px;
 }
 
 .main {
-    width: 690px;
-    margin: 0 auto;
-    overflow: hidden;
+   width: 690px;
+   margin: 0 auto;
+   overflow: hidden;
 }
 
 .view {
@@ -22,23 +22,59 @@ body {
    text-align: center;
    box-shadow: 1px 1px 2px #e6e6e6;
    cursor: pointer;
+   transition: transform 0.5s;
 }
-.view .mask, .view .content {
+
+.view:hover {
+   transform: scale(1.1);
+}
+
+.view .mask,
+.view .content {
    width: 300px;
    height: 200px;
    position: absolute;
    overflow: hidden;
    top: 0;
    left: 0;
+   transition: background-color 1.5s;
+   background-color: rgba(219, 127, 8, 0);
 }
-.view .mask {
-   background-color: rgba(219,127,8, 0.7);
+
+
+
+.view:hover .mask {
+   background-color: rgba(219, 127, 8, 0.7);
 }
+
 .view img {
    display: block;
    position: relative;
    width: 300px;
+   transition: transform 0.5s;
 }
+
+.view:hover img {
+   transform: scale(1.2);
+}
+
+.view h2,
+.view p,
+.view a.info {
+   display: none;
+   opacity: 0;
+   transform: translateY(20px);
+   transition: opacity 0.5s, transform 0.5s;
+}
+
+.view:hover h2,
+.view:hover p,
+.view:hover a.info {
+   display: block;
+   opacity: 1;
+   transform: translateY(0);
+}
+
 .view h2 {
    text-transform: uppercase;
    color: #fff;
@@ -49,6 +85,7 @@ body {
    background: rgba(0, 0, 0, 0.8);
    margin: 20px 0 0 0;
 }
+
 .view p {
    font-family: Georgia, serif;
    font-style: italic;
@@ -58,6 +95,7 @@ body {
    padding: 10px;
    text-align: center;
 }
+
 .view a.info {
    display: inline-block;
    text-decoration: none;
@@ -67,8 +105,7 @@ body {
    text-transform: uppercase;
    box-shadow: 0 0 1px #000;
 }
-.view a.info:hover {
+
+.view:hover a.info {
    box-shadow: 0 0 5px #000;
 }
-
-/* ANIMACIONES Y TRANSICIONES */

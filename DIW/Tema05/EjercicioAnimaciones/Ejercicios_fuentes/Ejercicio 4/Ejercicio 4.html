@@ -18,6 +18,7 @@
             color: #fff;
             font-size: 2em;
             position: absolute;
+            animation: fall 5s linear infinite, fade 5s linear infinite;
         }
         .snowflake.f1 {
             left: 40px;
@@ -32,6 +33,16 @@
         .snowflake.f4 {
             font-size: 1.5em;
             left: 280px;
+        }
+
+        @keyframes fall {
+            0% { top: -50px; }
+            100% { top: 480px; }
+        }
+        @keyframes fade {
+            0% { opacity: 1; }
+            85% { opacity: .6; }
+            100% { opacity: 0; }
         }
         </style>
     </head>
