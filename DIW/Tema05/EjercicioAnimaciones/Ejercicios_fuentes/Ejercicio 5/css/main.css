@@ -74,7 +74,16 @@ body {
    opacity: 1;
    transform: translateY(0);
 }
+.view:hover h2{
+   animation: h2Translate 1.5s ease-in-out;
+}
+.view:hover p{
+   animation: pTranslate 1.5s ease-in-out;
+}
 
+.view:hover a.info{
+   animation: infoOpacity 2s ease-in-out;
+}
 .view h2 {
    text-transform: uppercase;
    color: #fff;
@@ -108,4 +117,40 @@ body {
 
 .view:hover a.info {
    box-shadow: 0 0 5px #000;
+}
+
+
+
+@keyframes h2Translate {
+   from {
+      opacity: 0;
+      transform: translateY(-2000px);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+@keyframes pTranslate {
+   from {
+      opacity: 0;
+      transform: translateY(2000px);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+@keyframes infoOpacity {
+  0% {
+   opacity: 0;
+  }
+  50%{
+   opacity: 0.5;
+  }
+  100%{
+   opacity: 1;
+  }
 }

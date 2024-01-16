@@ -28,10 +28,8 @@ div#cloud {
     background-repeat:  no-repeat;
 	position: absolute;
 	left: 350px;
+
 }
-
-
-
 
 div#rain {
     width: 200px;
@@ -49,6 +47,7 @@ div#sun {
     position: absolute;
     top:20px;
     left: 700px;
+    animation: sun 5s ease-in-out;
 }
 
 div#flower {
@@ -63,3 +62,114 @@ div#flower {
 
 
 
+/* Keyframes for entrance and exit animations */
+@keyframes enterCloud {
+    0% {
+        left: 790px;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    90%{
+        opacity: 1;
+    }
+    99%{
+        opacity: 0.1;
+    }
+    100% {
+        left: -100px;
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes sun {
+    0% {
+        opacity: 1;
+    }
+    10%{
+        opacity: .25;
+    }
+    20% {
+        opacity: .25;
+    }
+    99%{
+        opacity: .25;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes rain {
+    0% {
+        top: 0;
+        opacity: 0;
+        display: hidden;
+    }
+    49%{
+        opacity: 0;
+        display: hidden;
+    }
+    50%{
+        opacity: 1;
+    }
+    60%{
+        opacity: 0;
+    }
+ 
+    100% {
+        top: 200px;
+        opacity: 0;
+    }
+}
+
+
+@keyframes enterFlower {
+    0% {
+        opacity: 0;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+div#cloud {
+    animation: enterCloud 20s linear  forwards;
+}
+
+div#sun {
+    animation: sun 20s linear ;
+}
+
+div#rain {
+    animation: rain 1s linear infinite ,pauseRain 15s forwards ;
+    animation-delay: 5s;
+
+}
+
+div#flower {
+    animation: enterFlower 25s ease-in;
+}
+
+div#cloud::after {
+
+    display: hidden;
+}
+
+@keyframes pauseRain {
+    0% {
+        opacity: 1;
+    }
+    99%{
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        animation-play-state: paused; /* Cambiamos a "running" al final de la animación */
+    }
+}

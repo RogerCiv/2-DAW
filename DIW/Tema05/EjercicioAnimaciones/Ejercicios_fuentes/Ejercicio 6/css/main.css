@@ -18,5 +18,24 @@
     position: absolute;
 }
 
+#second {
+    animation: rotate 60s linear infinite; 
+}
+#minute{
+    animation: rotate 3600s linear infinite; 
+}
+#hour{
+    animation: rotate 43200s linear infinite; 
+}
 
 /* ANIMACIONES Y TRANSFORMACIONES */
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
