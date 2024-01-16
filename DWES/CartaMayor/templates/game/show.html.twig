@@ -15,6 +15,14 @@
                 <th>GameDateTime</th>
                 <td>{{ game.gameDateTime ? game.gameDateTime|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>Winner</th>
+                <td>{{ game.winner }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ game.state }}</td>
+            </tr>
         </tbody>
     </table>
 

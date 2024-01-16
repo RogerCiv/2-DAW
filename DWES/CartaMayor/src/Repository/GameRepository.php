@@ -96,4 +96,27 @@ public function getWinsByUser($value): ?array
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    
+    public function findGamesInvitations($value): ?array
+    {
+        return $this->createQueryBuilder('g')
+         ->andWhere('g.player2 = :val AND g.state = 0')
+         ->setParameter('val',$value)
+         ->orderBy('g.id', 'ASC')
+         ->getQuery()
+         ->getResult();
+         ;
+    }
+    public function findGames($value,$st): ?array
+    {
+        return $this->createQueryBuilder('g')
+         ->andWhere('g.player2 = :val AND g.state = 0')
+         ->setParameter('val',$value)
+         ->setParameter('val2',$st)
+         ->orderBy('g.id', 'ASC')
+         ->getQuery()
+         ->getResult();
+         ;
+    }
 }

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+Estamos en la partida {{game.id}}
+
+
+{% if game.player1.id == app.user.id %}
+
+    {% if game.player1CardPicked %}
+
+    esperando al jugador {{game.player2.username}}
+   
+    {% else %}
+    {% for card in game.player1Hand %}
+            
+            <a href="/game/pick/{{game.id}}/{{card.id}}">
+            {{card.label}}
+            </a>
+            <br>
+
+        {% endfor %}
+    {% endif %}
+{% else %}
+    {% if game.player2CardPicked %}
+
+    esperando al jugador {{game.player1.username}}
+   
+    {% else %}
+    {% for card in game.cpuHand %}
+            
+            <a href="/game/pick/{{game.id}}/{{card.id}}">
+            {{card.label}}
+            </a>
+            <br>
+
+        {% endfor %}
+    {% endif %}
+{% endif %}
+
+        
+</div>
+{% endblock %}

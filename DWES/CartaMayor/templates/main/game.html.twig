@@ -1,0 +1,46 @@
+% extends 'base.html.twig' %}
+
+{% block title %}New Game
+{% endblock %}
+
+{% block body %}
+	<h1>Partida !!!</h1>
+
+	Estamos en la partida
+	{{ game.id }}
+
+
+	<div class="container text-center">
+		<h1>
+			Estas son tus cartas:</h1>
+		<div class="row">
+			{% if game.player1.id == app.user.id %}
+				{% if game.player1CardPicked %}
+					Esperando al otro Jugador
+					{{ game.player2.username }}
+
+				{% else %}
+					{% for cards in game.player1Hand %}
+						<div class="col">
+							<br>
+							<a href="/game/pick/{{game.id}}/{{card.id}}">
+								<img src="/uploads/image/{{card.img}}" width="150px"/></a><br>
+						</div>
+					{% endfor %}
+				{% endif %}
+			{% else %}
+				{% for cards in game.cpuHand %}
+					<div class="col">
+						<br>
+						<a href="/game/pick/{{game.id}}/{{card.id}}">
+							<img src="/uploads/image/{{card.img}}" width="150px"/></a><br>
+					</div>
+				{% endif %}
+
+
+			</div>
+			<a href="/">Volver a Inicio
+			</a>
+			<a href="{{ path('app_game_index') }}">back to list</a>
+		</div>
+	{% endblock %}

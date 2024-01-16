@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Card;
 use App\Entity\Game;
+use App\Entity\Card;
 use App\Form\GameType;
 use App\Repository\CardRepository;
 use App\Repository\GameRepository;
@@ -28,33 +28,38 @@ class GameController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, CardRepository $cardRepository): Response
     {
         $game = new Game();
-        //$form = $this->createForm(GameType::class, $game);
-        //$form->handleRequest($request);
-        $game->setGameDateTime(new \DateTime());
-        $game->setPlayer1($this->getUser());
+        $form = $this->createForm(GameType::class, $game);
+        $form->handleRequest($request);
 
-        $cards = $cardRepository->findAll();
-        shuffle($cards);
-        $game->addPlayer1Hand($cards[0]);
-        $game->addPlayer1Hand($cards[1]);
-        $game->addPlayer1Hand($cards[2]);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        $game->addCpuHand($cards[3]);
-        $game->addCpuHand($cards[4]);
-        $game->addCpuHand($cards[5]);
-        $entityManager->persist($game);
-        $entityManager->flush();
-        return $this->render('game/new.html.twig', [
-            'game' => $game,
+            $game->setGameDateTime(new \DateTime());
+            $game->setPlayer1($this->getUser());
+            $game->setState(0);
 
-        ]);
 
-        /*
-        return $this->render('game/new.html.twig', [
+            $cards = $cardRepository->findAll();
+            shuffle($cards);
+            $game->addPlayer1Hand($cards[0]);
+            $game->addPlayer1Hand($cards[1]);
+            $game->addPlayer1Hand($cards[2]);
+
+            $game->addCpuHand($cards[3]);
+            $game->addCpuHand($cards[4]);
+            $game->addCpuHand($cards[5]);
+
+            $entityManager->persist($game);
+            $entityManager->flush();
+
+            return $this->render('main/game.html.twig', [
+                'game' => $game,
+            ]);
+        }
+
+        return $this->render('game/game.html.twig', [
             'game' => $game,
             'form' => $form,
         ]);
-        */
     }
 
     #[Route('/{id}', name: 'app_game_show', methods: ['GET'])]
@@ -94,7 +99,38 @@ class GameController extends AbstractController
         return $this->redirectToRoute('app_game_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    #[Route('/newAlone', name: 'app_game_new_alone', methods: ['GET', 'POST'])]
+    public function newAlone(Request $request, EntityManagerInterface $entityManager, CardRepository $cardRepository): Response
+    {
+        $game = new Game();
+        //$form = $this->createForm(GameType::class, $game);
+        //$form->handleRequest($request);
+        $game->setGameDateTime(new \DateTime());
+        $game->setPlayer1($this->getUser());
 
+        $cards = $cardRepository->findAll();
+        shuffle($cards);
+        $game->addPlayer1Hand($cards[0]);
+        $game->addPlayer1Hand($cards[1]);
+        $game->addPlayer1Hand($cards[2]);
+
+        $game->addCpuHand($cards[3]);
+        $game->addCpuHand($cards[4]);
+        $game->addCpuHand($cards[5]);
+        $entityManager->persist($game);
+        $entityManager->flush();
+        return $this->render('game/new.html.twig', [
+            'game' => $game,
+
+        ]);
+
+        /*
+        return $this->render('game/new.html.twig', [
+            'game' => $game,
+            'form' => $form,
+        ]);
+        */
+    }
     #[Route('/play/{gameId}/{cardId}', name: 'app_game_play', methods: ['GET'])]
     public function play(Request $request, $gameId, $cardId, EntityManagerInterface $entityManager, CardRepository $cardRepository): Response
     {
@@ -115,7 +151,7 @@ class GameController extends AbstractController
         $cpuCard = $cpuHand[0];
         if ($card->getValue() > $cpuCard->getValue()) {
             $game->setWinner(1);
-        }else{
+        } else {
             $game->setWinner(0);
         }
         $entityManager->flush();
@@ -133,6 +169,50 @@ class GameController extends AbstractController
         ]);
         */
     }
+    #[Route('/accept/{game}', name: 'app_game_play', methods: ['GET'])]
+    public function accept(Request $request, Game $game, EntityManagerInterface $entityManager): Response
+    {
+        $game->setState(1);
+        $entityManager->flush();
 
-    
+        return $this->render('main/game.html.twig', [
+            'game' => $game,
+
+        ]);
+    }
+
+    #[Route('/pick/{game}/{card}', name: 'app_game_play', methods: ['GET'])]
+    public function pick(Request $request, Game $game, Card $card, EntityManagerInterface $entityManager): Response
+    {
+        if ($game->getPlayer1() == $this->getUser()) {
+
+            if (!$game->getPlayer1Hand()->contains($card) || $game->getWinner() != NULL) {
+
+                return $this->redirectToRoute('app_main',);
+            }
+            $game->setPlayer1CardPicked($card);
+
+            if($game->getPlayer2CardPicked()){
+                $game->setState(2);
+            }
+        }
+        if ($game->getPlayer2() == $this->getUser()) {
+
+            if (!$game->getCpuHand()->contains($card) || $game->getWinner() != NULL) {
+                return $this->redirectToRoute('app_main',);
+            }
+            $game->setPlayer2CardPicked($card);
+            if($game->getPlayer1CardPicked()){
+                $game->setState(2);
+            }
+        }
+
+        //$game->setState(1);
+        $entityManager->flush();
+
+        return $this->render('main/game.html.twig', [
+            'game' => $game,
+
+        ]);
+    }
 }

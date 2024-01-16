@@ -11,10 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
-    public function index(): Response
+    public function index(GameRepository $gameRepository): Response
     {
+        $invitations = $gameRepository->findGames($this->getUser(),0);
+        $games =  $gameRepository->findGames($this->getUser(),1);
         return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
+            'invitations' => $invitations,
+            'games' => $games,
         ]);
     }
 

@@ -30,13 +30,28 @@ class Game
     #[ORM\ManyToMany(targetEntity: Card::class, mappedBy: 'gamed')]
     private Collection $cpuHand;
 
+  
+
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $winner = null;
+
+    #[ORM\ManyToOne(inversedBy: 'gamesInvited')]
+    private ?User $player2 = null;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $state = null;
+
+    #[ORM\ManyToOne]
+    private ?Card $player1CardPicked = null;
+
+    #[ORM\ManyToOne]
+    private ?Card $player2CardPicked = null;
 
     public function __construct()
     {
         $this->player1Hand = new ArrayCollection();
         $this->cpuHand = new ArrayCollection();
+   
     }
 
     public function getId(): ?int
@@ -68,8 +83,6 @@ class Game
         return $this;
     }
 
-   
-
     /**
      * @return Collection<int, Card>
      */
@@ -93,6 +106,7 @@ class Game
 
         return $this;
     }
+
 
     /**
      * @return Collection<int, Card>
@@ -129,6 +143,54 @@ class Game
     public function setWinner(?int $winner): static
     {
         $this->winner = $winner;
+
+        return $this;
+    }
+
+    public function getPlayer2(): ?User
+    {
+        return $this->player2;
+    }
+
+    public function setPlayer2(?User $player2): static
+    {
+        $this->player2 = $player2;
+
+        return $this;
+    }
+
+    public function getState(): ?int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $state): static
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    public function getPlayer1CardPicked(): ?Card
+    {
+        return $this->player1CardPicked;
+    }
+
+    public function setPlayer1CardPicked(?Card $player1CardPicked): static
+    {
+        $this->player1CardPicked = $player1CardPicked;
+
+        return $this;
+    }
+
+    public function getPlayer2CardPicked(): ?Card
+    {
+        return $this->player2CardPicked;
+    }
+
+    public function setPlayer2CardPicked(?Card $player2CardPicked): static
+    {
+        $this->player2CardPicked = $player2CardPicked;
 
         return $this;
     }

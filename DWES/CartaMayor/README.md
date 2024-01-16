@@ -56,3 +56,51 @@ El usuario con más victorias es: {{userWhitMoreWins.username }} con {{ userWhit
 <br>
 El usuario con más perdidas es: {{userWhitMostLostGames.username }} con {{ userWhitMostLostGames.total_lost_games }}
 <br>
+
+
+newGame:
+
+{% extends 'base.html.twig' %}
+
+{% block title %}New Game{% endblock %}
+
+{% block body %}
+    <h1>Partida !!!</h1>
+
+ <div class="container text-center">
+   <h1> Estas son tus cartas:</h1>
+ <div class="row">
+    {% for card in game.player1hand %}
+    <div class="col">
+ <br>
+<a href="{{ path('app_game_play', {'gameId': game.id, 'cardId': card.id}) }}"> <img src="/uploads/image/{{card.img}}" width="150px"/></a><br>
+    </div>
+    {% endfor %}
+
+</div>
+    <a href="/">Volver a Inicio </a>
+    <a href="{{ path('app_game_index') }}">back to list</a>
+</div>
+{% endblock %}
+
+
+
+result:
+
+{% extends 'base.html.twig' %}
+
+{% block title %}New Game{% endblock %}
+
+{% block body %}
+    <h1>El ganador es !!!</h1>
+
+    {% if game.winner == 1 %}
+        Has ganado!
+        {% else %}
+     Has perdido, ganó la machine!
+    {% endif %}
+    
+       <a href="{{ path('app_game_new') }}">Juega otra vez</a>
+         <a href="/">Volver a Inicio </a>
+    <a href="{{ path('app_game_index') }}">back to list</a>
+{% endblock %}

@@ -3,15 +3,9 @@
 {% block title %}New Game{% endblock %}
 
 {% block body %}
-    <h1>Partida !!!</h1>
+    <h1>Create new Game</h1>
 
-    Estas son tus cartas:
-    {% for card in game.player1hand %}
-      
-<a href="{{ path('app_game_play', {'gameId': game.id, 'cardId': card.id}) }}">{{ card.label }} </a><br>
+    {{ include('game/_form.html.twig') }}
 
-    {% endfor %}
-
-  
     <a href="{{ path('app_game_index') }}">back to list</a>
 {% endblock %}

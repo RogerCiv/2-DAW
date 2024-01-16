@@ -11,5 +11,16 @@
 <div class="example-wrapper">
  <a href="{{ path('app_game_new') }}">New Game</a>
 
+  {% for game in invitations %}
+    Fueiste invitado a una partida por {{ game.player1.username}} el dia {{game.gameDateTime|date('Y-m-d') }}
+    <br>
+    <a href="game/accept/{{game.id}}" > Jugar Ahora</a>
+  {% endfor %}
+
+    {% for game in games %}
+   Aqui tienes partida pendiente con  {{ game.player1.username}} el dia {{game.gameDateTime|date('Y-m-d') }}
+    <br>
+    <a href="game/accept/{{game.id}}" > Jugar Ahora</a>
+  {% endfor %}
 </div>
 {% endblock %}
