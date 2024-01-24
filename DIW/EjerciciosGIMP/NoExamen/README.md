@@ -36,3 +36,18 @@ Tokyo: https://unsplash.com/es/fotos/autobus-blanco-y-rojo-en-el-medio-de-la-fot
 https://unsplash.com/es/fotos/juguete-robot-blanco-azul-y-rojo-cc8BVwsSHyQ
 https://unsplash.com/es/fotos/juguete-robot-blanco-rojo-y-azul-iR94JY-a14U
 https://unsplash.com/es/fotos/robot-blanco-rojo-y-azul-horDgLA2lek
+
+
+## Practica 5
+
+ALhambra: https://unsplash.com/es/fotos/el-reflejo-de-un-edificio-en-un-charco-de-agua-6uunCNyORz4
+teleferico: https://unsplash.com/es/fotos/un-remonte-con-vistas-a-una-ciudad-por-la-noche-LPv2L4bbRBQ
+montañas: https://unsplash.com/es/fotos/camino-gris-cerca-de-las-montanas-gHwDURuSafI
+
+
+## Practica 6
+
+yamanote: https://unsplash.com/es/fotos/tren-blanco-y-verde-en-la-estacion-de-tren-YOM0cBlC_eU
+nigga violin: https://unsplash.com/es/fotos/un-hombre-tocando-el-violin-o-el-violin-en-las-calles-de-nueva-orleans-en-el-barrio-frances-qtYhAQnIwSE
+tengu: https://es.wikipedia.org/wiki/Tengu#/media/Archivo:Tengu.jpg
+Payaso: https://unsplash.com/es/fotos/foto-en-escala-de-grises-de-un-hombre-tocando-el-violin-K2T37vItYMs
