@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Simple video control</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+</head>
+<body>
+    <header>
+        <h1>Example of custom controls</h1>
+        <button onclick="playVideo();" class="btn btn-success">
+            Play <i class="glyphicon glyphicon-play"></i>
+        </button>
+        <button onclick="pauseVideo();" class="btn btn-warning">
+            Pause <i class="glyphicon glyphicon-pause"></i>
+        </button>
+        <button onclick="stopVideo()" class="btn btn-danger">
+            Stop <i class="glyphicon glyphicon-stop"></i>
+        </button> 
+        <button onclick="rewindVideo();"  class="btn btn-info">
+            Rewind <i class="glyphicon glyphicon-fast-backward"></i>
+        </button>
+    </header>
+    
+    <video width="480" height="320" controls="controls" id="myVideo">
+       <source src="movie_clip.mp4" type="video/mp4" />
+       <source src="movie_clip.ogg" type="video/ogg" />
+       Your browser does not support the &lt;video&gt; element. 
+    </video>
+
+    <script>
+        theVideo = document.querySelector("#myVideo");
+
+        function playVideo() {
+           theVideo.play();
+        }
+
+        function pauseVideo() {
+           theVideo.pause();
+        }
+
+        function stopVideo() {
+           theVideo.currentTime = 0;
+           theVideo.pause();
+        }
+
+        function rewindVideo() {
+           theVideo.currentTime = 0;
+        }
+    </script>
+</body>
+</html>

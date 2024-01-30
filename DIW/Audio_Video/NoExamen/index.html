@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor Audio/Video</title>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div class="flex flex-col items-center">
+        <video id="video" controls class="mb-4"></video>
+        <input type="file" id="videoFile" accept="video/*" class="mb-2">
+        <input type="file" id="subtitleFile" accept=".vtt" class="mb-4">
+        <div class="flex gap-2 mb-4">
+            <button id="playButton" class="px-4 py-2 bg-blue-500 text-white rounded">Play/Pause</button>
+            <button id="nextButton" class="px-4 py-2 bg-blue-500 text-white rounded">Next</button>
+            <button id="prevButton" class="px-4 py-2 bg-blue-500 text-white rounded">Previous</button>
+            <button id="volumeUpButton" class="px-4 py-2 bg-blue-500 text-white rounded">Volume Up</button>
+            <button id="volumeDownButton" class="px-4 py-2 bg-blue-500 text-white rounded">Volume Down</button>
+        </div>
+        <div id="playlist" class="mb-4"></div>
+    </div>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Video player with playlist</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+</head>
+<body>
+	<header>
+		<form method="post" action="#">
+			<input type="text" id="fichero">Escriba el nombre del fichero a cargar. 
+			                                Se cargarán desde el directorio "videos"
+			<input type="button" id="guardar" value="Añadir video" onclick="cargar_video()">
+		</form>
+	</header>
+    
+    <section>
+        <h1>Video player with playlist</h1>
+        <button onclick="playVideo();" class="btn btn-success">
+            Play <i class="glyphicon glyphicon-play"></i>
+        </button>
+        <button onclick="pauseVideo();" class="btn btn-warning">
+            Pause <i class="glyphicon glyphicon-pause"></i>
+        </button>
+        <button onclick="previous()" class="btn btn-info">
+            Previous <i class="glyphicon glyphicon-fast-backward"></i>
+        </button> 
+        <button onclick="next();"  class="btn btn-info">
+            Next <i class="glyphicon glyphicon-fast-forward"></i>
+        </button> 
+        <div id="info"></div>
+       </section>
+
+    <video width="480" height="320" controls="controls" id="myVideo">
+    Your browser does not support the &lt;video&gt; element. 
+    </video>
+		
+
+
+    <script type='text/javascript'>
+        theVideo = document.querySelector("#myVideo");
+        info = document.querySelector("#info");
+        var videos = ['movie_clip', 'movie_clip2', 'movie_clip3'];
+        var current = 0;
+
+        function playVideo() {
+            // The simplest way:
+            //theVideo.src = videos[current] + '.mp4';
+
+            // adding suppor for various formats
+           theVideo.innerHTML = "";
+           theVideo.innerHTML = "<source src='"+videos[current]+".mp4' type='video/mp4'>";
+           theVideo.innerHTML += "<source src='"+videos[current]+".ogg' type='video/ogg'>";
+           theVideo.load();
+           theVideo.play();
+           info.innerHTML = 'Now playing ' + videos[current];
+        }
+
+        function pauseVideo() {
+           theVideo.pause();
+           info.innerHTML = videos[current] + ' paused';
+        }
+
+        function previous() {
+            if (current > 0) {
+                current--;
+            }
+            playVideo();
+        }
+
+        function next() {
+            if (current < videos.length-1) {
+                current++;
+            }
+            playVideo();
+        }
+    </script>
+</body>
+</html>

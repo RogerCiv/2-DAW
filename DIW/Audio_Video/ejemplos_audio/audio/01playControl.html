@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Simple audio control</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+</head>
+<body>
+    <header>
+        <h1>Example of custom audio controls</h1>
+        <button onclick="playAudio();" class="btn btn-success">
+            Play <i class="glyphicon glyphicon-play"></i>
+        </button>
+        <button onclick="pauseAudio();" class="btn btn-warning">
+            Pause <i class="glyphicon glyphicon-pause"></i>
+        </button>
+        <button onclick="stopAudio()" class="btn btn-danger">
+            Stop <i class="glyphicon glyphicon-stop"></i>
+        </button> 
+        <button onclick="rewindAudio();"  class="btn btn-info">
+            Rewind <i class="glyphicon glyphicon-fast-backward"></i>
+        </button>
+    </header>
+    
+    <audio controls="controls" id="myAudio">
+       <source src="audio_clip1.mp3" type="audio/mp3" />
+       <source src="audio_clip1.ogg" type="audio/ogg" />
+       Your browser does not support the &lt;audio&gt; element. 
+    </audio>
+
+    <script>
+        theAudio = document.querySelector("#myAudio");
+
+        function playAudio() {
+           theAudio.play();
+        }
+
+        function pauseAudio() {
+           theAudio.pause();
+        }
+
+        function stopAudio() {
+           theAudio.currentTime = 0;
+           theAudio.pause();
+        }
+
+        function rewindAudio() {
+           theAudio.currentTime = 0;
+        }
+    </script>
+</body>
+</html>

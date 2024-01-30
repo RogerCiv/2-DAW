@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Simple video events</title>
+</head>
+<body>
+    <header>
+        <h1>Example of video events</h1>
+           <h3 id="status">Status</h3>
+           <h4 id="info">Info</h4>
+    </header>
+    
+    <video width="480" height="320" controls="controls" id="myVideo">
+       <source src="movie_clip.mp4" type="video/mp4" />
+       <source src="movie_clip.ogg" type="video/ogg" />
+       Your browser does not support the &lt;video&gt; element. 
+    </video>
+
+    <script type='text/javascript'>   
+      var theVideo = document.querySelector('#myVideo');
+
+      // We add listeners
+      theVideo.addEventListener('play', videoPlaying, false);
+      theVideo.addEventListener('ended', videoEnded, false);
+      theVideo.addEventListener('timeupdate', videoTimeUpdate, false);
+
+      function videoPlaying (e) {
+        var status = document.querySelector('#status');
+        status.innerHTML = 'Video is playing';
+      }
+
+      function videoEnded (e) {
+         var status = document.querySelector('#status');
+         status.innerHTML = 'End of the video';
+      }
+
+      function videoTimeUpdate (e) {
+          var info = document.querySelector('#info');
+          info.innerHTML = theVideo.currentTime;
+      }
+    </script>
+</body>
+</html>

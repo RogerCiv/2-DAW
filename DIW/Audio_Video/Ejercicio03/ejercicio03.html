@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Ejercicio 03</title>
+
+
+<body>
+    <main class="flex flex-col justify-center items-center h-screen">
+
+        <div id="videoPlayer" class="flex flex-col gap-2">
+            <video id="video" width="640" height="480" controls></video>
+            <input type="file" id="videoFile" accept="video/*">   
+        </div>
+        <div class="flex gap-2 mt-4">
+            <button id="playButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Play/Pause</button>
+            <button id="nextButton" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Next</button>
+            <button id="prevButton" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded">Previous</button>
+            <button id="volumeUpButton" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Volume Up</button>
+            <button id="volumeDownButton" class="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded">Volume Down</button>
+        </div>
+        <div id="eventLog" class=" max-w-2xl text-white font-bold "></div>
+    </main>
+        <script src="ejercicio03.js"></script>
+    </body>
+</html>
