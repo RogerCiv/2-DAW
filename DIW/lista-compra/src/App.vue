@@ -7,15 +7,15 @@ import NuevoItem from './components/NuevoItem.vue';
 
 let listado = ref([
   {
-    productos: "Pan",
+    producto: "Pan",
     prioridad: "baja"
   },
   {
-    productos: "Leche",
+    producto: "Leche",
     prioridad: "media"
   },
   {
-    productos: "Manzanas",
+    producto: "Manzanas",
     prioridad: "alta"
   }
 ])
@@ -24,11 +24,18 @@ const pushear = (nuevo) => {
   listado.value.push(nuevo)
 }
 
+const eliminar = (index) =>{
+  listado.value.splice(index, 1)
+}
+const editar = (index, edited) =>{
+  listado.value[index]=edited;
+}
+
 </script>
 
 <template>
   <EncabezadoComponente/>
-  <ListaItems :mis-compras="listado"/>
+  <ListaItems :mis-compras="listado" @eliminar-item="eliminar" @editar-item="editar"/>
   <NuevoItem @agregar-item="pushear"/>
   <PieComponente/>
   

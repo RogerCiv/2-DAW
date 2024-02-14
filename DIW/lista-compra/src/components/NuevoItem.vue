@@ -6,7 +6,7 @@ const priority=ref('')
 
 const handleClick = () => {
     const nuevoProducto = {
-        productos: item.value,
+        producto: item.value,
         prioridad: priority.value
     }
     emit("agregarItem", nuevoProducto);
